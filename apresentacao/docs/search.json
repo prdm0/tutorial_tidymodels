@@ -32,7 +32,7 @@
     "href": "index.html#aprendizagem-de-máquina",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": " Aprendizagem de máquina",
-    "text": "Aprendizagem de máquina"
+    "text": "Aprendizagem de máquina\n \nAlguns pontos:\n\n\nA Aprendizagem de Máquina (AM), também chamada de Machine Learning (ML), no inglês, nasceu na década de 60 como um campo da inteligênica artificial;\nEm sua origem, as aplicações de AM tinha como objetivo aprender padrões com base nos dados;\nOriginalmente, as aplicações de AM eram de cunho estritamente computacional. Todavia, desde o início dos anos 90, a área de aprendizagem de máquina expandiu seus horizontes e começou a se estabelecer como um campo por sim mesma;\nEm particular, a área de aprendizagem de máquina começou a estabelecer muitas intersecções com a estatística. Muitos de seus algoritmos são construídos com base em metodologias que surgiram na estatística;\nAtualmente, a comunidade de AM é bastante interdisciplinar e utiliza-se de ideias desenvolvidas em diversas áreas, sendo a estatística uma delas."
   },
   {
     "objectID": "index.html#aprendizagem-de-máquina-1",
@@ -46,28 +46,28 @@
     "href": "index.html#tipos-de-aprendizado",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": " Tipos de Aprendizado",
-    "text": "Tipos de Aprendizado\n\nAprendizado supervisionado\n\nNesse curso, inicialmente estudaremos problemas de aprendizado supervisionado, que consiste em aprender a fazer predições a partir de conjunto de dados em que rótulos (valores da variável resposta Y) são observados. Trataremos tanto de problemas de regressão (estimar um valor númérico) quanto problemas de classificação (classificar um cliente como aprovado ou reprovado, em um problema de concessão de crédito). Por exemplo, os modelos de regressão são exemplos de aprendizado supervisionado.\n\nAprendizado não-supervisionado\n\nNa segunda parte do curso, aprenderemos alguns métodos de aprendizado não-supervisionado, ou seja, algoritmos que não utilizam-se de rótulos, em que busca-se aprender mais sobre a estrutura dos dados. Por exemplo, os métodos de agrupamento (cluster), são exempĺos de métodos de aprendizado não-supervisionado."
+    "text": "Tipos de Aprendizado\n\nMuito embora nesse tutorial focaremos na abordagem de aprendizagem supervisionada, os tipos de aprendizagem, em geral, podem ser mais amplos:\n\n\nAprendizagem supervisionada;\nAprendizagem não-supervisionada;\nAprendizagem semi-supervisionada;\nAprendizagem por reforço."
   },
   {
     "objectID": "index.html#tipos-de-aprendizado-1",
     "href": "index.html#tipos-de-aprendizado-1",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": " Tipos de Aprendizado",
-    "text": "Tipos de Aprendizado\n\nMuito embora no nosso curso focaremos nas abordagens de aprendizagem supervisionada e não-supervisionada, os tipos de aprendizagem, em geral, podem ser mais amplos, em que temos:\n\n\nAprendizagem supervisionada;\nAprendizagem não-supervisionada;\nAprendizagem semi-supervisionada;\nAprendizagem por reforço."
+    "text": "Tipos de Aprendizado\n\nMuito embora nesse tutorial focaremos na abordagem de aprendizagem supervisionada, os tipos de aprendizagem, em geral, podem ser mais amplos:\n\n\nAprendizagem supervisionada;\nAprendizagem não-supervisionada;\nAprendizagem semi-supervisionada;\nAprendizagem por reforço."
   },
   {
     "objectID": "index.html#o-que-é-aprender",
     "href": "index.html#o-que-é-aprender",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "O que é aprender?",
-    "text": "O que é aprender?\n\nAntes de detalharmos os tipos de aprendizagem de máquina, uma dúvida que poderá surgir é: “O que é aprender?”. “Como a máquina aprende?”."
+    "text": "O que é aprender?\n\nPortanto, você poderá entender, basiciamente, existe quatro tipos de aprendizagem, sendo os dois primeiros o que mais focaremos nesse curso e que de longe são os mais utilizados:\n\n\nAprendizagem supervisionada;\nAprendizagem não-supervisionada;\nAprendizagem semi-supervisionada;\nAprendizagem por reforço."
   },
   {
     "objectID": "index.html#o-que-é-aprender-1",
     "href": "index.html#o-que-é-aprender-1",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "O que é aprender?",
-    "text": "O que é aprender?\n\nDe forma simples, aprender é ganhar conhecimento através de estudo, experiências, por meio de ensinamentos.\n\nTá, mais como é que a máquina aprende?\n\n\nAprendizagem é o processo em que se adquire conhecimento, isto é, é o processo em que utilizamos de algoritmos e fornecemos dados a esses algoritmos para que possamos extrair conhecimento. Nesse processo de aprendizagem, os algoritmos fazem uso de dados para a extressão de conhecimento, através de procedimentos supervisionado, não-supervisionado, semi-supervisionado ou por reforço, a depender do algoritmo que você deseja utilizar.\nAprendizado é o modelo ajustado, isto é, é o conhecimento adquirido após o treinamamento obtido no processo de aprendizagem. Você poderá entender como sendo o modelo ajustado e que utilizamores para a tomada de decisões."
+    "text": "O que é aprender?\n\nPortanto, você poderá entender, basiciamente, existe quatro tipos de aprendizagem, sendo os dois primeiros o que mais focaremos nesse curso e que de longe são os mais utilizados:\n\n\nAprendizagem supervisionada;\nAprendizagem não-supervisionada;\nAprendizagem semi-supervisionada;\nAprendizagem por reforço."
   },
   {
     "objectID": "index.html#o-que-é-aprender-2",
@@ -81,35 +81,35 @@
     "href": "index.html#aprendizagem-supervisionada",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Aprendizagem supervisionada",
-    "text": "Aprendizagem supervisionada\n\nNesse tipo de aprendizagem, o algoritmo irá receber um conjunto de dados em que conhecemos rótulos para a variável de interesse. É como se você soubesse onde um bom modelo deve chegar, para assim ser reconhecido como um bom modelo. Por exemplo,\n\n\nClassificação: precisamos determinar a classe de uma instância de dados, o seu atributo, i.e., \\widehat{y} = \\mathrm{argmax}_y\\,P(Y = y\\,|\\, X = \\bf{x}), em que y é um atributo que desejamos prever (cahorro, gato, sapo), e \\bf{x} é um vetor de características (peso, altura, comprimento, se tem rabo, etc).\nRegressão: precisamos estimar uma quantidade numérica, i.e., o valor da variável alvo por meio de uma instância de dados, ou seja, precisamos estimar Y = \\mathbb{E}(Y|X = \\bf{x}), i.e., devemos encontrar meios de obter \\widehat{Y}.\n\n\n\n\nAlgumas observações de nomenclaturas:\n\nÉ comum chamar cada exemplo de dados, i.e., o vetor \\bf{x} que será passado ao modelo de atributos ou features;\nTambém é comum chamarmos de rótulo ou label a classe ou valor alvo, ou seja, estas são as formas de nomearmos Y, sendo Y uma quantidade numérica (modelos de regressão) ou não (modelos de classificação)."
+    "text": "Aprendizagem supervisionada\n\nNesse tipo de aprendizagem, o algoritmo irá receber um conjunto de dados em que conhecemos rótulos para a variável de interesse. É como se você soubesse onde um bom modelo deve chegar, para assim ser reconhecido como um bom modelo. Por exemplo,\n\n\nClassificação: precisamos determinar a classe de uma instância de dados, o seu atributo, i.e., \\hat{y} = \\mathop{\\arg\\max}_{y} P(Y = y \\mid X = \\mathbf{x}), em que y é um atributo que desejamos prever (cahorro, gato, sapo), e \\bf{x} é um vetor de características (peso, altura, comprimento, se tem rabo, etc).\n\n\n\nRegressão: precisamos estimar uma quantidade numérica, i.e., o valor da variável alvo por meio de uma instância de dados, ou seja, precisamos estimar Y = \\mathbb{E}(Y|X = \\bf{x}), i.e., devemos encontrar meios de obter \\widehat{Y}."
   },
   {
     "objectID": "index.html#aprendizagem-supervisionada-1",
     "href": "index.html#aprendizagem-supervisionada-1",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Aprendizagem supervisionada",
-    "text": "Aprendizagem supervisionada\n\nEm se tratando de métodos de classificação, podemos ter os métodos:\n\n\nGenerativos: são os métodos que dada as variáveis X e Y, o objetivo é encontrar a distribuição de probabilidade conjunta P(X, Y), para então poder determinar P(Y|X = \\bf{x}). Alguns métodos são:\n\nNaive Bayes;\nDescriminante linear.\n\n\n\n\nDescriminativos: são os métodos que estimam diretamente a probabilidade condicional P(Y|X = \\bf{x}) ou que mesmo nem assumem modelos probabilísticos. Os modelos dessa classe são projetados para aprender a fronteira de decisão que separa as classes diretamente com base nas características de entrada. Podemos citar:\n\nRegressão logistica;\nPerceptron;\nSupport Vector Machine - SVM."
+    "text": "Aprendizagem supervisionada\n\n\n\n\n\n Poderíamos estar interessados em classificar o tamanho de morangos:\n\n\nS (Slow): pequeno;\nM (Medium): médio;\nL (Large): grande."
   },
   {
     "objectID": "index.html#aprendizagem-supervisionada-2",
     "href": "index.html#aprendizagem-supervisionada-2",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Aprendizagem supervisionada",
-    "text": "Aprendizagem supervisionada\n\n\n\n\n\n Poderíamos estar interessados em classificar o tamanho de morangos:\n\n\nS (Slow): pequeno;\nM (Medium): médio;\nL (Large): grande."
+    "text": "Aprendizagem supervisionada\n\nUm outro exemplo seria a classificação de imagem/vídeo, utilizando um algoritmo de rede neural, por exemplo, usando uma Convolutional Neural Network - CNN. Foram utilizados diversas imagens de pessoas “com” e “sem” máscara. Em que “com” representa detecção da máscara na face da pessoa e “sem” a não detecção."
   },
   {
     "objectID": "index.html#aprendizagem-supervisionada-3",
     "href": "index.html#aprendizagem-supervisionada-3",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Aprendizagem supervisionada",
-    "text": "Aprendizagem supervisionada\n \n\nMais dois problemas de classificação (linear x não-linear)."
+    "text": "Aprendizagem supervisionada\n\nUm outro exemplo seria a classificação de imagem/vídeo, utilizando um algoritmo de rede neural, por exemplo, usando uma Convolutional Neural Network - CNN. Foram utilizados diversas imagens de pessoas “com” e “sem” máscara. Em que “com” representa detecção da máscara na face da pessoa e “sem” a não detecção."
   },
   {
     "objectID": "index.html#aprendizagem-supervisionada-4",
     "href": "index.html#aprendizagem-supervisionada-4",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Aprendizagem supervisionada",
-    "text": "Aprendizagem supervisionada\n \n\nUm exemplo de de um problema de regressão. Aqui, a ideia é utilizar a equação da reta estimada, a reta que minimiza a soma dos quadrados entre a reta e os ponto seria a melhor, de modo a ter uma estimativa numérica através de novos atributos passado ao modelo, i.e., por meio da equação da reta e de um novo valor de x."
+    "text": "Aprendizagem supervisionada\n\nUm outro exemplo seria a classificação de imagem/vídeo, utilizando um algoritmo de rede neural, por exemplo, usando uma Convolutional Neural Network - CNN. Foram utilizados diversas imagens de pessoas “com” e “sem” máscara. Em que “com” representa detecção da máscara na face da pessoa e “sem” a não detecção."
   },
   {
     "objectID": "index.html#aprendizagem-supervisionada-5",
@@ -151,49 +151,49 @@
     "href": "index.html#dados-exploração-e-tratamento",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": " Dados: exploração e tratamento",
-    "text": "Dados: exploração e tratamento\n\nUm dos passos mais importante no fluxo de trabalho (workflow) de um modelo de aprendizagem de máquina, consiste na preparação dos dados, em que realizamos transformações, inputações de valores ausentes, identificação de outliers, remoção de variáveis altamente correlacionadas, entre outros.\n\nFazer uma análise exploratória dos dados é um passo importante para que se possa entender e detecatar possíveis inconsistências na base de dados. Não adianta fazer uso de modelos muito sofisticados quando se tem uma base de dados cheia de problemas.\n\nNormalmente trabalhamos com juntos de dados (tabelas) relacionais, em que cada linha é uma observação e cada coluna representa um atributo do objeto/observação. A linha de uma base de dados relacional, sem sua a variável de interesse, lembre-se que denominamos Y de rótulo ou label, fornece o vetor de características \\bf{x} que descreve uma dada observação."
+    "text": "Dados: exploração e tratamento\nA linguagem de programação R possue diversas ferramentas que permite manipular e explorar bases de dados. Enumero algumas:\n\ndplyr: biblioteca que implementa é uma gramática de manipulação de dados, fornecendo um conjunto consistente de verbos que ajudam a resolver os desafios mais comuns de manipulação de dados;\ntidyr: ferramentas para ajudar a criar dados organizados, em que cada coluna é uma variável, cada linha é uma observação e cada célula contém um único valor;\nggplot2: um sistema para criar gráficos ‘declarativamente’, baseado no livro The Grammar of Graphics, de Leland Wilkinson;\nvisdat: uma biblioteca útil para um visualização exploratória preliminar de dados;\nexplore: biblioteca que apresenta algumas rotinas de análise para realizar uma análise exploratória nos dados.\n\nTodas essas bibliotecas estão muito bem documentadas. É importante que vocês explorem as documentas dessas bibliotecas, pois eventualmente irei utizar alguma delas."
   },
   {
     "objectID": "index.html#dados-exploração-e-tratamento-1",
     "href": "index.html#dados-exploração-e-tratamento-1",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": " Dados: exploração e tratamento",
-    "text": "Dados: exploração e tratamento\nNo artigo Tidy Data, 2014, publicado no Journal of Statistical Sofware, o Hadley Wickham discute que o princípio de dados organizados estão intimamente relacionados com banco de dados relacional e mais próximo do reciocínio que empregamos na álgebra. Nesse artigo, ele define o que é Tidy Data, sendo essa uma maneira de mapear um conjunto de dados.\n\nSegundo o artigo, um conjunto de dados é bagunçado ou arrumado/tidy, dependendo de como as linhas, colunas e tabelas são combinadas com as observações, variáveis e tipos. Em dados arrumados (dados tidy), temos que:\n\n\nCada variável forma uma coluna;\nCada observação forma uma linha;\nCada valor deve ter sua própria célula.\n\n\nEmbora existam situações em que já podemos começar a analisar uma base de dados real, essa é a exceção e não a regra. Normalmente, nos deparamos com bases de dados que violam uma ou mais dessas regras. Sempre, que possível, procure utilizar dados no formato Tidy."
+    "text": "Dados: exploração e tratamento\n\nNo Capítulo 12, do livro R for Data Science, o autor aborda mais sobre o formato Tidy e como trabalhar com a biblioteca tidyr. Aqui o autor aborda de forma básica o pacote dplyr.\n\nDurante o curso, na medida da necessidade de utilização dessas ferramentas, durante a exposição de exemplos, abordaremos alguns conceitos. Você terá a oportunidade de também explorar essas bibliotecas nos exercícios. Ok?!"
   },
   {
     "objectID": "index.html#dados-exploração-e-tratamento-2",
     "href": "index.html#dados-exploração-e-tratamento-2",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": " Dados: exploração e tratamento",
-    "text": "Dados: exploração e tratamento\n\n\nRepresentação de uma base de dados no formato tidy."
+    "text": "Dados: exploração e tratamento\n\nMuitas vezes, no processo de tratamento dos dados, também estamos preocupados em remover atributos que não são significativo para a modelagem, em que nesse momento a experiência dos especialistas são fundamentais.\n\nÉ comum enriquercermos a base de dados com informações de outras bases de dados, em um sistema de gerenciamento de banco de dados relacional, em que as bases de dados estão relacionadas por uma chave. Nesse caso, buscamos por novos atributos para um mesmo objeto (para uma mesma linha da base), em que atributos cruzados devem ter um único valor, para cada objeto, respeitando a regra três de conjuntos de dados tidy.\n\nAs vezes transformamos variáveis. Por exemplo, é comum tomar o logaritmo de uma variável numérica que é assimétrica, se x \\geq 1, em que x é um atributo numérico qualquer.\n\nEm diveras situações, também é comum a base de dados apresentar informações faltantes. Nos data frames de R, a falta de informação na base, normlamente serão representadas por NA."
   },
   {
     "objectID": "index.html#dados-exploração-e-tratamento-3",
     "href": "index.html#dados-exploração-e-tratamento-3",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": " Dados: exploração e tratamento",
-    "text": "Dados: exploração e tratamento\n\n\n“As famílias felizes são todas iguais; toda família infeliz é infeliz à sua maneira.” – Leo Tolstoy\n\n\n“Conjuntos de dados organizados são todos iguais, mas todo conjunto de dados confuso é confuso à sua maneira.” – Hadley Wickham\n\n\n\nTrabalhar com a Tabela do lado esquerdo é melhor que a Tabela do lado direito. Prefira, sempre que possível, o formato tidy. Não permita-se ficar estressado tão facilmente. 😃"
+    "text": "Dados: exploração e tratamento\n\nPoderá ser que um dado atributo apresente informação faltante, e normalmente não optaremos em remover a observação e precisaremos imputar a informação, por exemplo:\n\n\nTomando alguma medida de tendência central como média/moda/mediana dos valores que são conhecidos para aquele atributo;\nCriar um novo valor que é indicação de valor faltante;\nUsar algoritmos como k-nearest neighbors - kNN (k vizinhos mais próximos) para imputar valores coerentes;\nInterpolar os dados.\n\nEsses são alguns exemplos de como podemos imputar observações faltantes. Muitas vezes não podemos nos dar o luxo de percer observações de nossa base de dados."
   },
   {
     "objectID": "index.html#dados-exploração-e-tratamento-4",
     "href": "index.html#dados-exploração-e-tratamento-4",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": " Dados: exploração e tratamento",
-    "text": "Dados: exploração e tratamento\nA linguagem de programação R possue diversas ferramentas que permite manipular e explorar bases de dados. Enumero algumas:\n\ndplyr: biblioteca que implementa é uma gramática de manipulação de dados, fornecendo um conjunto consistente de verbos que ajudam a resolver os desafios mais comuns de manipulação de dados;\ntidyr: ferramentas para ajudar a criar dados organizados, em que cada coluna é uma variável, cada linha é uma observação e cada célula contém um único valor;\nggplot2: um sistema para criar gráficos ‘declarativamente’, baseado no livro The Grammar of Graphics, de Leland Wilkinson;\nvisdat: uma biblioteca útil para um visualização exploratória preliminar de dados;\nexplore: biblioteca que apresenta algumas rotinas de análise para realizar uma análise exploratória nos dados.\n\nTodas essas bibliotecas estão muito bem documentadas. É importante que vocês explorem as documentas dessas bibliotecas, pois eventualmente irei utizar alguma delas."
+    "text": "Dados: exploração e tratamento\n\nÉ comum ser necessário transformar os dados:\n\nPode ser necessário transformar os tipos ou os valores dos atributos para tentar obter um melhor ajuste do modelo;\nPode-se discretizar valores contínuos ou transformá-los em intervalos;\nÉ comum transformar atributos categóricos com p categorias, em p novos atributos binários.\n\nOne-hot encoding\nVariáveis dummy\n\nOutra transformação muito comum é a normalização dos dados. Normalizar os dados é muito útil quando os atributos numéricos possuem escalas muito diferentes.\n\n\n\nX_{novo} = \\frac{X - X_{min}}{X_{max} - X_{min}}, em que X_{novo} \\in [0, 1].\n\nX_{novo} = Z = \\frac{X - \\mu}{\\sigma^2}, em que \\mathbb{E}(X) = \\mu é a média dos dados e \\mathrm{Var}(X) = \\sigma^2. Na prática, em um contexto de v.a., iids, usamos \\overline{x} como estimador de \\mu e S^2 (variância amostral) como estimador de \\sigma^2."
   },
   {
     "objectID": "index.html#dados-exploração-e-tratamento-5",
     "href": "index.html#dados-exploração-e-tratamento-5",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": " Dados: exploração e tratamento",
-    "text": "Dados: exploração e tratamento\n\nNo Capítulo 12, do livro R for Data Science, o autor aborda mais sobre o formato Tidy e como trabalhar com a biblioteca tidyr. Aqui o autor aborda de forma básica o pacote dplyr.\n\nDurante o curso, na medida da necessidade de utilização dessas ferramentas, durante a exposição de exemplos, abordaremos alguns conceitos. Você terá a oportunidade de também explorar essas bibliotecas nos exercícios. Ok?!"
+    "text": "Dados: exploração e tratamento\n\nLembre-se, como citado anteriormente, tomar o logaritmo natural, ou mesmo na base 10 de variáveis numéricas muito assimétricas, poderá ajudar um pouco, desde que seja possivel tomar o \\log(\\cdot).\n\n\n\n\nset.seed(0)\nrgamma(1000, 2, 2) |&gt;\n  hist()\n\n\n\n\n\n\n\n\n\n\nset.seed(0)\nrgamma(1000, 2, 2) |&gt;\n  log() |&gt; hist()"
   },
   {
     "objectID": "index.html#dados-exploração-e-tratamento-6",
     "href": "index.html#dados-exploração-e-tratamento-6",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": " Dados: exploração e tratamento",
-    "text": "Dados: exploração e tratamento\n\nMuitas vezes, no processo de tratamento dos dados, também estamos preocupados em remover atributos que não são significativo para a modelagem, em que nesse momento a experiência dos especialistas são fundamentais.\n\nÉ comum enriquercermos a base de dados com informações de outras bases de dados, em um sistema de gerenciamento de banco de dados relacional, em que as bases de dados estão relacionadas por uma chave. Nesse caso, buscamos por novos atributos para um mesmo objeto (para uma mesma linha da base), em que atributos cruzados devem ter um único valor, para cada objeto, respeitando a regra três de conjuntos de dados tidy.\n\nAs vezes transformamos variáveis. Por exemplo, é comum tomar o logaritmo de uma variável numérica que é assimétrica, se x \\geq 1, em que x é um atributo numérico qualquer.\n\nEm diveras situações, também é comum a base de dados apresentar informações faltantes. Nos data frames de R, a falta de informação na base, normlamente serão representadas por NA."
+    "text": "Dados: exploração e tratamento\n\nAnteriormente eu citei algumas bibliotecas úteis de R para explorar os dados, na fase de tratamento das observações. Porém, não estranhe não ter, até o momento, citado bibliotecas do framework tidymodels, em especial o recipes que é muito utilizado no workflow de aprendizagem de máquina, na fase de pré-processamento dos dados. Muitas dessas transformações são aplicadas como receitas de pré-processamento com o pacote recipes.\n\n\n\nO tidymodels será muito útil para nós, mas, aos poucos, seu uso e explicações mais detalhadas serão apresentadas, apesar que em algumas situações mais simples, poderei não utilizá-lo, para expor detalhes que eventualmente não será possível ou estariam camuflados (black box) na utilização do tidymodels.\n\nPara não deixar de valar sobre o tidymodels, explicarei, agora, a sua filosofia e como ele está dividido em outras bibliotecas que são úteis em cada parte do processo de treinamento de um modelo de machine learning."
   },
   {
     "objectID": "index.html#dados-exploração-e-tratamento-7",
@@ -228,7 +228,7 @@
     "href": "index.html#tidymodels",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "💻 Tidymodels",
-    "text": "💻 Tidymodels\n\nDiversas bibliotecas na linguagem R são preparadas para trabalharem na área de aprendizagem de máquina. Várias dessas bibliotecas vem sendo desenvolvidas há anos. Por exemplo,as bibliotecas glmnet, ranger, kknn, xgboost, keras, rpart, randomForest, entre diversos outros.\n\n\n\nO número de pacotes abaixo é o mais recente. Obtido automaticamente por webscraping.\nlibrary(xml2)\nlibrary(httr)\nlibrary(stringr)\n\nnumero_pacotes_r &lt;- httr::GET(\"https://cloud.r-project.org/web/packages/index.html\") |&gt;\n  xml2::read_html() |&gt;\n  xml2::xml_find_all(\"//p[1]\") |&gt;\n  xml2::xml_text() |&gt;\n  stringr::str_extract(pattern = \"[0-9]+\")\n\n\n\nAtualmente, a linguagem R possui 22401, em que muitos deles são preparados para para trabalharem em tarefas de aprendizagem de máquina, porém, cada com sua sintaxe específica. Muitos implementam o mesmo modelo, uns com algumas variações, porém, o uso é totalmente diferente, nomes de parâmetros distintos, saídas distintas, etc."
+    "text": "💻 Tidymodels\n\nDiversas bibliotecas na linguagem R são preparadas para trabalharem na área de aprendizagem de máquina. Várias dessas bibliotecas vem sendo desenvolvidas há anos. Por exemplo,as bibliotecas glmnet, ranger, kknn, xgboost, keras, rpart, randomForest, entre diversos outros.\n\n\n\nO número de pacotes abaixo é o mais recente. Obtido automaticamente por webscraping.\nlibrary(xml2)\nlibrary(httr)\nlibrary(stringr)\n\nnumero_pacotes_r &lt;- httr::GET(\n  \"https://cloud.r-project.org/web/packages/index.html\"\n) |&gt;\n  xml2::read_html() |&gt;\n  xml2::xml_find_all(\"//p[1]\") |&gt;\n  xml2::xml_text() |&gt;\n  stringr::str_extract(pattern = \"[0-9]+\")\n\n\n\nAtualmente, a linguagem R possui 22404, em que muitos deles são preparados para para trabalharem em tarefas de aprendizagem de máquina, porém, cada com sua sintaxe específica. Muitos implementam o mesmo modelo, uns com algumas variações, porém, o uso é totalmente diferente, nomes de parâmetros distintos, saídas distintas, etc."
   },
   {
     "objectID": "index.html#tidymodels-1",
@@ -326,14 +326,14 @@
     "href": "index.html#regressão",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Regressão",
-    "text": "Regressão\n\nMétodos de regressão surgiram há mais de dois séculos com Legendre (1805) e Gauss (1809), que exploraram o método dos mínimos quadrados com o objetivo de prever órbitas ao redor do Sol. Hoje em dia, o problema de estimação de uma função de regressão possui papel central em estatística.\n\n\nApesar de as primeiras técnicas para solucionar esse problema datarem de ao menos 200 anos, os avanços computacionais recentes permitiram que novas metodologias fossem exploradas. Em particular, com a capacidade cada vez maior de armazenamento de dados, métodos com menos suposições sobre o verdadeiro estado da natureza ganham cada vez mais espaço. Com isso, vários desafios surgiram: por exemplo, métodos tradicionais não são capazes de lidar de forma satisfatória com bancos de dados em que há mais covariáveis que observações, uma situação muito comum nos dias de hoje. Similarmente, são frequentes as aplicações em que cada observação consiste em uma imagem ou um documento de texto, objetos complexos que levam a análises que requerem metodologias mais elaboradas. – Izbick et al."
+    "text": "Regressão\n\nDe forma geral, temos que o objetivo de um modelo de regressão é determinar a relação entre uma variável aleatória (label) Y \\in \\mathbb{R} e um vetor de covariáveis (features) \\mathbf{x} = (x_1, \\cdots, x_d) \\in \\mathbb{R}^d. Mais especificamente, busaca-se estimar\nr(\\bf{x}) := \\mathbb{E}(Y|\\bf{X} = \\bf{x}),\nsendo esta chamada de função de regressão. Temos que:\n\n\nSe Y é uma variável quantitativa, então estamos sob um problema de regressão;\nSe Y é uma variável qualitativa, então teremos um problema de classificação.\n\nEm aprendizagem de máquina, assumimos que não temos meios de calcular r({\\bf{x}}), i.e., não conhecemos a distribuição condicional de {\\bf{Y}\\,|\\,X}. Portanto, não temos meios de calcular\n\\mathbb{E}({\\bf X}|Y = y) = \\int x\\,\\mathrm{d}F_{\\bf X}({\\bf x} | Y = y)."
   },
   {
     "objectID": "index.html#regressão-1",
     "href": "index.html#regressão-1",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Regressão",
-    "text": "Regressão\n\nDe forma geral, temos que o objetivo de um modelo de regressão é determinar a relação entre uma variável aleatória (label) Y \\in \\mathbb{R} e um vetor de covariáveis (features) \\mathbf{x} = (x_1, \\cdots, x_d) \\in \\mathbb{R}^d. Mais especificamente, busaca-se estimar\nr(\\bf{x}) := \\mathbb{E}(Y|\\bf{X} = \\bf{x}),\nsendo esta chamada de função de regressão. Temos que:\n\n\nSe Y é uma variável quantitativa, então estamos sob um problema de regressão;\nSe Y é uma variável qualitativa, então teremos um problema de classificação.\n\nEm aprendizagem de máquina, assumimos que não temos meios de calcular r({\\bf{x}}), i.e., não conhecemos a distribuição condicional de {\\bf{Y}\\,|\\,X}. Portanto, não temos meios de calcular\n\\mathbb{E}({\\bf X}|Y = y) = \\int x\\,\\mathrm{d}F_{\\bf X}({\\bf x} | Y = y)."
+    "text": "Regressão\nNossa ideia é construir uma boa estimativa g da função de regressão r(\\bf{x}) := \\mathbb{E}(Y\\,|\\,\\bf{X} = \\bf{x}), para novas observações, i.e., queremos obter uma função g, tal que:\ng: \\mathbb{R}^d \\rightarrow \\mathbb{R},\nde tal forma que g possua um bom poder preditivo. Em aprendizagem de máquina, só estaremos interessados em obter uma função g que estime bem um número real (em problemas de regressão), ou que classifique bem (em um problema de classificação), utilizando as d covariáveis. Ou seja, para m novas observações, desejamos obter g, que\ng({\\bf{x}}_{n + 1}) \\approx y_{n + 1}, \\cdots, g({\\bf{x}}_{n + m}) \\approx y_{n + m}."
   },
   {
     "objectID": "index.html#notações",
@@ -354,7 +354,7 @@
     "href": "index.html#regressão-2",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Regressão",
-    "text": "Regressão\nNossa ideia é construir uma boa estimativa g da função de regressão r(\\bf{x}) := \\mathbb{E}(Y\\,|\\,\\bf{X} = \\bf{x}), para novas observações, i.e., queremos obter uma função g, tal que:\ng: \\mathbb{R}^d \\rightarrow \\mathbb{R},\nde tal forma que g possua um bom poder preditivo. Em aprendizagem de máquina, só estaremos interessados em obter uma função g que estime bem um número real (em problemas de regressão), ou que classifique bem (em um problema de classificação), utilizando as d covariáveis. Ou seja, para m novas observações, desejamos obter g, que\ng({\\bf{x}}_{n + 1}) \\approx y_{n + 1}, \\cdots, g({\\bf{x}}_{n + m}) \\approx y_{n + m}."
+    "text": "Regressão\n\nMétodos de regressão surgiram há mais de dois séculos com Legendre (1805) e Gauss (1809), que exploraram o método dos mínimos quadrados com o objetivo de prever órbitas ao redor do Sol. Hoje em dia, o problema de estimação de uma função de regressão possui papel central em estatística.\n\n\nApesar de as primeiras técnicas para solucionar esse problema datarem de ao menos 200 anos, os avanços computacionais recentes permitiram que novas metodologias fossem exploradas. Em particular, com a capacidade cada vez maior de armazenamento de dados, métodos com menos suposições sobre o verdadeiro estado da natureza ganham cada vez mais espaço. Com isso, vários desafios surgiram: por exemplo, métodos tradicionais não são capazes de lidar de forma satisfatória com bancos de dados em que há mais covariáveis que observações, uma situação muito comum nos dias de hoje. Similarmente, são frequentes as aplicações em que cada observação consiste em uma imagem ou um documento de texto, objetos complexos que levam a análises que requerem metodologias mais elaboradas. – Izbick et al."
   },
   {
     "objectID": "index.html#função-de-risco",
@@ -368,21 +368,21 @@
     "href": "index.html#função-de-risco-1",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Função de risco",
-    "text": "Função de risco\n\nEm linhas gerais, seja L(\\cdot) uma função qualquer, tal que \\forall \\, 0 &lt; u &lt; v, de modo que:\n\n\n0 = L(0) \\leq L(u) \\leq L(v);\n0 = L(0) \\leq L(-u) \\leq L(-v).\n\n\nQualquer função L(\\cdot) que satisfaz as propriedades acima é chamada de função de perda. Em especial, temos que:\n\n\nFunção de perda quadrática: L(u) = u^2;\nFunção de perda absoluta: L(u) = |u|;\nFunção de perda degrau: L(0) = 0, se |u| &lt; \\delta e 1 caso contrário, para algum \\delta &gt; 0;"
+    "text": "Função de risco\n\nNormalmente considera-se a perda L_2, uma vez que em modelos de regressão, minimizar R_{pred}(g), em g, equivale a encontrar r({\\bf x}) = \\mathbb{E}({\\bf X}|{\\bf Y}), i.e., equivale a estimar a função de regressão.\n\nTeorema: Suponha que definimos o risco de uma função de predição g: \\mathbb{R}^d \\rightarrow \\mathbb{R} via função perda quadrática, i.e, R_{pred}(g) = \\mathbb{E}\\left[({\\bf Y} - g({\\bf X}))^2\\right], em que \\bf (X, Y) são novas observações que não foram utilizadas para estimar g. Suponha também que estimamos o risco de um estimador de regressão r({\\bf X}) via função perda quadrática R_{reg}(g) = \\mathbb{E}\\left[(r({\\bf X}) - g({\\bf X}))^2\\right]. Então,\nR_{pred}(g) = R_{reg}(g) + \\mathbb{E}\\left[\\mathbb{V}[{\\bf Y} | {\\bf X}]\\right],\nem que \\mathbb{E}\\left[\\mathbb{V}[{\\bf Y} | {\\bf X}]\\right] é a variância média do modelo que não depende de g. Portanto, estimar bem r({\\bf x}) é de fundamental importância para criar uma boa função de predição. Em especial, sob a ótica do risco quadrático, a melhor função de predição para \\bf Y é a função de regressão r({\\bf x}), de tal modo que:\n\\argmin_g R_{pred}(g) = \\argmin_g R_{reg}(g) = r({\\bf x})."
   },
   {
     "objectID": "index.html#função-de-risco-2",
     "href": "index.html#função-de-risco-2",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Função de risco",
-    "text": "Função de risco\n\nNormalmente considera-se a perda L_2, uma vez que em modelos de regressão, minimizar R_{pred}(g), em g, equivale a encontrar r({\\bf x}) = \\mathbb{E}({\\bf X}|{\\bf Y}), i.e., equivale a estimar a função de regressão.\n\nTeorema: Suponha que definimos o risco de uma função de predição g: \\mathbb{R}^d \\rightarrow \\mathbb{R} via função perda quadrática, i.e, R_{pred}(g) = \\mathbb{E}\\left[({\\bf Y} - g({\\bf X}))^2\\right], em que \\bf (X, Y) são novas observações que não foram utilizadas para estimar g. Suponha também que estimamos o risco de um estimador de regressão r({\\bf X}) via função perda quadrática R_{reg}(g) = \\mathbb{E}\\left[(r({\\bf X}) - g({\\bf X}))^2\\right]. Então,\nR_{pred}(g) = R_{reg}(g) + \\mathbb{E}\\left[\\mathbb{V}[{\\bf Y} | {\\bf X}]\\right],\nem que \\mathbb{E}\\left[\\mathbb{V}[{\\bf Y} | {\\bf X}]\\right] é a variância média do modelo que não depende de g. Portanto, estimar bem r({\\bf x}) é de fundamental importância para criar uma boa função de predição. Em especial, sob a ótica do risco quadrático, a melhor função de predição para \\bf Y é a função de regressão r({\\bf x}), de tal modo que:\n\\argmin_g R_{pred}(g) = \\argmin_g R_{reg}(g) = r({\\bf x})."
+    "text": "Função de risco\n\nLembre-se: r({\\bf x}) = \\mathbb{E}(Y | \\bf{X} = \\bf{x}) é a nossa função de regressão.\n\nA definição de risco preditivo R_{pred}, que também denotaremos simplesmente por R, tem um apelo frequentista. Dessa forma, para um novo conjunto com m novas observaçõs, ({\\bf X}_{n+1}, Y_{n+1}), \\cdots, ({\\bf X}_{n+m}, Y_{n+m}), temos que essa nova amostra é i.i.d. à amostra observada (utilizada no treinamento do modelo/na estimação). Então, pela Lei dos Grandes Números, temos que um bom estimador para a função para o risco preditivo é dado por:\n\\frac{1}{m}\\sum_{i = 1}^m (Y_{n + i} - g(X_{n + i}))^2 \\approx R(g) := \\mathbb{E}\\left[(Y - g({\\bf X}))^2\\right]. \\tag{1}\nChamaremos a quantidade acima de Erro Quadrático Médio - EQM. Em aprendizagem de máquina, normalmente estaremos no contexto em que temos muitas observações, e que portanto, poderemos fazer esse apelo frequentista.\n\nDesejamos encontrar g (encontrar métodos) que minimize de forma satisfatória R, i.e., métodos que nos conduzam à um risco baixo."
   },
   {
     "objectID": "index.html#função-de-risco-3",
     "href": "index.html#função-de-risco-3",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Função de risco",
-    "text": "Função de risco\n\nLembre-se: r({\\bf x}) = \\mathbb{E}(Y | \\bf{X} = \\bf{x}) é a nossa função de regressão.\n\nA definição de risco preditivo R_{pred}, que também denotaremos simplesmente por R, tem um apelo frequentista. Dessa forma, para um novo conjunto com m novas observaçõs, ({\\bf X}_{n+1}, Y_{n+1}), \\cdots, ({\\bf X}_{n+m}, Y_{n+m}), temos que essa nova amostra é i.i.d. à amostra observada (utilizada no treinamento do modelo/na estimação). Então, pela Lei dos Grandes Números, temos que um bom estimador para a função para o risco preditivo é dado por:\n\\frac{1}{m}\\sum_{i = 1}^m (Y_{n + i} - g(X_{n + i}))^2 \\approx R(g) := \\mathbb{E}\\left[(Y - g({\\bf X}))^2\\right]. \\tag{1}\nChamaremos a quantidade acima de Erro Quadrático Médio - EQM. Em aprendizagem de máquina, normalmente estaremos no contexto em que temos muitas observações, e que portanto, poderemos fazer esse apelo frequentista.\n\nDesejamos encontrar g (encontrar métodos) que minimize de forma satisfatória R, i.e., métodos que nos conduzam à um risco baixo."
+    "text": "Função de risco\n\nSendo assim, se R(g) possui um valor baixo, então, temos que\ng({\\bf x}_{n+1}) \\approx y_{n+1}, \\cdots, g({\\bf x}_{n+m}) \\approx y_{n+m}."
   },
   {
     "objectID": "index.html#função-de-risco-4",
@@ -571,35 +571,35 @@
     "href": "index.html#data-splitting",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Data Splitting",
-    "text": "Data Splitting\n\nCorrigir o problema de dependência que há ao estimarmos o risco usando o EQM é fácil. Uma abordagem muito utilizada é utilizar data splitting, também chamado de método hold-out. Algo como a segunda linha da imagem abaixo:"
+    "text": "Data Splitting\n\nO percentual de divisão dos dados normalmente é empírico. Usa-se normalmente a proporção de 70\\% para treinamento e 30\\% para teste (70\\%, 30\\%). Outros esquemas de divisões são bastante utilizados, por exemplo, (80\\%, 20\\%), (99\\%, 1\\%), a depender da quantidade de observações (tamanho do conjunto de dados).\n\nPortanto, utilizar o EQM sob o conjunto de dados de teste para avaliar g_1({\\bf x}), g_2({\\bf x}), \\cdots,, é uma boa estratégia, uma vez que agora não teremos mais uma dependência no numerador do cálculo do EQM. Em notação matemática, poderíamos escrever como já apresentado anteriormente, em Equação 1, i.e.,\n\\frac{1}{m}\\sum_{i = 1}^m (Y_{n + i} - g(X_{n + i}))^2 \\approx R(g) := \\mathbb{E}\\left[(Y - g({\\bf X}))^2\\right].\n\nEsse resultado valeria para qualquer outra função de perda."
   },
   {
     "objectID": "index.html#data-splitting-1",
     "href": "index.html#data-splitting-1",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Data Splitting",
-    "text": "Data Splitting\n\nEssa divisão é feita de forma aleatória, algumas vezes estratificada de acordo com algumas variáváveis. A ideia de aleatorizar é se livrar de problemas de conjunto de dados ordenados. Queremos que tanto no conjunto de treinamento Training quanto no conjunto Testing, na imagem, contenham a mesma diversidade de observações.\n\nAinda no exemplo de PIB per Capita versus Expectaitiva de Vida, não quero correr o risco de ter no conjunto de treinamento apenas o países com maiores valores de PIB per Capita, caso o conjunto de dados tenha sido ordenado pela variável GDPercapita. Por isso, aleatorizar o conjunto de treinamento e teste é sempre uma ótima ideia. Certo!?"
+    "text": "Data Splitting\nReescrevendo, suponha que o conjunto de dados total possua n observações e que separamos aleatoriamente s &lt; n observações para o conjunto de treinamento. Assim, temos, algo como:\n\n\\overbrace{(X_1, Y_1), (X_2, Y_2), \\cdots, (X_s, Y_s)}^{70\\%}, \\,\\,\\, \\overbrace{(X_{s + 1}, Y_{s + 1}), (X_{s + 2}, Y_{s + 2}), \\cdots, (X_n, Y_n)}^{30\\%}.\n\nEntão, temos que uma boa estimativa de R(g) é dada pelo EQM calculado sobre o conjunto de dados de teste, que nesse caso considerei o conjunto com 30\\%, mas esse percentual poderia ser outro. Então, temos que um bom estimador é:\n\\frac{1}{n - s}\\sum_{i = s + 1}^n (Y_{i} - g(X_{i}))^2 \\approx R(g) := \\mathbb{E}\\left[(Y - g({\\bf X}))^2\\right]."
   },
   {
     "objectID": "index.html#data-splitting-2",
     "href": "index.html#data-splitting-2",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Data Splitting",
-    "text": "Data Splitting\n\nO percentual de divisão dos dados normalmente é empírico. Usa-se normalmente a proporção de 70\\% para treinamento e 30\\% para teste (70\\%, 30\\%). Outros esquemas de divisões são bastante utilizados, por exemplo, (80\\%, 20\\%), (99\\%, 1\\%), a depender da quantidade de observações (tamanho do conjunto de dados).\n\nPortanto, utilizar o EQM sob o conjunto de dados de teste para avaliar g_1({\\bf x}), g_2({\\bf x}), \\cdots,, é uma boa estratégia, uma vez que agora não teremos mais uma dependência no numerador do cálculo do EQM. Em notação matemática, poderíamos escrever como já apresentado anteriormente, em Equação 1, i.e.,\n\\frac{1}{m}\\sum_{i = 1}^m (Y_{n + i} - g(X_{n + i}))^2 \\approx R(g) := \\mathbb{E}\\left[(Y - g({\\bf X}))^2\\right].\n\nEsse resultado valeria para qualquer outra função de perda."
+    "text": "Data Splitting\n\nAgora você entende por que dividimos os dados em treinamento e teste?\n\n\n\nDividimos para obermos um bom estimador do risco utilizando o EQM. 🎁"
   },
   {
     "objectID": "index.html#data-splitting-3",
     "href": "index.html#data-splitting-3",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Data Splitting",
-    "text": "Data Splitting\nReescrevendo, suponha que o conjunto de dados total possua n observações e que separamos aleatoriamente s &lt; n observações para o conjunto de treinamento. Assim, temos, algo como:\n\n\\overbrace{(X_1, Y_1), (X_2, Y_2), \\cdots, (X_s, Y_s)}^{70\\%}, \\,\\,\\, \\overbrace{(X_{s + 1}, Y_{s + 1}), (X_{s + 2}, Y_{s + 2}), \\cdots, (X_n, Y_n)}^{30\\%}.\n\nEntão, temos que uma boa estimativa de R(g) é dada pelo EQM calculado sobre o conjunto de dados de teste, que nesse caso considerei o conjunto com 30\\%, mas esse percentual poderia ser outro. Então, temos que um bom estimador é:\n\\frac{1}{n - s}\\sum_{i = s + 1}^n (Y_{i} - g(X_{i}))^2 \\approx R(g) := \\mathbb{E}\\left[(Y - g({\\bf X}))^2\\right]."
+    "text": "Data Splitting\n\nAgora você entende por que dividimos os dados em treinamento e teste?\n\n\n\nDividimos para obermos um bom estimador do risco utilizando o EQM. 🎁"
   },
   {
     "objectID": "index.html#data-splitting-4",
     "href": "index.html#data-splitting-4",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Data Splitting",
-    "text": "Data Splitting\n\nAgora você entende por que dividimos os dados em treinamento e teste?\n\n\n\nDividimos para obermos um bom estimador do risco utilizando o EQM. 🎁"
+    "text": "Data Splitting\n\nPodemos argumentar que o procedimento de data splitting, em que dividimos o nosso conjunto de dados em treinamento e teste fará com que venhamos perder muitas observações que poderiam ter sido utilizadas para treinar o modelo. E de certa forma isso é verdade, principalmente quando termos um conjunto não muito grande de observações.\n\nPortanto, uma melhor abordagem, sendo esta uma variação do método de data splitting é o procedimento de cross-validation - cv (validação cruzada). Uma versão mais geral de uma validação cruzada é o leave-one-out cross-validation.\n\nEm palavras, o procedimento consiste em tirar de fora uma única observação das n observações da base de dados para ser o nosso conjunto de teste e treinar o modelo com as observações que permaneceram. Daí, calcula-se o risco observado (EQM, sob o conjunto de teste/validação). Na segunda iteração, a observação que antes era de teste volta para perterncer ao conjunto de treinamento e uma nova observação é removida para ser teste. Esse procedimento ocorre de forma iterativa até a retirada da última observação como teste."
   },
   {
     "objectID": "index.html#data-splitting-5",
@@ -648,21 +648,21 @@
     "href": "index.html#k-fold-cross-validation-2",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "k-fold cross-validation",
-    "text": "k-fold cross-validation\n\nMuitos modelos mais sofisticados apresentam hiperparâmetros (parâmetros de sintonização) que não dependem dos dados. É muito comum os algoritmos de aprendizagem de máquina se utilizarem do procedimento de validação cruzada, para além da estimação do risco R(g) no conjunto de validação.\n\nAo estimar k modelos, normalmente faz-se um grid de possíveis valores para esses hiperparâmetros em que ao final, escolhe-se como hiperparâmetro o modelo com menor EQM. Por fim, ajusta-se um modelo final, com todo o conjunto de treinamento usando o valor do hiperparâmetro que retornou o menor EQM no conjunto de validação.\n\nAlias, utilizamos um procedimento de validação para selecionar a melhor combinação de hiperparâmetros e é será risco preditivo observado sob o conjunto de teste que realmente irá nos fornecer uma estimativa válida do risco preditivo R(g)."
+    "text": "k-fold cross-validation\n\n\n\nO termo validação refere-se à parcela do conjunto de treinamento incial que dividimos em validação e treinamento, dentro de uma validação cruzada.\n\nO conjunto Testing na segunda hierarquia da árvore ao lado, só usamos no final para avaliar o desempenho do modelo nesse conjunto. Isto é, usamos o Testing para o cálculo do risco observado.\n\nPerceba que o conjunto de treinamento (Not Testing) é particionado em treinamento e validação. Poderíamos fazer uma única partição, mas o procedimento comumente utilizado é particionar entre Training e Validation uzando algum procedimento de validação cruzada."
   },
   {
     "objectID": "index.html#k-fold-cross-validation-3",
     "href": "index.html#k-fold-cross-validation-3",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "k-fold cross-validation",
-    "text": "k-fold cross-validation\n\n\n\nO termo validação refere-se à parcela do conjunto de treinamento incial que dividimos em validação e treinamento, dentro de uma validação cruzada.\n\nO conjunto Testing na segunda hierarquia da árvore ao lado, só usamos no final para avaliar o desempenho do modelo nesse conjunto. Isto é, usamos o Testing para o cálculo do risco observado.\n\nPerceba que o conjunto de treinamento (Not Testing) é particionado em treinamento e validação. Poderíamos fazer uma única partição, mas o procedimento comumente utilizado é particionar entre Training e Validation uzando algum procedimento de validação cruzada."
+    "text": "k-fold cross-validation\n\nEm alguns livros o conjunto de treinamento é denominado de not-testing (não-teste). Isso, porquê eles querem enfatizar o fato de que o conjunto not-testing é utilizado para treinar/ensinar o modelo e jamais deverá ser utilizado para avaliar o risco preditivo R(g).\n\nAo usar essa terminologia, os autores dos livros tentam enfatizar que o conjunto de treinamento é usado exclusivamente para ensinar o modelo a aprender os padrões nos dados, enquanto o conjunto de teste é usado para medir quão bem o modelo generaliza esses padrões para dados não vistos anteriormente."
   },
   {
     "objectID": "index.html#k-fold-cross-validation-4",
     "href": "index.html#k-fold-cross-validation-4",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "k-fold cross-validation",
-    "text": "k-fold cross-validation\n\nEm alguns livros o conjunto de treinamento é denominado de not-testing (não-teste). Isso, porquê eles querem enfatizar o fato de que o conjunto not-testing é utilizado para treinar/ensinar o modelo e jamais deverá ser utilizado para avaliar o risco preditivo R(g).\n\nAo usar essa terminologia, os autores dos livros tentam enfatizar que o conjunto de treinamento é usado exclusivamente para ensinar o modelo a aprender os padrões nos dados, enquanto o conjunto de teste é usado para medir quão bem o modelo generaliza esses padrões para dados não vistos anteriormente."
+    "text": "k-fold cross-validation\nA imagem abaixo ilustra o procedimento k-fold cross-validation, em que uma 5-fold cross-validation é realizada dentro do conjunto de treinamento. Em cada split, o conjunto verde de observações (fold verde) são utilizados para treinar/ajustar o modelo e o conjunto azul, em cada um dos splits é utilizado para avaliar o risco preditivo R(g) (através, por exemplo do EQM).\n\n\n \n\nNão confunda os folds azuis com o conjunto de teste (Test data), este último utilizado por fim, depois do modelo pronto, para avaliar o desempenho do modelo treinado.\nNote também que a validação cruzada também é utilizada para o ajuste de hiperparâmetros, que são parâmetros de sintonização que não dependem dos dados para serem equalizados. Por exemplo, em uma regressão lasso, que veremos adiante, há o hiperparâmetro \\lambda que precisamos obter, normalmente por meio de um grid search (sequência finita), por exemplo, \\lambda \\in [0.5, 1, 1.5, 2, 2.5] de possíveis valores. Cada split pode ser utilizado para avaliar um valor de \\lambda, dos possíveis valores dispostos no grid. Aumentaríamos a quantidade de splits para mais valores de \\lambda na sequência."
   },
   {
     "objectID": "index.html#resumindo-data-splitting-validação-cruzada-e-conjunto-de-validação",
@@ -1418,7 +1418,7 @@
     "href": "index.html#leave-one-out-cross-validation-3",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Leave-one-out cross-validation",
-    "text": "Leave-one-out cross-validation\n\nO método LOOCV converge assintotivamente para o AIC, porém, este, muitas vezes não poderemos calcular diretamente, uma vez que não conhecemos a distribuição conjunta dos dados, i.e., não conhecemos a estrutura probabilística."
+    "text": "Leave-one-out cross-validation\n\nEssa relação entre o LOOCV e o Akaike Information Criterion - AIC foi provada no paper Stone (1977) intitulado An Asymptotic Equivalence of Choice of Model by Cross-Validation and Akaike’s Criterion e publicado no Journal of the Royal Statistical Society, Series B. Clique aqui, se quiser ler o artigo."
   },
   {
     "objectID": "index.html#leave-one-out-cross-validation-4",
@@ -1874,5 +1874,75 @@
     "title": "Aprendizagem de Máquina - UFPB",
     "section": "Column",
     "text": "Column\n\nEstimativa\n\nlibrary(rsample)\nlibrary(yardstick)\nlibrary(tibble)\nlibrary(purrr)\nlibrary(ggplot2)\nlibrary(patchwork)\n\n# Função de regressão verdadeira. Na prática é desconhecida.\nregressao_verdadeira &lt;- function(x)\n  45 * tanh(x/1.9 - 7) + 57\n\nobservacoes_regressao_real &lt;- function(n, desvio_padrao = 0.2) {\n  # Permitindo que o mesmo x possa ter dois pontos de y, como ocorre na\n  # pratica\n  seq_x &lt;- sample(seq(0, 17.5, length.out = n), size = n, replace = TRUE)\n\n  step &lt;- function(x)\n    regressao_verdadeira(x) + rnorm(n = 1L, mean = 0, sd = desvio_padrao)\n\n  tibble::tibble(y = purrr::map_vec(.x = seq_x, .f = step), x = seq_x)\n}\n\niteracoes &lt;- function(tibble_data, grau) {\n  x &lt;- tibble_data$x\n  iteracoes &lt;- lapply(X = 2L:grau, FUN = function(i) x^i)\n\n  result &lt;- cbind(tibble_data, do.call(cbind, iteracoes))\n  colnames(result)[(ncol(tibble_data) + 1):ncol(result)] &lt;- paste0(\"x\", 2L:grau)\n\n  as_tibble(result)\n}\n\ndados &lt;- observacoes_regressao_real(n = 1000L, desvio_padrao = 0.01)\n\nregressao_polinomial &lt;- function(dados, grau = 1L) {\n  if(grau &gt;= 2L)\n    dados &lt;- iteracoes(dados, grau = grau)\n\n  lm(formula = y ~ ., data = dados)\n}\n\nsst &lt;- function(y) {\n  n &lt;- length(y)  # Tamanho do vetor y\n  sum_of_squares &lt;- 0\n\n  for (i in 1:n) {\n    y_without_i &lt;- y[-i]  # Remover a i-ésima observação\n    mean_without_i &lt;- mean(y_without_i)  # Média do vetor sem a i-ésima observação\n    sum_of_squares &lt;- sum_of_squares + (y[i] - mean_without_i)^2\n  }\n\n  return(sum_of_squares)\n}\n\n# v-folds cross-validation\nvalidacao &lt;- function(dados, grau = 1L){\n\n  # Divisão dos dados\n  divisao_inicial &lt;- rsample::initial_split(dados)\n  treinamento &lt;- rsample::training(divisao_inicial)\n  teste &lt;- rsample::testing(divisao_inicial) # Teste final\n\n  ajuste &lt;- regressao_polinomial(dados = treinamento, grau = grau)\n\n  X &lt;- as.matrix(treinamento[,-1L])\n  H &lt;- X%*%solve(t(X)%*%X)%*%t(X)\n  df_treino &lt;- iteracoes(treinamento, grau = grau)\n  y_chapeu &lt;- predict(ajuste, newdata = df_treino)\n  errado &lt;- sum(((df_treino$y - y_chapeu)/(1 - diag(H)))^2)\n\n  errado &lt;- 1 - errado/sst(df_treino$y)\n\n  X &lt;- as.matrix(teste[,-1L])\n  H &lt;- X%*%solve(t(X)%*%X)%*%t(X)\n  df_teste &lt;- iteracoes(teste, grau = grau)\n  y_chapeu &lt;- predict(ajuste, newdata = df_teste)\n  certo &lt;- sum(((df_teste$y - y_chapeu)/(1 - diag(H)))^2)\n\n  certo &lt;- 1 - certo/sst(df_teste$y)\n\n  c(certo = certo, errado = errado)\n}\n\nplot_avaliacao &lt;- function(dados, errado = FALSE){\n  # Testando iterativamente, vários valores de p:\n  p &lt;- seq(1L:20L)\n  risco &lt;- purrr::map(.x = p, .f = \\(p) validacao(dados = dados, grau = p))\n  df_risco &lt;- unlist(risco) |&gt; matrix(byrow = TRUE, ncol =2) |&gt; tibble::as_tibble()\n  names(df_risco) &lt;- c(\"certo\", \"errado\")\n  df_risco$p &lt;- p\n\n  if(errado){\n    # Plotando\n    df_risco |&gt;\n      ggplot(aes(x = p, y = errado, color = errado)) +\n      geom_point(size = 5) +\n      scale_x_continuous(breaks = p) +\n      scale_y_continuous(breaks = p) +\n      labs(\n        title = \"Avaliando P^2\",\n        subtitle = \"Usando o conjunto de dados de treino\"\n      ) +\n      theme(\n        plot.title = element_text(size = 18, face = \"bold\"),\n        plot.subtitle = element_text(size = 16),\n        axis.text = element_text(size = 10),\n        axis.title = element_text(size = 14, face = \"bold\")\n      )\n  } else {\n    df_risco |&gt;\n      ggplot(aes(x = p, y = certo, color = certo)) +\n      geom_point(size = 5) +\n      scale_x_continuous(breaks = p) +\n      scale_y_continuous(breaks = p) +\n      labs(\n        title = \"Avaliando P^2\",\n        subtitle = \"Usando um conjunto de dados independente\"\n      ) +\n      theme(\n        plot.title = element_text(size = 18, face = \"bold\"),\n        plot.subtitle = element_text(size = 16),\n        axis.text = element_text(size = 10),\n        axis.title = element_text(size = 14, face = \"bold\")\n      )\n  }\n}\n\nrenderPlot({\n  plot_avaliacao(dados, errado = input$loacv)\n})"
+  },
+  {
+    "objectID": "index.html#aprendizado-supervisionado",
+    "href": "index.html#aprendizado-supervisionado",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Aprendizado supervisionado",
+    "text": "Aprendizado supervisionado\n\nNesse curso, inicialmente estudaremos problemas de aprendizado supervisionado, que consiste em aprender a fazer predições a partir de conjunto de dados em que rótulos (valores da variável resposta Y) são observados. Trataremos tanto de problemas de regressão (estimar um valor númérico) quanto problemas de classificação (classificar um cliente como aprovado ou reprovado, em um problema de concessão de crédito). Por exemplo, os modelos de regressão são exemplos de aprendizado supervisionado."
+  },
+  {
+    "objectID": "index.html#aprendizado-não-supervisionado",
+    "href": "index.html#aprendizado-não-supervisionado",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Aprendizado não-supervisionado",
+    "text": "Aprendizado não-supervisionado\n\nNa segunda parte do curso, aprenderemos alguns métodos de aprendizado não-supervisionado, ou seja, algoritmos que não utilizam-se de rótulos, em que busca-se aprender mais sobre a estrutura dos dados. Por exemplo, os métodos de agrupamento (cluster), são exempĺos de métodos de aprendizado não-supervisionado."
+  },
+  {
+    "objectID": "index.html#aprendizagem-de-máquina-2",
+    "href": "index.html#aprendizagem-de-máquina-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": " Aprendizagem de máquina",
+    "text": "Aprendizagem de máquina\n \nAlguns pontos:\n\n\nA Aprendizagem de Máquina (AM), também chamada de Machine Learning (ML), no inglês, nasceu na década de 60 como um campo da inteligênica artificial;\nEm sua origem, as aplicações de AM tinha como objetivo aprender padrões com base nos dados;\nOriginalmente, as aplicações de AM eram de cunho estritamente computacional. Todavia, desde o início dos anos 90, a área de aprendizagem de máquina expandiu seus horizontes e começou a se estabelecer como um campo por sim mesma;\nEm particular, a área de aprendizagem de máquina começou a estabelecer muitas intersecções com a estatística. Muitos de seus algoritmos são construídos com base em metodologias que surgiram na estatística;\nAtualmente, a comunidade de AM é bastante interdisciplinar e utiliza-se de ideias desenvolvidas em diversas áreas, sendo a estatística uma delas."
+  },
+  {
+    "objectID": "index.html#o-que-é-machine-learning",
+    "href": "index.html#o-que-é-machine-learning",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "O que é Machine Learning?",
+    "text": "O que é Machine Learning?\n\nÉ um ramo da inteligência artificial que estuda algoritmos e modelos computacionais capazes de aprender padrões a partir de dados e fazer previsões ou tomar decisões sem serem explicitamente programados para isso. Em essência, o modelo é ajustado com base em um conjunto de dados de entrada (dados de treino) para que ele generalize e funcione bem em dados novos.\n\n\n\nO bebê robô é um algorimo que está aprendendo usando dados, ou seja, aprendendo através de exemplos."
+  },
+  {
+    "objectID": "index.html#o-que-é-machine-learning---ml",
+    "href": "index.html#o-que-é-machine-learning---ml",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "O que é Machine Learning - ML?",
+    "text": "O que é Machine Learning - ML?\n\nÉ um ramo da inteligência artificial que estuda algoritmos e modelos computacionais capazes de aprender padrões a partir de dados e fazer previsões ou tomar decisões sem serem explicitamente programados para isso. Em essência, o modelo é ajustado com base em um conjunto de dados de entrada (dados de treino) para que ele generalize e funcione bem em dados novos.\n\n\n\nO bebê robô representa um algoritmo que está sendo treinado com dados — ele aprende observando exemplos.”"
+  },
+  {
+    "objectID": "index.html#o-que-é-aprender-no-contexto-de-ml",
+    "href": "index.html#o-que-é-aprender-no-contexto-de-ml",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "O que é Aprender (no contexto de ML)?",
+    "text": "O que é Aprender (no contexto de ML)?\n\nAprender é o processo pelo qual um algoritmo de ML ajusta seus parâmetros internos com base em exemplos observados, de modo a minimizar um erro (função de perda) e melhorar sua capacidade de prever ou classificar dados futuros.\nFormalmente, é encontrar uma função g:X \\rightarrow Y que generalize bem de um conjunto de treinamento para dados não vistos."
+  },
+  {
+    "objectID": "index.html#o-que-é-treinar",
+    "href": "index.html#o-que-é-treinar",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "O que é treinar?",
+    "text": "O que é treinar?\n\nTreinar é o ato de executar um algoritmo de aprendizado sobre um conjunto de dados rotulado (supervisionado) ou não rotulado (não supervisionado), ajustando os parâmetros do modelo para que ele represente o melhor possível a estrutura dos dados. Envolve geralmente:\n\n\n\n\nDefinir um modelo;\nOtimizar seus parâmetros e hiperparâmetros;\nAvaliar o desempenho do modelo treinado em um conjunto de dados independente (conjunto de teste)."
+  },
+  {
+    "objectID": "index.html#focaremos-em-aprendizagem-supervisionada",
+    "href": "index.html#focaremos-em-aprendizagem-supervisionada",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Focaremos em aprendizagem supervisionada",
+    "text": "Focaremos em aprendizagem supervisionada"
+  },
+  {
+    "objectID": "index.html#métricas-de-avaliação",
+    "href": "index.html#métricas-de-avaliação",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Métricas de avaliação",
+    "text": "Métricas de avaliação"
+  },
+  {
+    "objectID": "index.html#data-splitting-hold-out",
+    "href": "index.html#data-splitting-hold-out",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Data Splitting / Hold-Out",
+    "text": "Data Splitting / Hold-Out\n\nCorrigir o problema de dependência que há ao estimarmos o risco usando o EQM é fácil. Uma abordagem muito utilizada é utilizar data splitting, também chamado de método hold-out. Algo como a segunda linha da imagem abaixo:"
   }
 ]

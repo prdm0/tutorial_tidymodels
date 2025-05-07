@@ -76,10 +76,10 @@ UFPB
 ##  {background-image="https://raw.githubusercontent.com/prdm0/imagens/main/eu.jpg" background-size="contain" background-position="left"}
 
 ::: columns
-::: {.column width="40%"}
+::: {.column width="60%"}
 :::
 
-::: {.column width="60%"}
+::: {.column width="40%"}
 ## Sobre mim {.r-fit-text}
 
 <br> <br>
@@ -125,184 +125,150 @@ leaflet() |>
   )
 ```
 
-## `r fontawesome::fa("laptop-code", "black")` Que linguagem de programação utilizar?
+# Projetos relacionados à linguagem R
 
 <br>
 
-Nesse curso, será abordado a linguagem de programação
-[R](https://www.r-project.org/), mas lembre-se que você poderá utilizar
-qualquer linguagem de programação para fazer ciência de dados. Porém, R
-e Python são as minhas sugestões, haja vista que, atualmente, elas são
-as linguagens com maior quantidade de ferramentas e usuários trabalhando
-na área de [ciência de
-dados](https://en.wikipedia.org/wiki/Data_science).
-
-<br>
-
-[Outros motivos que me leva a lecionar a disciplina utilizando a
-linguagem R são:]{.black}
-
-1.  Possui ferramentas muito bem pensadas para manipulação e tratamento
-    de dados;
-2.  Normalmente, os *frameworks* de *machine learning* de R são menos
-    verbosos que os de Python;
-3.  Matrizes e data frames são estruturas de dados que já encontra-se
-    definidas dentro da linguagem, não precisando assim de importar
-    bibliotecas.
-
-[Isso é meu gosto pessoal]{.red}! É um gosto que, talvez, faz mais
-sentido, em se tratando de alguém que vem da estatística. No mercado de
-trabalho e em seus estudos, após cursar as disciplinas de R e Python,
-fornecidas pelo [Bacharelado em Estatística da
-UFPB](https://www.ufpb.br/de), você terá a capacidade de estudar os
-*frameworks* de *machine learning*, aos seus próprios passos e escolher
-o que melhor te agrada. A linguagem [Julia](https://julialang.org/)
-também poderá ser uma ótima opção.
-
-#  {.title}
-
-::: r-fit-text
-[Aprendizagem de Máquina: O que é?]{.flow}
+:::: {.columns}
+::: {.column width = "50%"}
+![Participo do desenvolvimento da biblioteca [**bookdown**](https://cran.r-project.org/web/packages/bookdown/index.html) junto com programadores bastante conhecidos da comunidade R.](imgs/bookdown.jpg){fig-aling="center" height="700px"}
 :::
 
-## `r fontawesome::fa("robot", "black")` Aprendizagem de máquina
+:::{ .column width = "50%"}
+![Recentemente desenvolvi a biblioteca [**AcceptReject**](https://prdm0.github.io/AcceptReject/) que implementa o método da aceitação e rejeição para geração de números pseudo-aleatórios.](imgs/accept_reject.png){fig-aling="center"  height="700px"}
+:::
+::::
 
-<br> <br>
-
-![](gifs/am.gif){.fragment width="930" height="600"}
-
-## `r fontawesome::fa("robot", "black")` Aprendizagem de máquina
-
-<br> <br>
-
-**Alguns pontos**:
+# Projetos relacionados à linguagem R
 
 <br>
 
-1.  A **A**prendizagem de **M**áquina (AM), também chamada de
-    **M**achine **L**earning (ML), no inglês, nasceu na década de 60
-    como um campo da inteligênica artificial;
+:::: {.columns}
+::: {.column width = "50%"}
+![Desenvolvi a biblioteca [**AdequacyModel**](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0221487) para avaliar a adequação de ajuste de modelos probabilíscos e implementação de mataheurística para otimização de função de verossmilhança.](imgs/adequacy_model.png){fig-aling="center" height="700px"}
+:::
 
-2.  Em sua origem, as aplicações de AM tinha como objetivo aprender
-    padrões com base nos dados;
+:::{ .column width = "50%"}
+![Desenvolvi a biblioteca [**ropenblas**](https://joss.theoj.org/papers/10.21105/joss.02769) para acelerar operações de álgebra linear em sistemas Unix e Linux.](imgs/ropenblas.png){fig-aling="center"  height="700px"}
+:::
+::::
 
-3.  Originalmente, as aplicações de AM eram de cunho estritamente
-    computacional. Todavia, desde o início dos anos 90, a área de
-    aprendizagem de máquina expandiu seus horizontes e começou a se
-    estabelecer como um campo por sim mesma;
+# Projetos relacionados à linguagem R
 
-4.  Em particular, a área de aprendizagem de máquina começou a
-    estabelecer muitas intersecções com a estatística. Muitos de seus
-    algoritmos são construídos com base em metodologias que surgiram na
-    estatística;
+<br>
 
-5.  Atualmente, a comunidade de AM é bastante interdisciplinar e
-    utiliza-se de ideias desenvolvidas em diversas áreas, sendo a
-    estatística uma delas.
+:::: {.columns}
+::: {.column width = "33%"}
+![Artigo do pacote [**hcci**](https://www.tandfonline.com/doi/full/10.1080/03610926.2025.2486538), publicado em 2025. O artigo divulga estatégias para estimação intervalar em modelos lineares com heteroscedasticidade de forma desconhecida.](imgs/hcci_2.jpg){fig-aling="center" height="700px"}
+:::
+
+::: {.column width = "33%"}
+![Livro internacional que cita o o pacote [**hcci**](https://www.tandfonline.com/doi/full/10.1080/03610926.2025.2486538).](imgs/book_01.jpg){fig-aling="center" height="700px"}
+:::
+
+:::{ .column width = "33%"}
+![Livro internacional que cita o o pacote [**hcci**](https://www.tandfonline.com/doi/full/10.1080/03610926.2025.2486538).](imgs/book_2.png){fig-aling="center"  height="700px"}
+:::
+::::
+
+#  {.title background-image="imgs/o_que_esperar.png" background-size="100% 100%"}
+
+
+# O que esperar do tutorial?
+
+<br>
+
+::: columns
+::: {.column width="40%"}
++ Darei uma introdução resumida de alguns conceitos como: **conjunto de treino**, **conjunto de validação** e **conjunto de teste**;
+
++ Comentarei muito brevemente a respeito dos modelos de aprendizagem que iremos utilizar. Muitos dos comentários virão durante a implementação de alguns exemplos. **Não é um tutorial sobre modelos e sim sobre a ferramenta tidymodels!**;
+
++ Terei como foco a demonstração do uso do framework [**tidymodels**](https://www.tidymodels.org/) para que você consiga treinar, avaliar e gerar uma API do workflow da modelagem.
+:::
+
+::: {.column width="60%"}
+![Entenderam qual é o objetivo do nosso tutorial? Vamos abordar alguns conceitos teóricos fundamentais, mas sem nos aprofundar.](gifs/ok-2.gif){fig-aling="rigth" width="400px"}
+:::
+:::
+
+
+# Tidymodels + Api
+
+
+#  {.title background-image="imgs/tidymodels_tunagem.png" background-size="100% 100%"}
+
+
+#  {.title background-image="imgs/rawpixel/freight.jpg"}
+
+::: r-fit-text
+[Algumas explicações encessárias]{.flow}
+:::
+
+#  {.title background-image="imgs/what_is_ml.png" background-size="100% 100%"}
+
+## O que é Machine Learning - ML?
+
+<br>
+
+É um ramo da inteligência artificial que estuda algoritmos e modelos computacionais capazes de **aprender padrões a partir de dados e fazer previsões ou tomar decisões sem serem explicitamente programados para isso.**
+Em essência, o modelo é ajustado com base em um conjunto de dados de entrada (dados de treino) para que ele generalize e funcione bem em dados novos.
+
+![O bebê robô representa um algoritmo que está sendo treinado com dados — ele aprende observando exemplos."](gifs/am.gif){width="900" height="550" fig-align="left"}
+
+## O que é Aprender (no contexto de ML)?
+
+<br>
+
+**Aprender é o processo pelo qual um algoritmo de ML ajusta seus parâmetros internos com base em exemplos observados, de modo a minimizar um erro (função de perda) e melhorar sua capacidade de prever ou classificar dados futuros.**
+
+Formalmente, é encontrar uma função $g:X \rightarrow Y$ que generalize bem de um conjunto de treinamento para dados não vistos.
+
+<br>
+
+![](gifs/hum.gif)
+
+## O que é treinar?
+
+<br>
+
+Treinar é o ato de executar um algoritmo de aprendizado sobre um conjunto de dados rotulado (supervisionado) ou não rotulado (não supervisionado), ajustando os parâmetros do modelo para que ele represente o melhor possível a estrutura dos dados.
+Envolve geralmente:
+
+<br>
+
+:::: {.columns}
+::: {.column width=60%}
+::: {.nonincremental}
++ Definir um modelo;
+
++ Otimizar seus parâmetros e hiperparâmetros;
+
++ Avaliar o desempenho do modelo treinado em um conjunto de dados independente (conjunto de teste).
+:::
+:::
+::: {.column width=40%}
+![](gifs/prestando_atencao.gif)
+:::
+::::
+
 
 ## `r fontawesome::fa("robot", "black")` Tipos de Aprendizado
 
 <br>
 
-[Aprendizado supervisionado]{.black}
+Muito embora nesse tutorial focaremos na abordagem de aprendizagem
+**supervisionada**, os tipos de aprendizagem,
+em geral, podem ser mais amplos:
 
 <br>
 
-Nesse curso, inicialmente estudaremos problemas de [aprendizado
-supervisionado]{.red}, que consiste em aprender a fazer predições a
-partir de conjunto de dados em que rótulos (valores da variável resposta
-$Y$) são observados. Trataremos tanto de problemas de regressão (estimar
-um valor númérico) quanto problemas de classificação (classificar um
-cliente como aprovado ou reprovado, em um problema de concessão de
-crédito). Por exemplo, os [modelos de regressão]{.red} são exemplos de
-aprendizado supervisionado.
-
-<br>
-
-[Aprendizado não-supervisionado]{.black}
-
-<br>
-
-Na segunda parte do curso, aprenderemos alguns métodos de aprendizado
-[não-supervisionado]{.red}, ou seja, algoritmos que não utilizam-se de
-rótulos, em que busca-se aprender mais sobre a estrutura dos dados. Por
-exemplo, os [métodos de agrupamento]{.red} (cluster), são exempĺos de
-métodos de aprendizado não-supervisionado.
-
-## `r fontawesome::fa("robot", "black")` Tipos de Aprendizado
-
-<br>
-
-Muito embora no nosso curso focaremos nas abordagens de aprendizagem
-**supervisionada** e **não-supervisionada**, os tipos de aprendizagem,
-em geral, podem ser mais amplos, em que temos:
-
-<br>
-
+::: {.nonincremental}
 1.  **Aprendizagem supervisionada**;
 2.  **Aprendizagem não-supervisionada**;
 3.  Aprendizagem semi-supervisionada;
 4.  Aprendizagem por reforço.
-
-## O que é aprender?
-
-<br>
-
-Antes de detalharmos os tipos de aprendizagem de máquina, uma dúvida que
-poderá surgir é: ["O que é aprender?"]{.red}. ["Como a máquina
-aprende?"]{.red}.
-
-<br>
-
-![](gifs/am.gif){.fragment width="900" height="600"}
-
-## O que é aprender?
-
-<br>
-
-De forma simples, aprender é ganhar conhecimento através de estudo,
-experiências, por meio de ensinamentos.
-
-<br>
-
-**Tá, mais como é que a [máquina]{.red} aprende?**
-
-<br>
-
-1.  [Aprendizagem]{.red} é o processo em que se adquire conhecimento,
-    isto é, é o processo em que utilizamos de algoritmos e fornecemos
-    dados a esses algoritmos para que possamos extrair conhecimento.
-    Nesse processo de aprendizagem, os algoritmos fazem uso de dados
-    para a extressão de conhecimento, através de procedimentos
-    **supervisionado**, **não-supervisionado**, **semi-supervisionado**
-    ou **por reforço**, a depender do algoritmo que você deseja
-    utilizar.
-
-2.  [Aprendizado]{.red} é o modelo ajustado, isto é, é o conhecimento
-    adquirido após o treinamamento obtido no processo de aprendizagem.
-    Você poderá entender como sendo o modelo ajustado e que utilizamores
-    para a tomada de decisões.
-
-![](gifs/hum.gif)
-
-## O que é aprender?
-
-<br>
-
-Portanto, você poderá entender, basiciamente, existe quatro tipos de
-aprendizagem, sendo os dois primeiros o que mais focaremos nesse curso e
-que de longe são os mais utilizados:
-
-<br>
-
-1.  **Aprendizagem supervisionada**;
-2.  **Aprendizagem não-supervisionada**;
-3.  Aprendizagem semi-supervisionada;
-4.  Aprendizagem por reforço.
-
-<br>
-
-![](gifs/hum.gif)
+:::
 
 ## Aprendizagem supervisionada
 
@@ -315,57 +281,21 @@ um bom modelo. Por exemplo,
 
 <br>
 
+::: {.nonincremental}
 1.  [Classificação]{.red}: precisamos determinar a classe de uma
     instância de dados, o seu atributo, i.e.,
-    $\widehat{y} = \mathrm{argmax}_y\,P(Y = y\,|\, X = \bf{x})$, em que
+    $\hat{y} = \mathop{\arg\max}_{y} P(Y = y \mid X = \mathbf{x})$, em que
     y é um atributo que desejamos prever (cahorro, gato, sapo), e
     $\bf{x}$ é um vetor de características (peso, altura, comprimento,
     se tem rabo, etc).
+
+<br>
 
 2.  [Regressão]{.red}: precisamos estimar uma quantidade numérica, i.e.,
     o valor da variável alvo por meio de uma **instância de dados**, ou
     seja, precisamos estimar $Y = \mathbb{E}(Y|X = \bf{x})$, i.e.,
     devemos encontrar meios de obter $\widehat{Y}$.
-
-<br>
-
-::: aside
-**Algumas observações de nomenclaturas**:
-
-1.  É comum chamar cada exemplo de dados, i.e., o vetor $\bf{x}$ que
-    será passado ao modelo de [atributos]{.red} ou [*features*]{.red};
-2.  Também é comum chamarmos de [rótulo]{.red} ou [*label*]{.red} a
-    classe ou valor alvo, ou seja, estas são as formas de nomearmos $Y$,
-    sendo $Y$ uma quantidade numérica (modelos de regressão) ou não
-    (modelos de classificação).
 :::
-
-## Aprendizagem supervisionada
-
-<br>
-
-Em se tratando de métodos de classificação, podemos ter os métodos:
-
-<br>
-
-1.  [Generativos]{.red}: são os métodos que dada as variáveis $X$ e $Y$,
-    o objetivo é encontrar a distribuição de probabilidade conjunta
-    $P(X, Y)$, para então poder determinar $P(Y|X = \bf{x})$. Alguns
-    métodos são:
-
-    -   Naive Bayes;
-    -   Descriminante linear.
-
-<br>
-
-2.  [Descriminativos]{.red}: são os métodos que estimam diretamente a
-    probabilidade condicional $P(Y|X = \bf{x})$ ou que mesmo nem assumem
-    modelos probabilísticos. Os modelos dessa classe são projetados para
-    aprender a fronteira de decisão que separa as classes diretamente
-    com base nas características de entrada. Podemos citar:
-    -   Regressão logistica;
-    -   Perceptron;
-    -   **S**upport **V**ector **M**achine - SVM.
 
 ## Aprendizagem supervisionada
 
@@ -381,6 +311,7 @@ Em se tratando de métodos de classificação, podemos ter os métodos:
 
 <br>
 
+::: {.nonincremental}
 1.  S (**S**low): pequeno;
 
 2.  M (**M**edium): médio;
@@ -388,26 +319,7 @@ Em se tratando de métodos de classificação, podemos ter os métodos:
 3.  L (**L**arge): grande.
 :::
 :::
-
-## Aprendizagem supervisionada
-
-<br> <br>
-
-![Mais dois problemas de classificação (linear x
-não-linear).](gifs/Classification-Examples.gif){fig-align="center"
-width="45%"}
-
-## Aprendizagem supervisionada
-
-<br> <br>
-
-![](gifs/regression.gif){fig-align="center" width="1200"}
-
-Um exemplo de de um problema de regressão. Aqui, a ideia é utilizar a
-equação da reta estimada, a reta que minimiza a soma dos quadrados entre
-a reta e os ponto seria a melhor, de modo a ter uma estimativa numérica
-através de novos atributos passado ao modelo, i.e., por meio da equação
-da reta e de um novo valor de $x$.
+:::
 
 ## Aprendizagem supervisionada
 
@@ -505,89 +417,10 @@ código clicando
 
 ## `r fontawesome::fa("database", "black")` Dados: exploração e tratamento
 
-<br>
-
-Um dos passos mais importante no fluxo de trabalho (*workflow*) de um
-modelo de aprendizagem de máquina, consiste na preparação dos dados, em
-que realizamos transformações, inputações de valores ausentes,
-identificação de *outliers*, remoção de variáveis altamente
-correlacionadas, entre outros.
-
-<br>
-
-Fazer uma **análise exploratória** dos dados é um passo importante para
-que se possa entender e detecatar possíveis inconsistências na base de
-dados. Não adianta fazer uso de modelos muito sofisticados quando se tem
-uma base de dados cheia de problemas.
-
-<br>
-
-Normalmente trabalhamos com juntos de dados (tabelas) relacionais, em
-que cada linha é uma observação e cada coluna representa um atributo do
-objeto/observação. A linha de uma base de dados relacional, sem sua a
-variável de interesse, lembre-se que denominamos $Y$ de [rótulo]{.red}
-ou [*label*]{.red}, fornece o vetor de características $\bf{x}$ que
-descreve uma dada observação.
-
-## `r fontawesome::fa("database", "black")` Dados: exploração e tratamento
-
-No artigo [Tidy Data](https://www.jstatsoft.org/article/view/v059i10),
-2014, publicado no Journal of Statistical Sofware, o Hadley Wickham
-discute que o princípio de dados organizados estão intimamente
-relacionados com banco de dados relacional e mais próximo do reciocínio
-que empregamos na álgebra. Nesse artigo, ele define o que é [Tidy
-Data]{.red}, sendo essa uma maneira de mapear um conjunto de dados.
-
-<br>
-
-Segundo o artigo, um conjunto de dados é [bagunçado]{.red} ou
-[arrumado]{.red}/[tidy]{.red}, dependendo de como as linhas, colunas e
-tabelas são combinadas com as observações, variáveis e tipos. Em dados
-arrumados (dados *tidy*), temos que:
-
-<br>
-
-1.  Cada variável forma uma coluna;
-2.  Cada observação forma uma linha;
-3.  Cada valor deve ter sua própria célula.
-
-<br>
-
-Embora existam situações em que já podemos começar a analisar uma base
-de dados real, essa é a exceção e não a regra. Normalmente, nos
-deparamos com bases de dados que violam uma ou mais dessas regras.
-Sempre, que possível, procure utilizar dados no formato [Tidy]{.red}.
-
-## `r fontawesome::fa("database", "black")` Dados: exploração e tratamento
-
-<br>
-
-![Representação de uma base de dados no formato
-*tidy*.](imgs/tidy-1.png)
-
-## `r fontawesome::fa("database", "black")` Dados: exploração e tratamento
-
-<br>
-
-> "As famílias felizes são todas iguais; toda família infeliz é infeliz
-> à sua maneira." -- [Leo
-> Tolstoy](https://en.wikipedia.org/wiki/Leo_Tolstoy)
-
-> "Conjuntos de dados organizados são todos iguais, mas todo conjunto de
-> dados confuso é confuso à sua maneira." -- [Hadley
-> Wickham](https://hadley.nz/)
-
-<br>
-
-![Trabalhar com a Tabela do lado esquerdo é melhor que a Tabela do lado
-direito. Prefira, sempre que possível, o formato tidy. Não permita-se
-ficar estressado tão facilmente. 😃](imgs/tidy-2.png){width="50%"}
-
-## `r fontawesome::fa("database", "black")` Dados: exploração e tratamento
-
 A linguagem de programação R possue diversas ferramentas que permite
 manipular e explorar bases de dados. Enumero algumas:
 
+::: {.nonincremental}
 1.  [dplyr](https://dplyr.tidyverse.org/): biblioteca que implementa é
     uma gramática de manipulação de dados, fornecendo um conjunto
     consistente de verbos que ajudam a resolver os desafios mais comuns
@@ -605,6 +438,7 @@ manipular e explorar bases de dados. Enumero algumas:
 5.  [explore](https://github.com/rolkra/explore): biblioteca que
     apresenta algumas rotinas de análise para realizar uma análise
     exploratória nos dados.
+:::
 
 Todas essas bibliotecas estão muito bem documentadas. É importante que
 vocês explorem as documentas dessas bibliotecas, pois eventualmente irei
@@ -612,184 +446,600 @@ utizar alguma delas.
 
 ![](gifs/ok.gif)
 
-## `r fontawesome::fa("database", "black")` Dados: exploração e tratamento
+# Focaremos em aprendizagem supervisionada {.title background-image="imgs/Clouds2.jpg"}
+
+# Modelos de Regressão {.title background-image="imgs/Clouds.jpg"}
+
+
+## Regressão
 
 <br>
 
-No [Capítulo 12](https://r4ds.had.co.nz/tidy-data.html), do livro [R for
-Data Science](https://r4ds.had.co.nz/index.html), o autor aborda mais
-sobre o formato *Tidy* e como trabalhar com a biblioteca
-[tidyr](https://tidyr.tidyverse.org/).
-[Aqui](https://r4ds.had.co.nz/transform.html?q=dplyr#dplyr-basics) o
-autor aborda de forma básica o pacote
-[dplyr](https://dplyr.tidyverse.org/).
+De forma geral, temos que o objetivo de um modelo de regressão é
+determinar a relação entre uma variável aleatória (label)
+$Y \in \mathbb{R}$ e um vetor de covariáveis (features)
+$\mathbf{x} = (x_1, \cdots, x_d) \in \mathbb{R}^d$. Mais
+especificamente, busaca-se estimar
+
+$$r(\bf{x}) := \mathbb{E}(Y|\bf{X} = \bf{x}),$$
+
+sendo esta chamada de [função de regressão]{.red}. Temos que:
 
 <br>
 
-Durante o curso, na medida da necessidade de utilização dessas
-ferramentas, durante a exposição de exemplos, abordaremos alguns
-conceitos. Você terá a oportunidade de também explorar essas bibliotecas
-nos exercícios. Ok?!
+::: {.nonincremental}
+1.  Se $Y$ é uma variável quantitativa, então estamos sob um problema de
+    [regressão]{.red};
+2.  Se $Y$ é uma variável qualitativa, então teremos um problema de
+    [classificação]{.red}.
+:::
+
+Em aprendizagem de máquina, assumimos que não temos meios de calcular
+$r({\bf{x}})$, i.e., não conhecemos a distribuição condicional de
+${\bf{Y}\,|\,X}$. Portanto, não temos meios de calcular
+
+$$\mathbb{E}({\bf X}|Y = y) = \int x\,\mathrm{d}F_{\bf X}({\bf x} | Y = y).$$
+
+## Regressão
+
+Nossa ideia é construir uma boa estimativa $g$ da função de regressão
+$r(\bf{x}) := \mathbb{E}(Y\,|\,\bf{X} = \bf{x})$, para novas
+observações, i.e., queremos obter uma função $g$, tal que:
+
+$$g: \mathbb{R}^d \rightarrow \mathbb{R},$$
+
+de tal forma que $g$ possua um bom poder preditivo. Em aprendizagem de
+máquina, só estaremos interessados em obter uma função $g$ que estime
+bem um número real (em problemas de regressão), ou que classifique bem
+(em um problema de classificação), utilizando as $d$ covariáveis. Ou
+seja, para $m$ novas observações, desejamos obter $g$, que
+
+$$g({\bf{x}}_{n + 1}) \approx y_{n + 1}, \cdots, g({\bf{x}}_{n + m}) \approx y_{n + m}.$$
+
+## Função de risco
 
 <br>
 
-![](gifs/ok.gif)
+Para que possamos construir boas funções de predição, é preciso que
+tenhamos um critério para medir o desempenho de uma dada função
+$g:\mathbb{R}^d \rightarrow \mathbb{R}$. Em contexto de regressão,
+usaremos o risco quadrático, muito embora esta não é a única opção.
+Denotaremos a função de risco quadrático por:
 
-## `r fontawesome::fa("database", "black")` Dados: exploração e tratamento
-
-<br>
-
-Muitas vezes, no processo de tratamento dos dados, também estamos
-preocupados em **remover atributos que não são significativo** para a
-modelagem, em que nesse momento a experiência dos especialistas são
-fundamentais.
-
-<br>
-
-**É comum enriquercermos a base de dados com informações de outras bases
-de dados**, em um sistema de gerenciamento de banco de dados relacional,
-em que as bases de dados estão relacionadas por uma chave. Nesse caso,
-buscamos por novos atributos para um mesmo objeto (para uma mesma linha
-da base), em que atributos cruzados devem ter um único valor, para cada
-objeto, respeitando a regra três de conjuntos de dados *tidy*.
+$$R_{pred}(g) = \mathbb{E}\left[({\bf Y} - g({\bf X}))^2\right],$$ em
+que $(\bf X, Y)$ são observações novas que não foram utilizadas para
+treinar/estimar $g$. Lê-se $R_{pred}(g)$ como "risco preditivo de $g$".
+Note que, como $\bf X$ são observações conhecidas e $g(\cdot)$ é um
+modelo preditivo, portanto, $g$ é conhecido, então,
+$\widehat{\bf Y} = g(\bf X)$ é um estimador dos *labels*, i.e., de
+$\bf Y$.
 
 <br>
 
-**As vezes transformamos variáveis**. Por exemplo, é comum tomar o
-logaritmo de uma variável numérica que é assimétrica, se $x \geq 1$, em
-que $x$ é um atributo numérico qualquer.
+Diremos que $L(g({\bf X}); {\bf Y}) = ({\bf Y} - g({\bf X}))^2$ é a
+[função de perda quadrática]{.red}, as vezes chamado de perda $L_2$.
+Outra funções como a [função de perda absoluta]{.red} denotada por
+$L(g({\bf X}); {\bf Y}) = |{\bf Y} - g({\bf X})|$, as vezes chamada de
+perda $L_1$ poderiam ser consideradas.
+
+## Função de risco
 
 <br>
 
-Em diveras situações, também é comum a base de dados apresentar
-**informações faltantes**. Nos data frames de R, a falta de informação
-na base, normlamente serão representadas por `NA`.
-
-## `r fontawesome::fa("database", "black")` Dados: exploração e tratamento
-
-<br>
-
-Poderá ser que um dado atributo apresente informação faltante, e
-normalmente não optaremos em remover a observação e precisaremos imputar
-a informação, por exemplo:
+Normalmente considera-se a perda $L_2$, uma vez que em modelos de
+regressão, minimizar $R_{pred}(g)$, em $g$, equivale a encontrar
+$r({\bf x}) = \mathbb{E}({\bf X}|{\bf Y})$, i.e., equivale a estimar a
+função de regressão.
 
 <br>
 
-1.  Tomando alguma medida de tendência central como média/moda/mediana
-    dos valores que são conhecidos para aquele atributo;
-2.  Criar um novo valor que é indicação de valor faltante;
-3.  Usar algoritmos como $k$-nearest neighbors - $k$**NN** ($k$ vizinhos
-    mais próximos) para imputar valores coerentes;
-4.  Interpolar os dados.
+[Teorema]{.red}: Suponha que definimos o risco de uma função de predição
+$g: \mathbb{R}^d \rightarrow \mathbb{R}$ via função perda quadrática,
+i.e, $R_{pred}(g) = \mathbb{E}\left[({\bf Y} - g({\bf X}))^2\right]$, em
+que $\bf (X, Y)$ são novas observações que não foram utilizadas para
+estimar $g$. Suponha também que estimamos o risco de um estimador de
+regressão $r({\bf X})$ via função perda quadrática
+$R_{reg}(g) = \mathbb{E}\left[(r({\bf X}) - g({\bf X}))^2\right]$.
+Então,
 
-Esses são alguns exemplos de como podemos imputar observações faltantes.
-Muitas vezes não podemos nos dar o luxo de percer observações de nossa
-base de dados.
+$$R_{pred}(g) = R_{reg}(g) + \mathbb{E}\left[\mathbb{V}[{\bf Y} | {\bf X}]\right],$$
 
-![](gifs/chapulin-colorado-no.gif)
+em que $\mathbb{E}\left[\mathbb{V}[{\bf Y} | {\bf X}]\right]$ é a
+variância média do modelo que não depende de $g$. Portanto, estimar bem
+$r({\bf x})$ é de fundamental importância para criar uma boa função de
+predição. Em especial, sob a ótica do risco quadrático, a melhor função
+de predição para $\bf Y$ é a função de regressão $r({\bf x})$, de tal
+modo que:
 
-## `r fontawesome::fa("database", "black")` Dados: exploração e tratamento
+$$\argmin_g R_{pred}(g) = \argmin_g R_{reg}(g) = r({\bf x}).$$
+
+## Função de risco
 
 <br>
 
-É comum ser necessário transformar os dados:
+**Lembre-se**: $r({\bf x}) = \mathbb{E}(Y | \bf{X} = \bf{x})$ é a nossa
+[função de regressão]{.red}.
 
-1.  Pode ser necessário transformar os tipos ou os valores dos atributos
-    para tentar obter um melhor ajuste do modelo;
+<br>
 
-2.  Pode-se discretizar valores contínuos ou transformá-los em
-    intervalos;
+A definição de risco preditivo $R_{pred}$, que também denotaremos
+simplesmente por $R$, tem um apelo frequentista. Dessa forma, para um
+novo conjunto com $m$ novas observaçõs,
+$({\bf X}_{n+1}, Y_{n+1}), \cdots, ({\bf X}_{n+m}, Y_{n+m})$, temos que
+essa nova amostra é i.i.d. à amostra observada (utilizada no treinamento
+do modelo/na estimação). Então, pela Lei dos Grandes Números, temos que
+um bom estimador para a função para o risco preditivo é dado por:
 
-3.  É comum transformar atributos categóricos com $p$ categorias, em $p$
-    novos atributos binários.
+$$\frac{1}{m}\sum_{i = 1}^m (Y_{n + i} - g(X_{n + i}))^2 \approx R(g) := \mathbb{E}\left[(Y - g({\bf X}))^2\right].$$ {#eq-risco-correto}
 
-    -   [One-hot encoding](https://en.wikipedia.org/wiki/One-hot)
-    -   [Variáveis
-        dummy](https://en.wikipedia.org/wiki/Dummy_variable_(statistics))
+Chamaremos a quantidade acima de [Erro Quadrático Médio -
+EQM](https://pt.wikipedia.org/wiki/Erro_quadr%C3%A1tico_m%C3%A9dio). Em
+aprendizagem de máquina, normalmente estaremos no contexto em que temos
+muitas observações, e que portanto, poderemos fazer esse apelo
+frequentista.
 
-4.  Outra transformação muito comum é a normalização dos dados.
-    Normalizar os dados é muito útil quando os atributos numéricos
-    possuem escalas muito diferentes.
+<br>
+
+Desejamos encontrar $g$ (encontrar métodos) que minimize de forma
+satisfatória $R$, i.e., métodos que nos conduzam à um risco baixo.
+
+## Função de risco
+
+<br>
+
+Sendo assim, se $R(g)$ possui um valor baixo, então, temos que
+
+$$g({\bf x}_{n+1}) \approx y_{n+1}, \cdots, g({\bf x}_{n+m}) \approx y_{n+m}.$$
+<br> ![](gifs/hum.gif){width="25%"}
+
+## Erro quadrático médio
+
+<br>
+
+Como exposto anteriormente, para avaliar o poder preditivo de uma
+modelo, i.e., a aprendizagem de um modelo, devemos avaliar a função de
+risco, i.e., devemos avaliar
+$R(g) := \mathbb{E}\left[L(g({\bf X}); Y)\right]$. Em particular,
+considere $L = L_2$ (função perda quadrática). Então, poderíamos ser
+levados a acreditar que o melhor estimador de $R(g)$, utilizando a Lei
+dos Grandes Números seria:
+
+$$\frac{1}{n}\sum_{i = 1}^n(Y_{i} - g({\bf X_{i}}))^2 \approx R(g) := \mathbb{E}\left[L_2(g({\bf X}); Y)\right].$$
+
+<br>
+
+Essa quantidade é chamada, de **E**rro **Q**uadrático **M**édio -
+**EQM**. Desejamos escolher o melhor mode, entre os modelos testados,
+que minimiza o EQM.
+
+<br>
+
+O apelo frequentista em utilizar a Lei dos Grandes Números na forma
+acima não é correto, uma vez que usamos as $n$ observações para
+treinar/ajustar o modelo $g$.
+
+## Erro quadrático médio
+
+<br>
+
+Por exemplo, no problema de PIB per Capita versus expectativa de vida,
+em que consideramos uma aproximação linear, não poderíamos utilizar o
+EQM da forma acima, com as $n$ observações utilizadas para treinar o
+modelo. É um detalhe sutil, mas que muitas pessoas cometem esse erro.
+
+<br>
+
+Não podemos utilizar as $n$ observações para estimar o risco $R(g)$
+através do EQM, uma vez que estamos utilizando o mesmo conjunto de dados
+para ajustar e avaliar $g$.
+
+<br>
+
+**Qual o problema?**
+
+<br>
+
+::: {.nonincremental}
+1.  Não vale a Lei dos Grandes Números;
+2.  Usamos os mesmos valores de ${\bf x}$ e $y$ para treinar e avaliar o
+    modelo.
+:::
+
+## Erro quadrático médio
+
+<br>
+
+O que diz a Lei dos Grandes Números, em particular, a Lei Forte de
+Kolmogorov?
+
+<br>
+
+[Teorema]{.red} (**Lei Forte de Kolmogorov**): Sejam $X_1, \cdots, X_n$
+uma sequência de veriáveis aleatórias - v.a. i.i.d. e integráveis, i.e.,
+com valor esperado limitado, tal que
+$\mathbb{E}(X) = \mu\,\, \forall i$. Então,
+
+$$\frac{X_1 + X_2 + \cdots + X_n}{n} \rightarrow \mu,$$
+
+quase certamente, i.e., com probabilidade 1.
+
+<br>
+
+Note que se desejamos comparar diversos modelos,
+$g_1({\bf x}), g_2({\bf x}), \cdots,$ e se utilizarmos as mesmas $n$
+obervações para calularmos $R(g_1({\bf x})), R(g_2({\bf x})), \cdots$,
+os termos de cada uma das somas **não são independentes**. Lembre-se que
+desejamos obter $\argmin_g R_{pred}(g)$.
+
+## Erro quadrático médio
+
+<br>
+
+Portanto, nunca utilize as mesmas observações utilizadas para treinar o
+modelo, como aquelas que serão utilizadas para se estimar $R(g)$. Nunca!
+Isso é um pecado mortal! Ok?!
+
+<br>
+
+![](gifs/thumbs-up-nod.gif){width="20%"}
+
+## Data Splitting / Hold-Out
+
+<br>
+
+Corrigir o problema de dependência que há ao estimarmos o risco usando o
+EQM é fácil. Uma abordagem muito utilizada é utilizar [*data
+splitting*]{.red}, também chamado de método [*hold-out*]{.red}. Algo
+como a segunda linha da imagem abaixo:
+
+<br>
+
+![](imgs/validation-split.svg){fig-aling="center" width="100%"}
+
+## Data Splitting
+
+<br>
+
+O percentual de divisão dos dados normalmente é empírico. Usa-se
+normalmente a proporção de $70\%$ para treinamento e $30\%$ para teste
+$(70\%, 30\%)$. Outros esquemas de divisões são bastante utilizados, por
+exemplo, $(80\%, 20\%)$, $(99\%, 1\%)$, a depender da quantidade de
+observações (tamanho do conjunto de dados).
+
+<br>
+
+Portanto, utilizar o EQM sob o conjunto de dados de teste para avaliar
+$g_1({\bf x}), g_2({\bf x}), \cdots,$, é uma boa estratégia, uma vez que
+agora não teremos mais uma dependência no numerador do cálculo do EQM.
+Em notação matemática, poderíamos escrever como já apresentado
+anteriormente, em @eq-risco-correto, i.e.,
+
+$$\frac{1}{m}\sum_{i = 1}^m (Y_{n + i} - g(X_{n + i}))^2 \approx R(g) := \mathbb{E}\left[(Y - g({\bf X}))^2\right].$$
+
+<br>
+
+Esse resultado valeria para qualquer outra função de perda.
+
+## Data Splitting
+
+Reescrevendo, suponha que o conjunto de dados total possua $n$
+observações e que separamos aleatoriamente $s < n$ observações para o
+conjunto de treinamento. Assim, temos, algo como:
+
+<br>
+
+$$\overbrace{(X_1, Y_1), (X_2, Y_2), \cdots, (X_s, Y_s)}^{70\%}, \,\,\, \overbrace{(X_{s + 1}, Y_{s + 1}), (X_{s + 2}, Y_{s + 2}), \cdots, (X_n, Y_n)}^{30\%}.$$
+
+<br>
+
+Então, temos que uma boa estimativa de $R(g)$ é dada pelo EQM calculado
+sobre o conjunto de dados de teste, que nesse caso considerei o conjunto
+com $30\%$, mas esse percentual poderia ser outro. Então, temos que um
+bom estimador é:
+
+$$\frac{1}{n - s}\sum_{i = s + 1}^n (Y_{i} - g(X_{i}))^2 \approx R(g) := \mathbb{E}\left[(Y - g({\bf X}))^2\right].$$
+
+## Data Splitting
+
+<br>
+
+**Agora você entende por que dividimos os dados em treinamento e
+teste?**
+
+<br>
+
+![](gifs/yes.gif){width="25%"}
+
+<br>
+
+Dividimos para obermos um bom estimador do risco utilizando o
+[EQM](https://en.wikipedia.org/wiki/Mean_squared_error). 🎁
+
+## Leave-one-out cross-validation
+
+<br>
+
+Observe a animação abaixo que ilustra o procedimento de
+**l**eave-**o**ne-**o**ut **c**ross-**v**alidation - LOOCV, em uma
+amostra de tamanho $n = 8$. Ao fim, teremos $n$ modelos ajustados, em
+que calculamos as suas respectivas performances, i.e., com o risco
+observado, estimamos o risco de $R(g)$.
+
+<br>
+
+![](gifs/LOOCV.gif)
+
+## Leave-one-out cross-validation
+
+<br>
+
+Vejo muitas pessoas que usam uma validação cruzada, por exemplo,
+*leave-one-out cross-validation* - LOOCV comparando com o método
+Jackknife e algumas inclusive dizendo ser a mesma coisa. Não, não são!
+
+<br>
+
+O algoritmo Jackknife é um procedimento de estimação, e que, por sua
+vez, deve estar dentro do conjunto de treinamento. Para haver algum
+Jackknife, a estimativa com $n-1$ observações deve estar dentro do
+conjunto de treinamento, em que dentro do treinamento teria a remoção de
+um observação por vez. **Consegue perceber a diferença sutil?**
+
+<br>
+
+![](gifs/bean_01.gif){width="20%"}
+
+## Leave-one-out cross-validation
+
+<br>
+
+O método LOOCV foi proposto por Stones (1974), no artigo intitulado
+Cross-Validatory Choice and Assessment of Statistical Predictions, no
+Royal Statistical Society, Série B. Clique
+[aqui](https://www.jstor.org/stable/pdf/2984809.pdf?refreqid=excelsior%3A3071b86b3588905b095d44668025b005&ab_segments=&origin=&initiator=&acceptTC=1)
+se tiver curiosidade em ler o artigo.
+
+<br>
+
+Escrevendo o estimador do risco em um procedimento de LOOCV, temos que:
+
+$$\widehat{R}(g) = \frac{1}{n}\sum_{i = 1}^n (Y_i - g_{-i}({\bf X}_i))^2,$$
+em que $g_{-i}(\bf{X}_i)$, representa o ajuste do modelo no conjunto de
+dados sem a $i$-ésima observação.
+
+<br>
+
+Não é difícil perceber que a depender do valor de $n$, o método LOOCV é
+**computacionalmente intensivo**. O método requer que ajustemos $n$
+modelos. Em algumas situações isso não é um grande problema, porém, em
+diversas outras pode ser impeditivo utilizar o LOOCV. 🤯
+
+## Leave-one-out cross-validation
+
+<br>
+
+Essa relação entre o LOOCV e o *Akaike Information Criterion* - AIC foi
+provada no paper Stone (1977) intitulado **An Asymptotic Equivalence of
+Choice of Model by Cross-Validation and Akaike's Criterion** e publicado
+no *Journal of the Royal Statistical Society, Series B*. Clique
+[aqui](https://iri.columbia.edu/~tippett/cv_papers/Stone1977.pdf), se
+quiser ler o artigo.
+
+<br>
 
 ::: columns
 ::: {.column width="50%"}
-$$X_{novo} = \frac{X - X_{min}}{X_{max} - X_{min}},$$ em que
-$X_{novo} \in [0, 1].$
+![](imgs/loocn_aic.png)
 :::
 
 ::: {.column width="50%"}
-$$X_{novo} = Z = \frac{X - \mu}{\sigma^2},$$ em que
-$\mathbb{E}(X) = \mu$ é a média dos dados e
-$\mathrm{Var}(X) = \sigma^2$. Na prática, em um contexto de v.a., iids,
-usamos $\overline{x}$ como estimador de $\mu$ e $S^2$ (variância
-amostral) como estimador de $\sigma^2$.
+<br> <br> ![](gifs/thumbs-up-nod.gif)
 :::
 :::
 
-## `r fontawesome::fa("database", "black")` Dados: exploração e tratamento
+## $k$-fold cross-validation
 
 <br>
 
-Lembre-se, como citado anteriormente, tomar o logaritmo natural, ou
-mesmo na base 10 de variáveis numéricas muito assimétricas, poderá
-ajudar um pouco, desde que seja possivel tomar o $\log(\cdot)$.
+Uma alternativa ao LOOCV é utilizar o método $k$-*fold
+cross-validation*. Nessa abordagem, dividimos o conjunto de dados em
+$k$-*folds* (lotes) disjuntos e com aproximadamente o mesmo tamanho.
+Dessa forma, temos $L_1, \cdots, L_k \subset \{1, \cdots, n\}$ são, cada
+um, um conjunto de índices aleatórios associados a cada um dos lotes. A
+ideia aqui é construir $k$ estimadores da função de regressão, denotados
+por $\widehat{g}_{-1}, \cdots, \widehat{g}_{-k}$, em que
+$\widehat{g}_{-j}$ é criado usando todas as observações do banco de
+dados, com exceção daquelas do lote $L_j$, utilizado para **validação**.
+O estimador do risco é dado por:
+
+$$\widehat{R}(g) = \frac{1}{n}\sum_{j=1}^k \sum_{i \in L_j}(Y_i - g_{-j}({\bf X}_i))^2.$$
+Perceba que, que o LOOCV é um caso particular do $k$-*fold
+cross-validation*, quando fazemos $k = n$. Em outras palavras,
+$L_1, \cdots, L_k \subset \{1, \cdots, n\}$ representam os índices
+aleatórios do conjunto de treinamento nos $k$ lotes.
+
+![](gifs/hum.gif)
+
+## $k$-fold cross-validation
+
+A animação abaixo, ilustra o procedimento de $3$-*fold cross-validation*
+($k = 3$), para uma amostra de tamanho $n = 12$ observações. Note que os
+valores que pertencem a cada um dos lotes são aleatórios. Portanto, o
+procedimento LOOCV é deterministico, já o procedimento de $k$-*fold
+cross-validation* é randomizado.
+
+<br>
+
+![](gifs/KfoldCV.gif)
+
+Perceba que teremos agora apenas $3$ modelos. Para cada um desses lotes,
+calulamos o EQM com o conjunto de teste (parte [azul]{.trueblue}) e
+treinamos o modelo com o conjunto de treinamento (parte
+[vermelha]{.truered}).
+
+## $k$-fold cross-validation
 
 <br>
 
 ::: columns
 ::: {.column width="50%"}
-```{r}
-set.seed(0)
-rgamma(1000, 2, 2) |>
-  hist()
-```
+O termo [validação]{.red} refere-se à parcela do conjunto de treinamento
+incial que dividimos em validação e treinamento, dentro de uma validação
+cruzada.
+
+<br>
+
+O conjunto [*Testing*]{.red} na segunda hierarquia da árvore ao lado, só
+usamos no final para avaliar o desempenho do modelo nesse conjunto. Isto
+é, usamos o [*Testing*]{.red} para o cálculo do **risco observado**.
+
+<br>
+
+Perceba que o conjunto de treinamento ([*Not Testing*]{.red}) é
+particionado em treinamento e validação. Poderíamos fazer uma única
+partição, mas o procedimento comumente utilizado é particionar entre
+[*Training*]{.red} e [*Validation*]{.red} uzando algum procedimento de
+validação cruzada.
 :::
 
 ::: {.column width="50%"}
-```{r}
-set.seed(0)
-rgamma(1000, 2, 2) |>
-  log() |> hist()
-```
+![](imgs/validation-split.svg){fig-aling="center" width="64%"}
 :::
 :::
 
-## `r fontawesome::fa("database", "black")` Dados: exploração e tratamento
+## $k$-fold cross-validation
 
 <br>
 
-Anteriormente eu citei algumas bibliotecas úteis de R para explorar os
-dados, na fase de tratamento das observações. Porém, não estranhe não
-ter, até o momento, citado bibliotecas do *framework*
-[tidymodels](https://www.tidymodels.org/packages/), em especial o
-[recipes](https://recipes.tidymodels.org/) que é muito utilizado no
-*workflow* de aprendizagem de máquina, na fase de pré-processamento dos
-dados. Muitas dessas transformações são aplicadas como receitas de
-pré-processamento com o pacote
-[recipes](https://recipes.tidymodels.org/).
+Em alguns livros o conjunto de treinamento é denominado de *not-testing* (não-teste).
+Isso, porquê eles querem enfatizar o fato de que o conjunto *not-testing* é utilizado
+para treinar/ensinar o modelo e jamais deverá ser utilizado para avaliar o risco
+preditivo $R(g)$.
 
 <br>
 
-![](imgs/recipes.png)
+Ao usar essa terminologia, os autores dos livros tentam enfatizar que o conjunto
+de treinamento é usado exclusivamente para ensinar o modelo a aprender os padrões
+nos dados, enquanto o conjunto de teste é usado para medir quão bem o modelo
+generaliza esses padrões para dados não vistos anteriormente.
 
 <br>
 
-O [tidymodels](https://www.tidymodels.org/packages/) será muito útil
-para nós, mas, aos poucos, seu uso e explicações mais detalhadas serão
-apresentadas, apesar que em algumas situações mais simples, poderei não
-utilizá-lo, para expor detalhes que eventualmente não será possível ou
-estariam camuflados (*black box*) na utilização do
-[tidymodels](https://www.tidymodels.org/packages/).
+![](gifs/hum.gif)
+
+## $k$-fold cross-validation
+
+A imagem abaixo ilustra o procedimento $k$-*fold cross-validation*, em
+que uma $5$-*fold cross-validation* é realizada dentro do conjunto de
+treinamento. Em cada *split*, o conjunto verde de observações (fold
+[verde]{.green}) são utilizados para treinar/ajustar o modelo e o
+conjunto [azul]{.trueblue}, em cada um dos *splits* é utilizado para
+avaliar o risco preditivo $R(g)$ (através, por exemplo do EQM).
+
+::: columns
+::: {.column width="40%"}
+![](imgs/grid_search_cross_validation.png){width="800"}
+![](gifs/hum.gif)
+:::
+
+::: {.column width="60%"}
+Não confunda os folds azuis com o conjunto de teste ([Test
+data]{.trueblue}), este último utilizado por fim, depois do modelo
+pronto, para avaliar o desempenho do modelo treinado.
+
+Note também que a validação cruzada também é utilizada para o ajuste de
+hiperparâmetros, que são parâmetros de sintonização que não dependem dos
+dados para serem equalizados. Por exemplo, em uma regressão lasso, que
+veremos adiante, há o hiperparâmetro $\lambda$ que precisamos obter,
+normalmente por meio de um [*grid search*]{.red} (sequência finita), por
+exemplo, $\lambda \in [0.5, 1, 1.5, 2, 2.5]$ de possíveis valores. Cada
+*split* pode ser utilizado para avaliar um valor de $\lambda$, dos
+possíveis valores dispostos no grid. Aumentaríamos a quantidade de
+splits para mais valores de $\lambda$ na sequência.
+:::
+:::
+
+## Resumindo: data splitting, validação cruzada e conjunto de validação
+
+::: columns
+::: {.column width="50%"}
+![](imgs/data_split_validation_cross.png)
+:::
+
+::: {.column width="50%"}
+O simples procedimento de dividir o conjunto de dados em dois, uma parte
+para treinar o modelo e a outra parte (conjunto de teste) para estimar o
+risco $R(g)$ é denominado de [*data splitting*]{.red} ou [*hold-out
+method*]{.red}. É um procedimento mais simples, porém, pode não ser útil
+em conjunto de dados não muito grandes.
+
+A segunda linha da ilustração, demonstra o procedimento de
+*cross-validation* (validação cruzada), procedimento mais utilizado nos
+treinamentos de modelos de aprendizagem de máquina.
+
+A terceira linha é uma abordagem também utilizada, porém não tão
+interessante quanto a validação cruzada. Nessa abordagem o banco de
+dados é dividido aleatoriamente em três partes. Treina-se o modelo com a
+parte [verde]{.green}, estima-se o risco com o conjunto de validação
+amarelo e testa-se o modelo com o conjunto de teste.
+:::
+:::
+
+## Resumindo: data splitting, validação cruzada e conjunto de validação
+
+<br> A abordagem do conjunto de validação envolve **dividir o conjunto de
+treinamento em duas partes**: uma parte é usada para treinar o modelo e a
+outra parte é usada para avaliar o desempenho do modelo para uma dada combinação.
+de hiperparâmetros. O conjunto de validação é utilizado para avaliar os hiperparâmetros
+do modelo, como a taxa de aprendizado, o número de camadas ocultas em uma rede neural,
+entre outros. Após o ajuste dos hiperparâmetros, o modelo final é
+treinado com o conjunto de treinamento completo e avaliado em um
+conjunto separado chamado conjunto de teste. Essa abordagem é conhecida
+como divisão simples de treinamento/validação/teste.
 
 <br>
 
-Para não deixar de valar sobre o
-[tidymodels](https://www.tidymodels.org/packages/), explicarei, agora, a
-sua filosofia e como ele está dividido em outras bibliotecas que são
-úteis em cada parte do processo de treinamento de um modelo de *machine
-learning*.
+Por outro lado, a validação cruzada $k$-*fold* é uma abordagem que visa
+obter uma estimativa mais robusta do desempenho do modelo. Nessa
+abordagem, o conjunto de treinamento é dividido em $k$ subconjuntos
+(*folds*) de tamanho aproximadamente igual. O modelo é treinado $k$
+vezes, cada vez usando $k-1$ *folds* como conjunto de treinamento e $1$
+*fold* como conjunto de validação. O desempenho do modelo é então
+calculado como a média dos resultados obtidos em cada iteração. Isso
+permite avaliar o modelo, em diferentes combinações dos hiperparâmetros, de forma
+mais precisa, pois utiliza todos os dados para treinamento e validação, evitando
+a dependência de uma única divisão do conjunto de treinamento.
 
-![](gifs/ok-2.gif){width="20%"}
+## Resumindo: data splitting, validação cruzada e conjunto de validação
+
+<br>
+
+A validação cruzada $k$-*fold* é particularmente útil quando o conjunto
+de dados é limitado, pois aproveita ao máximo os dados disponíveis. Além
+disso, **ela permite verificar se o modelo é estável e se seu desempenho
+varia significativamente com diferentes divisões dos dados**. É importante
+ressaltar que a validação cruzada $k$-*fold* pode ser computacionalmente
+mais cara do que a abordagem do conjunto de validação, uma vez que
+envolve treinar e avaliar o modelo várias vezes.
+
+<br>
+
+![](gifs/chapulin-colorado-no.gif){width="40%"}
+
+## Resumindo: data splitting, validação cruzada e conjunto de validação
+
+<br>
+
+Um outro detalhe que muitas vezes não é falado é que apesar de temos
+duas tarefas de estimação, uma envolvendo o conjunto de **treinamento**,
+em que treinamos o modelo e outra envolvendo o conjunto de **teste**, em
+que queremos estimar o risco $R(g)$, de modo a poder selecionar o melhor
+modelo, a segunda tarefa é bem mais fácil. É por isso que o conjunto de
+treinamento tende a ser menor que o conjunto de teste.
+
+<br>
+
+![](gifs/hum.gif)
 
 ## 💻 Tidymodels
 
@@ -817,7 +1067,9 @@ library(xml2)
 library(httr)
 library(stringr)
 
-numero_pacotes_r <- httr::GET("https://cloud.r-project.org/web/packages/index.html") |>
+numero_pacotes_r <- httr::GET(
+  "https://cloud.r-project.org/web/packages/index.html"
+) |>
   xml2::read_html() |>
   xml2::xml_find_all("//p[1]") |>
   xml2::xml_text() |>
@@ -833,7 +1085,7 @@ implementam o mesmo modelo, uns com algumas variações, porém, o uso é
 totalmente diferente, nomes de parâmetros distintos, saídas distintas,
 etc.
 
-![](gifs/chaves-isso.gif)
+![](gifs/hum.gif)
 
 ## 💻 Tidymodels
 
@@ -1018,1435 +1270,6 @@ aprendizado do uso do [tidymodels](https://www.tidymodels.org/) se dará.
 Sempre que possível, deveremos colocar as "mãos na massa" 🍝 para que
 possamos dominar e compreender uma ferramenta computacional. A prática é
 importante!
-
-## 🎭 As duas culturas
-
-<br>
-
-Em [Breiman, L. (2001a). **Statistical modeling: The two cultures**.
-Statistical Science, 16(3),
-199--231](https://projecteuclid.org/journalArticle/Download?urlId=10.1214%2Fss%2F1009213726),
-o Leo Breiman argumenta que existe duas culturas no uso de modelos
-estatísticos, em especialmente na área de modelos de regressão. Segundo
-eles, as culturas são:
-
-<br>
-
-1.  [Data modeling culture]{.red}: nela, em geral, se assume que o
-    modelo de regressão utilizado $r(x)$, por exemplo,
-    $r(x) = \beta_0 + \sum_{i = 1}^d \beta_ix_i$ é correto. O principal
-    objetivo dessa abordagem é a interpretação dos parâmetros que
-    indexam o modelo $r(x)$. Nesse tipo de cultura, a ideia também é
-    construir intervalos aleatórios e testar hipóteses para os
-    $\beta_i's$. Sob essa ótica, muitas suposições sob o modelo são
-    realizadas, em que formas para checar essas suposições são
-    desenvolvidas, uma vez que elas são fundamentais para esse tipo de
-    modelagem.
-
-<br>
-
-2.  [Algorithmic modeling culture]{.red}: essa é a cultura que domina a
-    comunidade de aprendizagem de máquina. Nessa abordagem, o principal
-    objetivo são as predições por meio de novas observações. Não se
-    assume que o modelo utilizado é o modelo correto. Nesse tipo de
-    modelagem, muitas vezes os algoritmos não envolve nenhuma estrutura
-    probabilística. Muitas vezes, modelos não bem especificado conduzem
-    a boas predições.
-
-## 🎭 As duas culturas
-
-<br>
-
-::: columns
-::: {.column width="50%"}
-![Breiman, L. (2001a). Statistical modeling: The two cultures.
-Statistical Science, 16(3), 199--231.](imgs/paper_breiman){width="70%"}
-:::
-
-::: {.column width="50%"}
-![Leo, na época em que era um jovem probabilista na Universidade da
-Califórina.](imgs/leo_breiman){width="60%"}
-:::
-:::
-
-## 🎭 As duas culturas
-
-<br>
-
-Há diversos artigos interessantes que são respostas ao artigo do Leo
-Breiman, como por exemplo, o artigo [Statistical Modeling: The Two
-Cultures: Comment](https://www.jstor.org/stable/2676682) do David Cox e
-com comentários do Brad Efron.
-
-![[Sir David
-Cox.](https://en.wikipedia.org/wiki/David_Cox_(statistician))](imgs/david_cox.png){width="20%"}
-
-## 🎭 As duas culturas
-
-<br>
-
-Muito embora exista essa divisão entre as culturas, Breiman foi um
-estatístico que desempenhou um grande trabalho para unir a área de
-estatística com aprendizado de máquina. Por conta dessa grande
-importância, um prêmio concedido em sua homenagem foi criado pela
-[American Statistical
-Association](https://community.amstat.org/slds/awards/breiman-award).
-
-![[Leo Breiman trabalhando em sua residência, em
-1985.](https://projecteuclid.org/journalArticle/Download?urlid=10.1214%2Fss%2F1009213290)](imgs/breiman_residencia.png){width="30%"}
-
-## 🎭 As duas culturas
-
-<br>
-
-::: columns
-::: {.column width="70%"}
-Leo Breiman, renomado estatístico, contribuiu significativamente para o
-campo de aprendizagem de máquina. Ele é conhecido por ter criado métodos
-populares e influentes para a área. Entre tais métodos famosos, cito
-dois:
-
-<br>
-
-1.  **Random forest** (**florestas aleatórias**): método que combina a
-    previsão de vários modelos de árvores de decisão (*decision tree*),
-    que veremos mais a frente, por isso o termo "floresta" para
-    problemas de regressão e classificação;
-
-2.  **Bootstrap aggregating** (**bagging**): técnica de aprendizagem
-    *ensemble*, em que cria-se multiplos conjuntos de dados obtidos com
-    reposição da amostra de treinamento. O modelo de aprendizagem de
-    máquina é treinado em cada conjunto de dados e as previsões de cada
-    um dos modelos são combinadas por meio da média (em problemas de
-    regressão), ou por voto majoritário, em problemas de classificação.
-    O *bagging* é utilizado para reduzir a variância e melhorar a
-    estabilidade do modelo.
-:::
-
-::: {.column width="30%"}
-![](imgs/sign1357-gra-0003-m.jpg){fig-aling="right"}
-:::
-:::
-
-#  {.title background-image="imgs/rawpixel/freight.jpg"}
-
-::: r-fit-text
-[Regressão / Parte I]{.flow}
-:::
-
-## Regressão
-
-<br>
-
-Métodos de regressão surgiram há mais de dois séculos com Legendre
-(1805) e Gauss (1809), que exploraram o método dos mínimos quadrados com
-o objetivo de prever órbitas ao redor do Sol. Hoje em dia, o problema de
-estimação de uma função de regressão possui papel central em
-estatística.
-
-<br>
-
-> Apesar de as primeiras técnicas para solucionar esse problema datarem
-> de ao menos 200 anos, os avanços computacionais recentes permitiram
-> que novas metodologias fossem exploradas. Em particular, com a
-> capacidade cada vez maior de armazenamento de dados, métodos com menos
-> suposições sobre o verdadeiro estado da natureza ganham cada vez mais
-> espaço. Com isso, vários desafios surgiram: por exemplo, métodos
-> tradicionais não são capazes de lidar de forma satisfatória com bancos
-> de dados em que há mais covariáveis que observações, uma situação
-> muito comum nos dias de hoje. Similarmente, são frequentes as
-> aplicações em que cada observação consiste em uma imagem ou um
-> documento de texto, objetos complexos que levam a análises que
-> requerem metodologias mais elaboradas. -- Izbick et al.
-
-## Regressão
-
-<br>
-
-De forma geral, temos que o objetivo de um modelo de regressão é
-determinar a relação entre uma variável aleatória (label)
-$Y \in \mathbb{R}$ e um vetor de covariáveis (features)
-$\mathbf{x} = (x_1, \cdots, x_d) \in \mathbb{R}^d$. Mais
-especificamente, busaca-se estimar
-
-$$r(\bf{x}) := \mathbb{E}(Y|\bf{X} = \bf{x}),$$
-
-sendo esta chamada de [função de regressão]{.red}. Temos que:
-
-<br>
-
-1.  Se $Y$ é uma variável quantitativa, então estamos sob um problema de
-    [regressão]{.red};
-2.  Se $Y$ é uma variável qualitativa, então teremos um problema de
-    [classificação]{.red}.
-
-Em aprendizagem de máquina, assumimos que não temos meios de calcular
-$r({\bf{x}})$, i.e., não conhecemos a distribuição condicional de
-${\bf{Y}\,|\,X}$. Portanto, não temos meios de calcular
-
-$$\mathbb{E}({\bf X}|Y = y) = \int x\,\mathrm{d}F_{\bf X}({\bf x} | Y = y).$$
-
-## Notações
-
-<br>
-
-A variável $Y$ recebe frequentemente o nome de variável resposta,
-variável dependente, rótulo ou *label*. Já as observações contidas no
-vetor $\bf{x} = (x_1, \cdots, x_d)$, são, em geral, denominadas de
-variáveis explicativas, variáveis independentes, características,
-atributos, preditores, covariáveis ou *features*.
-
-<br>
-
-A ideia, nessa primeira parte do curso, é descrever algumas técnicas
-para estimar (**treinar**, como é dito em aprendizagem de máquina)
-$r(\bf{x})$.
-
-<br>
-
-A menos quando dito o contrário, assumiremos que nossa amostra são
-i.i.d. (independentes e identicamente distribuídas), ou seja,
-$(\bf{X}_1, Y_1), \cdots, (\bf{X}_n, Y_n)$ são i.i.d.
-
-<br>
-
-Denota-se por $x_{i,j}$ o valor da $j$-ésima covariável na $i$-ésima
-amostra, com $j = 1, \cdots, d$ e $i = 1, \cdots, n$.
-
-## Notações
-
-<br>
-
-| Label    | Features                                     |
-|----------|----------------------------------------------|
-| $Y_1$    | $X_{1,1},\cdots, X_{1,d}\,\,\, (= \bf{X}_1)$ |
-| $\vdots$ | $\,\,\,\vdots\,\,\,\,\, \ddots\,\,\ \vdots$  |
-| $Y_n$    | $X_{n,1},\cdots, X_{n,d}\,\,\, (= \bf{X}_n)$ |
-
-: Notação utilizada nesse material para as variáveis envolvidas em um
-problema de regressão. {tbl-colwidths="\[25,25\]"}
-
-## Regressão
-
-Nossa ideia é construir uma boa estimativa $g$ da função de regressão
-$r(\bf{x}) := \mathbb{E}(Y\,|\,\bf{X} = \bf{x})$, para novas
-observações, i.e., queremos obter uma função $g$, tal que:
-
-$$g: \mathbb{R}^d \rightarrow \mathbb{R},$$
-
-de tal forma que $g$ possua um bom poder preditivo. Em aprendizagem de
-máquina, só estaremos interessados em obter uma função $g$ que estime
-bem um número real (em problemas de regressão), ou que classifique bem
-(em um problema de classificação), utilizando as $d$ covariáveis. Ou
-seja, para $m$ novas observações, desejamos obter $g$, que
-
-$$g({\bf{x}}_{n + 1}) \approx y_{n + 1}, \cdots, g({\bf{x}}_{n + m}) \approx y_{n + m}.$$
-
-## Função de risco
-
-<br>
-
-Para que possamos construir boas funções de predição, é preciso que
-tenhamos um critério para medir o desempenho de uma dada função
-$g:\mathbb{R}^d \rightarrow \mathbb{R}$. Em contexto de regressão,
-usaremos o risco quadrático, muito embora esta não é a única opção.
-Denotaremos a função de risco quadrático por:
-
-$$R_{pred}(g) = \mathbb{E}\left[({\bf Y} - g({\bf X}))^2\right],$$ em
-que $(\bf X, Y)$ são observações novas que não foram utilizadas para
-treinar/estimar $g$. Lê-se $R_{pred}(g)$ como "risco preditivo de $g$".
-Note que, como $\bf X$ são observações conhecidas e $g(\cdot)$ é um
-modelo preditivo, portanto, $g$ é conhecido, então,
-$\widehat{\bf Y} = g(\bf X)$ é um estimador dos *labels*, i.e., de
-$\bf Y$.
-
-<br>
-
-Diremos que $L(g({\bf X}); {\bf Y}) = ({\bf Y} - g({\bf X}))^2$ é a
-[função de perda quadrática]{.red}, as vezes chamado de perda $L_2$.
-Outra funções como a [função de perda absoluta]{.red} denotada por
-$L(g({\bf X}); {\bf Y}) = |{\bf Y} - g({\bf X})|$, as vezes chamada de
-perda $L_1$ poderiam ser consideradas.
-
-## Função de risco
-
-<br>
-
-Em linhas gerais, seja $L(\cdot)$ uma função qualquer, tal que
-$\forall \, 0 < u < v$, de modo que:
-
-<br>
-
-i)  $0 = L(0) \leq L(u) \leq L(v)$;
-ii) $0 = L(0) \leq L(-u) \leq L(-v)$.
-
-<br>
-
-Qualquer função $L(\cdot)$ que satisfaz as propriedades acima é chamada
-de [função de perda](https://en.wikipedia.org/wiki/Loss_function). Em
-especial, temos que:
-
-<br>
-
--   Função de perda quadrática: $L(u) = u^2$;
--   Função de perda absoluta: $L(u) = |u|$;
--   Função de perda degrau: $L(0) = 0$, se $|u| < \delta$ e $1$ caso
-    contrário, para algum $\delta > 0$;
-
-## Função de risco
-
-<br>
-
-Normalmente considera-se a perda $L_2$, uma vez que em modelos de
-regressão, minimizar $R_{pred}(g)$, em $g$, equivale a encontrar
-$r({\bf x}) = \mathbb{E}({\bf X}|{\bf Y})$, i.e., equivale a estimar a
-função de regressão.
-
-<br>
-
-[Teorema]{.red}: Suponha que definimos o risco de uma função de predição
-$g: \mathbb{R}^d \rightarrow \mathbb{R}$ via função perda quadrática,
-i.e, $R_{pred}(g) = \mathbb{E}\left[({\bf Y} - g({\bf X}))^2\right]$, em
-que $\bf (X, Y)$ são novas observações que não foram utilizadas para
-estimar $g$. Suponha também que estimamos o risco de um estimador de
-regressão $r({\bf X})$ via função perda quadrática
-$R_{reg}(g) = \mathbb{E}\left[(r({\bf X}) - g({\bf X}))^2\right]$.
-Então,
-
-$$R_{pred}(g) = R_{reg}(g) + \mathbb{E}\left[\mathbb{V}[{\bf Y} | {\bf X}]\right],$$
-
-em que $\mathbb{E}\left[\mathbb{V}[{\bf Y} | {\bf X}]\right]$ é a
-variância média do modelo que não depende de $g$. Portanto, estimar bem
-$r({\bf x})$ é de fundamental importância para criar uma boa função de
-predição. Em especial, sob a ótica do risco quadrático, a melhor função
-de predição para $\bf Y$ é a função de regressão $r({\bf x})$, de tal
-modo que:
-
-$$\argmin_g R_{pred}(g) = \argmin_g R_{reg}(g) = r({\bf x}).$$
-
-## Função de risco
-
-<br>
-
-**Lembre-se**: $r({\bf x}) = \mathbb{E}(Y | \bf{X} = \bf{x})$ é a nossa
-[função de regressão]{.red}.
-
-<br>
-
-A definição de risco preditivo $R_{pred}$, que também denotaremos
-simplesmente por $R$, tem um apelo frequentista. Dessa forma, para um
-novo conjunto com $m$ novas observaçõs,
-$({\bf X}_{n+1}, Y_{n+1}), \cdots, ({\bf X}_{n+m}, Y_{n+m})$, temos que
-essa nova amostra é i.i.d. à amostra observada (utilizada no treinamento
-do modelo/na estimação). Então, pela Lei dos Grandes Números, temos que
-um bom estimador para a função para o risco preditivo é dado por:
-
-$$\frac{1}{m}\sum_{i = 1}^m (Y_{n + i} - g(X_{n + i}))^2 \approx R(g) := \mathbb{E}\left[(Y - g({\bf X}))^2\right].$$ {#eq-risco-correto}
-
-Chamaremos a quantidade acima de [Erro Quadrático Médio -
-EQM](https://pt.wikipedia.org/wiki/Erro_quadr%C3%A1tico_m%C3%A9dio). Em
-aprendizagem de máquina, normalmente estaremos no contexto em que temos
-muitas observações, e que portanto, poderemos fazer esse apelo
-frequentista.
-
-<br>
-
-Desejamos encontrar $g$ (encontrar métodos) que minimize de forma
-satisfatória $R$, i.e., métodos que nos conduzam à um risco baixo.
-
-## Função de risco
-
-<br>
-
-Sendo assim, se $R(g)$ possui um valor baixo, então, temos que
-
-$$g({\bf x}_{n+1}) \approx y_{n+1}, \cdots, g({\bf x}_{n+m}) \approx y_{n+m}.$$
-<br> ![](gifs/hum.gif){width="25%"}
-
-## Regressão linear
-
-<br>
-
-Nesse momento, vamos pensar um pouco em regressão linear. No caso mais
-simples, queremos prever o comportamento de uma variável de interesse
-$Y$ condicional a uma variável explicativa $X$ (regressão linear
-simples, i.e., $d = 1$). O melhor preditor de $Y$ condicional em $X$ é
-aquele que minimiza a função de perda esperada, ou seja, é aquele que
-resolve:
-
-$$\argmin_g \mathbb{E}(L(Y - g)|X).$$
-
-Para o caso da função perda quadrática (função $L_2$), o melhor preditor
-de $Y$ condicional à $X$ é a média condicional de $Y$ dado $X$, i.e.,
-$r(X) = \mathbb{E}(Y|X)$. Já, na situação em que considera-se a perda
-absoluta (função $L_1$), o melhor estimador é a mediana condicional.
-
-<br>
-
-**Os modelos de regressão, em geral, fazem uso da função de perda
-quadrática.**
-
-## Regressão linear simples
-
-<br>
-
-No caso da regressão linear simples ($d = 1$), temos que o modelo é dado
-por:
-
-$$g(x) = \beta_0 + \beta_1 x_{i,1} + \varepsilon_i, \,\, i = 1, \cdots, n,$$
-em que $\varepsilon_i$ é um erro aleatório. Na abordagem *data modeling
-culture*, várias suposições poderem ser feitas para $\varepsilon_i$.
-
-Assumindo que a regressão linear simples é o modelo $g$ que iremos
-utilizar, então, desejamos minimizar:
-
-$$\argmin_{\beta} R(g_\beta) = \argmin_{\beta} \sum_{i = 1}^n(y_i - \beta_0 - \beta_1x_{i,1})^2.$$
-Derivando em relação à $\beta$ e igualando a zero, após algumas
-manipulações algébricas, temos que:
-
-$$\widehat{\beta} = \frac{\sum_{i = 1}^n (x_i - \overline{x})(y_i - \overline{y})}{\sum_{i=1}^n(x_i - \overline{x})^2} = r_{xy}\frac{s_y}{s_x},$$
-em que $s_x$ e $s_y$ são os desvio-padrão de $x$ e $y$, respectivamente,
-e $r_{xy}$ é o coeficiente de correlação da amostra, em que
-$-1 \leq r_{xy} \leq 1$.
-
-## Regressão linear simples
-
-<br>
-
-$$r_{xy} = \frac{\overline{xy} - \overline{x}\,\overline{y}}{\sqrt{(\overline{x^2} - \overline{x}^2)(\overline{y^2} - \overline{y}^2)}}.$$
-O coeficiente de determinação $R^2$ do modelo é dado por $r_{xy}^2$,
-quando o modelo é linear e possue uma única variável independente
-(feature).
-
-<br>
-
-Portanto, temos que:
-
-$$\widehat{\beta_0} = \overline{y} - \widehat{\beta}\overline{x},$$
-
-Na [*data modeling culture*]{.red} (na estatística), normalmente
-assumimos que o $\varepsilon_i$ tem distribuição normal e variância
-constante, $\forall\, i = 1, \cdots, n$. Assume-se também que
-$\mathbb{E}(\varepsilon_i) = 0, \, \forall i$.
-
-## Regressão linear simples
-
-<br>
-
-Aqui não iremos nos preocupar com essas suposições, uma vez que em
-[*algorithmic modeling culture*]{.red}, não estamos preocupados com
-suposições nem interpretações, ok!?
-
-<br>
-
-![](gifs/ok-2.gif)
-
-## Regressão linear multipla
-
-<br>
-
-A função de perda quadrática (função $L_2$) tem algumas vantagens em
-relação a função de perda absoluta. Listo algumas:
-
-1.  A função de perda quadrática penaliza mais os erros maiores, devido
-    ao fato dos erros serem levado ao quadrado;
-
-2.  A função de perda quadrática é mais sensível a presença de
-    [*outlier*](https://en.wikipedia.org/wiki/Outlier), que em
-    compensação são menos penalizados ao se considerar a função de perda
-    absoluta (função $L_1$);
-
-3.  Em situações em que o erro tem distribuição normal, a estimativa de
-    mínimos quadrados é a solução de máxima verossimilhança e é a
-    estimativa linear não viesada e com menor variância. Portanto,
-    gozamos de um estimador com ótimas propriedades, muito embora ele
-    também é um bom estimador mesmo quando a suposição de normalidade
-    não é verificada;
-
-4.  A função de perda quadrática é deferenciável, já a função de perda
-    absoluta não é.
-
-Para o caso de regressão linear múltipla, i.e., quando $d > 1$,
-poderemos utilizar uma notação matricial para representar o modelo
-linear múltiplo de regressão.
-
-## Regressão linear multipla
-
-<br>
-
-Considerando o modelo de regressão linear múltiplo, temos que:
-
-$$Y = g({\bf X}) = \beta^{T}{\bf X} + \varepsilon,$$
-
-em que $Y$ é um vetor $n \times 1$, ${\bf X}$ é uma matriz fixa e
-conhecida com os atributos de dimensão $n \times d$, em que a primeira
-coluna é preenchida de 1, $\beta = (\beta_0, \cdots, \beta_d)$. Na
-cultura de *machine learning*, iremos desconsiderar $\varepsilon$, i.e.,
-não feremos suposições sobre $\varepsilon$. Portanto, considere
-
-$$g({\bf x}) = \beta^{T}{\bf X} = \beta_{0}x_0 + \beta_1x_{i,1} + \cdots + \beta_dx_{i,d},$$
-em que $x_0 \equiv 1$.
-
-## Regressão linear multipla
-
-<br>
-
-O método dos mínimos quadrados, para o caso de regressão linear múltipla
-($d > 1$) é dado por aquele que minimiza $R(\beta^{T}{\bf X})$, i.e.,
-minimiza:
-
-$$\argmin_\beta \sum_{i = 1}^n (Y_i - \beta_0 - \beta_1x_{i,1} - \cdots - \beta_dx_{i,d})^2.$$
-Temos que
-
-$$\widehat{\beta} = ({\bf X}^{T}{\bf X})^{-1}{\bf X}^{T}Y.$$
-
-Portanto, a função de regressão estimada é dada por:
-
-$$g({\bf x}) = \widehat{\beta}^{T}{\bf x}.$$
-
-## Regressão linear multipla
-
-<br>
-
-Grande parte da literatura estatística é voltada para justificar que o
-método de mínimos quadrados sob um ponto de vista de um estimador de
-máxima verossimilhança, assim como também para construção de testes de
-aderência, métodos para construção de intervalos de confiança e teste de
-hipótese para $\beta_i$ (parâmetros que indexam o modelo), análise de
-resíduos, entre outros.
-
-<br>
-
-Assumir que a verdadeira regressão
-$r({\bf x}) = \mathbb{E}({\bf X}\,|\,Y)$ é uma suposição muito forte.
-Contudo, existe, na literatura, justificativas para o uso de métodos de
-mínimos quadrados para estimar os coeficientes, mesmo quando a regressão
-real $r({\bf x})$ não satisfaz a suposição de linearidade.
-
-<br>
-
-![](gifs/chapulin-colorado-no.gif)
-
-## Regressão linear multipla
-
-<br>
-
-O estimador de mínimos quadrados
-$\widehat{\beta} = ({\bf X}^{T}{\bf X})^{-1}{\bf X}^{T}Y$ é bom, por
-alguns motivos:
-
-<br>
-
-1.  É igual ao estimador de máxima verossimilhança sob normalidade,
-    linearidade e homoscedasticidade, portanto, consistente sob essas
-    condições
-
-2.  É [*best linear unbiased prediction* - BLUE]{.red} sob linearidade e
-    homoscedasticidade;
-
-3.  O método de mínimos quadrados tem alguma garantia, mesmo sem assumir
-    muitas suposições.
-
-<br>
-
-![](gifs/hum.gif)
-
-## Mínimos quadrados sem suposição de linearidade
-
-<br>
-
-Quando a suposição de linearidade falha, ou seja, quando a regressão
-verdadeira que desconhecemos $r({\bf x})$ não é linear, frequentemente
-existe um vetor $\beta_{*}$, tal que
-$g_{\beta_{*}}({\bf x}) = \beta_{*}^{T}{\bf x}$ tem um bom poder
-preditivo. Nesses casos, o métrodo dos mínimos quadrados
-$\widehat{\beta}$ tende a produzir estimadores com baixo risco. Isso se
-deve ao fato que $\widehat{\beta}$ converge para o melhor preditor
-linear (para o oráculo $\beta_{*}$) que é dado por:
-
-$$\beta_{*} = \argmin_\beta R(g_\beta) =  \argmin_\beta \mathbb{E}\left[(Y - \beta^{T}X)^2\right],$$
-mesmo que a verdadeira regressão $r({\bf x})$ não seja linear, em que
-$({\bf X}, Y)$ é uma nova observação.
-
-<br>
-
-[Teorema]{.red}: Seja $\beta_{*}$ o melhor estimador linear e
-$\widehat{\beta}$ o estimador de mínimos quadrados. Então,
-
-$$\widehat{\beta}\overset{p}{\longrightarrow}  \beta_{*}\,\, \mathrm{e}\,\, R(g_{\widehat{\beta}})\overset{p}{\longrightarrow} R(g_{\beta_{*}}), $$
-quando $n \longrightarrow \infty$. Para uma demonstração, veja
-<http://www.rizbicki.ufscar.br/AME.pdf>, página. 29.
-
-## Mínimos quadrados sem suposição de linearidade
-
-<br>
-
-Em palavras, o que o Teorema anterior diz é que mesmo quando a regressão
-verdadeira não é linear, o estimador de mínimos quadrados é consistente
-para nos conduzir a um bom estimador **linear**, ou seja, ao menos
-conseguiremos o melhor estimador linear como uma aproximação à
-$r({\bf x})$ que não é linear.
-
-<br>
-
-Isso não quer dizer que você terá boas estimativas em todas as
-situações, muito embora o oráculo $\beta_{*}$, em muitas situações, terá
-bom poder preditivo. Em outras palavras, em situações que um problema,
-em sua natureza, não linear, poderemos alcançar boas estimativas por uma
-aproximação linear pelo método dos mínimos quadrados.
-
-<br>
-
-![](gifs/uau.gif)
-
-## Leia mais sobre regressão linear
-
-<br>
-
-Caso você deseje ler um pouco mais sobre regressão linear sob
-homocedasticidade e sob heteroscedasticidades, leia o segundo Capítulo
-de minha dissertação de mestrado intitulada **Estimadores Intervalares
-sob Heteroscedasticidade de Forma Desconhecida via Bootstrap Duplo**.
-Apesar do título, o segundo capítulo é uma revisão do conceito de
-regressão linear é apresentado de forma didática. Clique
-[aqui](pdf/regressao_linear.pdf) para ler.
-
-<br>
-
-![](gifs/chapulin-colorado-no.gif){width="20%"}
-
-## Predição versus Inferência
-
-<br>
-
-**Inferência**: assume que o modelo linear é correto. O principal
-objetivo consiste em interpretar os parâmetros:
-
-<br>
-
--   Quais são os parâmetros significantes?
--   Qual o efeito do aumento da dose de um remédio no paciente?
-
-<br>
-
-**Predição**: queremos criar $g({\bf x})$ com bom poder preditivo, mesmo
-que a especificação do modelo não esteja correta. Não assume que a
-verdadeira regressão é de fato linear! A interpretação aqui não é o
-foco. Tudo bem?!
-
-<br>
-
-![](gifs/ok.gif){width="15%"}
-
-## Ajustando uma regressão linear no R
-
-<br>
-
-Caso você não queira implementar o estimador de mínimos quadrados
-$\widehat{\beta} = ({\bf X}^{T}{\bf X})^{-1}{\bf X}^{T}Y$, você poderá
-utilizar a famosa função `lm`. Na verdade é melhor que não implemente o
-estimador $\widehat{\beta}$, uma vez que a função `lm`, assim como a
-função `glmnet` do pacote
-[glmnet](https://glmnet.stanford.edu/articles/glmnet.html), utilizam-se
-de truques numéricos para um cálculo mais eficiente.
-
-<br>
-
-Falaremos do pacote
-[glmnet](https://glmnet.stanford.edu/articles/glmnet.html), um pouco
-mais a frente, quando abordarmos regressão penalizada. Certo!?
-
-<br>
-
-![](gifs/bom.gif)
-
-## Ajustando uma regressão linear no R
-
-<br>
-
-Considere o conjunto de dados de expectativa de vida versus PIB per
-Capita disponíveis
-[aqui](https://github.com/prdm0/dados/blob/main/dados_expectativa_renda.RData).
-O comportamente entre as variáveis `LifeExpectancy` e `GDPercapita`, se
-fizermos um gráfico, não é linear.
-
-<br>
-
-Todavia, isso não impede que possamos ajustar um modelo de regressão
-linear, muito embora o seu poder preditivo será baixo.
-
-<br>
-
-Porém, como já sabemos, ao menos conseguiremos o melhor oráculo,
-denotado por $\beta_{*}$, i.e., o melhor estimador dentre os possíveis
-estimadores lineares, como mostrado em teoremas anteriores.
-
-<br>
-
-E está tudo bem. Aqui não estou querendo defender que você use uma
-aproximação linear para esse caso. Em breve, com um pequeno truque,
-poderemos ajustar uma regressão polinomial à esses dados, e
-incorporaremos um pouco da tendência não linar presente nos dados.
-
-## Ajustando uma regressão linear no R
-
-<br>
-
-```{r, warning=FALSE}
-#| code-fold: true
-#| code-summary: "Veja o código do gráfico"
-#| fig-align: center
-#| out-width: "1200px"
-#| out-height: "700px"
-
-library(ggplot2)
-
-url <- "https://github.com/prdm0/dados/raw/main/dados_expectativa_renda.RData"
-
-# Criando um arquivo temporário
-arquivo_temp <- tempfile()
-
-# Baixando um arquivo temporário
-download.file(url = url, destfile = arquivo_temp)
-
-# Carregando os dados
-load(arquivo_temp)
-
-dados_expectativa_renda |>
-  ggplot(aes(x = GDPercapita, y = LifeExpectancy)) +
-  geom_point() +
-  labs(
-    title = "PIB per Capita versus Expectativa de Vida",
-    x = "PIB per Capita",
-    y = "Expectativa de Vida"
-  ) +
-  geom_smooth(method = "lm", se = FALSE) +
-  theme(
-    plot.title = element_text(face = "bold"),
-    axis.title = element_text(face = "bold")
-  )
-```
-
-## Ajustando uma regressão linear no R
-
-<br>
-
-Claramente, a reta de regressão (linha azul) do gráfico anterior não tem
-um bom poder preditivo. O ajuste foi feito diretamente usando o pacote
-[ggplot2](https://ggplot2.tidyverse.org/), utilizando a função
-`geom_smooth`, em que foi escolhido o método `"lm"`.
-
-<br>
-
-Poderíamos ter utilizado a função `lm`:
-
-<br>
-
-```{r}
-#| code-fold: true
-#| code-summary: "Veja o código do gráfico"
-#| fig-align: center
-#| out-width: "1200px"
-#| out-height: "700px"
-#| results: markup
-
-library(ggplot2)
-
-url <- "https://github.com/prdm0/dados/raw/main/dados_expectativa_renda.RData"
-
-# Criando um arquivo temporário
-arquivo_temp <- tempfile()
-
-# Baixando um arquivo temporário
-download.file(url = url, destfile = arquivo_temp)
-
-# Carregando os dados
-load(arquivo_temp)
-
-# Ajustando o modelo usando a função lm
-ajuste <- lm(LifeExpectancy ~ GDPercapita, data = dados_expectativa_renda)
-
-modelo <- function(x){
-  novos_dados <- tibble::tibble(GDPercapita = x)
-  predict(ajuste, newdata = novos_dados)
-}
-
-dados_expectativa_renda |>
-  ggplot(aes(x = GDPercapita, y = LifeExpectancy)) +
-  geom_point() +
-  labs(
-    title = "PIB per Capita versus Expectativa de Vida",
-    x = "PIB per Capita",
-    y = "Expectativa de Vida"
-  ) +
-  stat_function(fun = modelo, color = "red", size = 1.2) +
-  theme(
-    plot.title = element_text(face = "bold"),
-    axis.title = element_text(face = "bold")
-  )
-```
-
-## Matriz esparsa
-
-<br>
-
-Para grandes bases de dados, em um problema real que você venha
-trabalhar, e se o custo computacional você considera elevado, poderá
-utilizar o pacote
-[biglm](https://cran.r-project.org/web/packages/biglm/index.html).
-
-<br>
-
-Em situações em que há muitos zeros na sua matriz, poderá utilizar
-representação [esparsa](https://en.wikipedia.org/wiki/Sparse_matrix).
-
-<br>
-
-[Matrizes esparsas]{.red} são matrizes com muitas entradas iguais à $0$.
-Elas ocorrem naturalmente em diversas aplicações, como por exemplo uma
-matriz de termos presentes em um documento, em que se o termo estiver no
-documento resebe 1, e zero, caso contrário. Abaixo, ${\bf X}$ é um
-exemplo de matriz esparsa.
-
-<br>
-
-$$
-{\bf X} =
-\begin{bmatrix}
-1 & 0 & 0 & 0 & 0 \\
-0 & 2 & 0 & 0 & 0 \\
-0 & 0 & 0 & 0 & 0 \\
-0 & 0 & 3 & 0 & 0 \\
-0 & 0 & 0 & 4 & 0 \\
-\end{bmatrix}
-$$
-
-## Matriz esparsa
-
-<br>
-
-Considere os textos:
-
-1.  [Texto 1]{.red}: "Eu amo essa disciplina."
-2.  [Texto 2]{.red}: "Eu adoro meu professor."
-3.  [Texto 3]{.red}: "Eu serei muito bom em aprendizagem de máquina."
-4.  [Texto 4]{.red}: "Adoro o departamento de estatística da UFPB."
-
-<br>
-
-| Textos          | disciplina | amo | aprendizagem | máquina | estatistica | adoro | UFPB |
-|---------|---------|---------|---------|---------|---------|---------|---------|
-| [Texto 1]{.red} | 1          | 1   | 0            | 0       | 0           | 0     | 0    |
-| [Texto 2]{.red} | 0          | 0   | 0            | 0       | 0           | 1     | 0    |
-| [Texto 3]{.red} | 0          | 0   | 1            | 1       | 0           | 0     | 0    |
-| [Texto 4]{.red} | 0          | 0   | 0            | 0       | 1           | 1     | 1    |
-
-## Matriz esparsa
-
-<br>
-
-A matriz com a ocorrência de determinados termos nos textos é dada por:
-
-$$
-{\bf X} =
-\begin{bmatrix}
-1 & 1 & 0 & 0 & 0 & 0 & 0 \\
-0 & 0 & 0 & 0 & 0 & 1 & 0 \\
-0 & 0 & 1 & 1 & 0 & 0 & 0 \\
-0 & 0 & 0 & 0 & 1 & 1 & 1 \\
-\end{bmatrix}
-$$
-
-A representação esparsa de ${\bf X}$, aqui denotada por ${\bf X_*}$ é:
-
-$$
-{\bf X_*} =
-\begin{bmatrix}
-1 & 1 & 1 \\
-2 & 6 & 1 \\
-3 & 3 & 1 \\
-3 & 4 & 1 \\
-4 & 5 & 1 \\
-4 & 6 & 1 \\
-4 & 7 & 1 \\
-\end{bmatrix},
-$$ em que as duas primeiras colunas, são as linhas e colunas de
-${\bf X}$ com valor diferente de 0. A última coluna representa o valor.
-
-## Regressão linear com matriz esparsa
-
-<br>
-
-**Exemplo**: Ajuste de um modelo de regerssão linear múltiplo, em que
-${\bf X}$ poderá ter uma representação esparsa. Aqui não estamos
-interessados em verificar qualidade de predições. Trata-se apenas de um
-exemplo de como utilizar uma representação esparsa para ajustar um
-modelo de regessão linear com algumas covariáveis, em R.
-
-<br>
-
-```{r}
-#| code-fold: true
-#| code-summary: "Estude o código"
-library(glmnet)
-library(Matrix)
-
-# Dados de exemplo
-x1 <- c(1, 0, 2, 0, 0)
-x2 <- c(0, 3, 0, 4, 0)
-x3 <- c(5, 0, 6, 0, 7)
-y <- c(1, 2, 3, 4, 5)
-
-# Criar data frame com as variáveis explicativas
-dados <- data.frame(x1, x2, x3)
-
-# Converter o data frame para matriz esparsa
-X <- sparse.model.matrix(~ ., data = dados)
-
-# Ajustar a regressão linear utilizando glmnet
-modelo <- glmnet(x = X, y = y, alpha = 0, lambda = 0)
-
-# Realizar previsões
-predicoes <- predict(modelo, newx = X)
-```
-
-## Erro quadrático médio
-
-<br>
-
-Como exposto anteriormente, para avaliar o poder preditivo de uma
-modelo, i.e., a aprendizagem de um modelo, devemos avaliar a função de
-risco, i.e., devemos avaliar
-$R(g) := \mathbb{E}\left[L(g({\bf X}); Y)\right]$. Em particular,
-considere $L = L_2$ (função perda quadrática). Então, poderíamos ser
-levados a acreditar que o melhor estimador de $R(g)$, utilizando a Lei
-dos Grandes Números seria:
-
-$$\frac{1}{n}\sum_{i = 1}^n(Y_{i} - g({\bf X_{i}}))^2 \approx R(g) := \mathbb{E}\left[L_2(g({\bf X}); Y)\right].$$
-
-<br>
-
-Essa quantidade é chamada, de **E**rro **Q**uadrático **M**édio -
-**EQM**. Desejamos escolher o melhor mode, entre os modelos testados,
-que minimiza o EQM.
-
-<br>
-
-O apelo frequentista em utilizar a Lei dos Grandes Números na forma
-acima não é correto, uma vez que usamos as $n$ observações para
-treinar/ajustar o modelo $g$.
-
-## Erro quadrático médio
-
-<br>
-
-Por exemplo, no problema de PIB per Capita versus expectativa de vida,
-em que consideramos uma aproximação linear, não poderíamos utilizar o
-EQM da forma acima, com as $n$ observações utilizadas para treinar o
-modelo. É um detalhe sutil, mas que muitas pessoas cometem esse erro.
-
-<br>
-
-Não podemos utilizar as $n$ observações para estimar o risco $R(g)$
-através do EQM, uma vez que estamos utilizando o mesmo conjunto de dados
-para ajustar e avaliar $g$.
-
-<br>
-
-**Qual o problema?**
-
-<br>
-
-1.  Não vale a Lei dos Grandes Números;
-2.  Usamos os mesmos valores de ${\bf x}$ e $y$ para treinar e avaliar o
-    modelo.
-
-## Erro quadrático médio
-
-<br>
-
-O que diz a Lei dos Grandes Números, em particular, a Lei Forte de
-Kolmogorov?
-
-<br>
-
-[Teorema]{.red} (**Lei Forte de Kolmogorov**): Sejam $X_1, \cdots, X_n$
-uma sequência de veriáveis aleatórias - v.a. i.i.d. e integráveis, i.e.,
-com valor esperado limitado, tal que
-$\mathbb{E}(X) = \mu\,\, \forall i$. Então,
-
-$$\frac{X_1 + X_2 + \cdots + X_n}{n} \rightarrow \mu,$$
-
-quase certamente, i.e., com probabilidade 1.
-
-<br>
-
-Note que se desejamos comparar diversos modelos,
-$g_1({\bf x}), g_2({\bf x}), \cdots,$ e se utilizarmos as mesmas $n$
-obervações para calularmos $R(g_1({\bf x})), R(g_2({\bf x})), \cdots$,
-os termos de cada uma das somas **não são independentes**. Lembre-se que
-desejamos obter $\argmin_g R_{pred}(g)$.
-
-## Erro quadrático médio
-
-<br>
-
-Portanto, nunca utilize as mesmas observações utilizadas para treinar o
-modelo, como aquelas que serão utilizadas para se estimar $R(g)$. Nunca!
-Isso é um pecado mortal! Ok?!
-
-<br>
-
-![](gifs/thumbs-up-nod.gif){width="20%"}
-
-## Data Splitting
-
-<br>
-
-Corrigir o problema de dependência que há ao estimarmos o risco usando o
-EQM é fácil. Uma abordagem muito utilizada é utilizar [*data
-splitting*]{.red}, também chamado de método [*hold-out*]{.red}. Algo
-como a segunda linha da imagem abaixo:
-
-<br>
-
-![](imgs/train-and-test-1-min-1.webp){width="35%"}
-
-## Data Splitting
-
-<br>
-
-Essa divisão é feita de forma aleatória, algumas vezes estratificada de
-acordo com algumas variáváveis. A ideia de aleatorizar é se livrar de
-problemas de conjunto de dados ordenados. Queremos que tanto no conjunto
-de treinamento [*Training*]{.red} quanto no conjunto [*Testing*]{.red},
-na imagem, contenham a mesma diversidade de observações.
-
-<br>
-
-Ainda no exemplo de PIB per Capita versus Expectaitiva de Vida, não
-quero correr o risco de ter no conjunto de treinamento apenas o países
-com maiores valores de PIB per Capita, caso o conjunto de dados tenha
-sido ordenado pela variável `GDPercapita`. Por isso, aleatorizar o
-conjunto de treinamento e teste é sempre uma ótima ideia. Certo!?
-
-<br>
-
-![](gifs/ok-2.gif){width="20%"}
-
-## Data Splitting
-
-<br>
-
-O percentual de divisão dos dados normalmente é empírico. Usa-se
-normalmente a proporção de $70\%$ para treinamento e $30\%$ para teste
-$(70\%, 30\%)$. Outros esquemas de divisões são bastante utilizados, por
-exemplo, $(80\%, 20\%)$, $(99\%, 1\%)$, a depender da quantidade de
-observações (tamanho do conjunto de dados).
-
-<br>
-
-Portanto, utilizar o EQM sob o conjunto de dados de teste para avaliar
-$g_1({\bf x}), g_2({\bf x}), \cdots,$, é uma boa estratégia, uma vez que
-agora não teremos mais uma dependência no numerador do cálculo do EQM.
-Em notação matemática, poderíamos escrever como já apresentado
-anteriormente, em @eq-risco-correto, i.e.,
-
-$$\frac{1}{m}\sum_{i = 1}^m (Y_{n + i} - g(X_{n + i}))^2 \approx R(g) := \mathbb{E}\left[(Y - g({\bf X}))^2\right].$$
-
-<br>
-
-Esse resultado valeria para qualquer outra função de perda.
-
-## Data Splitting
-
-Reescrevendo, suponha que o conjunto de dados total possua $n$
-observações e que separamos aleatoriamente $s < n$ observações para o
-conjunto de treinamento. Assim, temos, algo como:
-
-<br>
-
-$$\overbrace{(X_1, Y_1), (X_2, Y_2), \cdots, (X_s, Y_s)}^{70\%}, \,\,\, \overbrace{(X_{s + 1}, Y_{s + 1}), (X_{s + 2}, Y_{s + 2}), \cdots, (X_n, Y_n)}^{30\%}.$$
-
-<br>
-
-Então, temos que uma boa estimativa de $R(g)$ é dada pelo EQM calculado
-sobre o conjunto de dados de teste, que nesse caso considerei o conjunto
-com $30\%$, mas esse percentual poderia ser outro. Então, temos que um
-bom estimador é:
-
-$$\frac{1}{n - s}\sum_{i = s + 1}^n (Y_{i} - g(X_{i}))^2 \approx R(g) := \mathbb{E}\left[(Y - g({\bf X}))^2\right].$$
-
-## Data Splitting
-
-<br>
-
-**Agora você entende por que dividimos os dados em treinamento e
-teste?**
-
-<br>
-
-![](gifs/yes.gif){width="25%"}
-
-<br>
-
-Dividimos para obermos um bom estimador do risco utilizando o
-[EQM](https://en.wikipedia.org/wiki/Mean_squared_error). 🎁
-
-## Data Splitting
-
-<br>
-
-Podemos argumentar que o procedimento de *data splitting*, em que
-dividimos o nosso conjunto de dados em treinamento e teste fará com que
-venhamos perder muitas observações que poderiam ter sido utilizadas para
-treinar o modelo. E de certa forma isso é verdade, principalmente quando
-termos um conjunto não muito grande de observações.
-
-<br>
-
-Portanto, uma melhor abordagem, sendo esta uma variação do método de
-*data splitting* é o procedimento de [*cross-validation - cv (validação
-cruzada)*](https://en.wikipedia.org/wiki/Cross-validation_(statistics)).
-Uma versão mais geral de uma validação cruzada é o [*leave-one-out
-cross-validation*]{.red}.
-
-<br>
-
-Em palavras, o procedimento consiste em tirar de fora uma única
-observação das $n$ observações da base de dados para ser o nosso
-conjunto de teste e treinar o modelo com as observações que
-permaneceram. Daí, calcula-se o **risco observado** (EQM, sob o conjunto
-de teste/validação). Na segunda iteração, a observação que antes era de
-teste volta para perterncer ao conjunto de treinamento e uma nova
-observação é removida para ser teste. Esse procedimento ocorre de forma
-iterativa até a retirada da última observação como teste.
-
-## Leave-one-out cross-validation
-
-<br>
-
-Observe a animação abaixo que ilustra o procedimento de
-**l**eave-**o**ne-**o**ut **c**ross-**v**alidation - LOOCV, em uma
-amostra de tamanho $n = 8$. Ao fim, teremos $n$ modelos ajustados, em
-que calculamos as suas respectivas performances, i.e., com o risco
-observado, estimamos o risco de $R(g)$.
-
-<br>
-
-![](gifs/LOOCV.gif)
-
-## Leave-one-out cross-validation
-
-<br>
-
-Vejo muitas pessoas que usam uma validação cruzada, por exemplo,
-*leave-one-out cross-validation* - LOOCV comparando com o método
-Jackknife e algumas inclusive dizendo ser a mesma coisa. Não, não são!
-
-<br>
-
-O algoritmo Jackknife é um procedimento de estimação, e que, por sua
-vez, deve estar dentro do conjunto de treinamento. Para haver algum
-Jackknife, a estimativa com $n-1$ observações deve estar dentro do
-conjunto de treinamento, em que dentro do treinamento teria a remoção de
-um observação por vez. **Consegue perceber a diferença sutil?**
-
-<br>
-
-![](gifs/bean_01.gif){width="20%"}
-
-## Leave-one-out cross-validation
-
-<br>
-
-O método LOOCV foi proposto por Stones (1974), no artigo intitulado
-Cross-Validatory Choice and Assessment of Statistical Predictions, no
-Royal Statistical Society, Série B. Clique
-[aqui](https://www.jstor.org/stable/pdf/2984809.pdf?refreqid=excelsior%3A3071b86b3588905b095d44668025b005&ab_segments=&origin=&initiator=&acceptTC=1)
-se tiver curiosidade em ler o artigo.
-
-<br>
-
-Escrevendo o estimador do risco em um procedimento de LOOCV, temos que:
-
-$$\widehat{R}(g) = \frac{1}{n}\sum_{i = 1}^n (Y_i - g_{-i}({\bf X}_i))^2,$$
-em que $g_{-i}(\bf{X}_i)$, representa o ajuste do modelo no conjunto de
-dados sem a $i$-ésima observação.
-
-<br>
-
-Não é difícil perceber que a depender do valor de $n$, o método LOOCV é
-**computacionalmente intensivo**. O método requer que ajustemos $n$
-modelos. Em algumas situações isso não é um grande problema, porém, em
-diversas outras pode ser impeditivo utilizar o LOOCV. 🤯
-
-## Leave-one-out cross-validation
-
-<br>
-
-O método LOOCV converge assintotivamente para o AIC, porém, este, muitas
-vezes não poderemos calcular diretamente, uma vez que não conhecemos a
-distribuição conjunta dos dados, i.e., não conhecemos a estrutura
-probabilística.
-
-<br>
-
-![](gifs/interesting-batman.gif)
-
-## Leave-one-out cross-validation
-
-<br>
-
-Essa relação entre o LOOCV e o *Akaike Information Criterion* - AIC foi
-provada no paper Stone (1977) intitulado **An Asymptotic Equivalence of
-Choice of Model by Cross-Validation and Akaike's Criterion** e publicado
-no *Journal of the Royal Statistical Society, Series B*. Clique
-[aqui](https://iri.columbia.edu/~tippett/cv_papers/Stone1977.pdf), se
-quiser ler o artigo.
-
-<br>
-
-::: columns
-::: {.column width="50%"}
-![](imgs/loocn_aic.png)
-:::
-
-::: {.column width="50%"}
-<br> <br> ![](gifs/thumbs-up-nod.gif)
-:::
-:::
-
-## $k$-fold cross-validation
-
-<br>
-
-Uma alternativa ao LOOCV é utilizar o método $k$-*fold
-cross-validation*. Nessa abordagem, dividimos o conjunto de dados em
-$k$-*folds* (lotes) disjuntos e com aproximadamente o mesmo tamanho.
-Dessa forma, temos $L_1, \cdots, L_k \subset \{1, \cdots, n\}$ são, cada
-um, um conjunto de índices aleatórios associados a cada um dos lotes. A
-ideia aqui é construir $k$ estimadores da função de regressão, denotados
-por $\widehat{g}_{-1}, \cdots, \widehat{g}_{-k}$, em que
-$\widehat{g}_{-j}$ é criado usando todas as observações do banco de
-dados, com exceção daquelas do lote $L_j$, utilizado para **validação**.
-O estimador do risco é dado por:
-
-$$\widehat{R}(g) = \frac{1}{n}\sum_{j=1}^k \sum_{i \in L_j}(Y_i - g_{-j}({\bf X}_i))^2.$$
-Perceba que, que o LOOCV é um caso particular do $k$-*fold
-cross-validation*, quando fazemos $k = n$. Em outras palavras,
-$L_1, \cdots, L_k \subset \{1, \cdots, n\}$ representam os índices
-aleatórios do conjunto de treinamento nos $k$ lotes.
-
-![](gifs/hum.gif)
-
-## $k$-fold cross-validation
-
-A animação abaixo, ilustra o procedimento de $3$-*fold cross-validation*
-($k = 3$), para uma amostra de tamanho $n = 12$ observações. Note que os
-valores que pertencem a cada um dos lotes são aleatórios. Portanto, o
-procedimento LOOCV é deterministico, já o procedimento de $k$-*fold
-cross-validation* é randomizado.
-
-<br>
-
-![](gifs/KfoldCV.gif)
-
-Perceba que teremos agora apenas $3$ modelos. Para cada um desses lotes,
-calulamos o EQM com o conjunto de teste (parte [azul]{.trueblue}) e
-treinamos o modelo com o conjunto de treinamento (parte
-[vermelha]{.truered}).
-
-## $k$-fold cross-validation
-
-<br>
-
-Muitos modelos mais sofisticados apresentam hiperparâmetros (parâmetros
-de sintonização) que não dependem dos dados. É muito comum os algoritmos
-de aprendizagem de máquina se utilizarem do procedimento de validação
-cruzada, para além da estimação do risco $R(g)$ no conjunto de validação.
-
-<br>
-
-Ao estimar $k$ modelos, normalmente faz-se um *grid* de possíveis
-valores para esses hiperparâmetros em que ao final, escolhe-se como
-hiperparâmetro o modelo com menor EQM. Por fim, ajusta-se um modelo
-final, com todo o conjunto de treinamento usando o valor do
-hiperparâmetro que retornou o menor EQM no conjunto de validação.
-
-<br>
-
-Alias, utilizamos um procedimento de validação para selecionar a melhor combinação de
-hiperparâmetros e é será risco preditivo observado sob o conjunto de teste que
-realmente irá nos fornecer uma estimativa válida do risco preditivo $R(g)$.
-
-<br>
-
-![](gifs/ok.gif)
-
-## $k$-fold cross-validation
-
-<br>
-
-::: columns
-::: {.column width="50%"}
-O termo [validação]{.red} refere-se à parcela do conjunto de treinamento
-incial que dividimos em validação e treinamento, dentro de uma validação
-cruzada.
-
-<br>
-
-O conjunto [*Testing*]{.red} na segunda hierarquia da árvore ao lado, só
-usamos no final para avaliar o desempenho do modelo nesse conjunto. Isto
-é, usamos o [*Testing*]{.red} para o cálculo do **risco observado**.
-
-<br>
-
-Perceba que o conjunto de treinamento ([*Not Testing*]{.red}) é
-particionado em treinamento e validação. Poderíamos fazer uma única
-partição, mas o procedimento comumente utilizado é particionar entre
-[*Training*]{.red} e [*Validation*]{.red} uzando algum procedimento de
-validação cruzada.
-:::
-
-::: {.column width="50%"}
-![](imgs/validation-split.svg){fig-aling="center" width="64%"}
-:::
-:::
-
-## $k$-fold cross-validation
-
-<br>
-
-Em alguns livros o conjunto de treinamento é denominado de *not-testing* (não-teste).
-Isso, porquê eles querem enfatizar o fato de que o conjunto *not-testing* é utilizado
-para treinar/ensinar o modelo e jamais deverá ser utilizado para avaliar o risco
-preditivo $R(g)$.
-
-<br>
-
-Ao usar essa terminologia, os autores dos livros tentam enfatizar que o conjunto
-de treinamento é usado exclusivamente para ensinar o modelo a aprender os padrões
-nos dados, enquanto o conjunto de teste é usado para medir quão bem o modelo
-generaliza esses padrões para dados não vistos anteriormente.
-
-<br>
-
-![](gifs/hum.gif)
-
-## $k$-fold cross-validation
-
-A imagem abaixo ilustra o procedimento $k$-*fold cross-validation*, em
-que uma $5$-*fold cross-validation* é realizada dentro do conjunto de
-treinamento. Em cada *split*, o conjunto verde de observações (fold
-[verde]{.green}) são utilizados para treinar/ajustar o modelo e o
-conjunto [azul]{.trueblue}, em cada um dos *splits* é utilizado para
-avaliar o risco preditivo $R(g)$ (através, por exemplo do EQM).
-
-::: columns
-::: {.column width="40%"}
-![](imgs/grid_search_cross_validation.png){width="800"}
-![](gifs/hum.gif)
-:::
-
-::: {.column width="60%"}
-Não confunda os folds azuis com o conjunto de teste ([Test
-data]{.trueblue}), este último utilizado por fim, depois do modelo
-pronto, para avaliar o desempenho do modelo treinado.
-
-Note também que a validação cruzada também é utilizada para o ajuste de
-hiperparâmetros, que são parâmetros de sintonização que não dependem dos
-dados para serem equalizados. Por exemplo, em uma regressão lasso, que
-veremos adiante, há o hiperparâmetro $\lambda$ que precisamos obter,
-normalmente por meio de um [*grid search*]{.red} (sequência finita), por
-exemplo, $\lambda \in [0.5, 1, 1.5, 2, 2.5]$ de possíveis valores. Cada
-*split* pode ser utilizado para avaliar um valor de $\lambda$, dos
-possíveis valores dispostos no grid. Aumentaríamos a quantidade de
-splits para mais valores de $\lambda$ na sequência.
-:::
-:::
-
-## Resumindo: data splitting, validação cruzada e conjunto de validação
-
-::: columns
-::: {.column width="50%"}
-![](imgs/data_split_validation_cross.png)
-:::
-
-::: {.column width="50%"}
-O simples procedimento de dividir o conjunto de dados em dois, uma parte
-para treinar o modelo e a outra parte (conjunto de teste) para estimar o
-risco $R(g)$ é denominado de [*data splitting*]{.red} ou [*hold-out
-method*]{.red}. É um procedimento mais simples, porém, pode não ser útil
-em conjunto de dados não muito grandes.
-
-A segunda linha da ilustração, demonstra o procedimento de
-*cross-validation* (validação cruzada), procedimento mais utilizado nos
-treinamentos de modelos de aprendizagem de máquina.
-
-A terceira linha é uma abordagem também utilizada, porém não tão
-interessante quanto a validação cruzada. Nessa abordagem o banco de
-dados é dividido aleatoriamente em três partes. Treina-se o modelo com a
-parte [verde]{.green}, estima-se o risco com o conjunto de validação
-amarelo e testa-se o modelo com o conjunto de teste.
-:::
-:::
-
-## Resumindo: data splitting, validação cruzada e conjunto de validação
-
-<br> A abordagem do conjunto de validação envolve **dividir o conjunto de
-treinamento em duas partes**: uma parte é usada para treinar o modelo e a
-outra parte é usada para avaliar o desempenho do modelo para uma dada combinação.
-de hiperparâmetros. O conjunto de validação é utilizado para avaliar os hiperparâmetros
-do modelo, como a taxa de aprendizado, o número de camadas ocultas em uma rede neural,
-entre outros. Após o ajuste dos hiperparâmetros, o modelo final é
-treinado com o conjunto de treinamento completo e avaliado em um
-conjunto separado chamado conjunto de teste. Essa abordagem é conhecida
-como divisão simples de treinamento/validação/teste.
-
-<br>
-
-Por outro lado, a validação cruzada $k$-*fold* é uma abordagem que visa
-obter uma estimativa mais robusta do desempenho do modelo. Nessa
-abordagem, o conjunto de treinamento é dividido em $k$ subconjuntos
-(*folds*) de tamanho aproximadamente igual. O modelo é treinado $k$
-vezes, cada vez usando $k-1$ *folds* como conjunto de treinamento e $1$
-*fold* como conjunto de validação. O desempenho do modelo é então
-calculado como a média dos resultados obtidos em cada iteração. Isso
-permite avaliar o modelo, em diferentes combinações dos hiperparâmetros, de forma
-mais precisa, pois utiliza todos os dados para treinamento e validação, evitando
-a dependência de uma única divisão do conjunto de treinamento.
-
-## Resumindo: data splitting, validação cruzada e conjunto de validação
-
-<br>
-
-A validação cruzada $k$-*fold* é particularmente útil quando o conjunto
-de dados é limitado, pois aproveita ao máximo os dados disponíveis. Além
-disso, **ela permite verificar se o modelo é estável e se seu desempenho
-varia significativamente com diferentes divisões dos dados**. É importante
-ressaltar que a validação cruzada $k$-*fold* pode ser computacionalmente
-mais cara do que a abordagem do conjunto de validação, uma vez que
-envolve treinar e avaliar o modelo várias vezes.
-
-<br>
-
-![](gifs/chapulin-colorado-no.gif){width="40%"}
-
-## Resumindo: data splitting, validação cruzada e conjunto de validação
-
-<br>
-
-Um outro detalhe que muitas vezes não é falado é que apesar de temos
-duas tarefas de estimação, uma envolvendo o conjunto de **treinamento**,
-em que treinamos o modelo e outra envolvendo o conjunto de **teste**, em
-que queremos estimar o risco $R(g)$, de modo a poder selecionar o melhor
-modelo, a segunda tarefa é bem mais fácil. É por isso que o conjunto de
-treinamento tende a ser menor que o conjunto de teste.
-
-<br>
-
-![](gifs/hum.gif)
 
 ## Resumindo: data splitting, validação cruzada e conjunto de validação
 
