@@ -1,0 +1,422 @@
+---
+title: "Suport Vector Regression Machine - SVRM"
+subtitle: "Comparando com outros modelos"
+date: "`r Sys.Date()`"
+lang: pt
+author: "Prof. Dr. Pedro Rafael D. Marinho"
+format:
+  html:
+    html-math-method: katex
+    code-tools: true
+    code-copy: true
+    number-sections: true
+page-layout: full
+editor: source
+---
+
+
+## Carregando bibliotecas necessárias
+
+
+```{r}
+library(tidymodels)
+library(tidyverse)
+library(GGally)
+library(skimr)
+
+# Resolvendo possíveis conflitos entre o tidymodels e outras bibliotecas
+tidymodels::tidymodels_prefer()
+```
+
+
+## Importando a base de dados
+
+Utilizando os dados de vinho vermelho🍷, disponíveis
+[aqui](https://www.kaggle.com/datasets/uciml/red-wine-quality-cortez-et-al-2009),
+faça uma pequena análise exploratória dos dados. No
+[link](https://www.kaggle.com/datasets/uciml/red-wine-quality-cortez-et-al-2009)
+do Kaggle você consegue uma explicação sobre o que significa cada uma
+das variáveis.
+
+Os dados, no meu caso, estão no diretório
+`"../dados/winequality-red.csv"`. Você deverá alterar o *path* para o
+diretório encontra-se a base que deverá ser obtida no link acima.
+
+
+```{r}
+dados <- readr::read_csv(file = "../dados/winequality-red.csv")
+```
+
+
+## Uma exploração rápida dos dados
+
+É sempre importante olhar os dados antes de tentar modelar. Uma análise
+exploratória sempre será útil para identificarmos possíveis
+inconsistências.
+
+
+```{r}
+visdat::vis_dat(dados)
+```
+
+
+O gráfico acima mostra que temos uma base de dados sem informações
+faltantes e todas as *features* presentes na base são numéricas. É uma
+situação confortável, haja vista que, aqui, não precisaremos nos
+preocupar com imputação de dados faltantes.
+
+Um resumo dos dados poderá ser obtido utilizando a função `glimpse` do
+pacote **dplyr** que é carregado com a biblioteca **tidyverse** de R.
+
+
+```{r}
+dados |> 
+  dplyr::glimpse()
+```
+
+
+É possível todas as correlações entre todas as variáveis da base, com a
+função `data_vis_cor`. Um gráfico útil com as correlações poderá ser
+obtido usando a função `vis_cor`, conforme abaixo:
+
+
+```{r}
+visdat::data_vis_cor(dados)
+visdat::vis_cor(dados)
+```
+
+
+Um gráfico de scatterplot para as variáveis numéricas poderá ser útil.
+Você poderá fazer isso, usando a função `ggcatmat` do pacote
+[GGally](https://ggobi.github.io/ggally/index.html).
+
+
+```{r}
+dados |> 
+  GGally::ggscatmat()
+```
+
+
+As bibliotecas **GGally** e **skimr** também possuem funções úteis que
+podem nos auxiliar no processo de exploração dos dados.
+
+
+```{r}
+dados |> 
+  GGally::ggpairs()
+
+dados |> 
+  skimr::skim()
+```
+
+
+## Construindo os workflows dos modelos
+
+Iremos comparar os modelos de regressão linar utilizando *elastic net*,
+com o método $k$NN e *suport vector regression machine* - SVRM.
+Buscaremos pelo melhor modelo de cada uma das metodologias consideradas.
+Posteriormente iremos escolher o melhor modelo entre os melhores de cada
+uma das classes. A ideia é escolher o melhor modelo que consiga prever
+melhor a qualidade do vinho, i.e., prever a variável `quality`.
+
+### Divisão dos dados
+
+Aqui usaremos as funções `initial_split`, `training` e `testing` para realizar o 
+método *hold-out* (divisão inicial dos dados) em treino e teste. Vamos considerar
+$80\%$ para treino e $20\%$ para teste. A função `initial_split` irá realizar a divisão,
+porém, as funções `training` e `testing` são responsáveis para obtermos as tibbles da 
+base de treino e teste, respectivamente. 
+
+Aqui, os dados está sendo estratificado pelo *label*, i.e., pela variável `quality` que desejamos
+prever:
+
+
+```{r}
+set.seed(0) # Fixando uma semente
+divisao_inicial <- rsample::initial_split(dados, prop = 0.8, strata = "quality")
+treinamento <- rsample::training(divisao_inicial) # Conjunto de treinamento
+teste <- rsample::testing(divisao_inicial) # Conjunto de teste
+```
+
+
+### Tratamento dos dados (pré-processamento)
+
+Apesar de não haver muito o que fazer nos dados que estamos utilizando
+nesse exemplo, em que nosso objetivo aqui é ter uma análise explicativa
+de como comparar modelos usando o
+[tidymodels](https://www.tidymodels.org/), iremos utilizar a biblioteca
+[recipes](https://recipes.tidymodels.org/). Os dados contém apenas
+variáveis numéricas com todas informações presentes, tornando o problema
+um pouco mais simples.
+
+**Na receita, iremos colocar as seguintes etapas**:
+
+1.  Tomaremos o logarítmo de todas as variáveis peditoras (*features*);
+2.  Remover variáveis preditoras (*features*) que eventualmente estão
+    altamente correlacionadas (usando a função `step_corr`);
+3.  Remover variáveis que possam ter variância próxima à zero, i.e., que
+    sejam aproximadamente constantes (usando `step_zv`);
+4.  Normalizar os dados utilizando a função `step_normalize`.
+
+Para que iremos remover variáveis altamente correlacionadas apenas nas
+variáveis preditoras, utilizamos a função `all_predictors` como
+argumentod a função `step_corr`. Já no passo de normalização dos dados,
+quando consideramos todas as variáveis numéricas, passamos para a função
+`step_normalize` a função `all_numeric` que especifica que deverá ser
+normalizado todas as variáveis numéricas. Na verdade, a normalização se
+dá em todas as variáveis numéricas, e portanto, esse argumento poderia
+ser omitido. Além disso, toda nossa base é formada por variáveis
+numéricas, o que torna redundante o uso, mas irei deixar explícito que
+todas as variáveis numéricas estão sendo normalizadas.
+
+
+```{r}
+receita_1 <- 
+  treinamento |> 
+    recipe(formula = quality ~ .) |>
+    step_YeoJohnson(all_predictors()) |>
+    step_normalize(all_predictors()) |>
+    step_zv(all_predictors()) |>
+    step_corr(all_predictors())
+
+receita_2 <- 
+  treinamento |> 
+    recipe(formula = quality ~ .) |>
+    step_YeoJohnson(all_predictors()) |>
+    step_normalize(all_predictors())
+```
+
+
+
+**Como fazemos para observar se nosso pré-processamento funcionou?**
+
+![](/gifs/hum.gif)
+
+Fácil, assim:
+
+
+```{r}
+receita_1 |> 
+  prep() |> 
+  juice()
+```
+
+
+A função `prep` estima uma receita de pré-processamento. Algumas funções `step_*` pode
+conter parâmetros que devem ser estimados. Inclusive, poderemos tunar esses parâmetros com 
+a função `tune` do pacote [tune](https://tune.tidymodels.org/). Por exemplo, se tivessemos interesse
+em interpolar uma *feature* usando a função `step_ns`, o argumento `deg_free` que refere-se ao
+grau do polinômio poderia ser "tunado".
+
+Todas as etapas de pré-processamento são estimadas em cima do conjunto de dados de treinamento. Por exemplo, na etapa em que realiza-se a normalização dos dados, a média a variância dos dados são estimadas uma única vez na base de dados completa, e sempre que essa refeita for aplicada a novos dados, será utilizado essa mesma média e variância, ou seja, **não será recalculada com base no novo conjunto de dados**.
+
+Poderíamos utilizar a função `bake` ao invés da `juice`. A diferença de uma para a outra é que a função `bake` utiliza uma receita já estimada com `prep` e poderá ser aplicada à novos dados. Já a `juice` retorna a tibble com a receita preparada para o conjunto de dados de treinamento, ou ao conjunto de dados ao qual uma receita foi preparada com `prep`. Usando `bake` para o conjunto de dados de treinamento, poderíamos fazer:
+
+
+```{r}
+receita_1 |> 
+  prep() |> 
+  bake(new_data = treinamento)
+```
+
+
+### Definindo os modelos
+
+O código que segue faz a configuração realiza a configuração dos modelos
+que serão comparados. O código `tune::tune()` especifica que o
+respectivo parâmetro de sintonização será obtido no processo de
+validação cruzada, particularmente, um *grid search*.
+
+
+```{r}
+modelo_elastic <- 
+  parsnip::linear_reg(penalty = tune::tune(), mixture = tune::tune()) |> 
+  parsnip::set_mode("regression") |> 
+  parsnip::set_engine("glmnet")
+
+modelo_knn <-
+  parsnip::nearest_neighbor(
+    neighbors = tune::tune(),
+    dist_power = tune::tune(), 
+    weight_func = "gaussian" 
+  ) |> 
+  parsnip::set_mode("regression") |> 
+  parsnip::set_engine("kknn")
+
+modelo_svm <- 
+  parsnip::svm_rbf(
+    cost = tune::tune(),
+    rbf_sigma = tune::tune(),
+    margin = tune::tune()
+  ) |> 
+  parsnip::set_mode("regression") |> 
+  parsnip::set_engine("kernlab")
+```
+
+
+### Criando o conjunto de validação 
+
+Uma vez que temos a divisão dos dados em conjunto de treinamento e conjunto de teste, precisamos construir o conjunto de validação, que necesse caso utilizaremos um $k$-*fold cross-validation*. Lembre-se que a validação cruzada ocorrerá sob a amostra de treinamento e necesso processo, a base de dados de treinamento será dividida em $k$ partes aproximadamente iguais em que trainamos o modelo em $k-1$ e validanos no *fold* restante, em que isso é feito $k$ vezes. Utilizando o conjunto $k-1$ em cada uma das divisões da validação cruzada em que diferentes combinações de hiperparâmetros são experimentadas e avaliada no conjunto de validação em cada divisão da validação cruzada.
+
+O código que segue, em que utiliza a função `vfold_cv` da biblioteca [rsample](https://rsample.tidymodels.org/) apenas cria a validação cruzada. Nesse caso, a validação será estratificada considerando a o *label* `quality` (qualidade do vinho), assim como foi feito na divisão inicial no *hold-out* (divisão inicial dos dados).
+
+Utilizaremos $k=8$:
+
+
+```{r}
+validacao_cruzada <- 
+  treinamento |> 
+  rsample::vfold_cv(v = 8L, strata = quality)
+```
+
+
+### Criando um *workflow* completo 
+
+Aqui criaremos um *workflow* completo com todos modelos a serem comparados. Chamaremos ele de `wf_todos`:
+
+
+```{r}
+wf_todos <-
+  workflow_set(
+    preproc = list(receita_1, receita_2),
+    models = list(
+      knn_fit = modelo_knn,
+      elastic_fit = modelo_elastic,
+      svm_fit = modelo_svm
+    ),
+    cross = TRUE
+  )
+```
+
+
+Podemos manipular alguns argumentos que controlam aspectos da pesquisa em grade (*grid search*).. Fazemos isso com o uso da função `control_grid` da biblioteca [parsnip](https://parsnip.tidymodels.org/). Por exemplo, podemos informar que desejamos paralelizar essa pesquisa, passando o argumento ` parallel_over = "resamples"`. Podemos também salvar as predições para cada um dos modelos especificando o argumento `save_pred = TRUE`. Se desejarmos anexar à saída o *workflow*, fazemos `save_workflow = TRUE`.
+
+Assim, criaremos o objeto `controle_grid`, para que possamos passar a função `workflow_map` posteriormente. Tem-se:
+
+
+```{r}
+controle_grid <- control_grid(
+  save_pred = TRUE,
+  save_workflow = TRUE,
+  parallel_over = "resamples"
+)
+```
+
+
+### Trainando o modelo
+
+Nessa etapa iremos treinar o modelo usando a função `workflow_map` do pacote [workflow](https://workflows.tidymodels.org). Temos então:
+
+
+```{r}
+treino <-
+  wf_todos |> 
+  workflow_map(
+    resamples = validacao_cruzada,
+    grid = 20L,
+    control = controle_grid
+  )
+```
+
+
+A função `autoplot` do pacote **ggplot2** é útil para que possamos visualizar o desempenho de cada um dos modelos considerando a métrica do EQM. Isso é feito da seguinte forma:
+
+
+```{r}
+autoplot(treino, metric = "rmse") + 
+  labs(
+    title = "Avaliação dos modelos de regressão",
+    subtitle = "Utilizando a métrica do EQM"
+  ) + 
+  xlab("Rank dos Workflows") +
+  ylab("Erro Quadrático Médio - EQM")
+```
+
+Perceba que no gráfico acima, temos os 8 modelos avaliados no $8$-*folds cross-validation*. Portanto, para cada um dos modelos comparados, temos 8 avaliações. Caso deseje avaliar as métricas do melhor cenário de cada um dos modelos, fazemos:
+
+
+```{r}
+melhores <- 
+  treino |> 
+  rank_results(select_best = TRUE, rank_metric = "rmse")
+
+autoplot(treino, select_best = TRUE)
+
+```
+
+Vamos agora selecionar o melhor modelo dentre os modelos comparados. Isso não quer dizer que o modelo seja bom para resolver o problema em questão. Para ver um rank e saber qual modelo e receita foram as melhores, fazemos:
+
+
+```{r}
+treino |> 
+  rank_results()
+```
+
+
+Assim, podemos perceber que a `receita_1` combinada com o modelo $k$NN é o melhor escolha entre os modelos e receitas comparadas. Portanto:
+
+
+```{r}
+melhor_modelo <- 
+  treino |> 
+  extract_workflow_set_result(id = "recipe_1_knn_fit") |> 
+  select_best(metric = "rmse")
+
+melhor_modelo
+```
+
+
+### Avaliação final do melhor modelo
+
+Após a escolha do melhor modelo e da estimação de seus hiperparâmetros, nesse caso, o modelo $k$NN com $k = 12$ e `dist_power \approx 1.47`, precisamos testar o desempenho do modelo final segundo a base de dados de teste. Para tanto, utilizamos a função `last_fit` do pacote [tune](https://tune.tidymodels.org/reference/last_fit.html). Temos que:
+
+
+```{r}
+wf_final <- 
+  treino |> 
+  extract_workflow(id = "recipe_1_knn_fit") |> 
+  finalize_workflow(melhor_modelo)
+
+teste <- 
+  wf_final |> 
+  last_fit(split = divisao_inicial)
+
+teste$.metrics
+```
+
+
+Agora que temos os hiperparâmetros estimados e temos uma boa estimativa do risco preditivo real do modelo final selecionado, poderemos preceder com um ajuste final, com toda a base de dados (treinamento + teste).
+
+
+```{r}
+modelo_final <- 
+  wf_final |> 
+  fit(dados)
+```
+
+
+### Salvando o modelo
+
+Depois que temos o modelo finalizado, podemos ter alguns interesses de como utilizar o resultado, i.e., o modelo treinado. Entre alguns motivos, posso citar:
+
+1. Salvar o modelo para uso no futuro, sem ter que retreinar;
+2. Distribuir o modelo para que outras pessoas possam experimentar, sem terem que executar seu script R e retreinar o modelo;
+3. Introduzir seu modelo treinado em uma API que irá consumir os resultados, i.e., consumir as previsões do modelo.
+
+Nessas situações, é conveniente salvar o modelo em um arquivo serializado (*R Data Serialization*). Tais arquivos possuem a extensão `.rds`. Devemos fazer:
+
+
+
+```{r}
+#| eval: false
+
+# Salvando o modelo em um arquivo serializado
+saveRDS(modelo_final, file = "modelo_final.rds")
+
+# Lendo o arquivo serializado com o modelo final
+load(file = "modelo_final.rds")
+
+# Fazendo novas previsões
+predict(modelo_final, new_data = novos_dados)
+```
+
