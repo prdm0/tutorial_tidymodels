@@ -227,22 +227,22 @@
     "objectID": "index.html#tidymodels",
     "href": "index.html#tidymodels",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "💻 Tidymodels",
-    "text": "💻 Tidymodels\n\nDiversas bibliotecas na linguagem R são preparadas para trabalharem na área de aprendizagem de máquina. Várias dessas bibliotecas vem sendo desenvolvidas há anos. Por exemplo,as bibliotecas glmnet, ranger, kknn, xgboost, keras, rpart, randomForest, entre diversos outros.\n\n\n\nO número de pacotes abaixo é o mais recente. Obtido automaticamente por webscraping.\nlibrary(xml2)\nlibrary(httr)\nlibrary(stringr)\n\nnumero_pacotes_r &lt;- httr::GET(\n  \"https://cloud.r-project.org/web/packages/index.html\"\n) |&gt;\n  xml2::read_html() |&gt;\n  xml2::xml_find_all(\"//p[1]\") |&gt;\n  xml2::xml_text() |&gt;\n  stringr::str_extract(pattern = \"[0-9]+\")\n\n\n\nAtualmente, a linguagem R possui 22404, em que muitos deles são preparados para para trabalharem em tarefas de aprendizagem de máquina, porém, cada com sua sintaxe específica. Muitos implementam o mesmo modelo, uns com algumas variações, porém, o uso é totalmente diferente, nomes de parâmetros distintos, saídas distintas, etc."
+    "section": "Tidymodels",
+    "text": "Tidymodels\n\n\nTidymodels é um framework organizado e moderno para modelagem de dados em R, seguindo os princípios do tidyverse.\nEle fornece uma abordagem unificada para a construção, avaliação e comparação de modelos de aprendizado de máquina.\nO framework é composto por vários pacotes, cada um focado em uma parte específica do processo de modelagem.\n\n\n\ninstall.packages(\n  \"tidymodels\"\n)"
   },
   {
     "objectID": "index.html#tidymodels-1",
     "href": "index.html#tidymodels-1",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "💻 Tidymodels",
-    "text": "💻 Tidymodels\n\nEssas diferentes implementações torna confuso trabalhar e testar diferentes modelos ao mesmo tempo.\n\n\n\nUma das primeiras ideias mais conhecidas de unificação de sintaxe do workflow de machine learning, na linguagem R, foi idealizada pelo estatístico Max Khun.\n\nEle criou a biblioteca caret - Classification And REgression Training de R que é muito bem desenvolvida e abrangente. Você poderá estudar o caret clicando aqui.\n\nNão foi um trabalho simples, veja uma tabela com a quantidade de modelos que o caret suporta, clicando aqui. Então, “por baixo dos panos”, a ideia era unificar a entrada e saída. A biblioteca caret continua sendo mantida, apesar da existência do tidymodels."
+    "text": "💻 Tidymodels\n\nDiversas bibliotecas na linguagem R são preparadas para trabalharem na área de aprendizagem de máquina. Várias dessas bibliotecas vem sendo desenvolvidas há anos. Por exemplo,as bibliotecas glmnet, ranger, kknn, xgboost, keras, rpart, randomForest, entre diversos outros.\n\n\n\nO número de pacotes abaixo é o mais recente. Obtido automaticamente por webscraping.\nlibrary(xml2)\nlibrary(httr)\nlibrary(stringr)\n\nnumero_pacotes_r &lt;- httr::GET(\n  \"https://cloud.r-project.org/web/packages/index.html\"\n) |&gt;\n  xml2::read_html() |&gt;\n  xml2::xml_find_all(\"//p[1]\") |&gt;\n  xml2::xml_text() |&gt;\n  stringr::str_extract(pattern = \"[0-9]+\")\n\n\n\nAtualmente, a linguagem R possui 22406, em que muitos deles são preparados para para trabalharem em tarefas de aprendizagem de máquina, porém, cada com sua sintaxe específica. Muitos implementam o mesmo modelo, uns com algumas variações, porém, o uso é totalmente diferente, nomes de parâmetros distintos, saídas distintas, etc."
   },
   {
     "objectID": "index.html#tidymodels-2",
     "href": "index.html#tidymodels-2",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "💻 Tidymodels",
-    "text": "💻 Tidymodels\n\n\n\n\n\nMax Kuhn, atualmente, no momento de escrita desse mateiral, é funcionário da Posit Ltda e foi contratado para estar a frente do desenvolvimento de uma versão “arrumada” (tidy) do caret, que é o tidymodels."
+    "text": "💻 Tidymodels\n\nEssas diferentes implementações torna confuso trabalhar e testar diferentes modelos ao mesmo tempo.\n\n\n\nUma das primeiras ideias mais conhecidas de unificação de sintaxe do workflow de machine learning, na linguagem R, foi idealizada pelo estatístico Max Khun.\n\nEle criou a biblioteca caret - Classification And REgression Training de R que é muito bem desenvolvida e abrangente. Você poderá estudar o caret clicando aqui.\n\nNão foi um trabalho simples, veja uma tabela com a quantidade de modelos que o caret suporta, clicando aqui. Então, “por baixo dos panos”, a ideia era unificar a entrada e saída. A biblioteca caret continua sendo mantida, apesar da existência do tidymodels."
   },
   {
     "objectID": "index.html#tidymodels-3",
@@ -256,28 +256,28 @@
     "href": "index.html#tidymodels-4",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "💻 Tidymodels",
-    "text": "💻 Tidymodels\n\n\nrsample: responsável pela reamostragem dos dados, parte importante para que possamos treinar um modelo de aprendizagem de máquina. É nele que encontra-se funções para realizar reamostragem como bootstrap, k-folds cross-validation, nested cross-validation, entre outras.\n\n\n\nrecipes: apresenta diversas funções para transformações de variáveis como criação de variáveis dummy, normalização de variáveis, inputação de dados pela média, mediana, kNN, entre outras formas de imputação, transformações de variáveis categórias em numéricas, entre outras funcionalidades. Ele permite que possamos criar uma receita de transformações nos dados para que esses, após transformados, possam entrar no modelo.\n\n\n\nparsnip: é o pacote que unifica as entradas e saídas de diversos pacotes de aprendizagem de máquina de R. Ele possui os motores (engines) que são as comunicações com os algoritmos implementados em diversos pacotes de R que trabalham com tarefas de regressão e classificação, em aprendizagem de máquina."
+    "text": "💻 Tidymodels\n\n\nPerceba o papel da biblioteca workflows de R. Basicamente gostaríamos de ter uma automação da faze do tratamento das features realizada com o recipes com a modelagem."
   },
   {
     "objectID": "index.html#tidymodels-5",
     "href": "index.html#tidymodels-5",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "💻 Tidymodels",
-    "text": "💻 Tidymodels\n\n\n\nOs pacotes tune, dails e yardstick tomará conta da parte de treino do modelo. Os pacote tune e dails são responsáveis pela “tunagem” dos eventuais hiperparâmetros, já o yardstick é responsável pelas métricas de avaliação do modelo.\n\nA biblioteca dails está mais relacionada a criação dos grids para os eventuais hiperparâmetros do modelo. Já o pacote tune, utiliza-se da validação cruzada criada pelo pacote rsample para varrer as combinações de hiperparâmetros criadas pelo dails, i.e., o tune está mais relacionado com a otimização dos hiperparâmetros."
+    "text": "💻 Tidymodels\n\nNão necessariamente iremos utilizar o tidymodels em todos os exemplos e exercícios. Porém, iremos explorar bastante, até o fim do curso, o treinamento de modelos usando o tidymodels. Por tanto, aos poucos, a medida em que exemplos são apresentados e exercícios forem passados, o aprendizado do uso do tidymodels se dará.\n\n \n\nSempre que possível, deveremos colocar as “mãos na massa” 🍝 para que possamos dominar e compreender uma ferramenta computacional. A prática é importante!"
   },
   {
     "objectID": "index.html#tidymodels-6",
     "href": "index.html#tidymodels-6",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "💻 Tidymodels",
-    "text": "💻 Tidymodels\n\nTodo o fluxo de trabalho é gerido pela biblioteca workflows de R. Em especial, as etapas de feature engineering e especificação do modelo."
+    "text": "💻 Tidymodels\n\nNão necessariamente iremos utilizar o tidymodels em todos os exemplos e exercícios. Porém, iremos explorar bastante, até o fim do curso, o treinamento de modelos usando o tidymodels. Por tanto, aos poucos, a medida em que exemplos são apresentados e exercícios forem passados, o aprendizado do uso do tidymodels se dará.\n\n \n\nSempre que possível, deveremos colocar as “mãos na massa” 🍝 para que possamos dominar e compreender uma ferramenta computacional. A prática é importante!"
   },
   {
     "objectID": "index.html#tidymodels-7",
     "href": "index.html#tidymodels-7",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "💻 Tidymodels",
-    "text": "💻 Tidymodels\n\n\nPerceba o papel da biblioteca workflows de R. Basicamente gostaríamos de ter uma automação da faze do tratamento das features realizada com o recipes com a modelagem."
+    "text": "💻 Tidymodels\n\nNão necessariamente iremos utilizar o tidymodels em todos os exemplos e exercícios. Porém, iremos explorar bastante, até o fim do curso, o treinamento de modelos usando o tidymodels. Por tanto, aos poucos, a medida em que exemplos são apresentados e exercícios forem passados, o aprendizado do uso do tidymodels se dará.\n\n \n\nSempre que possível, deveremos colocar as “mãos na massa” 🍝 para que possamos dominar e compreender uma ferramenta computacional. A prática é importante!"
   },
   {
     "objectID": "index.html#tidymodels-8",
@@ -655,42 +655,42 @@
     "href": "index.html#k-fold-cross-validation-3",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "k-fold cross-validation",
-    "text": "k-fold cross-validation\n\nEm alguns livros o conjunto de treinamento é denominado de not-testing (não-teste). Isso, porquê eles querem enfatizar o fato de que o conjunto not-testing é utilizado para treinar/ensinar o modelo e jamais deverá ser utilizado para avaliar o risco preditivo R(g).\n\nAo usar essa terminologia, os autores dos livros tentam enfatizar que o conjunto de treinamento é usado exclusivamente para ensinar o modelo a aprender os padrões nos dados, enquanto o conjunto de teste é usado para medir quão bem o modelo generaliza esses padrões para dados não vistos anteriormente."
+    "text": "k-fold cross-validation\nA imagem abaixo ilustra o procedimento k-fold cross-validation, em que uma 5-fold cross-validation é realizada dentro do conjunto de treinamento. Em cada split, o conjunto verde de observações (fold verde) são utilizados para treinar/ajustar o modelo e o conjunto azul, em cada um dos splits é utilizado para avaliar o risco preditivo R(g) (através, por exemplo do EQM)."
   },
   {
     "objectID": "index.html#k-fold-cross-validation-4",
     "href": "index.html#k-fold-cross-validation-4",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "k-fold cross-validation",
-    "text": "k-fold cross-validation\nA imagem abaixo ilustra o procedimento k-fold cross-validation, em que uma 5-fold cross-validation é realizada dentro do conjunto de treinamento. Em cada split, o conjunto verde de observações (fold verde) são utilizados para treinar/ajustar o modelo e o conjunto azul, em cada um dos splits é utilizado para avaliar o risco preditivo R(g) (através, por exemplo do EQM).\n\n\n \n\nNão confunda os folds azuis com o conjunto de teste (Test data), este último utilizado por fim, depois do modelo pronto, para avaliar o desempenho do modelo treinado.\nNote também que a validação cruzada também é utilizada para o ajuste de hiperparâmetros, que são parâmetros de sintonização que não dependem dos dados para serem equalizados. Por exemplo, em uma regressão lasso, que veremos adiante, há o hiperparâmetro \\lambda que precisamos obter, normalmente por meio de um grid search (sequência finita), por exemplo, \\lambda \\in [0.5, 1, 1.5, 2, 2.5] de possíveis valores. Cada split pode ser utilizado para avaliar um valor de \\lambda, dos possíveis valores dispostos no grid. Aumentaríamos a quantidade de splits para mais valores de \\lambda na sequência."
+    "text": "k-fold cross-validation\nA imagem abaixo ilustra o procedimento k-fold cross-validation, em que uma 5-fold cross-validation é realizada dentro do conjunto de treinamento. Em cada split, o conjunto verde de observações (fold verde) são utilizados para treinar/ajustar o modelo e o conjunto azul, em cada um dos splits é utilizado para avaliar o risco preditivo R(g) (através, por exemplo do EQM)."
   },
   {
     "objectID": "index.html#resumindo-data-splitting-validação-cruzada-e-conjunto-de-validação",
     "href": "index.html#resumindo-data-splitting-validação-cruzada-e-conjunto-de-validação",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Resumindo: data splitting, validação cruzada e conjunto de validação",
-    "text": "Resumindo: data splitting, validação cruzada e conjunto de validação\n\n\n\n\nO simples procedimento de dividir o conjunto de dados em dois, uma parte para treinar o modelo e a outra parte (conjunto de teste) para estimar o risco R(g) é denominado de data splitting ou hold-out method. É um procedimento mais simples, porém, pode não ser útil em conjunto de dados não muito grandes.\nA segunda linha da ilustração, demonstra o procedimento de cross-validation (validação cruzada), procedimento mais utilizado nos treinamentos de modelos de aprendizagem de máquina.\nA terceira linha é uma abordagem também utilizada, porém não tão interessante quanto a validação cruzada. Nessa abordagem o banco de dados é dividido aleatoriamente em três partes. Treina-se o modelo com a parte verde, estima-se o risco com o conjunto de validação amarelo e testa-se o modelo com o conjunto de teste."
+    "text": "Resumindo: data splitting, validação cruzada e conjunto de validação\n\nA validação cruzada k-fold é particularmente útil quando o conjunto de dados é limitado, pois aproveita ao máximo os dados disponíveis. Além disso, ela permite verificar se o modelo é estável e se seu desempenho varia significativamente com diferentes divisões dos dados. É importante ressaltar que a validação cruzada k-fold pode ser computacionalmente mais cara do que a abordagem do conjunto de validação, uma vez que envolve treinar e avaliar o modelo várias vezes."
   },
   {
     "objectID": "index.html#resumindo-data-splitting-validação-cruzada-e-conjunto-de-validação-1",
     "href": "index.html#resumindo-data-splitting-validação-cruzada-e-conjunto-de-validação-1",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Resumindo: data splitting, validação cruzada e conjunto de validação",
-    "text": "Resumindo: data splitting, validação cruzada e conjunto de validação\n A abordagem do conjunto de validação envolve dividir o conjunto de treinamento em duas partes: uma parte é usada para treinar o modelo e a outra parte é usada para avaliar o desempenho do modelo para uma dada combinação. de hiperparâmetros. O conjunto de validação é utilizado para avaliar os hiperparâmetros do modelo, como a taxa de aprendizado, o número de camadas ocultas em uma rede neural, entre outros. Após o ajuste dos hiperparâmetros, o modelo final é treinado com o conjunto de treinamento completo e avaliado em um conjunto separado chamado conjunto de teste. Essa abordagem é conhecida como divisão simples de treinamento/validação/teste.\n\nPor outro lado, a validação cruzada k-fold é uma abordagem que visa obter uma estimativa mais robusta do desempenho do modelo. Nessa abordagem, o conjunto de treinamento é dividido em k subconjuntos (folds) de tamanho aproximadamente igual. O modelo é treinado k vezes, cada vez usando k-1 folds como conjunto de treinamento e 1 fold como conjunto de validação. O desempenho do modelo é então calculado como a média dos resultados obtidos em cada iteração. Isso permite avaliar o modelo, em diferentes combinações dos hiperparâmetros, de forma mais precisa, pois utiliza todos os dados para treinamento e validação, evitando a dependência de uma única divisão do conjunto de treinamento."
+    "text": "Resumindo: data splitting, validação cruzada e conjunto de validação\n\nNo tidymodels, utilizamos a biblioteca rsample para realizar procedimentos de validação cruzada:\n\n\ninitial_split(): útil para uma divisão inicial dos dados, i.e., para aplicação do hold-out;\nloo_cv(): se desejar realizar um procedimento de leave-one-out cross-validation;\nvfold_cv(): para um procedimento de k-folds cross-validation. Podemos inclusive realizar várias repetições de validação cruzada o que poderá remelhorar ainda mais a seleção da melhor combinação de hiperparâmetros. O número de repetições de validação cruzada poderá ser especificado no argumento repeats que por padrão é 1L;\nbootstraps(): se for desejado utilizar um procedimento de bootstrap não-paramétrico ao invés de uma validação cruzada. O papel do bootstrap é o mesmo da validação cruzada, porém, a seleção das amostras de treinamento é de mesmo tamanho da amostra de treinamento original e o procedimento é feito com reposição, i.e., os mesmos dados podem aparecer nas amostras. O conjunto de avaliação é definido como as linhas dos dados originais que não foram incluídos na amostra bootstrap. Isso geralmente é chamado de amostra out-of-bag - OOB. Podemos alterar o número de amostras bootstrap modificando o argumento times que por padrão é 25L.\n\n\nLembre-se que qualquer procedimento de validação cruzada que você escolher deve ser realizado no conjunto de treinamento! 📌"
   },
   {
     "objectID": "index.html#resumindo-data-splitting-validação-cruzada-e-conjunto-de-validação-2",
     "href": "index.html#resumindo-data-splitting-validação-cruzada-e-conjunto-de-validação-2",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Resumindo: data splitting, validação cruzada e conjunto de validação",
-    "text": "Resumindo: data splitting, validação cruzada e conjunto de validação\n\nA validação cruzada k-fold é particularmente útil quando o conjunto de dados é limitado, pois aproveita ao máximo os dados disponíveis. Além disso, ela permite verificar se o modelo é estável e se seu desempenho varia significativamente com diferentes divisões dos dados. É importante ressaltar que a validação cruzada k-fold pode ser computacionalmente mais cara do que a abordagem do conjunto de validação, uma vez que envolve treinar e avaliar o modelo várias vezes."
+    "text": "Resumindo: data splitting, validação cruzada e conjunto de validação\n\nUm outro detalhe que muitas vezes não é falado é que apesar de temos duas tarefas de estimação, uma envolvendo o conjunto de treinamento, em que treinamos o modelo e outra envolvendo o conjunto de teste, em que queremos estimar o risco R(g), de modo a poder selecionar o melhor modelo, a segunda tarefa é bem mais fácil. É por isso que o conjunto de treinamento tende a ser menor que o conjunto de teste."
   },
   {
     "objectID": "index.html#resumindo-data-splitting-validação-cruzada-e-conjunto-de-validação-3",
     "href": "index.html#resumindo-data-splitting-validação-cruzada-e-conjunto-de-validação-3",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Resumindo: data splitting, validação cruzada e conjunto de validação",
-    "text": "Resumindo: data splitting, validação cruzada e conjunto de validação\n\nUm outro detalhe que muitas vezes não é falado é que apesar de temos duas tarefas de estimação, uma envolvendo o conjunto de treinamento, em que treinamos o modelo e outra envolvendo o conjunto de teste, em que queremos estimar o risco R(g), de modo a poder selecionar o melhor modelo, a segunda tarefa é bem mais fácil. É por isso que o conjunto de treinamento tende a ser menor que o conjunto de teste."
+    "text": "Resumindo: data splitting, validação cruzada e conjunto de validação\n\nNo tidymodels, utilizamos a biblioteca rsample para realizar procedimentos de validação cruzada:\n\n\ninitial_split(): útil para uma divisão inicial dos dados, i.e., para aplicação do hold-out;\nloo_cv(): se desejar realizar um procedimento de leave-one-out cross-validation;\nvfold_cv(): para um procedimento de k-folds cross-validation. Podemos inclusive realizar várias repetições de validação cruzada o que poderá remelhorar ainda mais a seleção da melhor combinação de hiperparâmetros. O número de repetições de validação cruzada poderá ser especificado no argumento repeats que por padrão é 1L;\nbootstraps(): se for desejado utilizar um procedimento de bootstrap não-paramétrico ao invés de uma validação cruzada. O papel do bootstrap é o mesmo da validação cruzada, porém, a seleção das amostras de treinamento é de mesmo tamanho da amostra de treinamento original e o procedimento é feito com reposição, i.e., os mesmos dados podem aparecer nas amostras. O conjunto de avaliação é definido como as linhas dos dados originais que não foram incluídos na amostra bootstrap. Isso geralmente é chamado de amostra out-of-bag - OOB. Podemos alterar o número de amostras bootstrap modificando o argumento times que por padrão é 25L.\n\n\nLembre-se que qualquer procedimento de validação cruzada que você escolher deve ser realizado no conjunto de treinamento! 📌"
   },
   {
     "objectID": "index.html#balanço-viés-e-variância",
@@ -1944,5 +1944,68 @@
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Data Splitting / Hold-Out",
     "text": "Data Splitting / Hold-Out\n\nCorrigir o problema de dependência que há ao estimarmos o risco usando o EQM é fácil. Uma abordagem muito utilizada é utilizar data splitting, também chamado de método hold-out. Algo como a segunda linha da imagem abaixo:"
+  },
+  {
+    "objectID": "index.html#diagrama-resumo",
+    "href": "index.html#diagrama-resumo",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Diagrama resumo",
+    "text": "Diagrama resumo"
+  },
+  {
+    "objectID": "index.html#tidyverse",
+    "href": "index.html#tidyverse",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Tidyverse",
+    "text": "Tidyverse\n   É bom conhecer alguns pacotes para tarefas diversas na linguagem R. Alguns pacotes que podem facilitar sua vida são os pacotes do tidyverse:  \n\ninstall.packages(\n  \"tidyverse\"\n)"
+  },
+  {
+    "objectID": "index.html#section-7",
+    "href": "index.html#section-7",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "",
+    "text": "Tidyverse\n   É bom conhecer alguns pacotes para tarefas diversas na linguagem R. Alguns pacotes que podem facilitar sua vida são os pacotes do tidyverse:  \n\ninstall.packages(\n  \"tidyverse\"\n)"
+  },
+  {
+    "objectID": "index.html#tidyverser",
+    "href": "index.html#tidyverser",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Tidyverser",
+    "text": "Tidyverser\n\n\n\n\n   É bom conhecer alguns pacotes para tarefas diversas na linguagem R. Alguns pacotes que podem facilitar sua vida podem ser instalados facilmente:  \n\ninstall.packages(\"tidyverse\")"
+  },
+  {
+    "objectID": "index.html#section-9",
+    "href": "index.html#section-9",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "",
+    "text": "Tidymodels\n\nTidymodels é um framework organizado e moderno para modelagem de dados em R, seguindo os princípios do tidyverse.\nEle fornece uma abordagem unificada para a construção, avaliação e comparação de modelos de aprendizado de máquina.\nO framework é composto por vários pacotes, cada um focado em uma parte específica do processo de modelagem.\n\n\n\ninstall.packages(\n  \"tidymodels\"\n)"
+  },
+  {
+    "objectID": "index.html#tidymodels-background-imageimgstidymodels.png-background-size20-20",
+    "href": "index.html#tidymodels-background-imageimgstidymodels.png-background-size20-20",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "💻 {Tidymodels background-image=“imgs/tidymodels.png” background-size=“20% 20%”}",
+    "text": "💻 {Tidymodels background-image=“imgs/tidymodels.png” background-size=“20% 20%”}\n\nDiversas bibliotecas na linguagem R são preparadas para trabalharem na área de aprendizagem de máquina. Várias dessas bibliotecas vem sendo desenvolvidas há anos. Por exemplo,as bibliotecas glmnet, ranger, kknn, xgboost, keras, rpart, randomForest, entre diversos outros.\n\n\n\nO número de pacotes abaixo é o mais recente. Obtido automaticamente por webscraping.\nlibrary(xml2)\nlibrary(httr)\nlibrary(stringr)\n\nnumero_pacotes_r &lt;- httr::GET(\n  \"https://cloud.r-project.org/web/packages/index.html\"\n) |&gt;\n  xml2::read_html() |&gt;\n  xml2::xml_find_all(\"//p[1]\") |&gt;\n  xml2::xml_text() |&gt;\n  stringr::str_extract(pattern = \"[0-9]+\")\n\n\n\nAtualmente, a linguagem R possui 22406, em que muitos deles são preparados para para trabalharem em tarefas de aprendizagem de máquina, porém, cada com sua sintaxe específica. Muitos implementam o mesmo modelo, uns com algumas variações, porém, o uso é totalmente diferente, nomes de parâmetros distintos, saídas distintas, etc."
+  },
+  {
+    "objectID": "index.html#section-11",
+    "href": "index.html#section-11",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "",
+    "text": "Diversas bibliotecas na linguagem R são preparadas para trabalharem na área de aprendizagem de máquina. Várias dessas bibliotecas vem sendo desenvolvidas há anos. Por exemplo,as bibliotecas glmnet, ranger, kknn, xgboost, keras, rpart, randomForest, entre diversos outros.\n\n\n\nO número de pacotes abaixo é o mais recente. Obtido automaticamente por webscraping.\nlibrary(xml2)\nlibrary(httr)\nlibrary(stringr)\n\nnumero_pacotes_r &lt;- httr::GET(\n  \"https://cloud.r-project.org/web/packages/index.html\"\n) |&gt;\n  xml2::read_html() |&gt;\n  xml2::xml_find_all(\"//p[1]\") |&gt;\n  xml2::xml_text() |&gt;\n  stringr::str_extract(pattern = \"[0-9]+\")\n\n\n\nAtualmente, a linguagem R possui 22406, em que muitos deles são preparados para para trabalharem em tarefas de aprendizagem de máquina, porém, cada com sua sintaxe específica. Muitos implementam o mesmo modelo, uns com algumas variações, porém, o uso é totalmente diferente, nomes de parâmetros distintos, saídas distintas, etc."
+  },
+  {
+    "objectID": "index.html#rsample",
+    "href": "index.html#rsample",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "rsample ",
+    "text": "rsample \n\n\n  O pacote rsample fornece funções para dividir conjuntos de dados em conjuntos de treinamento e teste, além de realizar validação cruzada. Ele é fundamental para garantir que os modelos sejam avaliados de forma justa e robusta.\n\n\n\n\nHex logo do pacote rsample"
+  },
+  {
+    "objectID": "index.html#rsample-1",
+    "href": "index.html#rsample-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "rsample",
+    "text": "rsample\n  O pacote rsample fornece funções para dividir conjuntos de dados em conjuntos de treinamento e teste, além de realizar validação cruzada. Ele é fundamental para garantir que os modelos sejam avaliados de forma justa e robusta."
   }
 ]
