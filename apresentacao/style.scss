@@ -26,8 +26,20 @@ $code-block-font-size: 1em;
   font-weight: bold;
 }
 
-.reveal pre code {
-  max-height: 1000px;
+/* Estilo PADRÃO (para chunks COM numeração de linhas) */
+.reveal div.sourceCode pre.code-line-numbers code {
+  max-height: 1500px !important;
+  overflow-y: auto !important;
+  font-family: "Fira Code", monospace !important;
+  display: block; /* Garante que o scroll funcione corretamente */
+}
+
+/* Estilo PARA CHUNKS PEQUENOS (COM numeração de linhas) */
+.reveal div.sourceCode pre.smallcode.code-line-numbers code {
+  max-height: 600px !important;
+  overflow-y: auto !important;
+  font-family: "Fira Code", monospace !important;
+  display: block;
 }
 
 .reveal .title {

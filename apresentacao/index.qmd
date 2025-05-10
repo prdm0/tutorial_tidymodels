@@ -703,7 +703,7 @@ install.packages(
 
 # {.title background-image="imgs/workflow_tidymodels.png" background-size="100% 100%"}
 
-## 💻 Tidymodels
+## Tidymodels <img src="imgs/tidymodels.png" height="220px" style="vertical-align:middle;">
 
 <br>
 
@@ -734,7 +734,7 @@ biblioteca **caret** continua sendo mantida, apesar da existência do
 :::
 
 ::: {.column width="40%"}
-![](imgs/max_kuhn.jpeg){fig-aling="right" width="700px"}
+![Fotografia do **Max Kuhn**, desenvolvedor do **tidymodels**.](imgs/max_kuhn.jpeg){fig-aling="right" width="660px"}
 :::
 :::
 
@@ -800,13 +800,13 @@ future::plan(sequential) # Tornando o código sequencial novamente
 
 `future::plan(multicore)`
 
-[![No sistema operacional Linux.](imgs/Linux_mascot_tux.png){fig-alt="No sistema operacional Linux." width="50%" height="auto"}](https://www.tidymodels.org/)
+[![No sistema operacional Linux. Esse é o Tux, mascote do sistema operacional linux.](imgs/tux_aquarela.png){fig-alt="No sistema operacional Linux. Esse é o Tux, mascote do sistema operacional linux." width="60%" height="auto"}](https://www.tidymodels.org/)
 :::
 
 ::: {.column width="50%"}
 `future::plan(multisession)`
 
-[![Em todos os sistemas operacionais, incluindo o Windows (Linux, Unix e Windows).](imgs/Windows_logo_-_2012.svg.png){fig-alt="Em todos os sistemas operacionais (Linux, Unix e Windows)."}](https://www.tidymodels.org/)
+[![Em todos os sistemas operacionais, incluindo o Windows (Linux, Unix e Windows).](imgs/aquarela_windows.png){fig-alt="Em todos os sistemas operacionais (Linux, Unix e Windows)."  width="60%" height="auto"}](https://www.tidymodels.org/)
 :::
 :::
 
@@ -982,7 +982,7 @@ Dividimos para obermos um bom estimador do risco utilizando o
 
 ::: columns
 ::: {.column width="40%"}
-[![Imagem de aquarela da logo do pacote **rsample**.](imgs/aquarela_rsample_logo.png){fig-alt="Litografia vitoriana fazendo alusão ao uso do pacote rsample." width="70%" height="auto"}](https://rsample.tidymodels.org/)
+[![Imagem em aquarela da logo do pacote **rsample**.](imgs/aquarela_rsample_logo.png){fig-alt="Litografia vitoriana fazendo alusão ao uso do pacote rsample." width="70%" height="auto"}](https://rsample.tidymodels.org/)
 :::
 
 ::: {.column width="60%"}
@@ -1019,7 +1019,7 @@ treinamento e teste possuam a mesma proporção de classes.
 
 ::: columns
 ::: {.column width="40%"}
-[![Imagem de aquarela da logo do pacote **rsample**.](imgs/aquarela_rsample_logo.png){fig-alt="Litografia vitoriana fazendo alusão ao uso do pacote rsample." width="70%" height="auto"}](https://rsample.tidymodels.org/)
+[![Imagem em aquarela da logo do pacote **rsample**.](imgs/aquarela_rsample_logo.png){fig-alt="Litografia vitoriana fazendo alusão ao uso do pacote rsample." width="70%" height="auto"}](https://rsample.tidymodels.org/)
 :::
 
 ::: {.column width="60%"}
@@ -1179,29 +1179,13 @@ avaliar o risco preditivo $R(g)$ (através, por exemplo do EQM).
 :::
 :::
 
-## Resumindo: data splitting, validação cruzada e conjunto de validação <img src="imgs/rsample.png" height="120px" style="vertical-align:middle;">
-
-<br>
-
-A validação cruzada $k$-*fold* é particularmente útil quando o conjunto
-de dados é limitado, pois aproveita ao máximo os dados disponíveis. Além
-disso, **ela permite verificar se o modelo é estável e se seu desempenho
-varia significativamente com diferentes divisões dos dados**. É importante
-ressaltar que a validação cruzada $k$-*fold* pode ser computacionalmente
-mais cara do que a abordagem do conjunto de validação, uma vez que
-envolve treinar e avaliar o modelo várias vezes.
-
-<br>
-
-![](gifs/chapulin-colorado-no.gif){width="20%"}
-
-## rsample
+## rsample (validação cruzada)
 
 <br>
 
 ::: columns
 ::: {.column width="40%"}
-[![Imagem de aquarela da logo do pacote **rsample**.](imgs/aquarela_rsample_logo.png){fig-alt="Litografia vitoriana fazendo alusão ao uso do pacote rsample." width="70%" height="auto"}](https://rsample.tidymodels.org/)
+[![Imagem em aquarela da logo do pacote **rsample**.](imgs/aquarela_rsample_logo.png){fig-alt="Litografia vitoriana fazendo alusão ao uso do pacote rsample." width="70%" height="auto"}](https://rsample.tidymodels.org/)
 :::
 
 ::: {.column width="60%"}
@@ -1209,6 +1193,7 @@ envolve treinar e avaliar o modelo várias vezes.
 #| eval: false
 #| code-summary: Carregando o pacote rsample
 #| code-line-numbers: 1-3|5|6-10|12|13|17-21|19|20
+#| class-source: smallcode
 library(tidymodels)
 
 tidymodels::tidymodels_prefer()
@@ -1239,14 +1224,62 @@ cv <- rsample::vfold_cv(
 
 Também é possível estratificar a variável resposta, para que o
 conjunto de treinamento e ~~teste~~ validação possuam a mesma proporção de classes.
-
 :::
+
+
+## Resumindo: data splitting, validação cruzada e conjunto de validação <img src="imgs/rsample.png" height="120px" style="vertical-align:middle;">
+
+<br>
+
+A validação cruzada $k$-*fold* é particularmente útil quando o conjunto
+de dados é limitado, pois aproveita ao máximo os dados disponíveis. Além
+disso, **ela permite verificar se o modelo é estável e se seu desempenho
+varia significativamente com diferentes divisões dos dados**. É importante
+ressaltar que a validação cruzada $k$-*fold* pode ser computacionalmente
+mais cara do que a abordagem do conjunto de validação, uma vez que
+envolve treinar e avaliar o modelo várias vezes.
+
+<br>
+
+![](gifs/chapulin-colorado-no.gif){width="20%"}
+
+## Resumindo: data splitting, validação cruzada e conjunto de validação
+
+<br>
+
+No [tidymodels](https://www.tidymodels.org/), utilizamos a biblioteca [rsample](https://rsample.tidymodels.org/) para realizar procedimentos de validação
+cruzada:
+
+<br>
+
+1. `initial_split()`: útil para uma divisão inicial dos dados, i.e., para aplicação do
+*hold-out*;
+
+2. `loo_cv()`: se desejar realizar um procedimento de *leave-one-out cross-validation*;
+
+2. `vfold_cv()`: para um procedimento de $k$-*folds cross-validation*. Podemos inclusive
+realizar várias repetições de validação cruzada o que poderá remelhorar ainda mais a seleção
+da melhor combinação de hiperparâmetros. O número de repetições de validação cruzada poderá
+ser especificado no argumento `repeats` que por padrão é `1L`;
+
+3. `bootstraps()`: se for desejado utilizar um procedimento de *bootstrap* não-paramétrico
+ao invés de uma validação cruzada. O papel do *bootstrap* é o mesmo da validação cruzada, porém,
+a seleção das amostras de treinamento é de mesmo tamanho da amostra de treinamento original e o procedimento é feito com reposição, i.e., os mesmos dados podem aparecer nas amostras. O conjunto de avaliação é definido como as linhas dos dados originais que não foram incluídos na amostra bootstrap. Isso geralmente é chamado de amostra [*out-of-bag*]{.red} - OOB. Podemos alterar o número de amostras *bootstrap* modificando o argumento `times` que por padrão é `25L`.
+
+<br>
+
+📌 **Lembre-se que qualquer procedimento de validação cruzada que você escolher deve ser realizado no conjunto
+de treinamento**!
+
+## recipes <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
+
+
 
 ## parsnip <img src="imgs/parsnip.png" height="120px" style="vertical-align:middle;">
 
 ::: columns
 ::: {.column width="50%"}
-[![Imagem de aquarela da logo do pacote **parsnip**.](imgs/aquarela_pasnip.png){fig-alt="Litografia vitoriana fazendo alusão ao uso do pacote parsnip." width="70%" height="auto"}](https://parsnip.tidymodels.org/)
+[![Imagem em aquarela da logo do pacote **parsnip**.](imgs/aquarela_pasnip.png){fig-alt="Litografia vitoriana fazendo alusão ao uso do pacote parsnip." width="70%" height="auto"}](https://parsnip.tidymodels.org/)
 :::
 
 ::: {.column width="50%"}
@@ -1322,11 +1355,19 @@ etc.
 
 ## parsnip <img src="imgs/parsnip.png" height="120px" style="vertical-align:middle;">
 
+<br>
+
 ::: columns
 ::: {.column width = "50%"}
+
+**Utilizando o pacote** [**randomForest**]{.red}:
+
+<br>
+
 ```{r}
 #| eval: false
 #| fig-cap: "Minha legenda para o gráfico"
+#| code-line-numbers: 1|7,9|1-17
 library(randomForest)
 
 # Modelo básico
@@ -1337,16 +1378,18 @@ modelo <- randomForest(
   mtry = 2,
   importance = TRUE
 )
-
-# Previsões
-predictions_classic <- predict(modelo, newdata = iris)
 ```
 :::
 
 ::: {.column width = "50%"}
 
+**Utilizando o pacote** [**ranger**]{.red}:
+
+<br>
+
 ```{r}
 #| eval: false
+#| code-line-numbers: 1|6,8|1-15
 library(ranger)
 
 modelo <- ranger(
@@ -1356,47 +1399,51 @@ modelo <- ranger(
   mtry = 2,
   importance = "impurity"
 )
-
-predictions_ranger <- predict(modelo, data = iris)$predictions
 ```
 :::
 :::
 
 ## parsnip <img src="imgs/parsnip.png" height="120px" style="vertical-align:middle;">
 
-::: columns
-::: {.column width = "50%"}
-```{r}
-#| eval: false
-#| fig-cap: "Minha legenda para o gráfico"
-library(tidymodels)
+<br>
 
-tidymodels::tidymodels_prefer()
+**Utilizando o pacote** [**ranger**]{.red}:
 
-
-
-```
-:::
-
-::: {.column width = "50%"}
+<br>
 
 ```{r}
 #| eval: false
-library(ranger)
-
-rf_ranger <- ranger(
-  Species ~ .,
-  data = iris,
-  num.trees = 500,
-  mtry = 2,
-  importance = "impurity"
-)
-
-predictions_ranger <- predict(rf_ranger, data = iris)$predictions
+#| code-line-numbers: 3-6|7
+# Definir o modelo com parsnip
+modelo_parsnip <-
+  rand_forest(
+    trees = 500,       # Equivalente a num.trees
+    mtry = 2           # Mesmo valor que no ranger
+  ) |>
+  set_engine("ranger", importance = "impurity") |>
+  set_mode("classification") |>
+  fit(Species ~ ., data = iris)
 ```
-:::
-:::
 
+## parsnip <img src="imgs/parsnip.png" height="120px" style="vertical-align:middle;">
+
+**Utilizando o pacote** [**randomForest**]{.red}:
+
+<br>
+
+```{r}
+#| eval: false
+#| code-line-numbers: 7|
+# Definir o modelo com parsnip
+modelo_parsnip <-
+  rand_forest(
+    trees = 500,       # Equivalente a num.trees
+    mtry = 2           # Mesmo valor que no ranger
+  ) |>
+  set_engine("randomForest", importance = "impurity") |>
+  set_mode("classification") |>
+  fit(Species ~ ., data = iris)
+```
 
 ## 💻 Tidymodels
 
@@ -1419,34 +1466,6 @@ width="70%"}
 gostaríamos de ter uma automação da faze do tratamento das *features*
 realizada com o [recipes](https://recipes.tidymodels.org/) com a
 modelagem.](imgs/MachineLearning_tidymodels.png){fig-aling="center"}
-
-## Resumindo: data splitting, validação cruzada e conjunto de validação
-
-<br>
-
-No [tidymodels](https://www.tidymodels.org/), utilizamos a biblioteca [rsample](https://rsample.tidymodels.org/) para realizar procedimentos de validação
-cruzada:
-
-<br>
-
-1. `initial_split()`: útil para uma divisão inicial dos dados, i.e., para aplicação do
-*hold-out*;
-
-2. `loo_cv()`: se desejar realizar um procedimento de *leave-one-out cross-validation*;
-
-2. `vfold_cv()`: para um procedimento de $k$-*folds cross-validation*. Podemos inclusive
-realizar várias repetições de validação cruzada o que poderá remelhorar ainda mais a seleção
-da melhor combinação de hiperparâmetros. O número de repetições de validação cruzada poderá
-ser especificado no argumento `repeats` que por padrão é `1L`;
-
-3. `bootstraps()`: se for desejado utilizar um procedimento de *bootstrap* não-paramétrico
-ao invés de uma validação cruzada. O papel do *bootstrap* é o mesmo da validação cruzada, porém,
-a seleção das amostras de treinamento é de mesmo tamanho da amostra de treinamento original e o procedimento é feito com reposição, i.e., os mesmos dados podem aparecer nas amostras. O conjunto de avaliação é definido como as linhas dos dados originais que não foram incluídos na amostra bootstrap. Isso geralmente é chamado de amostra [*out-of-bag*]{.red} - OOB. Podemos alterar o número de amostras *bootstrap* modificando o argumento `times` que por padrão é `25L`.
-
-<br>
-
-**Lembre-se que qualquer procedimento de validação cruzada que você escolher deve ser realizado no conjunto
-de treinamento**! 📌
 
 ## 🕹️ O jogo inteiro
 

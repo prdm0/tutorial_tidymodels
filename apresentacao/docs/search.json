@@ -171,8 +171,8 @@
     "objectID": "index.html#tidymodels-1",
     "href": "index.html#tidymodels-1",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "💻 Tidymodels",
-    "text": "💻 Tidymodels\n\n\n\nUma das primeiras ideias mais conhecidas de unificação de sintaxe do workflow de machine learning, na linguagem R, foi idealizada pelo estatístico Max Khun.\n\nEle criou a biblioteca caret - Classification And REgression Training de R que é muito bem desenvolvida e abrangente. Você poderá estudar o caret clicando aqui.\n\nNão foi um trabalho simples, veja uma tabela com a quantidade de modelos que o caret suporta, clicando aqui. Então, “por baixo dos panos”, a ideia era unificar a entrada e saída. A biblioteca caret continua sendo mantida, apesar da existência do tidymodels."
+    "section": "Tidymodels \n",
+    "text": "Tidymodels \n\n\n\n\nUma das primeiras ideias mais conhecidas de unificação de sintaxe do workflow de machine learning, na linguagem R, foi idealizada pelo estatístico Max Khun.\n\nEle criou a biblioteca caret - Classification And REgression Training de R que é muito bem desenvolvida e abrangente. Você poderá estudar o caret clicando aqui.\n\nNão foi um trabalho simples, veja uma tabela com a quantidade de modelos que o caret suporta, clicando aqui. Então, “por baixo dos panos”, a ideia era unificar a entrada e saída. A biblioteca caret continua sendo mantida, apesar da existência do tidymodels.\n\n\n\nFotografia do Max Kuhn, desenvolvedor do tidymodels."
   },
   {
     "objectID": "index.html#instalando-e-configurações-inicias",
@@ -193,7 +193,7 @@
     "href": "index.html#paralelizando-1",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Paralelizando \n",
-    "text": "Paralelizando \n\n\n\nfuture::plan(multicore)\n\n\nNo sistema operacional Linux.\n\n\nfuture::plan(multisession)\n\n\nEm todos os sistemas operacionais, incluindo o Windows (Linux, Unix e Windows)."
+    "text": "Paralelizando \n\n\n\nfuture::plan(multicore)\n\n\nNo sistema operacional Linux. Esse é o Tux, mascote do sistema operacional linux.\n\n\nfuture::plan(multisession)\n\n\nEm todos os sistemas operacionais, incluindo o Windows (Linux, Unix e Windows)."
   },
   {
     "objectID": "index.html#biblioteca-future",
@@ -228,14 +228,14 @@
     "href": "index.html#rsample-3",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "rsample",
-    "text": "rsample\n\n\n\n\n\nImagem de aquarela da logo do pacote rsample.\n\n\n\nlibrary(tidymodels)\n\ntidymodels::tidymodels_prefer()\n\nset.seed(123)\ndados_split &lt;- rsample::initial_split(\n  dados,\n  prop = 0.7,\n  strata = \"Resposta\"\n)\n\ntreino &lt;- rsample::training(dados_split)\nteste &lt;- rsample::testing(dados_split)\n\n\n📌 Atenção:  É possível estratificar a variável resposta, para que o conjunto de treinamento e teste possuam a mesma proporção de classes."
+    "text": "rsample\n\n\n\n\n\nImagem em aquarela da logo do pacote rsample.\n\n\n\nlibrary(tidymodels)\n\ntidymodels::tidymodels_prefer()\n\nset.seed(123)\ndados_split &lt;- rsample::initial_split(\n  dados,\n  prop = 0.7,\n  strata = \"Resposta\"\n)\n\ntreino &lt;- rsample::training(dados_split)\nteste &lt;- rsample::testing(dados_split)\n\n\n📌 Atenção:  É possível estratificar a variável resposta, para que o conjunto de treinamento e teste possuam a mesma proporção de classes."
   },
   {
     "objectID": "index.html#rsample-4",
     "href": "index.html#rsample-4",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "rsample",
-    "text": "rsample\n\n\n\n\n\nImagem de aquarela da logo do pacote rsample.\n\n\n\nComo a estratificação funciona❓\n 1. Variável resposta numérica: A estratificação selecionará uma amostra aleatória dentro de cada quartil da variável resposta para compor o conjunto de teste.\n\n\nVariável resposta categórica: A amostra aleatória será feita de forma que a proporção de classes no conjunto de teste seja a mesma do conjunto de treinamento."
+    "text": "rsample\n\n\n\n\n\nImagem em aquarela da logo do pacote rsample.\n\n\n\nComo a estratificação funciona❓\n 1. Variável resposta numérica: A estratificação selecionará uma amostra aleatória dentro de cada quartil da variável resposta para compor o conjunto de teste.\n\n\nVariável resposta categórica: A amostra aleatória será feita de forma que a proporção de classes no conjunto de teste seja a mesma do conjunto de treinamento."
   },
   {
     "objectID": "index.html#data-splitting-hold-out",
@@ -340,7 +340,7 @@
     "href": "index.html#parsnip",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "parsnip \n",
-    "text": "parsnip \n\n\n\n\n\nImagem de aquarela da logo do pacote parsnip.\n\n\n\nCom o pacote parsnip você pode utilizar diversos modelos de aprendizagem de máquina, com uma sintaxe unificada.\nHá diversos pacotes no CRAN que implementam modelos de aprendizagem de máquina, mas cada um com sua sintaxe. O pacote parsnip unifica a sintaxe.\nVocê poderá experimentar diversas implementações de um determinado modelo utilizando a mesma sintaxe com o parsnip."
+    "text": "parsnip \n\n\n\n\n\nImagem em aquarela da logo do pacote parsnip.\n\n\n\nCom o pacote parsnip você pode utilizar diversos modelos de aprendizagem de máquina, com uma sintaxe unificada.\nHá diversos pacotes no CRAN que implementam modelos de aprendizagem de máquina, mas cada um com sua sintaxe. O pacote parsnip unifica a sintaxe.\nVocê poderá experimentar diversas implementações de um determinado modelo utilizando a mesma sintaxe com o parsnip."
   },
   {
     "objectID": "index.html#parsnip-1",
@@ -361,7 +361,7 @@
     "href": "index.html#parsnip-3",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "parsnip \n",
-    "text": "parsnip \n\n\n\n\nlibrary(randomForest)\n\n# Modelo básico\nmodelo &lt;- randomForest(\n  Species ~ .,\n  data = iris,\n  ntree = 500,\n  mtry = 2,\n  importance = TRUE\n)\n\n# Previsões\npredictions_classic &lt;- predict(modelo, newdata = iris)\n\n\n\nlibrary(ranger)\n\nmodelo &lt;- ranger(\n  Species ~ .,\n  data = iris,\n  num.trees = 500,\n  mtry = 2,\n  importance = \"impurity\"\n)\n\npredictions_ranger &lt;- predict(modelo, data = iris)$predictions"
+    "text": "parsnip \n\n\n\n\nUtilizando o pacote randomForest:\n\n\nlibrary(randomForest)\n\n# Modelo básico\nmodelo &lt;- randomForest(\n  Species ~ .,\n  data = iris,\n  ntree = 500,\n  mtry = 2,\n  importance = TRUE\n)\n\n\nUtilizando o pacote ranger:\n\n\nlibrary(ranger)\n\nmodelo &lt;- ranger(\n  Species ~ .,\n  data = iris,\n  num.trees = 500,\n  mtry = 2,\n  importance = \"impurity\"\n)"
   },
   {
     "objectID": "index.html#tidymodels-2",
@@ -382,7 +382,7 @@
     "href": "index.html#resumindo-data-splitting-validação-cruzada-e-conjunto-de-validação-1",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Resumindo: data splitting, validação cruzada e conjunto de validação",
-    "text": "Resumindo: data splitting, validação cruzada e conjunto de validação\n\nNo tidymodels, utilizamos a biblioteca rsample para realizar procedimentos de validação cruzada:\n\n\ninitial_split(): útil para uma divisão inicial dos dados, i.e., para aplicação do hold-out;\nloo_cv(): se desejar realizar um procedimento de leave-one-out cross-validation;\nvfold_cv(): para um procedimento de k-folds cross-validation. Podemos inclusive realizar várias repetições de validação cruzada o que poderá remelhorar ainda mais a seleção da melhor combinação de hiperparâmetros. O número de repetições de validação cruzada poderá ser especificado no argumento repeats que por padrão é 1L;\nbootstraps(): se for desejado utilizar um procedimento de bootstrap não-paramétrico ao invés de uma validação cruzada. O papel do bootstrap é o mesmo da validação cruzada, porém, a seleção das amostras de treinamento é de mesmo tamanho da amostra de treinamento original e o procedimento é feito com reposição, i.e., os mesmos dados podem aparecer nas amostras. O conjunto de avaliação é definido como as linhas dos dados originais que não foram incluídos na amostra bootstrap. Isso geralmente é chamado de amostra out-of-bag - OOB. Podemos alterar o número de amostras bootstrap modificando o argumento times que por padrão é 25L.\n\n\nLembre-se que qualquer procedimento de validação cruzada que você escolher deve ser realizado no conjunto de treinamento! 📌"
+    "text": "Resumindo: data splitting, validação cruzada e conjunto de validação\n\nNo tidymodels, utilizamos a biblioteca rsample para realizar procedimentos de validação cruzada:\n\n\ninitial_split(): útil para uma divisão inicial dos dados, i.e., para aplicação do hold-out;\nloo_cv(): se desejar realizar um procedimento de leave-one-out cross-validation;\nvfold_cv(): para um procedimento de k-folds cross-validation. Podemos inclusive realizar várias repetições de validação cruzada o que poderá remelhorar ainda mais a seleção da melhor combinação de hiperparâmetros. O número de repetições de validação cruzada poderá ser especificado no argumento repeats que por padrão é 1L;\nbootstraps(): se for desejado utilizar um procedimento de bootstrap não-paramétrico ao invés de uma validação cruzada. O papel do bootstrap é o mesmo da validação cruzada, porém, a seleção das amostras de treinamento é de mesmo tamanho da amostra de treinamento original e o procedimento é feito com reposição, i.e., os mesmos dados podem aparecer nas amostras. O conjunto de avaliação é definido como as linhas dos dados originais que não foram incluídos na amostra bootstrap. Isso geralmente é chamado de amostra out-of-bag - OOB. Podemos alterar o número de amostras bootstrap modificando o argumento times que por padrão é 25L.\n\n\n📌 Lembre-se que qualquer procedimento de validação cruzada que você escolher deve ser realizado no conjunto de treinamento!"
   },
   {
     "objectID": "index.html#balanço-viés-e-variância",
@@ -739,6 +739,41 @@
     "href": "index.html#parsnip-4",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "parsnip \n",
-    "text": "parsnip \n\n\n\n\nlibrary(tidymodels)\n\ntidymodels::tidymodels_prefer()\n\n\n\nlibrary(ranger)\n\nrf_ranger &lt;- ranger(\n  Species ~ .,\n  data = iris,\n  num.trees = 500,\n  mtry = 2,\n  importance = \"impurity\"\n)\n\npredictions_ranger &lt;- predict(rf_ranger, data = iris)$predictions"
+    "text": "parsnip \n\n\nUtilizando o pacote ranger:\n\n\n# Definir o modelo com parsnip\nmodelo_parsnip &lt;-\n  rand_forest(\n    trees = 500,       # Equivalente a num.trees\n    mtry = 2           # Mesmo valor que no ranger\n  ) |&gt;\n  set_engine(\"ranger\", importance = \"impurity\") |&gt;\n  set_mode(\"classification\") |&gt;\n  fit(Species ~ ., data = iris)"
+  },
+  {
+    "objectID": "index.html#parsnip-5",
+    "href": "index.html#parsnip-5",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "parsnip \n",
+    "text": "parsnip \n\nUtilizando o pacote randomForest:\n\n\n# Definir o modelo com parsnip\nmodelo_parsnip &lt;-\n  rand_forest(\n    trees = 500,       # Equivalente a num.trees\n    mtry = 2           # Mesmo valor que no ranger\n  ) |&gt;\n  set_engine(\"randomForest\", importance = \"impurity\") |&gt;\n  set_mode(\"classification\") |&gt;\n  fit(Species ~ ., data = iris)"
+  },
+  {
+    "objectID": "index.html#rsample-validação-cruzada",
+    "href": "index.html#rsample-validação-cruzada",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "rsample (validação cruzada)",
+    "text": "rsample (validação cruzada)\n\n\n\n\n\nImagem em aquarela da logo do pacote rsample.\n\n\n\nlibrary(tidymodels)\n\ntidymodels::tidymodels_prefer()\n\nset.seed(123)\ndados_split &lt;- rsample::initial_split(\n  dados,\n  prop = 0.7,\n  strata = \"Resposta\"\n)\n\ntreino &lt;- rsample::training(dados_split)\nteste &lt;- rsample::testing(dados_split)\n\n# Criando as amostras para realizar a validação cruzada\n# com o pacote tune (5-fold cross-validation)\ncv &lt;- rsample::vfold_cv(\n  treino,\n  v = 5,\n  strata = \"Resposta\"\n)\n\n📌 Atenção:\n\nTambém é possível estratificar a variável resposta, para que o conjunto de treinamento e teste validação possuam a mesma proporção de classes."
+  },
+  {
+    "objectID": "index.html#recipes",
+    "href": "index.html#recipes",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes \n",
+    "text": "recipes"
+  },
+  {
+    "objectID": "index.html#tidymodels-img-srcimgslogo_pacote_future.png-height220px",
+    "href": "index.html#tidymodels-img-srcimgslogo_pacote_future.png-height220px",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "💻 Tidymodels <img src=“imgs/logo_pacote_future.png” height=“220px”",
+    "text": "💻 Tidymodels &lt;img src=“imgs/logo_pacote_future.png” height=“220px”\n\n\n\nUma das primeiras ideias mais conhecidas de unificação de sintaxe do workflow de machine learning, na linguagem R, foi idealizada pelo estatístico Max Khun.\n\nEle criou a biblioteca caret - Classification And REgression Training de R que é muito bem desenvolvida e abrangente. Você poderá estudar o caret clicando aqui.\n\nNão foi um trabalho simples, veja uma tabela com a quantidade de modelos que o caret suporta, clicando aqui. Então, “por baixo dos panos”, a ideia era unificar a entrada e saída. A biblioteca caret continua sendo mantida, apesar da existência do tidymodels."
+  },
+  {
+    "objectID": "index.html#tidymodels-img-srcimgstidymodels.png-height220px",
+    "href": "index.html#tidymodels-img-srcimgstidymodels.png-height220px",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "💻 Tidymodels <img src=“imgs/tidymodels.png” height=“220px”",
+    "text": "💻 Tidymodels &lt;img src=“imgs/tidymodels.png” height=“220px”\n\n\n\nUma das primeiras ideias mais conhecidas de unificação de sintaxe do workflow de machine learning, na linguagem R, foi idealizada pelo estatístico Max Khun.\n\nEle criou a biblioteca caret - Classification And REgression Training de R que é muito bem desenvolvida e abrangente. Você poderá estudar o caret clicando aqui.\n\nNão foi um trabalho simples, veja uma tabela com a quantidade de modelos que o caret suporta, clicando aqui. Então, “por baixo dos panos”, a ideia era unificar a entrada e saída. A biblioteca caret continua sendo mantida, apesar da existência do tidymodels."
   }
 ]
