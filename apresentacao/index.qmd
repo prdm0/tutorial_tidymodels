@@ -9,21 +9,21 @@ format:
     height: 1080
     logo: "https://www.ufpb.br/de/contents/imagens/logode.png"
     footer: '<a href="https://www.ufpb.br/de">Departamento de Estatística da UFPB</a>'
-    transition: slide
+    transition: fade
     background-transition: fade
     preview-links: true
     slide-number: true
     chalkboard: true
     scrollable: true
     controls: true
-    incremental: true
+    incremental: false
     code-tools: true
     auto-stretch: true
     code-link: true
     html-math-method: katex
     auto-animate: false
     code-line-numbers: true
-    highlight-style: nord
+    highlight-style: printing
   pdf:
     include-in-header:
       - text: |
@@ -212,7 +212,7 @@ leaflet() |>
 É um ramo da inteligência artificial que estuda algoritmos e modelos computacionais capazes de **aprender padrões a partir de dados e fazer previsões ou tomar decisões sem serem explicitamente programados para isso.**
 Em essência, o modelo é ajustado com base em um conjunto de dados de entrada (dados de treino) para que ele generalize e funcione bem em dados novos.
 
-![O bebê robô representa um algoritmo que está sendo treinado com dados — ele aprende observando exemplos."](gifs/am.gif){width="900" height="550" fig-align="left"}
+![O bebê robô representa um algoritmo de ML que está sendo treinado com dados — ele aprende observando exemplos/dados.](gifs/am.gif){width="900" height="550" fig-align="left"}
 
 ## O que é Aprender (no contexto de ML)?
 
@@ -654,201 +654,240 @@ Isso é um pecado mortal! Ok?!**]{.red}
 
 ![](gifs/thumbs-up-nod.gif){width="20%"}
 
-## Data Splitting / Hold-Out
+# {background-image="imgs/principais_pacotes_tidyverse.png" background-size="contain" background-position="left"}
 
+:::: {.columns}
+::: {.column width="60%"}
+:::
+::: {.column width="40%"}
+# Tidyverse {.r-fit-text}
 <br>
-
-Corrigir o problema de dependência que há ao estimarmos o risco usando o
-EQM é fácil. Uma abordagem muito utilizada é utilizar [*data
-splitting*]{.red}, também chamado de método [*hold-out*]{.red}. Algo
-como a segunda linha da imagem abaixo:
-
 <br>
-
-![](imgs/validation-split.svg){fig-aling="center" width="100%"}
-
-## Data Splitting
-
 <br>
-
-O percentual de divisão dos dados normalmente é empírico. Usa-se
-normalmente a proporção de $70\%$ para treinamento e $30\%$ para teste
-$(70\%, 30\%)$. Outros esquemas de divisões são bastante utilizados, por
-exemplo, $(80\%, 20\%)$, $(99\%, 1\%)$, a depender da quantidade de
-observações (tamanho do conjunto de dados).
-
+É bom conhecer alguns pacotes para tarefas diversas na linguagem R. Alguns pacotes que podem facilitar sua vida são os pacotes do [**tidyverse**](https://www.tidyverse.org/):
 <br>
-
-Portanto, utilizar o EQM sob o conjunto de dados de teste para avaliar
-$g_1({\bf x}), g_2({\bf x}), \cdots,$, é uma boa estratégia, uma vez que
-agora não teremos mais uma dependência no numerador do cálculo do EQM.
-Em notação matemática, poderíamos escrever como já apresentado
-anteriormente, em @eq-risco-correto, i.e.,
-
-$$\frac{1}{m}\sum_{i = 1}^m (Y_{n + i} - g(X_{n + i}))^2 \approx R(g) := \mathbb{E}\left[(Y - g({\bf X}))^2\right].$$
-
 <br>
+```{r}
+#| eval: false
+install.packages(
+  "tidyverse"
+)
+```
+:::
+::::
 
-Esse resultado valeria para qualquer outra função de perda.
+#  {.title background-image="imgs/dirigivel_tidymodels.png"}
 
-## Data Splitting
+# {background-image="imgs/principais_pacotes_tidymodels.png" background-size="contain" background-position="left"}
 
-Reescrevendo, suponha que o conjunto de dados total possua $n$
-observações e que separamos aleatoriamente $s < n$ observações para o
-conjunto de treinamento. Assim, temos, algo como:
+:::: {.columns}
+::: {.column width="60%"}
+:::
+::: {.column width="40%"}
+# Tidymodels {.r-fit-text}
 
+::: {.nonincremental}
++ Tidymodels é um framework organizado e moderno para modelagem de dados em R, seguindo os princípios do tidyverse.
++ Ele fornece uma abordagem unificada para a construção, avaliação e comparação de modelos de aprendizado de máquina.
++ O framework é composto por vários pacotes, cada um focado em uma parte específica do processo de modelagem.
+:::
 <br>
+```{r}
+#| eval: false
+install.packages(
+  "tidymodels"
+)
+```
+:::
+::::
 
-$$\overbrace{(X_1, Y_1), (X_2, Y_2), \cdots, (X_s, Y_s)}^{70\%}, \,\,\, \overbrace{(X_{s + 1}, Y_{s + 1}), (X_{s + 2}, Y_{s + 2}), \cdots, (X_n, Y_n)}^{30\%}.$$
+# {.title background-image="imgs/workflow_tidymodels.png" background-size="100% 100%"}
 
-<br>
-
-Então, temos que uma boa estimativa de $R(g)$ é dada pelo EQM calculado
-sobre o conjunto de dados de teste, que nesse caso considerei o conjunto
-com $30\%$, mas esse percentual poderia ser outro. Então, temos que um
-bom estimador é:
-
-$$\frac{1}{n - s}\sum_{i = s + 1}^n (Y_{i} - g(X_{i}))^2 \approx R(g) := \mathbb{E}\left[(Y - g({\bf X}))^2\right].$$
-
-## Data Splitting
-
-<br>
-
-**Agora você entende por que dividimos os dados em treinamento e
-teste?**
-
-<br>
-
-![](gifs/yes.gif){width="25%"}
-
-<br>
-
-Dividimos para obermos um bom estimador do risco utilizando o
-[EQM](https://en.wikipedia.org/wiki/Mean_squared_error). 🎁
-
-## Leave-one-out cross-validation
-
-<br>
-
-Observe a animação abaixo que ilustra o procedimento de
-**l**eave-**o**ne-**o**ut **c**ross-**v**alidation - LOOCV, em uma
-amostra de tamanho $n = 8$. Ao fim, teremos $n$ modelos ajustados, em
-que calculamos as suas respectivas performances, i.e., com o risco
-observado, estimamos o risco de $R(g)$.
-
-<br>
-
-![](gifs/LOOCV.gif)
-
-## Leave-one-out cross-validation
-
-<br>
-
-Vejo muitas pessoas que usam uma validação cruzada, por exemplo,
-*leave-one-out cross-validation* - LOOCV comparando com o método
-Jackknife e algumas inclusive dizendo ser a mesma coisa. Não, não são!
-
-<br>
-
-O algoritmo Jackknife é um procedimento de estimação, e que, por sua
-vez, deve estar dentro do conjunto de treinamento. Para haver algum
-Jackknife, a estimativa com $n-1$ observações deve estar dentro do
-conjunto de treinamento, em que dentro do treinamento teria a remoção de
-um observação por vez. **Consegue perceber a diferença sutil?**
-
-<br>
-
-![](gifs/bean_01.gif){width="20%"}
-
-## Leave-one-out cross-validation
-
-<br>
-
-O método LOOCV foi proposto por Stones (1974), no artigo intitulado
-Cross-Validatory Choice and Assessment of Statistical Predictions, no
-Royal Statistical Society, Série B. Clique
-[aqui](https://www.jstor.org/stable/pdf/2984809.pdf?refreqid=excelsior%3A3071b86b3588905b095d44668025b005&ab_segments=&origin=&initiator=&acceptTC=1)
-se tiver curiosidade em ler o artigo.
-
-<br>
-
-Escrevendo o estimador do risco em um procedimento de LOOCV, temos que:
-
-$$\widehat{R}(g) = \frac{1}{n}\sum_{i = 1}^n (Y_i - g_{-i}({\bf X}_i))^2,$$
-em que $g_{-i}(\bf{X}_i)$, representa o ajuste do modelo no conjunto de
-dados sem a $i$-ésima observação.
-
-<br>
-
-Não é difícil perceber que a depender do valor de $n$, o método LOOCV é
-**computacionalmente intensivo**. O método requer que ajustemos $n$
-modelos. Em algumas situações isso não é um grande problema, porém, em
-diversas outras pode ser impeditivo utilizar o LOOCV. 🤯
-
-## Leave-one-out cross-validation
-
-<br>
-
-Essa relação entre o LOOCV e o *Akaike Information Criterion* - AIC foi
-provada no paper Stone (1977) intitulado **An Asymptotic Equivalence of
-Choice of Model by Cross-Validation and Akaike's Criterion** e publicado
-no *Journal of the Royal Statistical Society, Series B*. Clique
-[aqui](https://iri.columbia.edu/~tippett/cv_papers/Stone1977.pdf), se
-quiser ler o artigo.
+## 💻 Tidymodels
 
 <br>
 
 ::: columns
-::: {.column width="50%"}
-![](imgs/loocn_aic.png)
-:::
-
-::: {.column width="50%"}
-<br> <br> ![](gifs/thumbs-up-nod.gif)
-:::
-:::
-
-## $k$-fold cross-validation
+::: {.column width="60%"}
+Uma das primeiras ideias mais conhecidas de unificação de sintaxe do
+*workflow* de machine learning, na linguagem R, foi idealizada pelo
+estatístico [Max Khun](https://www.linkedin.com/in/max-kuhn-864a9110/).
 
 <br>
 
-Uma alternativa ao LOOCV é utilizar o método $k$-*fold
-cross-validation*. Nessa abordagem, dividimos o conjunto de dados em
-$k$-*folds* (lotes) disjuntos e com aproximadamente o mesmo tamanho.
-Dessa forma, temos $L_1, \cdots, L_k \subset \{1, \cdots, n\}$ são, cada
-um, um conjunto de índices aleatórios associados a cada um dos lotes. A
-ideia aqui é construir $k$ estimadores da função de regressão, denotados
-por $\widehat{g}_{-1}, \cdots, \widehat{g}_{-k}$, em que
-$\widehat{g}_{-j}$ é criado usando todas as observações do banco de
-dados, com exceção daquelas do lote $L_j$, utilizado para **validação**.
-O estimador do risco é dado por:
-
-$$\widehat{R}(g) = \frac{1}{n}\sum_{j=1}^k \sum_{i \in L_j}(Y_i - g_{-j}({\bf X}_i))^2.$$
-Perceba que, que o LOOCV é um caso particular do $k$-*fold
-cross-validation*, quando fazemos $k = n$. Em outras palavras,
-$L_1, \cdots, L_k \subset \{1, \cdots, n\}$ representam os índices
-aleatórios do conjunto de treinamento nos $k$ lotes.
-
-![](gifs/hum.gif)
-
-## $k$-fold cross-validation
-
-A animação abaixo, ilustra o procedimento de $3$-*fold cross-validation*
-($k = 3$), para uma amostra de tamanho $n = 12$ observações. Note que os
-valores que pertencem a cada um dos lotes são aleatórios. Portanto, o
-procedimento LOOCV é deterministico, já o procedimento de $k$-*fold
-cross-validation* é randomizado.
+Ele criou a biblioteca
+[caret](https://cran.r-project.org/web/packages/caret/index.html) -
+**C**lassification **A**nd **RE**gression **T**raining de R que é muito
+bem desenvolvida e abrangente. Você poderá estudar o
+[caret](https://cran.r-project.org/web/packages/caret/index.html)
+clicando [aqui](https://topepo.github.io/caret/).
 
 <br>
 
-![](gifs/KfoldCV.gif)
+Não foi um trabalho simples, veja uma tabela com a quantidade de modelos
+que o [caret](https://cran.r-project.org/web/packages/caret/index.html)
+suporta, clicando
+[aqui](https://topepo.github.io/caret/available-models.html). Então,
+"por baixo dos panos", a ideia era unificar a entrada e saída. A
+biblioteca **caret** continua sendo mantida, apesar da existência do
+[tidymodels](https://www.tidymodels.org/).
+:::
 
-Perceba que teremos agora apenas $3$ modelos. Para cada um desses lotes,
-calulamos o EQM com o conjunto de teste (parte [azul]{.trueblue}) e
-treinamos o modelo com o conjunto de treinamento (parte
-[vermelha]{.truered}).
+::: {.column width="40%"}
+![](imgs/max_kuhn.jpeg){fig-aling="right" width="700px"}
+:::
+:::
 
-## $k$-fold cross-validation
+## Instalando e configurações inicias <img src="imgs/tidymodels.png" height="220px" style="vertical-align:middle;">
+
+::: columns
+::: {.column width="40%"}
+::: {.nonincremental}
++ A biblioteca [**future**](https://future.futureverse.org/) é útil para paraleizar partes do processo de modelagem que são matematicamente independêntes. Instale `install.packages("future")` e carregue-a com `library(future)`.
++ O paralelismo é muito útil no processo de tunagem dos hiperparâmetros, pois o tempo de execução pode ser reduzido significativamente.
++ O código `tidymodels::tidymodels_prefer()` é útil para  resolver problemas de conflitos entre pacotes.
+:::
+:::
+::: {.column width="60%"}
+```{r}
+#| eval: false
+#| code-summary: Instalação do pacote tidymodels
+#| code-line-numbers: 1-2|5|7,12|
+# Instale o pacote future para habilitar o paralelismo
+# install.packages("future")
+library(tidymodels)
+library(future)
+tidymodels::tidymodels_prefer()
+
+future::plan(multisession)
+
+# Aqui fica sua modelagem no
+# tidymodels: validacao cruzada e tunagem de hiperparâmetros
+
+future::plan(sequential) # Tornando o código sequencial novamente
+
+```
+:::
+:::
+
+## Paralelizando
+
+::: columns
+::: {.column width="50%"}
+<br>
+<br>
+
+[![Ilustração de um processador multicores com **4 núleos** (na cor azul) e **8 threads** (na cor vemelho).](imgs/porcessador_aquarela.png){fig-alt="Ilustração de um processador multicores com 4 núleos (na cor azul) e 8 threads (na cor vemelho)." width="50%" height="auto"}](https://pt.wikipedia.org/wiki/Processador_multin%C3%BAcleo)
+:::
+
+::: {.column width="50%"}
+
+::: {.nonincremental}
++ O pacote future permite programar tarefas em paralelo de forma simples e intuitiva em R.
+
++ O objetivo do pacote future é fornecer uma maneira muito simples e uniforme de avaliar expressões R de forma assíncrona.
+
++ Em programação, um future é uma abstração para um valor que pode estar disponível em algum momento no futuro.
+:::
+[![Logo do pacoture **future** que permite paralelismo em R em diferentes sistemas POSIX.](imgs/logo_pacote_future.png){fig-alt="Logo do pacoture **future** que permite paralelismo em R em diferentes sistemas POSIX." width="30%" height="auto"}](https://future.futureverse.org/)
+:::
+:::
+
+## Paralelizando <img src="imgs/tidymodels.png" height="220px" style="vertical-align:middle;">
+
+::: columns
+::: {.column width="50%"}
+
+`future::plan(multicore)`
+
+[![No sistema operacional Linux.](imgs/Linux_mascot_tux.png){fig-alt="No sistema operacional Linux." width="50%" height="auto"}](https://www.tidymodels.org/)
+:::
+
+::: {.column width="50%"}
+`future::plan(multisession)`
+
+[![Em todos os sistemas operacionais, incluindo o Windows (Linux, Unix e Windows).](imgs/Windows_logo_-_2012.svg.png){fig-alt="Em todos os sistemas operacionais (Linux, Unix e Windows)."}](https://www.tidymodels.org/)
+:::
+:::
+
+## Biblioteca future <img src="imgs/logo_pacote_future.png" height="220px" style="vertical-align:middle;">
+
+Com a biblioteca [**future**](https://future.futureverse.org/) você pode utilizar paralelismo nos seus códigos, criar funcionais paralelos, loops paralelos e não se limita ao uso com o tidymodels. Na verdade é o [**tidymodels**](https://www.tidymodels.org/) (pacote [**tune**](https://tune.tidymodels.org/)) que faz uso do pacote future.
+
+<br>
+
+::: {.iframe-container}
+<iframe src="https://future.futureverse.org/" width="100%" height="700px" frameborder="0"></iframe>
+:::
+
+## rsample <img src="imgs/rsample.png" height="220px" style="vertical-align:middle;">
+
+::: columns
+::: {.column width="50%"}
+<br>
+<br>
+O pacote [**rsample**](https://rsample.tidymodels.org/) é um dos pacotes do
+*framework* [**tidymodels**](https://www.tidymodels.org/). Ele é responsável por
+realizar a divisão dos dados em conjuntos de treinamento e teste.
+
+<br>
+Utilizamos o rsample para criar as amostras para a validação cruzada, úteis na faze de
+tunagem de hiperparâmetros.
+:::
+::: {.column width="50%"}
+[![Imagem no estilo aquarela fazendo alusão ao uso do pacote [**rsample**]{.red}.](imgs/rsample_aquarela.png){fig-alt="Litografia vitoriana fazendo alusão ao uso do pacote rsample." width="70%" height="auto"}](https://rsample.tidymodels.org/)
+:::
+:::
+
+## rsample <img src="imgs/rsample.png" height="220px" style="vertical-align:middle;">
+
+<br>
+
+**Anumero as funções do rsample que você irá mais utilizar:**
+
+<br>
+
+::: {.nonincremental}
+1. `initial_split()`: divide o conjunto de dados em conjuntos de
+    treinamento e teste.
+
+2. `vfold_cv()`: cria amostras para validação cruzada, úteis na faze de tunagem de hiperparâmetros. Falaremos em breve sobre isso.
+
+3. `loo_cv()`: cria amostras para validação cruzada via *leave-one-out*.
+
+4. `bootstraps()`: cria amostras para validação cruzada via *bootstrap*.
+:::
+
+## rsample <img src="imgs/rsample.png" height="220px" style="vertical-align:middle;">
+
+O site do pacote [**rsample**](https://rsample.tidymodels.org/) é muito bom e
+possui diversos exemplos de como utilizar as funções do pacote.
+
+<br>
+
+::: {.iframe-container}
+<iframe src="https://rsample.tidymodels.org/reference/index.html" width="100%" height="700px" frameborder="0"></iframe>
+:::
+
+## Data Splitting / Hold-Out <img src="imgs/rsample.png" height="120px" style="vertical-align:middle;">
+
+<br>
+
+Corrigir o problema de dependência que há ao estimar o risco preditivo por meio do EQM usando toda a base é fácil. Uma abordagem muito utilizada é utilizar [*data
+splitting*]{.red}, também chamado de método [*hold-out*]{.red}. Algo
+como a segunda linha da imagem abaixo:
+
+::: columns
+::: {.column width="55%"}
+![](imgs/validation-split.svg){fig-aling="center" width="50%"}
+:::
+
+::: {.column width="45%"}
+![Hummmm, entendi! Então para que eu tenha tenha uma sequência de EQM's independentes já que são identicamente distribuídos, preciso de um conjunto reservado dos dados (conjunto de teste) para valer a lei forte dos grandes números.](gifs/bean_01.gif){fig-aling="center" width="50%"}
+:::
+:::
+
+##  Data Splitting / Hold-Out <img src="imgs/rsample.png" height="120px" style="vertical-align:middle;">
 
 <br>
 
@@ -878,7 +917,250 @@ validação cruzada.
 :::
 :::
 
-## $k$-fold cross-validation
+## Data Splitting <img src="imgs/rsample.png" height="120px" style="vertical-align:middle;">
+
+<br>
+
+O percentual de divisão dos dados normalmente é empírico. Usa-se
+normalmente a proporção de $70\%$ para treinamento e $30\%$ para teste
+$(70\%, 30\%)$. Outros esquemas de divisões são bastante utilizados, por
+exemplo, $(80\%, 20\%)$, $(99\%, 1\%)$, a depender da quantidade de
+observações (tamanho do conjunto de dados).
+
+<br>
+
+Portanto, utilizar o EQM sob o conjunto de dados de teste para avaliar
+$g_1({\bf x}), g_2({\bf x}), \cdots,$, é uma boa estratégia, uma vez que
+agora não teremos mais uma dependência no numerador do cálculo do EQM.
+Em notação matemática, poderíamos escrever como já apresentado
+anteriormente, em @eq-risco-correto, i.e.,
+
+$$\frac{1}{m}\sum_{i = 1}^m (Y_{n + i} - g(X_{n + i}))^2 \approx R(g) := \mathbb{E}\left[(Y - g({\bf X}))^2\right].$$
+
+<br>
+
+Esse resultado valeria para qualquer outra função de perda.
+
+## Data Splitting <img src="imgs/rsample.png" height="120px" style="vertical-align:middle;">
+
+Reescrevendo, suponha que o conjunto de dados total possua $n$
+observações e que separamos aleatoriamente $s < n$ observações para o
+conjunto de treinamento. Assim, temos, algo como:
+
+<br>
+
+$$\overbrace{(X_1, Y_1), (X_2, Y_2), \cdots, (X_s, Y_s)}^{70\%}, \,\,\, \overbrace{(X_{s + 1}, Y_{s + 1}), (X_{s + 2}, Y_{s + 2}), \cdots, (X_n, Y_n)}^{30\%}.$$
+
+<br>
+
+Então, temos que uma boa estimativa de $R(g)$ é dada pelo EQM calculado
+sobre o conjunto de dados de teste, que nesse caso considerei o conjunto
+com $30\%$, mas esse percentual poderia ser outro. Então, temos que um
+bom estimador é:
+
+$$\frac{1}{n - s}\sum_{i = s + 1}^n (Y_{i} - g(X_{i}))^2 \approx R(g) := \mathbb{E}\left[(Y - g({\bf X}))^2\right].$$
+
+## Data Splitting <img src="imgs/rsample.png" height="120px" style="vertical-align:middle;">
+
+<br>
+
+**Agora você entende por que dividimos os dados em treinamento e
+teste?**
+
+<br>
+
+![](gifs/yes.gif){width="25%"}
+
+<br>
+
+Dividimos para obermos um bom estimador do risco utilizando o
+[EQM](https://en.wikipedia.org/wiki/Mean_squared_error). 🎁
+
+## rsample
+
+<br>
+
+::: columns
+::: {.column width="40%"}
+[![Imagem de aquarela da logo do pacote **rsample**.](imgs/aquarela_rsample_logo.png){fig-alt="Litografia vitoriana fazendo alusão ao uso do pacote rsample." width="70%" height="auto"}](https://rsample.tidymodels.org/)
+:::
+
+::: {.column width="60%"}
+```{r}
+#| eval: false
+#| code-summary: Carregando o pacote rsample
+#| code-line-numbers: 1-2|5|6-12|9|12|13
+library(tidymodels)
+
+tidymodels::tidymodels_prefer()
+
+set.seed(123)
+dados_split <- rsample::initial_split(
+  dados,
+  prop = 0.7,
+  strata = "Resposta"
+)
+
+treino <- rsample::training(dados_split)
+teste <- rsample::testing(dados_split)
+```
+:::
+:::
+
+📌 **Atenção**:
+<br>
+<br>
+É possível estratificar a variável resposta, para que o conjunto de
+treinamento e teste possuam a mesma proporção de classes.
+
+## rsample
+
+<br>
+
+::: columns
+::: {.column width="40%"}
+[![Imagem de aquarela da logo do pacote **rsample**.](imgs/aquarela_rsample_logo.png){fig-alt="Litografia vitoriana fazendo alusão ao uso do pacote rsample." width="70%" height="auto"}](https://rsample.tidymodels.org/)
+:::
+
+::: {.column width="60%"}
+
+<br>
+
+
+
+**Como a estratificação funciona❓**
+
+<br>
+1. **Variável resposta numérica**: A estratificação selecionará uma amostra aleatória dentro de cada **quartil da variável resposta** para compor o conjunto de teste.
+
+2. **Variável resposta categórica**: A amostra aleatória será feita de forma que a **proporção de classes** no conjunto de teste seja a mesma do conjunto de treinamento.
+
+![](gifs/ok-2.gif)
+:::
+:::
+
+## Leave-one-out cross-validation <img src="imgs/rsample.png" height="120px" style="vertical-align:middle;">
+
+<br>
+
+Observe a animação abaixo que ilustra o procedimento de
+**l**eave-**o**ne-**o**ut **c**ross-**v**alidation - LOOCV, em uma
+amostra de tamanho $n = 8$. Ao fim, teremos $n$ modelos ajustados, em
+que calculamos as suas respectivas performances, i.e., com o risco
+observado, estimamos o risco de $R(g)$.
+
+<br>
+
+![](gifs/LOOCV.gif)
+
+## Leave-one-out cross-validation <img src="imgs/rsample.png" height="120px" style="vertical-align:middle;">
+<br>
+
+Vejo muitas pessoas que usam uma validação cruzada, por exemplo,
+*leave-one-out cross-validation* - LOOCV comparando com o método
+Jackknife e algumas inclusive dizendo ser a mesma coisa. Não, não são!
+
+<br>
+
+O algoritmo Jackknife é um procedimento de estimação, e que, por sua
+vez, deve estar dentro do conjunto de treinamento. Para haver algum
+Jackknife, a estimativa com $n-1$ observações deve estar dentro do
+conjunto de treinamento e seria nesse conjunto onde se teria a remoção de
+uma observação por vez. **Consegue perceber a diferença sutil?**
+
+<br>
+
+![](gifs/bean_01.gif){width="16%"}
+
+## Leave-one-out cross-validation <img src="imgs/rsample.png" height="120px" style="vertical-align:middle;">
+
+<br>
+
+O método LOOCV foi proposto por Stones (1974), no artigo intitulado
+Cross-Validatory Choice and Assessment of Statistical Predictions, no
+Royal Statistical Society, Série B. Clique
+[aqui](https://www.jstor.org/stable/pdf/2984809.pdf?refreqid=excelsior%3A3071b86b3588905b095d44668025b005&ab_segments=&origin=&initiator=&acceptTC=1)
+se tiver curiosidade em ler o artigo.
+
+<br>
+
+Escrevendo o estimador do risco em um procedimento de LOOCV, temos que:
+
+$$\widehat{R}(g) = \frac{1}{n}\sum_{i = 1}^n (Y_i - g_{-i}({\bf X}_i))^2,$$
+em que $g_{-i}(\bf{X}_i)$, representa o ajuste do modelo no conjunto de
+dados sem a $i$-ésima observação.
+
+<br>
+
+Não é difícil perceber que a depender do valor de $n$, o método LOOCV é
+**computacionalmente intensivo**. O método requer que ajustemos $n$
+modelos. Em algumas situações isso não é um grande problema, porém, em
+diversas outras pode ser impeditivo utilizar o LOOCV. 🤯
+
+## Leave-one-out cross-validation <img src="imgs/rsample.png" height="120px" style="vertical-align:middle;">
+
+<br>
+
+Essa relação entre o LOOCV e o *Akaike Information Criterion* - AIC foi
+provada no paper Stone (1977) intitulado **An Asymptotic Equivalence of
+Choice of Model by Cross-Validation and Akaike's Criterion** e publicado
+no *Journal of the Royal Statistical Society, Series B*. Clique
+[aqui](https://iri.columbia.edu/~tippett/cv_papers/Stone1977.pdf), se
+quiser ler o artigo.
+
+<br>
+
+::: columns
+::: {.column width="50%"}
+![](imgs/loocn_aic.png){width="35%"}
+:::
+
+::: {.column width="50%"}
+<br> <br> ![](gifs/thumbs-up-nod.gif){width="25%"}
+:::
+:::
+
+## $k$-fold cross-validation <img src="imgs/rsample.png" height="120px" style="vertical-align:middle;">
+
+<br>
+
+Uma alternativa ao LOOCV é utilizar o método $k$-*fold
+cross-validation*. Nessa abordagem, dividimos o conjunto de dados em
+$k$-*folds* (lotes) disjuntos e com aproximadamente o mesmo tamanho.
+Dessa forma, temos $L_1, \cdots, L_k \subset \{1, \cdots, n\}$ são, cada
+um, um conjunto de índices aleatórios associados a cada um dos lotes. A
+ideia aqui é construir $k$ estimadores da função de regressão, denotados
+por $\widehat{g}_{-1}, \cdots, \widehat{g}_{-k}$, em que
+$\widehat{g}_{-j}$ é criado usando todas as observações do banco de
+dados, com exceção daquelas do lote $L_j$, utilizado para **validação**.
+O estimador do risco é dado por:
+
+$$\widehat{R}(g) = \frac{1}{n}\sum_{j=1}^k \sum_{i \in L_j}(Y_i - g_{-j}({\bf X}_i))^2.$$
+Perceba que, que o LOOCV é um caso particular do $k$-*fold
+cross-validation*, quando fazemos $k = n$. Em outras palavras,
+$L_1, \cdots, L_k \subset \{1, \cdots, n\}$ representam os índices
+aleatórios do conjunto de treinamento nos $k$ lotes.
+
+![](gifs/hum.gif)
+
+## $k$-fold cross-validation <img src="imgs/rsample.png" height="120px" style="vertical-align:middle;">
+
+A animação abaixo, ilustra o procedimento de $3$-*fold cross-validation*
+($k = 3$), para uma amostra de tamanho $n = 12$ observações. Note que os
+valores que pertencem a cada um dos lotes são aleatórios. Portanto, o
+procedimento LOOCV é deterministico, já o procedimento de $k$-*fold
+cross-validation* é randomizado.
+
+<br>
+
+![](gifs/KfoldCV.gif)
+
+Perceba que teremos agora apenas $3$ modelos. Para cada um desses lotes,
+calulamos o EQM com o conjunto de teste (parte [azul]{.trueblue}) e
+treinamos o modelo com o conjunto de treinamento (parte
+[vermelha]{.truered}).
+
+## $k$-fold cross-validation <img src="imgs/rsample.png" height="120px" style="vertical-align:middle;">
 
 A imagem abaixo ilustra o procedimento $k$-*fold cross-validation*, em
 que uma $5$-*fold cross-validation* é realizada dentro do conjunto de
@@ -897,7 +1179,7 @@ avaliar o risco preditivo $R(g)$ (através, por exemplo do EQM).
 :::
 :::
 
-## Resumindo: data splitting, validação cruzada e conjunto de validação
+## Resumindo: data splitting, validação cruzada e conjunto de validação <img src="imgs/rsample.png" height="120px" style="vertical-align:middle;">
 
 <br>
 
@@ -911,110 +1193,87 @@ envolve treinar e avaliar o modelo várias vezes.
 
 <br>
 
-![](gifs/chapulin-colorado-no.gif){width="40%"}
+![](gifs/chapulin-colorado-no.gif){width="20%"}
 
-## {background-image="imgs/principais_pacotes_tidyverse.png" background-size="contain" background-position="left"}
+## rsample
 
-:::: {.columns}
-::: {.column width="60%"}
-:::
-::: {.column width="40%"}
-### Tidyverse {.r-fit-text}
 <br>
-<br>
-<br>
-É bom conhecer alguns pacotes para tarefas diversas na linguagem R. Alguns pacotes que podem facilitar sua vida são os pacotes do [**tidyverse**](https://www.tidyverse.org/):
-<br>
-<br>
-```{r}
-#| eval: false
-install.packages(
-  "tidyverse"
-)
-```
-:::
-::::
-
-#  {.title background-image="imgs/dirigivel_tidymodels_pastel.png"}
-
-## {background-image="imgs/principais_pacotes_tidymodels.png" background-size="contain" background-position="left"}
-
-:::: {.columns}
-::: {.column width="60%"}
-:::
-::: {.column width="40%"}
-### Tidymodels {.r-fit-text}
-
-::: {.nonincremental}
-+ Tidymodels é um framework organizado e moderno para modelagem de dados em R, seguindo os princípios do tidyverse.
-+ Ele fornece uma abordagem unificada para a construção, avaliação e comparação de modelos de aprendizado de máquina.
-+ O framework é composto por vários pacotes, cada um focado em uma parte específica do processo de modelagem.
-:::
-<br>
-```{r}
-#| eval: false
-install.packages(
-  "tidymodels"
-)
-```
-:::
-::::
-
-# {.title background-image="imgs/workflow_tidymodels.png" background-size="100% 100%"}
-
-# Instalando e configurações inicias <img src="imgs/tidymodels.png" height="220px" style="vertical-align:middle;"> {background-color="white"}
 
 ::: columns
 ::: {.column width="40%"}
-+ [**tidymodels**](https://www.tidymodels.org/) é um framework moderno e consistente para modelagem estatística e machine learning em R.
-+ Baseado no princípio tidy, ele padroniza o fluxo de trabalho desde a preparação dos dados até a validação de modelos.
-+ Ele é composto por pacotes interconectados, cada um focando em uma parte específica do processo de modelagem.
-+ O uso do **tidymodels** facilita a construção, avaliação e comparação de modelos, promovendo uma abordagem unificada e intuitiva.
+[![Imagem de aquarela da logo do pacote **rsample**.](imgs/aquarela_rsample_logo.png){fig-alt="Litografia vitoriana fazendo alusão ao uso do pacote rsample." width="70%" height="auto"}](https://rsample.tidymodels.org/)
 :::
+
 ::: {.column width="60%"}
 ```{r}
 #| eval: false
-#| code-summary: Instalação do pacote tidymodels
-#| code-line-numbers: 1-2|5|7,12|
-# Instale o pacote future para habilitar o paralelismo
-# install.packages("future")
+#| code-summary: Carregando o pacote rsample
+#| code-line-numbers: 1-3|5|6-10|12|13|17-21|19|20
 library(tidymodels)
-library(future)
+
 tidymodels::tidymodels_prefer()
 
-future::plan(multisession)
+set.seed(123)
+dados_split <- rsample::initial_split(
+  dados,
+  prop = 0.7,
+  strata = "Resposta"
+)
 
-# Aqui fica sua modelagem no
-# tidymodels: validacao cruzada e tunagem de hiperparâmetros
+treino <- rsample::training(dados_split)
+teste <- rsample::testing(dados_split)
 
-future::plan(sequential) # Tornando o código sequencial novamente
-
+# Criando as amostras para realizar a validação cruzada
+# com o pacote tune (5-fold cross-validation)
+cv <- rsample::vfold_cv(
+  treino,
+  v = 5,
+  strata = "Resposta"
+)
 ```
 :::
+
+📌 **Atenção**:
+
+<br>
+
+Também é possível estratificar a variável resposta, para que o
+conjunto de treinamento e ~~teste~~ validação possuam a mesma proporção de classes.
+
 :::
 
-
-# rsample <img src="imgs/rsample.png" height="220px" style="vertical-align:middle;"> {background-color="white"}
+## parsnip <img src="imgs/parsnip.png" height="120px" style="vertical-align:middle;">
 
 ::: columns
-::: {.column width="60%"}
-<br>
-<br>
-O pacote [**rsample**](https://rsample.tidymodels.org/) é um dos pacotes do
-*framework* [**tidymodels**](https://www.tidymodels.org/). Ele é responsável por
-realizar a divisão dos dados em conjuntos de treinamento e teste.
-
-<br>
-Utilizamos o rsample para criar as amostras para a validação cruzada, úteis na faze de
-tunagem de hiperparâmetros.
-:::
-::: {.column width="40%"}
-[![Litografia vitoriana fazendo alusão ao uso do pacote [**rsample**]{.red}.](imgs/litografia_rsample.png){fig-alt="Litografia vitoriana fazendo alusão ao uso do pacote rsample."}](https://rsample.tidymodels.org/)
-:::
+::: {.column width="50%"}
+[![Imagem de aquarela da logo do pacote **parsnip**.](imgs/aquarela_pasnip.png){fig-alt="Litografia vitoriana fazendo alusão ao uso do pacote parsnip." width="70%" height="auto"}](https://parsnip.tidymodels.org/)
 :::
 
+::: {.column width="50%"}
+::: {.nonincremental}
++ Com o pacote [**parsnip**](https://parsnip.tidymodels.org/) você pode
+  utilizar diversos modelos de aprendizagem de máquina, com uma sintaxe
+  unificada.
 
-## 💻 Tidymodels
++ Há diversos pacotes no CRAN que implementam modelos de
+  aprendizagem de máquina, mas cada um com sua sintaxe. O pacote
+  [**parsnip**](https://parsnip.tidymodels.org/) unifica a sintaxe.
+
++ Você poderá experimentar diversas implementações de um determinado modelo utilizando
+  a mesma sintaxe com o [**parsnip**](https://parsnip.tidymodels.org/).
+
+![](gifs/bom.gif){fig-aling="right" width="30%"}
+:::
+:::
+:::
+
+## parsnip <img src="imgs/parsnip.png" height="120px" style="vertical-align:middle;">
+
+::: {.iframe-container}
+<iframe src="https://www.tidymodels.org/find/parsnip/" width="100%" height="800px" frameborder="0"></iframe>
+:::
+
+## parsnip <img src="imgs/parsnip.png" height="120px" style="vertical-align:middle;">
 
 <br>
 
@@ -1039,6 +1298,7 @@ entre diversos outros.
 library(xml2)
 library(httr)
 library(stringr)
+library("downlit")
 
 numero_pacotes_r <- httr::GET(
   "https://cloud.r-project.org/web/packages/index.html"
@@ -1060,45 +1320,83 @@ etc.
 
 ![](gifs/hum.gif)
 
-## 💻 Tidymodels
-
-<br>
-
-Essas diferentes implementações torna confuso trabalhar e testar
-diferentes modelos ao mesmo tempo.
-
-<br>
+## parsnip <img src="imgs/parsnip.png" height="120px" style="vertical-align:middle;">
 
 ::: columns
-::: {.column width="50%"}
-Uma das primeiras ideias mais conhecidas de unificação de sintaxe do
-*workflow* de machine learning, na linguagem R, foi idealizada pelo
-estatístico [Max Khun](https://www.linkedin.com/in/max-kuhn-864a9110/).
+::: {.column width = "50%"}
+```{r}
+#| eval: false
+#| fig-cap: "Minha legenda para o gráfico"
+library(randomForest)
 
-<br>
+# Modelo básico
+modelo <- randomForest(
+  Species ~ .,
+  data = iris,
+  ntree = 500,
+  mtry = 2,
+  importance = TRUE
+)
 
-Ele criou a biblioteca
-[caret](https://cran.r-project.org/web/packages/caret/index.html) -
-**C**lassification **A**nd **RE**gression **T**raining de R que é muito
-bem desenvolvida e abrangente. Você poderá estudar o
-[caret](https://cran.r-project.org/web/packages/caret/index.html)
-clicando [aqui](https://topepo.github.io/caret/).
-
-<br>
-
-Não foi um trabalho simples, veja uma tabela com a quantidade de modelos
-que o [caret](https://cran.r-project.org/web/packages/caret/index.html)
-suporta, clicando
-[aqui](https://topepo.github.io/caret/available-models.html). Então,
-"por baixo dos panos", a ideia era unificar a entrada e saída. A
-biblioteca **caret** continua sendo mantida, apesar da existência do
-[tidymodels](https://www.tidymodels.org/).
+# Previsões
+predictions_classic <- predict(modelo, newdata = iris)
+```
 :::
 
-::: {.column width="50%"}
-![](imgs/max_kuhn.jpeg){fig-aling="center"}
+::: {.column width = "50%"}
+
+```{r}
+#| eval: false
+library(ranger)
+
+modelo <- ranger(
+  Species ~ .,
+  data = iris,
+  num.trees = 500,
+  mtry = 2,
+  importance = "impurity"
+)
+
+predictions_ranger <- predict(modelo, data = iris)$predictions
+```
 :::
 :::
+
+## parsnip <img src="imgs/parsnip.png" height="120px" style="vertical-align:middle;">
+
+::: columns
+::: {.column width = "50%"}
+```{r}
+#| eval: false
+#| fig-cap: "Minha legenda para o gráfico"
+library(tidymodels)
+
+tidymodels::tidymodels_prefer()
+
+
+
+```
+:::
+
+::: {.column width = "50%"}
+
+```{r}
+#| eval: false
+library(ranger)
+
+rf_ranger <- ranger(
+  Species ~ .,
+  data = iris,
+  num.trees = 500,
+  mtry = 2,
+  importance = "impurity"
+)
+
+predictions_ranger <- predict(rf_ranger, data = iris)$predictions
+```
+:::
+:::
+
 
 ## 💻 Tidymodels
 
@@ -1121,29 +1419,6 @@ width="70%"}
 gostaríamos de ter uma automação da faze do tratamento das *features*
 realizada com o [recipes](https://recipes.tidymodels.org/) com a
 modelagem.](imgs/MachineLearning_tidymodels.png){fig-aling="center"}
-
-## 💻 Tidymodels
-
-<br>
-
-Não necessariamente iremos utilizar o
-[tidymodels](https://www.tidymodels.org/) em todos os exemplos e
-exercícios. Porém, iremos explorar bastante, até o fim do curso, o
-treinamento de modelos usando o
-[tidymodels](https://www.tidymodels.org/). Por tanto, aos poucos, a
-medida em que exemplos são apresentados e exercícios forem passados, o
-aprendizado do uso do [tidymodels](https://www.tidymodels.org/) se dará.
-
-<br>
-
-![](gifs/thumbs-up-nod.gif){width="25%"}
-![](gifs/teclado-anime.gif){width="25%"}
-
-<br>
-
-Sempre que possível, deveremos colocar as "mãos na massa" 🍝 para que
-possamos dominar e compreender uma ferramenta computacional. A prática é
-importante!
 
 ## Resumindo: data splitting, validação cruzada e conjunto de validação
 
@@ -1172,6 +1447,61 @@ a seleção das amostras de treinamento é de mesmo tamanho da amostra de treina
 
 **Lembre-se que qualquer procedimento de validação cruzada que você escolher deve ser realizado no conjunto
 de treinamento**! 📌
+
+## 🕹️ O jogo inteiro
+
+<br>
+<br>
+
+```{r diagram-model-n, echo = FALSE}
+#| fig-align: "center"
+
+knitr::include_graphics("imgs/whole-game-model-n.jpg")
+```
+
+## 🕹️ O jogo inteiro
+
+<br>
+<br>
+
+```{r diagram-resamples, echo = FALSE}
+#| fig-align: "center"
+
+knitr::include_graphics("imgs/whole-game-resamples.jpg")
+```
+
+## 🕹️ O jogo inteiro
+
+<br>
+<br>
+
+```{r diagram-select, echo = FALSE}
+#| fig-align: "center"
+
+knitr::include_graphics("imgs/whole-game-select.jpg")
+```
+
+## 🕹️ O jogo inteiro
+
+<br>
+<br>
+
+```{r diagram-final-fit, echo = FALSE}
+#| fig-align: "center"
+
+knitr::include_graphics("imgs/whole-game-final-fit.jpg")
+```
+
+## 🕹️ O jogo inteiro
+
+<br>
+<br>
+
+```{r diagram-final-performance, echo = FALSE}
+#| fig-align: "center"
+
+knitr::include_graphics("imgs/whole-game-final-performance.jpg")
+```
 
 ## ⚖️ Balanço viés e variância
 

@@ -77,16 +77,12 @@
 // quarto-scss-analysis-annotation { "origin": "Defaults from user-defined SCSS" }
 
 
-$theme-light: #ffdc6b;
-$theme-yellow: #FFE0A8AA;
+$theme-light: #ffffff;
+$theme-yellow: #ffffff;
 $theme-orange: #D97146;
-$theme-red: #ec407a;
+$theme-red: #AD5769;
 $theme-grey: #515966;
 $theme-lightgrey: #90A1B8;
-$theme-black: #000000;
-$theme-truered: #ff0000;
-$theme-trueblue: #0000ff;
-$theme-green: #008000;
 
 $body-bg: $theme-light;
 $body-color: $theme-grey;
@@ -94,9 +90,10 @@ $link-color: $theme-red;
 
 $code-block-font-size: 1em;
 
-$code-block-bg: #2e3440 !default;
-$btn-code-copy-color: #616e88 !default;
-$btn-code-copy-color-active: #88c0d0 !default;
+
+$code-block-bg: #ffffff !default;
+$btn-code-copy-color: #898887 !default;
+$btn-code-copy-color-active: #644a9b !default;
 
 // quarto-scss-analysis-annotation { "origin": "Defaults from Quarto's SCSS" }
 
@@ -2579,20 +2576,6 @@ $presentation-author-block-padding-right: if(
   }
 }
 
-.green {
-  color: $theme-green;
-  font-weight: bold;
-}
-
-.truered {
-  color: $theme-truered;
-  font-weight: bold;
-}
-
-.trueblue {
-  color: $theme-trueblue;
-  font-weight: bold;
-}
 
 .orange {
   color: $theme-orange;
@@ -2604,19 +2587,9 @@ $presentation-author-block-padding-right: if(
   font-weight: bold;
 }
 
-.black {
-  color: $theme-black;
-  font-weight: bold;
-}
-
 .reveal pre code {
   max-height: 1000px;
 }
-
-/* Removed the specific code block background modification */
-/* .reveal div.sourceCode pre code {
-    background-color: $theme-yellow;
-} */
 
 .reveal .title {
   background-color: $body-color;
@@ -2632,21 +2605,21 @@ $presentation-author-block-padding-right: if(
 }
 
 .flow {
-  background-image: url(https://img.freepik.com/fotos-gratis/fundo-de-papel-de-parede-colorido-desfocado-vivido_58702-4377.jpg?w=996&t=st=1672615020~exp=1672615620~hmac=211dfb66381a6b15ca8ba1724bd24e2d006d6194fc1eda0901e900393d21a31f);
+  background-image: url(https://images.unsplash.com/photo-1532153975070-2e9ab71f1b14?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80);
   background-attachment: fixed;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  animation: animate 10s linear infinite;
-  font-weight: 900;
+	animation: animate 40s linear infinite;
+	font-weight: 900;
 }
 
 @keyframes animate {
-  0% {
-    background-position: left 0px top 10px;
-  }
-  40% {
-    background-position: left 800px top 10px;
-  }
+	0% {
+		background-position: left 0px top 10px;
+	}
+	40% {
+		background-position: left 800px top 10px;
+	}
 }
 
 // quarto-scss-analysis-annotation { "origin": null }
