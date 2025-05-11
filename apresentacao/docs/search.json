@@ -354,7 +354,7 @@
     "href": "index.html#parsnip-2",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "parsnip \n",
-    "text": "parsnip \n\n\nDiversas bibliotecas na linguagem R são preparadas para trabalharem na área de aprendizagem de máquina. Várias dessas bibliotecas vem sendo desenvolvidas há anos. Por exemplo,as bibliotecas glmnet, ranger, kknn, xgboost, keras, rpart, randomForest, entre diversos outros.\n\n\nO número de pacotes abaixo é o mais recente. Obtido automaticamente por webscraping.library(xml2)\nlibrary(httr)\nlibrary(stringr)\nlibrary(\"downlit\")\n\nnumero_pacotes_r &lt;- httr::GET(\n  \"https://cloud.r-project.org/web/packages/index.html\"\n) |&gt;\n  xml2::read_html() |&gt;\n  xml2::xml_find_all(\"//p[1]\") |&gt;\n  xml2::xml_text() |&gt;\n  stringr::str_extract(pattern = \"[0-9]+\")\n\n\n\nAtualmente, a linguagem R possui 22420, em que muitos deles são preparados para para trabalharem em tarefas de aprendizagem de máquina, porém, cada com sua sintaxe específica. Muitos implementam o mesmo modelo, uns com algumas variações, porém, o uso é totalmente diferente, nomes de parâmetros distintos, saídas distintas, etc."
+    "text": "parsnip \n\n\nDiversas bibliotecas na linguagem R são preparadas para trabalharem na área de aprendizagem de máquina. Várias dessas bibliotecas vem sendo desenvolvidas há anos. Por exemplo,as bibliotecas glmnet, ranger, kknn, xgboost, keras, rpart, randomForest, entre diversos outros.\n\n\nO número de pacotes abaixo é o mais recente. Obtido automaticamente por webscraping.library(xml2)\nlibrary(httr)\nlibrary(stringr)\nlibrary(\"downlit\")\n\nnumero_pacotes_r &lt;- httr::GET(\n  \"https://cloud.r-project.org/web/packages/index.html\"\n) |&gt;\n  xml2::read_html() |&gt;\n  xml2::xml_find_all(\"//p[1]\") |&gt;\n  xml2::xml_text() |&gt;\n  stringr::str_extract(pattern = \"[0-9]+\")\n\n\n\nAtualmente, a linguagem R possui 22421, em que muitos deles são preparados para para trabalharem em tarefas de aprendizagem de máquina, porém, cada com sua sintaxe específica. Muitos implementam o mesmo modelo, uns com algumas variações, porém, o uso é totalmente diferente, nomes de parâmetros distintos, saídas distintas, etc."
   },
   {
     "objectID": "index.html#parsnip-3",
@@ -760,7 +760,7 @@
     "href": "index.html#recipes",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "recipes \n",
-    "text": "recipes"
+    "text": "recipes \n\n\n\n\n\nImagem em aquarela da logo do pacote recipes.\n\n\nAntes de ajustar o modelo, precisamos preparar os dados. O pacote recipes é o responsável por realizar o pré-processamento dos dados.\n 1. Permite encadear etapas de transformação (como normalização, imputação, codificação, etc.) de forma organizada e reutilizável.\n\nAutomatiza tarefas como criação de dummies, spline bases, PCA, interação entre variáveis e muito mais.\nPossui mais de 100 funções step_*() para aplicar transformações específicas e customizáveis em variáveis contínuas, categóricas e textuais."
   },
   {
     "objectID": "index.html#tidymodels-img-srcimgslogo_pacote_future.png-height220px",
@@ -775,5 +775,47 @@
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "💻 Tidymodels <img src=“imgs/tidymodels.png” height=“220px”",
     "text": "💻 Tidymodels &lt;img src=“imgs/tidymodels.png” height=“220px”\n\n\n\nUma das primeiras ideias mais conhecidas de unificação de sintaxe do workflow de machine learning, na linguagem R, foi idealizada pelo estatístico Max Khun.\n\nEle criou a biblioteca caret - Classification And REgression Training de R que é muito bem desenvolvida e abrangente. Você poderá estudar o caret clicando aqui.\n\nNão foi um trabalho simples, veja uma tabela com a quantidade de modelos que o caret suporta, clicando aqui. Então, “por baixo dos panos”, a ideia era unificar a entrada e saída. A biblioteca caret continua sendo mantida, apesar da existência do tidymodels."
+  },
+  {
+    "objectID": "index.html#recipes-1",
+    "href": "index.html#recipes-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes \n",
+    "text": "recipes \n\n\n\n\n\nImagem em aquarela da logo do pacote recipes.\n\n\nDefinindo uma receita (fase de pré-processamento):\n\n# Definindo uma receita (fase de pré-processamento)\nreceita &lt;-\n  recipes::recipe(\n    y ~ x1 + x2:x3 + x5\n    data = dados_treino\n  ) |&gt;\n  step_*() |&gt;\n  step_*() |&gt;\n  ...      |&gt;\n  step_*()"
+  },
+  {
+    "objectID": "index.html#recipes-2",
+    "href": "index.html#recipes-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes \n",
+    "text": "recipes \n\n\n\n\n\n\n\nAlugumas funções step_*()\n\nDescrição\n\n\n\nstep_center()\nCentraliza variáveis numéricas subtraindo a média.\n\n\nstep_scale()\nPadroniza variáveis numéricas dividindo pelo desvio padrão.\n\n\nstep_normalize()\nRealiza centralização e padronização em um único passo.\n\n\nstep_knnimpute()\nImputa valores faltantes usando o método dos k-vizinhos mais próximos.\n\n\nstep_dummy()\nConverte variáveis categóricas em variáveis indicadoras (dummies).\n\n\nstep_nzv()\nRemove variáveis com variância próxima de zero.\n\n\nstep_corr()\nRemove variáveis altamente correlacionadas entre si.\n\n\nstep_pca()\nAplica análise de componentes principais (PCA) para redução de dimensão.\n\n\nstep_poly()\nGera termos polinomiais de variáveis numéricas.\n\n\nstep_log()\nAplica transformação logarítmica em variáveis numéricas.\n\n\nstep_other()\nAgrupa categorias menos frequentes em uma nova categoria “outras”."
+  },
+  {
+    "objectID": "index.html#recipes-3",
+    "href": "index.html#recipes-3",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes \n",
+    "text": "recipes \n\nVocê poderá encontrar uma lista completa das funções step_*() em:"
+  },
+  {
+    "objectID": "index.html#recipes-4",
+    "href": "index.html#recipes-4",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes \n",
+    "text": "recipes \n\n\nConsulte a documentação do pacote recipes para saber mais sobre as funções step_*() e como utilizá-las."
+  },
+  {
+    "objectID": "index.html#recipes-5",
+    "href": "index.html#recipes-5",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes \n",
+    "text": "recipes \n\n\n\n\n\n\n\n📌 A ordem das etapas de pré-processamento é importante.\n\nPor exemplo, se você aplicar a transformação logarítmica em uma variável antes de centralizá-la, o resultado será diferente do que se você centralizá-la antes de aplicar a transformação logarítmica.\nPortanto, a ordem das etapas de pré-processamento é importante e deve ser cuidadosamente planejada.\nVeja outros detalhes em https://recipes.tidymodels.org/articles/Ordering.html."
+  },
+  {
+    "objectID": "index.html#recipes-6",
+    "href": "index.html#recipes-6",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes \n",
+    "text": "recipes \n\n\n\n\nTirar o logaritmo e normalizar (melhor):\n\nreceita &lt;-\n  recipes::recipe(\n    y ~ .,\n    data = dados_treino\n  ) |&gt;\n  step_log(\n    all_numeric_predictors()\n  ) |&gt;\n  step_normalize(\n    all_numeric_predictors()\n  )\n\n\nNormalizar e tomar o logaritmo:\n\n\nreceita &lt;-\n  recipes::recipe(\n    y ~ .,\n    data = dados_treino\n  ) |&gt;\n  step_normalize(\n    all_numeric_predictors()\n  ) |&gt;\n  step_log(\n    all_numeric_predictors()\n  ) |&gt;\n\n\n📌 Observação: y ~ . significa que y é a variável de interesse e todas as outas serão preditoras (features)."
   }
 ]

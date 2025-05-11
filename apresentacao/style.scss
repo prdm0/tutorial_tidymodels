@@ -1,5 +1,11 @@
 /*-- scss:defaults --*/
 
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap'); // Import da fonte
+
+// Defina a fonte padrão para código
+$font-family-monospace: "Fira Code", monospace !default; // Adicione esta linha
+
 $theme-light: #ffffff;
 $theme-yellow: #ffffff;
 $theme-orange: #D97146;
@@ -26,21 +32,20 @@ $code-block-font-size: 1em;
   font-weight: bold;
 }
 
-/* Estilo PADRÃO (para chunks COM numeração de linhas) */
-.reveal div.sourceCode pre.code-line-numbers code {
-  max-height: 1500px !important;
-  overflow-y: auto !important;
-  font-family: "Fira Code", monospace !important;
-  display: block; /* Garante que o scroll funcione corretamente */
-}
-
-/* Estilo PARA CHUNKS PEQUENOS (COM numeração de linhas) */
-.reveal div.sourceCode pre.smallcode.code-line-numbers code {
-  max-height: 600px !important;
-  overflow-y: auto !important;
+/* Configuração PADRÃO para todos os chunks de código (1000px) */
+.reveal div.sourceCode pre code {
+  max-height: 1000px !important;  /* Altura máxima padrão */
+  overflow-y: auto !important;    /* Scroll vertical quando necessário */
   font-family: "Fira Code", monospace !important;
   display: block;
 }
+
+/* Configuração PARA CHUNKS PEQUENOS (400px) */
+.reveal div.sourceCode pre.smallcode code {
+  max-height: 400px !important;  /* Altura reduzida para smallcode */
+}
+
+
 
 .reveal .title {
   background-color: $body-color;

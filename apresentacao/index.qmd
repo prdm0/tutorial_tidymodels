@@ -1274,6 +1274,170 @@ de treinamento**!
 ## recipes <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
 
 
+::: {.columns}
+::: {.column width="50%"}
+[![Imagem em aquarela da logo do pacote **recipes**.](imgs/aquarela_recipes.png){fig-alt="Litografia vitoriana fazendo alusão ao uso do pacote recipes." width="70%" height="auto"}](https://recipes.tidymodels.org/)
+:::
+::: {.column width="50%"}
+Antes de ajustar o modelo, precisamos preparar os dados. O pacote
+[**recipes**](https://recipes.tidymodels.org/) é o responsável por
+realizar o pré-processamento dos dados.
+
+<br>
+1. Permite encadear etapas de transformação (como normalização, imputação, codificação, etc.) de forma organizada e reutilizável.
+
+2. Automatiza tarefas como criação de dummies, spline bases, PCA, interação entre variáveis e muito mais.
+
+3. Possui mais de 100 funções `step_*()` para aplicar transformações específicas e customizáveis em variáveis contínuas, categóricas e textuais.
+:::
+:::
+
+## recipes <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
+
+::: {.columns}
+::: {.column width="50%"}
+[![Imagem em aquarela da logo do pacote **recipes**.](imgs/aquarela_recipes.png){fig-alt="Litografia vitoriana fazendo alusão ao uso do pacote recipes." width="70%" height="auto"}](https://recipes.tidymodels.org/)
+:::
+::: {.column width="50%"}
+
+**Definindo uma receita (fase de pré-processamento)**:
+
+```{r}
+#| eval: false
+#| code-line-numbers: 3-6|7-10
+# Definindo uma receita (fase de pré-processamento)
+receita <-
+  recipes::recipe(
+    y ~ x1 + x2:x3 + x5
+    data = dados_treino
+  ) |>
+  step_*() |>
+  step_*() |>
+  ...      |>
+  step_*()
+```
+![](gifs/cozinheira.gif){fig-aling="right" width="25%"}
+:::
+:::
+
+## recipes <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
+
+| Alugumas funções `step_*()`              | Descrição                                                                 |
+|---------------------|---------------------------------------------------------------------------|
+| `step_center()`     | Centraliza variáveis numéricas subtraindo a média.                        |
+| `step_scale()`      | Padroniza variáveis numéricas dividindo pelo desvio padrão.              |
+| `step_normalize()`  | Realiza centralização e padronização em um único passo.                  |
+| `step_knnimpute()`  | Imputa valores faltantes usando o método dos k-vizinhos mais próximos.   |
+| `step_dummy()`      | Converte variáveis categóricas em variáveis indicadoras (dummies).       |
+| `step_nzv()`        | Remove variáveis com variância próxima de zero.                          |
+| `step_corr()`       | Remove variáveis altamente correlacionadas entre si.                     |
+| `step_pca()`        | Aplica análise de componentes principais (PCA) para redução de dimensão. |
+| `step_poly()`       | Gera termos polinomiais de variáveis numéricas.                          |
+| `step_log()`        | Aplica transformação logarítmica em variáveis numéricas.                 |
+| `step_other()`      | Agrupa categorias menos frequentes em uma nova categoria "outras".       |
+
+## recipes <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
+
+Você poderá encontrar uma lista completa das funções `step_*()` em:
+
+<br>
+
+::: {.iframe-container}
+<iframe src="https://www.tidymodels.org/find/recipes/" width="100%" height="700px" frameborder="0"></iframe>
+:::
+
+## recipes <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
+
+<br>
+
+Consulte a documentação do pacote [**recipes**](https://recipes.tidymodels.org/) para
+saber mais sobre as funções `step_*()` e como utilizá-las.
+
+<br>
+
+::: {.iframe-container}
+<iframe src="https://recipes.tidymodels.org/reference/index.html" width="100%" height="700px" frameborder="0"></iframe>
+:::
+
+## recipes <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
+
+
+::: columns
+::: {.column width="50%"}
+
+<br>
+<br>
+
+![](gifs/tumpero.gif){fig-aling="right" width="80%"}
+:::
+::: {.column width="50%"}
+
+<br>
+
+[📌 **A ordem das etapas de pré-processamento é importante**]{.red}.
+
++ Por exemplo, se você aplicar a transformação logarítmica em uma variável antes de centralizá-la,
+o resultado será diferente do que se você centralizá-la antes de aplicar a
+transformação logarítmica.
+
++ Portanto, a ordem das etapas de pré-processamento é importante e deve ser cuidadosamente planejada.
+
++ Veja outros detalhes em [https://recipes.tidymodels.org/articles/Ordering.html](https://recipes.tidymodels.org/articles/Ordering.html).
+:::
+:::
+
+## recipes <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
+
+<br>
+
+::: columns
+::: {.column width="50%"}
+
+**Tirar o logaritmo e normalizar (melhor):**
+
+```{r}
+#| eval: false
+#| code-line-numbers: 3|6-11
+receita <-
+  recipes::recipe(
+    y ~ .,
+    data = dados_treino
+  ) |>
+  step_log(
+    all_numeric_predictors()
+  ) |>
+  step_normalize(
+    all_numeric_predictors()
+  )
+```
+:::
+::: {.column width="50%"}
+
+**Normalizar e tomar o logaritmo:**
+
+<br>
+
+```{r}
+#| eval: false
+#| code-line-numbers: 3|6-11
+receita <-
+  recipes::recipe(
+    y ~ .,
+    data = dados_treino
+  ) |>
+  step_normalize(
+    all_numeric_predictors()
+  ) |>
+  step_log(
+    all_numeric_predictors()
+  ) |>
+```
+:::
+:::
+
+📌 **Observação**: `y ~ .` significa que `y` é a variável de interesse e todas as outas serão preditoras (*features*).
+
+
 
 ## parsnip <img src="imgs/parsnip.png" height="120px" style="vertical-align:middle;">
 
