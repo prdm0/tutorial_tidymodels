@@ -1276,7 +1276,7 @@ de treinamento**!
 
 ::: {.columns}
 ::: {.column width="50%"}
-[![Imagem em aquarela da logo do pacote **recipes**.](imgs/aquarela_recipes.png){fig-alt="Litografia vitoriana fazendo alusão ao uso do pacote recipes." width="70%" height="auto"}](https://recipes.tidymodels.org/)
+[![Imagem em aquarela da logo do pacote **recipes**.](imgs/aquarela_recipes.png){fig-alt="Imagem em aquarela fazendo alusão ao uso do pacote recipes." width="70%" height="auto"}](https://recipes.tidymodels.org/)
 :::
 ::: {.column width="50%"}
 Antes de ajustar o modelo, precisamos preparar os dados. O pacote
@@ -1308,7 +1308,7 @@ realizar o pré-processamento dos dados.
 # Definindo uma receita (fase de pré-processamento)
 receita <-
   recipes::recipe(
-    y ~ x1 + x2:x3 + x5
+    y ~ x1 + x3:x4 + x5
     data = dados_treino
   ) |>
   step_*() |>
@@ -1316,9 +1316,139 @@ receita <-
   ...      |>
   step_*()
 ```
+
 ![](gifs/cozinheira.gif){fig-aling="right" width="25%"}
+
 :::
 :::
+
+## recipes: a Fórmula é o Coração da Receita <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
+
+A função `recipe()` inicia a criação de uma receita e seu primeiro argumento é uma **fórmula**.
+
+`recipe(formula, data, ...)`
+
+<br>
+
+**Estrutura da Fórmula:**
+
+<br>
+
+`variavel_resposta ~ preditor1 + preditor2 + ... + preditorN`
+
+<br>
+
+* **Lado Esquerdo (`variavel_resposta ~ ...`):** Especifica a(s) variável(is) resultado/alvo.
+    * Pode ser uma única variável.
+    * Múltiplas variáveis respostas podem ser especificadas com `cbind(resp1, resp2) ~ ...` (menos comum para a maioria dos modelos).
+* **Lado Direito (`... ~ preditor1 + preditor2`):** Especifica as variáveis preditoras.
+* **Til (`~`):** Separa a variável resposta dos preditores.
+* **Sinal de Mais (`+`):** Usado para adicionar preditores.
+
+
+## Interações Entre Variáveis: `*` e `:` <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
+
+<br>
+
+
+Fórmulas no R permitem especificar termos de interação diretamente.
+
+**1. O Asterisco (`*`): Efeitos Principais + Interação**
+
+`preditorA * preditorB` expande para `preditorA + preditorB + preditorA:preditorB`.
+Inclui os efeitos principais de cada variável E o termo de interação entre elas. Não é
+possível usar `*` ou `:` diretamente no `recipe()`. Para isso você deve usar o `step_interact()`.
+
+```r
+# Prever 'mpg' usando 'wt', 'hp' e a interação entre 'wt' e 'hp'
+receita_interacao_asterisco <- recipe(mpg ~ wt * hp + qsec, data = mtcars_tbl)
+
+# summary(receita_interacao_asterisco)
+# Note os termos: wt, hp, qsec, wt_x_hp (ou similar)
+```
+*Esta é a forma mais comum e geralmente recomendada para incluir interações, seguindo o princípio da hierarquia.*
+
+## Interações Entre Variáveis: `*` e `:` (Cont.) <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
+
+<br>
+
+**2. Os Dois Pontos (`:`): Apenas a Interação**
+
+<br>
+
+`preditorA:preditorB` especifica **apenas o termo de interação** entre `preditorA` e `preditorB`.
+Não inclui os efeitos principais automaticamente.
+
+```r
+# Prever 'mpg' usando 'wt', 'hp' e APENAS a interação wt:hp
+# (geralmente, você adicionaria os efeitos principais manualmente se usar ':')
+receita <-
+  recipe(
+    mpg ~ wt + hp + wt:hp + qsec,
+    data = mtcars_tbl
+  )
+
+# summary(receita_interacao_doispontos)
+# É semanticamente igual ao exemplo com '*' se os termos principais estiverem presentes.
+
+# Apenas a interação (menos comum isoladamente):
+# receita_so_interacao <- recipe(mpg ~ wt:hp, data = mtcars_tbl)
+# summary(receita_so_interacao) # Resultaria apenas no termo wt_x_hp
+```
+<br>
+
+📌 *Use `:` com cautela e geralmente certifique-se de que os efeitos principais também estão no modelo.*
+
+## Papéis das Variáveis e Seletores `step_*` <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
+
+A fórmula no `recipe()` define os **papéis iniciais** das variáveis: `outcome` (resposta) e `predictor` (preditora).
+
+<br>
+
+```{r}
+#| eval: false
+receita <- recipe(mpg ~ ., data = mtcars_tbl)
+# summary(receita) # Mostra os papéis iniciais
+```
+
+<br>
+
+Muitas funções `step_*` usam seletores para escolher em quais variáveis atuar, baseando-se nesses papéis ou em suas propriedades:
+
+<br>
+🎉 **Seletores ajudam a selecionar mais facilmente**:
+
+* `all_numeric_predictors()`: Todos os preditores numéricos.
+* `all_nominal_predictors()`: Todos os preditores categóricos (fatores, caracteres).
+* `all_predictors()`: Todos os preditores.
+* `all_outcomes()`: Todas as variáveis resposta.
+* `starts_with("prefix_")`, `ends_with("_suffix")`, `contains("substring")`
+
+## Papéis das Variáveis e Seletores `step_*` <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
+
+<br>
+
+**Exemplo de uso de seletores**:
+
+<br>
+
+```{r}
+#| eval: false
+#| code-line-numbers: 5-6|7-8|9-10
+receita_com_passos <-
+  recipe(mpg ~ ., data = mtcars_tbl) |>
+  # Remove a variável 'car_name'
+  step_rm(car_name) |>
+  # Centraliza apenas preditores numéricos
+  step_center(all_numeric_predictors()) |>
+  # Escala apenas preditores numéricos
+  step_scale(all_numeric_predictors()) |>
+  # Cria dummies para preditores nominais
+  step_dummy(all_nominal_predictors(), one_hot = TRUE)
+```
+
+![](gifs/giphy.gif){fig-aling="right" width="10%"}
+
 
 ## recipes <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
 
@@ -1438,6 +1568,106 @@ receita <-
 📌 **Observação**: `y ~ .` significa que `y` é a variável de interesse e todas as outas serão preditoras (*features*).
 
 
+## recipes: preparando e aplicando a receita <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
+
+<br>
+
+Após definir os passos da receita, você pode prepará-la e aplicá-la aos dados usando os comandos `prep()` e `bake()`, respectivamente.
+
+<br>
+
+::: columns
+::: {.column width="50%"}
+```{r}
+#| eval: false
+#| class-source: smallcode
+#| code-line-numbers: 5-16|19-28|64-75
+library(AmesHousing)
+library(recipes)
+library(dplyr)
+
+# Carregar e preparar dados
+ames_data <- make_ames() |>
+  as_tibble() |>
+  select(
+    Sale_Price,
+    Lot_Area,
+    Neighborhood,
+    Gr_Liv_Area,
+    Overall_Qual,
+    Bldg_Type,
+    Year_Built
+  ) # Selecionar apenas as colunas relevantes
+
+# Receita otimizada
+ames_recipe <- recipe(
+  Sale_Price ~
+  Lot_Area +
+  Neighborhood +
+  Gr_Liv_Area +
+  Overall_Qual +
+  Bldg_Type +
+  Year_Built,
+  data = ames_data
+) |>
+  # Transformação na variável resposta
+  step_log(Sale_Price, base = 10) |>
+
+  # Criar variável derivada
+  step_mutate(
+    House_Age = 2025 - Year_Built,
+    Decade_Built = floor(Year_Built / 10) * 10
+  ) |>
+
+  # Remover variável original
+  step_rm(Year_Built) |>
+
+  # Lidar com novos níveis em dados futuros
+  step_novel(all_nominal_predictors()) |>
+
+  # Agrupar níveis raros (8% threshold)
+  step_other(Neighborhood, threshold = 0.08) |>
+  step_other(Bldg_Type, threshold = 0.05) |>
+
+  # Criar variáveis dummy
+  step_dummy(all_nominal_predictors(), one_hot = FALSE) |>
+
+  # Interações APÓS criação de dummies
+  step_interact(~ starts_with("Neighborhood"):starts_with("Bldg_Type")) |>
+
+  # Remover variáveis com zero variance (após interações)
+  step_zv(all_predictors()) |>
+
+  # Normalização (remove automaticamente colunas problemáticas)
+  step_normalize(all_numeric_predictors()) |>
+
+  # Passo adicional: seleção de variáveis por importância
+  step_corr(all_numeric_predictors(), threshold = 0.9)
+
+# Preparar a receita
+prep_recipe <-
+  prep(
+    ames_recipe,
+    verbose = TRUE
+  )
+
+# Aplicar a receita
+ames_processed <-
+  bake(
+    prep_recipe,
+    new_data = NULL
+  )
+
+# Verificar resultado
+glimpse(ames_processed)
+```
+:::
+::: {.column width="50%"}
+![🍲 🥗 🍠 🧄 🧅 🥬 ~~Cozinhando~~ aplicando tranquilamente a receita com os ~~ingredientes~~ *steps* corretos.](gifs/chefe_preparando.gif){fig-aling="right" width="45%"}
+:::
+:::
+
+# {.title background-image="imgs/motor_parsnip.png" background-size="100% 100%"}
 
 ## parsnip <img src="imgs/parsnip.png" height="120px" style="vertical-align:middle;">
 

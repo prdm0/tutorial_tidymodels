@@ -354,7 +354,7 @@
     "href": "index.html#parsnip-2",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "parsnip \n",
-    "text": "parsnip \n\n\nDiversas bibliotecas na linguagem R são preparadas para trabalharem na área de aprendizagem de máquina. Várias dessas bibliotecas vem sendo desenvolvidas há anos. Por exemplo,as bibliotecas glmnet, ranger, kknn, xgboost, keras, rpart, randomForest, entre diversos outros.\n\n\nO número de pacotes abaixo é o mais recente. Obtido automaticamente por webscraping.library(xml2)\nlibrary(httr)\nlibrary(stringr)\nlibrary(\"downlit\")\n\nnumero_pacotes_r &lt;- httr::GET(\n  \"https://cloud.r-project.org/web/packages/index.html\"\n) |&gt;\n  xml2::read_html() |&gt;\n  xml2::xml_find_all(\"//p[1]\") |&gt;\n  xml2::xml_text() |&gt;\n  stringr::str_extract(pattern = \"[0-9]+\")\n\n\n\nAtualmente, a linguagem R possui 22421, em que muitos deles são preparados para para trabalharem em tarefas de aprendizagem de máquina, porém, cada com sua sintaxe específica. Muitos implementam o mesmo modelo, uns com algumas variações, porém, o uso é totalmente diferente, nomes de parâmetros distintos, saídas distintas, etc."
+    "text": "parsnip \n\n\nDiversas bibliotecas na linguagem R são preparadas para trabalharem na área de aprendizagem de máquina. Várias dessas bibliotecas vem sendo desenvolvidas há anos. Por exemplo,as bibliotecas glmnet, ranger, kknn, xgboost, keras, rpart, randomForest, entre diversos outros.\n\n\nO número de pacotes abaixo é o mais recente. Obtido automaticamente por webscraping.library(xml2)\nlibrary(httr)\nlibrary(stringr)\nlibrary(\"downlit\")\n\nnumero_pacotes_r &lt;- httr::GET(\n  \"https://cloud.r-project.org/web/packages/index.html\"\n) |&gt;\n  xml2::read_html() |&gt;\n  xml2::xml_find_all(\"//p[1]\") |&gt;\n  xml2::xml_text() |&gt;\n  stringr::str_extract(pattern = \"[0-9]+\")\n\n\n\nAtualmente, a linguagem R possui 22417, em que muitos deles são preparados para para trabalharem em tarefas de aprendizagem de máquina, porém, cada com sua sintaxe específica. Muitos implementam o mesmo modelo, uns com algumas variações, porém, o uso é totalmente diferente, nomes de parâmetros distintos, saídas distintas, etc."
   },
   {
     "objectID": "index.html#parsnip-3",
@@ -781,7 +781,7 @@
     "href": "index.html#recipes-1",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "recipes \n",
-    "text": "recipes \n\n\n\n\n\nImagem em aquarela da logo do pacote recipes.\n\n\nDefinindo uma receita (fase de pré-processamento):\n\n# Definindo uma receita (fase de pré-processamento)\nreceita &lt;-\n  recipes::recipe(\n    y ~ x1 + x2:x3 + x5\n    data = dados_treino\n  ) |&gt;\n  step_*() |&gt;\n  step_*() |&gt;\n  ...      |&gt;\n  step_*()"
+    "text": "recipes \n\n\n\n\n\nImagem em aquarela da logo do pacote recipes.\n\n\nDefinindo uma receita (fase de pré-processamento):\n\n# Definindo uma receita (fase de pré-processamento)\nreceita &lt;-\n  recipes::recipe(\n    y ~ x1 + x3:x4 + x5\n    data = dados_treino\n  ) |&gt;\n  step_*() |&gt;\n  step_*() |&gt;\n  ...      |&gt;\n  step_*()"
   },
   {
     "objectID": "index.html#recipes-2",
@@ -817,5 +817,61 @@
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "recipes \n",
     "text": "recipes \n\n\n\n\nTirar o logaritmo e normalizar (melhor):\n\nreceita &lt;-\n  recipes::recipe(\n    y ~ .,\n    data = dados_treino\n  ) |&gt;\n  step_log(\n    all_numeric_predictors()\n  ) |&gt;\n  step_normalize(\n    all_numeric_predictors()\n  )\n\n\nNormalizar e tomar o logaritmo:\n\n\nreceita &lt;-\n  recipes::recipe(\n    y ~ .,\n    data = dados_treino\n  ) |&gt;\n  step_normalize(\n    all_numeric_predictors()\n  ) |&gt;\n  step_log(\n    all_numeric_predictors()\n  ) |&gt;\n\n\n📌 Observação: y ~ . significa que y é a variável de interesse e todas as outas serão preditoras (features)."
+  },
+  {
+    "objectID": "index.html#a-fórmula-o-coração-da-receita",
+    "href": "index.html#a-fórmula-o-coração-da-receita",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "A Fórmula: O Coração da Receita",
+    "text": "A Fórmula: O Coração da Receita\nA função recipe() inicia a criação de uma receita e seu primeiro argumento é uma fórmula.\nrecipe(formula, data, ...)\nEstrutura da Fórmula:\nvariavel_resposta ~ preditor1 + preditor2 + ... + preditorN\n\n\nLado Esquerdo (variavel_resposta ~ ...): Especifica a(s) variável(is) resultado/alvo.\n\nPode ser uma única variável.\nMúltiplas variáveis respostas podem ser especificadas com cbind(resp1, resp2) ~ ... (menos comum para a maioria dos modelos).\n\n\n\nLado Direito (... ~ preditor1 + preditor2): Especifica as variáveis preditoras.\n\nTil (~): Separa a variável resposta dos preditores.\n\nSinal de Mais (+): Usado para adicionar preditores."
+  },
+  {
+    "objectID": "index.html#recipes-a-fórmula-é-o-coração-da-receita",
+    "href": "index.html#recipes-a-fórmula-é-o-coração-da-receita",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes: a Fórmula é o Coração da Receita \n",
+    "text": "recipes: a Fórmula é o Coração da Receita \n\nA função recipe() inicia a criação de uma receita e seu primeiro argumento é uma fórmula.\nrecipe(formula, data, ...)\n\nEstrutura da Fórmula:\n\nvariavel_resposta ~ preditor1 + preditor2 + ... + preditorN\n\n\n\nLado Esquerdo (variavel_resposta ~ ...): Especifica a(s) variável(is) resultado/alvo.\n\nPode ser uma única variável.\nMúltiplas variáveis respostas podem ser especificadas com cbind(resp1, resp2) ~ ... (menos comum para a maioria dos modelos).\n\n\n\nLado Direito (... ~ preditor1 + preditor2): Especifica as variáveis preditoras.\n\nTil (~): Separa a variável resposta dos preditores.\n\nSinal de Mais (+): Usado para adicionar preditores."
+  },
+  {
+    "objectID": "index.html#interações-entre-variáveis-e",
+    "href": "index.html#interações-entre-variáveis-e",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Interações Entre Variáveis: * e : \n",
+    "text": "Interações Entre Variáveis: * e : \n\n\nFórmulas no R permitem especificar termos de interação diretamente.\n1. O Asterisco (*): Efeitos Principais + Interação\npreditorA * preditorB expande para preditorA + preditorB + preditorA:preditorB. Inclui os efeitos principais de cada variável E o termo de interação entre elas. Não é possível usar * ou : diretamente no recipe(). Para isso você deve usar o step_interact().\n# Prever 'mpg' usando 'wt', 'hp' e a interação entre 'wt' e 'hp'\nreceita_interacao_asterisco &lt;- recipe(mpg ~ wt * hp + qsec, data = mtcars_tbl)\n\n# summary(receita_interacao_asterisco)\n# Note os termos: wt, hp, qsec, wt_x_hp (ou similar)\nEsta é a forma mais comum e geralmente recomendada para incluir interações, seguindo o princípio da hierarquia."
+  },
+  {
+    "objectID": "index.html#interações-entre-variáveis-e-cont.",
+    "href": "index.html#interações-entre-variáveis-e-cont.",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Interações Entre Variáveis: * e : (Cont.) \n",
+    "text": "Interações Entre Variáveis: * e : (Cont.) \n\n\n2. Os Dois Pontos (:): Apenas a Interação\n\npreditorA:preditorB especifica apenas o termo de interação entre preditorA e preditorB. Não inclui os efeitos principais automaticamente.\n# Prever 'mpg' usando 'wt', 'hp' e APENAS a interação wt:hp\n# (geralmente, você adicionaria os efeitos principais manualmente se usar ':')\nreceita &lt;-\n  recipe(\n    mpg ~ wt + hp + wt:hp + qsec,\n    data = mtcars_tbl\n  )\n\n# summary(receita_interacao_doispontos)\n# É semanticamente igual ao exemplo com '*' se os termos principais estiverem presentes.\n\n# Apenas a interação (menos comum isoladamente):\n# receita_so_interacao &lt;- recipe(mpg ~ wt:hp, data = mtcars_tbl)\n# summary(receita_so_interacao) # Resultaria apenas no termo wt_x_hp\n\n📌 Use : com cautela e geralmente certifique-se de que os efeitos principais também estão no modelo."
+  },
+  {
+    "objectID": "index.html#papéis-das-variáveis-e-seletores-step_",
+    "href": "index.html#papéis-das-variáveis-e-seletores-step_",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Papéis das Variáveis e Seletores step_* \n",
+    "text": "Papéis das Variáveis e Seletores step_* \n\nA fórmula no recipe() define os papéis iniciais das variáveis: outcome (resposta) e predictor (preditora).\n\n\nreceita &lt;- recipe(mpg ~ ., data = mtcars_tbl)\n# summary(receita) # Mostra os papéis iniciais\n\n\nMuitas funções step_* usam seletores para escolher em quais variáveis atuar, baseando-se nesses papéis ou em suas propriedades:\n 🎉 Seletores ajudam a selecionar mais facilmente:\n\n\nall_numeric_predictors(): Todos os preditores numéricos.\n\nall_nominal_predictors(): Todos os preditores categóricos (fatores, caracteres).\n\nall_predictors(): Todos os preditores.\n\nall_outcomes(): Todas as variáveis resposta.\n\nstarts_with(\"prefix_\"), ends_with(\"_suffix\"), contains(\"substring\")"
+  },
+  {
+    "objectID": "index.html#papéis-das-variáveis-e-seletores-step_-1",
+    "href": "index.html#papéis-das-variáveis-e-seletores-step_-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Papéis das Variáveis e Seletores step_* \n",
+    "text": "Papéis das Variáveis e Seletores step_* \n\n\nExemplo de uso de seletores:\n\n\nreceita_com_passos &lt;-\n  recipe(mpg ~ ., data = mtcars_tbl) |&gt;\n  # Remove a variável 'car_name'\n  step_rm(car_name) |&gt;\n  # Centraliza apenas preditores numéricos\n  step_center(all_numeric_predictors()) |&gt;\n  # Escala apenas preditores numéricos\n  step_scale(all_numeric_predictors()) |&gt;\n  # Cria dummies para preditores nominais\n  step_dummy(all_nominal_predictors(), one_hot = TRUE)"
+  },
+  {
+    "objectID": "index.html#recipes-preparando-a-receita-e",
+    "href": "index.html#recipes-preparando-a-receita-e",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes: preparando a receita e \n",
+    "text": "recipes: preparando a receita e \n\n\nlibrary(AmesHousing)\nlibrary(recipes)\nlibrary(dplyr)\n\n# Carregar e preparar dados\names_data &lt;- make_ames() |&gt;\n  as_tibble() |&gt;\n  select(\n    Sale_Price,\n    Lot_Area,\n    Neighborhood,\n    Gr_Liv_Area,\n    Overall_Qual,\n    Bldg_Type,\n    Year_Built\n  ) # Selecionar apenas as colunas relevantes\n\n# Receita otimizada\names_recipe &lt;- recipe(\n  Sale_Price ~\n    Lot_Area +\n      Neighborhood +\n      Gr_Liv_Area +\n      Overall_Qual +\n      Bldg_Type +\n      Year_Built,\n  data = ames_data\n) |&gt;\n  # Transformação na variável resposta\n  step_log(Sale_Price, base = 10) |&gt;\n\n  # Criar variável derivada\n  step_mutate(\n    House_Age = 2025 - Year_Built,\n    Decade_Built = floor(Year_Built / 10) * 10\n  ) |&gt;\n\n  # Remover variável original\n  step_rm(Year_Built) |&gt;\n\n  # Lidar com novos níveis em dados futuros\n  step_novel(all_nominal_predictors()) |&gt;\n\n  # Agrupar níveis raros (8% threshold)\n  step_other(Neighborhood, threshold = 0.08) |&gt;\n  step_other(Bldg_Type, threshold = 0.05) |&gt;\n\n  # Criar variáveis dummy\n  step_dummy(all_nominal_predictors(), one_hot = FALSE) |&gt;\n\n  # Interações APÓS criação de dummies\n  step_interact(~ starts_with(\"Neighborhood\"):starts_with(\"Bldg_Type\")) |&gt;\n\n  # Remover variáveis com zero variance (após interações)\n  step_zv(all_predictors()) |&gt;\n\n  # Normalização (remove automaticamente colunas problemáticas)\n  step_normalize(all_numeric_predictors()) |&gt;\n\n  # Passo adicional: seleção de variáveis por importância\n  step_corr(all_numeric_predictors(), threshold = 0.9)\n\n# Preparar a receita\nprep_recipe &lt;- prep(ames_recipe, verbose = TRUE)\n\n# Aplicar a receita\names_processed &lt;- bake(prep_recipe, new_data = NULL)\n\n# Verificar resultado\nglimpse(ames_processed)"
+  },
+  {
+    "objectID": "index.html#recipes-preparando-e-aplicando-a-receita",
+    "href": "index.html#recipes-preparando-e-aplicando-a-receita",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes: preparando e aplicando a receita \n",
+    "text": "recipes: preparando e aplicando a receita \n\n\nApós definir os passos da receita, você pode prepará-la e aplicá-la aos dados usando os comandos prep() e bake(), respectivamente.\n\n\n\n\nlibrary(AmesHousing)\nlibrary(recipes)\nlibrary(dplyr)\n\n# Carregar e preparar dados\names_data &lt;- make_ames() |&gt;\n  as_tibble() |&gt;\n  select(\n    Sale_Price,\n    Lot_Area,\n    Neighborhood,\n    Gr_Liv_Area,\n    Overall_Qual,\n    Bldg_Type,\n    Year_Built\n  ) # Selecionar apenas as colunas relevantes\n\n# Receita otimizada\names_recipe &lt;- recipe(\n  Sale_Price ~\n  Lot_Area +\n  Neighborhood +\n  Gr_Liv_Area +\n  Overall_Qual +\n  Bldg_Type +\n  Year_Built,\n  data = ames_data\n) |&gt;\n  # Transformação na variável resposta\n  step_log(Sale_Price, base = 10) |&gt;\n\n  # Criar variável derivada\n  step_mutate(\n    House_Age = 2025 - Year_Built,\n    Decade_Built = floor(Year_Built / 10) * 10\n  ) |&gt;\n\n  # Remover variável original\n  step_rm(Year_Built) |&gt;\n\n  # Lidar com novos níveis em dados futuros\n  step_novel(all_nominal_predictors()) |&gt;\n\n  # Agrupar níveis raros (8% threshold)\n  step_other(Neighborhood, threshold = 0.08) |&gt;\n  step_other(Bldg_Type, threshold = 0.05) |&gt;\n\n  # Criar variáveis dummy\n  step_dummy(all_nominal_predictors(), one_hot = FALSE) |&gt;\n\n  # Interações APÓS criação de dummies\n  step_interact(~ starts_with(\"Neighborhood\"):starts_with(\"Bldg_Type\")) |&gt;\n\n  # Remover variáveis com zero variance (após interações)\n  step_zv(all_predictors()) |&gt;\n\n  # Normalização (remove automaticamente colunas problemáticas)\n  step_normalize(all_numeric_predictors()) |&gt;\n\n  # Passo adicional: seleção de variáveis por importância\n  step_corr(all_numeric_predictors(), threshold = 0.9)\n\n# Preparar a receita\nprep_recipe &lt;-\n  prep(\n    ames_recipe,\n    verbose = TRUE\n  )\n\n# Aplicar a receita\names_processed &lt;-\n  bake(\n    prep_recipe,\n    new_data = NULL\n  )\n\n# Verificar resultado\nglimpse(ames_processed)\n\n\n\n\n🍲 🥗 🍠 🧄 🧅 🥬 Cozinhando aplicando tranquilamente a receita com os ingredientes steps corretos."
   }
 ]

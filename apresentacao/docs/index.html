@@ -12,7 +12,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.30">
 <meta name="author" content=" Prof.&nbsp;Dr.&nbsp;Pedro Rafael D. Marinho Departamento de Estatística - UFPB  Programa de Pós-Graduação em Modelos de Decisão e Saúde - PPGMDS ">
-<meta name="dcterms.date" content="2025-05-10">
+<meta name="dcterms.date" content="2025-05-11">
 <title>Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -98,7 +98,7 @@
     code span.vs { color: #bf0303; } /* VerbatimString */
     code span.wa { color: #bf0303; } /* Warning */
   </style>
-<link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-ee85ba9a9784cc5569a982cf0d027eb5.css">
+<link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-f1ac0401c2ace90990d2313c2b1c1473.css">
 <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
  var macros = [];
@@ -229,7 +229,7 @@
 </div>
 </div>
 
-  <p class="date">2025-05-10</p>
+  <p class="date">2025-05-11</p>
 </section><section class="slide level2"><!-- ```{r} --><!-- #| echo: false --><!-- #| warning: false --><!-- #| eval: true --><!-- if(fs::dir_exists("index_files/")) --><!--   fs::dir_delete("index_files/") --><!-- ``` --><div class="r-fit-text">
 <p>Aprendizagem de Máquina</p>
 <p><span class="flow">Bacharelado em Estatística</span></p>
@@ -260,8 +260,8 @@
 </section><section id="meu-segundo-lar" class="slide level2" data-background-color="black" data-background-image="https://raw.githubusercontent.com/prdm0/imagens/main/foto_aerea_ufpb.jpeg" data-background-size="1600px" data-background-repeat="repeat" data-background-opacity="0.35"><h2>Meu segundo lar</h2>
 <div class="cell" width="100" height="100">
 <div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-bd64faee42a92c0ca1b7" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-bd64faee42a92c0ca1b7">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addMarkers","args":[-7.1404,-34.846199,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]}],"limits":{"lat":[-7.1404,-7.1404],"lng":[-34.846199,-34.846199]},"setView":[[-7.1404,-34.846199],37,{"maxWidth":1500,"minWidth":1600,"autoPan":true,"keepInView":false,"closeButton":true,"className":""}]},"evals":[],"jsHooks":[]}</script><p>Departamento de Estatística da UFPB.</p>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-a8e3e8fe485bc7f59c64" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-a8e3e8fe485bc7f59c64">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addMarkers","args":[-7.1404,-34.846199,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]}],"limits":{"lat":[-7.1404,-7.1404],"lng":[-34.846199,-34.846199]},"setView":[[-7.1404,-34.846199],37,{"maxWidth":1500,"minWidth":1600,"autoPan":true,"keepInView":false,"closeButton":true,"className":""}]},"evals":[],"jsHooks":[]}</script><p>Departamento de Estatística da UFPB.</p>
 </div>
 </div>
 </section></section><section id="projetos-relacionados-à-linguagem-r" class="title-slide slide level1 center"><h1>Projetos relacionados à linguagem R</h1>
@@ -879,7 +879,7 @@
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><a href="https://recipes.tidymodels.org/"><img data-src="imgs/aquarela_recipes.png" style="width:70.0%" alt="Litografia vitoriana fazendo alusão ao uso do pacote recipes."></a></p>
+<figure><p><a href="https://recipes.tidymodels.org/"><img data-src="imgs/aquarela_recipes.png" style="width:70.0%" alt="Imagem em aquarela fazendo alusão ao uso do pacote recipes."></a></p>
 <figcaption>Imagem em aquarela da logo do pacote <strong>recipes</strong>.</figcaption></figure>
 </div>
 </div><div class="column" style="width:50%;">
@@ -904,7 +904,7 @@
 <div class="sourceCode cell-code" id="cb6" data-code-line-numbers="3-6|7-10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="co"># Definindo uma receita (fase de pré-processamento)</span></span>
 <span id="cb6-2"><a></a>receita <span class="ot">&lt;-</span></span>
 <span id="cb6-3"><a></a>  recipes<span class="sc">::</span><span class="fu">recipe</span>(</span>
-<span id="cb6-4"><a></a>    y <span class="sc">~</span> x1 <span class="sc">+</span> x2<span class="sc">:</span>x3 <span class="sc">+</span> x5</span>
+<span id="cb6-4"><a></a>    y <span class="sc">~</span> x1 <span class="sc">+</span> x3<span class="sc">:</span>x4 <span class="sc">+</span> x5</span>
 <span id="cb6-5"><a></a>    <span class="at">data =</span> dados_treino</span>
 <span id="cb6-6"><a></a>  ) <span class="sc">|&gt;</span></span>
 <span id="cb6-7"><a></a>  step_<span class="sc">*</span>() <span class="sc">|&gt;</span></span>
@@ -914,6 +914,104 @@
 </div>
 <p><img data-src="gifs/cozinheira.gif" style="width:25.0%" data-fig-aling="right"></p>
 </div></div>
+</section><section id="recipes-a-fórmula-é-o-coração-da-receita" class="slide level2"><h2>recipes: a Fórmula é o Coração da Receita <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
+</h2>
+<p>A função <code>recipe()</code> inicia a criação de uma receita e seu primeiro argumento é uma <strong>fórmula</strong>.</p>
+<p><code>recipe(formula, data, ...)</code></p>
+<p><br></p>
+<p><strong>Estrutura da Fórmula:</strong></p>
+<p><br></p>
+<p><code>variavel_resposta ~ preditor1 + preditor2 + ... + preditorN</code></p>
+<p><br></p>
+<ul>
+<li>
+<strong>Lado Esquerdo (<code>variavel_resposta ~ ...</code>):</strong> Especifica a(s) variável(is) resultado/alvo.
+<ul>
+<li>Pode ser uma única variável.</li>
+<li>Múltiplas variáveis respostas podem ser especificadas com <code>cbind(resp1, resp2) ~ ...</code> (menos comum para a maioria dos modelos).</li>
+</ul>
+</li>
+<li>
+<strong>Lado Direito (<code>... ~ preditor1 + preditor2</code>):</strong> Especifica as variáveis preditoras.</li>
+<li>
+<strong>Til (<code>~</code>):</strong> Separa a variável resposta dos preditores.</li>
+<li>
+<strong>Sinal de Mais (<code>+</code>):</strong> Usado para adicionar preditores.</li>
+</ul></section><section id="interações-entre-variáveis-e" class="slide level2"><h2>Interações Entre Variáveis: <code>*</code> e <code>:</code> <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
+</h2>
+<p><br></p>
+<p>Fórmulas no R permitem especificar termos de interação diretamente.</p>
+<p><strong>1. O Asterisco (<code>*</code>): Efeitos Principais + Interação</strong></p>
+<p><code>preditorA * preditorB</code> expande para <code>preditorA + preditorB + preditorA:preditorB</code>. Inclui os efeitos principais de cada variável E o termo de interação entre elas. Não é possível usar <code>*</code> ou <code>:</code> diretamente no <code>recipe()</code>. Para isso você deve usar o <code>step_interact()</code>.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="co"># Prever 'mpg' usando 'wt', 'hp' e a interação entre 'wt' e 'hp'</span></span>
+<span id="cb7-2"><a></a>receita_interacao_asterisco <span class="ot">&lt;-</span> <span class="fu">recipe</span>(mpg <span class="sc">~</span> wt <span class="sc">*</span> hp <span class="sc">+</span> qsec, <span class="at">data =</span> mtcars_tbl)</span>
+<span id="cb7-3"><a></a></span>
+<span id="cb7-4"><a></a><span class="co"># summary(receita_interacao_asterisco)</span></span>
+<span id="cb7-5"><a></a><span class="co"># Note os termos: wt, hp, qsec, wt_x_hp (ou similar)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Esta é a forma mais comum e geralmente recomendada para incluir interações, seguindo o princípio da hierarquia.</em></p>
+</section><section id="interações-entre-variáveis-e-cont." class="slide level2"><h2>Interações Entre Variáveis: <code>*</code> e <code>:</code> (Cont.) <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
+</h2>
+<p><br></p>
+<p><strong>2. Os Dois Pontos (<code>:</code>): Apenas a Interação</strong></p>
+<p><br></p>
+<p><code>preditorA:preditorB</code> especifica <strong>apenas o termo de interação</strong> entre <code>preditorA</code> e <code>preditorB</code>. Não inclui os efeitos principais automaticamente.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co"># Prever 'mpg' usando 'wt', 'hp' e APENAS a interação wt:hp</span></span>
+<span id="cb8-2"><a></a><span class="co"># (geralmente, você adicionaria os efeitos principais manualmente se usar ':')</span></span>
+<span id="cb8-3"><a></a>receita <span class="ot">&lt;-</span></span>
+<span id="cb8-4"><a></a>  <span class="fu">recipe</span>(</span>
+<span id="cb8-5"><a></a>    mpg <span class="sc">~</span> wt <span class="sc">+</span> hp <span class="sc">+</span> wt<span class="sc">:</span>hp <span class="sc">+</span> qsec,</span>
+<span id="cb8-6"><a></a>    <span class="at">data =</span> mtcars_tbl</span>
+<span id="cb8-7"><a></a>  )</span>
+<span id="cb8-8"><a></a></span>
+<span id="cb8-9"><a></a><span class="co"># summary(receita_interacao_doispontos)</span></span>
+<span id="cb8-10"><a></a><span class="co"># É semanticamente igual ao exemplo com '*' se os termos principais estiverem presentes.</span></span>
+<span id="cb8-11"><a></a></span>
+<span id="cb8-12"><a></a><span class="co"># Apenas a interação (menos comum isoladamente):</span></span>
+<span id="cb8-13"><a></a><span class="co"># receita_so_interacao &lt;- recipe(mpg ~ wt:hp, data = mtcars_tbl)</span></span>
+<span id="cb8-14"><a></a><span class="co"># summary(receita_so_interacao) # Resultaria apenas no termo wt_x_hp</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<p>📌 <em>Use <code>:</code> com cautela e geralmente certifique-se de que os efeitos principais também estão no modelo.</em></p>
+</section><section id="papéis-das-variáveis-e-seletores-step_" class="slide level2"><h2>Papéis das Variáveis e Seletores <code>step_*</code> <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
+</h2>
+<p>A fórmula no <code>recipe()</code> define os <strong>papéis iniciais</strong> das variáveis: <code>outcome</code> (resposta) e <code>predictor</code> (preditora).</p>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>receita <span class="ot">&lt;-</span> <span class="fu">recipe</span>(mpg <span class="sc">~</span> ., <span class="at">data =</span> mtcars_tbl)</span>
+<span id="cb9-2"><a></a><span class="co"># summary(receita) # Mostra os papéis iniciais</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<p>Muitas funções <code>step_*</code> usam seletores para escolher em quais variáveis atuar, baseando-se nesses papéis ou em suas propriedades:</p>
+<p><br> 🎉 <strong>Seletores ajudam a selecionar mais facilmente</strong>:</p>
+<ul>
+<li>
+<code>all_numeric_predictors()</code>: Todos os preditores numéricos.</li>
+<li>
+<code>all_nominal_predictors()</code>: Todos os preditores categóricos (fatores, caracteres).</li>
+<li>
+<code>all_predictors()</code>: Todos os preditores.</li>
+<li>
+<code>all_outcomes()</code>: Todas as variáveis resposta.</li>
+<li>
+<code>starts_with("prefix_")</code>, <code>ends_with("_suffix")</code>, <code>contains("substring")</code>
+</li>
+</ul></section><section id="papéis-das-variáveis-e-seletores-step_-1" class="slide level2"><h2>Papéis das Variáveis e Seletores <code>step_*</code> <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
+</h2>
+<p><br></p>
+<p><strong>Exemplo de uso de seletores</strong>:</p>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10" data-code-line-numbers="5-6|7-8|9-10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>receita_com_passos <span class="ot">&lt;-</span></span>
+<span id="cb10-2"><a></a>  <span class="fu">recipe</span>(mpg <span class="sc">~</span> ., <span class="at">data =</span> mtcars_tbl) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a></a>  <span class="co"># Remove a variável 'car_name'</span></span>
+<span id="cb10-4"><a></a>  <span class="fu">step_rm</span>(car_name) <span class="sc">|&gt;</span></span>
+<span id="cb10-5"><a></a>  <span class="co"># Centraliza apenas preditores numéricos</span></span>
+<span id="cb10-6"><a></a>  <span class="fu">step_center</span>(<span class="fu">all_numeric_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb10-7"><a></a>  <span class="co"># Escala apenas preditores numéricos</span></span>
+<span id="cb10-8"><a></a>  <span class="fu">step_scale</span>(<span class="fu">all_numeric_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb10-9"><a></a>  <span class="co"># Cria dummies para preditores nominais</span></span>
+<span id="cb10-10"><a></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>(), <span class="at">one_hot =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img data-src="gifs/giphy.gif" style="width:10.0%" data-fig-aling="right"></p>
 </section><section id="recipes-2" class="slide level2"><h2>recipes <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
 </h2>
 <table class="caption-top">
@@ -1011,36 +1109,131 @@
 <div class="column" style="width:50%;">
 <p><strong>Tirar o logaritmo e normalizar (melhor):</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7" data-code-line-numbers="3|6-11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>receita <span class="ot">&lt;-</span></span>
-<span id="cb7-2"><a></a>  recipes<span class="sc">::</span><span class="fu">recipe</span>(</span>
-<span id="cb7-3"><a></a>    y <span class="sc">~</span> .,</span>
-<span id="cb7-4"><a></a>    <span class="at">data =</span> dados_treino</span>
-<span id="cb7-5"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb7-6"><a></a>  <span class="fu">step_log</span>(</span>
-<span id="cb7-7"><a></a>    <span class="fu">all_numeric_predictors</span>()</span>
-<span id="cb7-8"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb7-9"><a></a>  <span class="fu">step_normalize</span>(</span>
-<span id="cb7-10"><a></a>    <span class="fu">all_numeric_predictors</span>()</span>
-<span id="cb7-11"><a></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11" data-code-line-numbers="3|6-11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>receita <span class="ot">&lt;-</span></span>
+<span id="cb11-2"><a></a>  recipes<span class="sc">::</span><span class="fu">recipe</span>(</span>
+<span id="cb11-3"><a></a>    y <span class="sc">~</span> .,</span>
+<span id="cb11-4"><a></a>    <span class="at">data =</span> dados_treino</span>
+<span id="cb11-5"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a></a>  <span class="fu">step_log</span>(</span>
+<span id="cb11-7"><a></a>    <span class="fu">all_numeric_predictors</span>()</span>
+<span id="cb11-8"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb11-9"><a></a>  <span class="fu">step_normalize</span>(</span>
+<span id="cb11-10"><a></a>    <span class="fu">all_numeric_predictors</span>()</span>
+<span id="cb11-11"><a></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
 <p><strong>Normalizar e tomar o logaritmo:</strong></p>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8" data-code-line-numbers="3|6-11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>receita <span class="ot">&lt;-</span></span>
-<span id="cb8-2"><a></a>  recipes<span class="sc">::</span><span class="fu">recipe</span>(</span>
-<span id="cb8-3"><a></a>    y <span class="sc">~</span> .,</span>
-<span id="cb8-4"><a></a>    <span class="at">data =</span> dados_treino</span>
-<span id="cb8-5"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb8-6"><a></a>  <span class="fu">step_normalize</span>(</span>
-<span id="cb8-7"><a></a>    <span class="fu">all_numeric_predictors</span>()</span>
-<span id="cb8-8"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb8-9"><a></a>  <span class="fu">step_log</span>(</span>
-<span id="cb8-10"><a></a>    <span class="fu">all_numeric_predictors</span>()</span>
-<span id="cb8-11"><a></a>  ) <span class="sc">|&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12" data-code-line-numbers="3|6-11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>receita <span class="ot">&lt;-</span></span>
+<span id="cb12-2"><a></a>  recipes<span class="sc">::</span><span class="fu">recipe</span>(</span>
+<span id="cb12-3"><a></a>    y <span class="sc">~</span> .,</span>
+<span id="cb12-4"><a></a>    <span class="at">data =</span> dados_treino</span>
+<span id="cb12-5"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb12-6"><a></a>  <span class="fu">step_normalize</span>(</span>
+<span id="cb12-7"><a></a>    <span class="fu">all_numeric_predictors</span>()</span>
+<span id="cb12-8"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb12-9"><a></a>  <span class="fu">step_log</span>(</span>
+<span id="cb12-10"><a></a>    <span class="fu">all_numeric_predictors</span>()</span>
+<span id="cb12-11"><a></a>  ) <span class="sc">|&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div></div>
 <p>📌 <strong>Observação</strong>: <code>y ~ .</code> significa que <code>y</code> é a variável de interesse e todas as outas serão preditoras (<em>features</em>).</p>
+</section><section id="recipes-preparando-e-aplicando-a-receita" class="slide level2"><h2>recipes: preparando e aplicando a receita <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
+</h2>
+<p><br></p>
+<p>Após definir os passos da receita, você pode prepará-la e aplicá-la aos dados usando os comandos <code>prep()</code> e <code>bake()</code>, respectivamente.</p>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="5-16|19-28|64-75"><pre class="sourceCode numberSource r smallcode number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">library</span>(AmesHousing)</span>
+<span id="cb13-2"><a></a><span class="fu">library</span>(recipes)</span>
+<span id="cb13-3"><a></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb13-4"><a></a></span>
+<span id="cb13-5"><a></a><span class="co"># Carregar e preparar dados</span></span>
+<span id="cb13-6"><a></a>ames_data <span class="ot">&lt;-</span> <span class="fu">make_ames</span>() <span class="sc">|&gt;</span></span>
+<span id="cb13-7"><a></a>  <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span></span>
+<span id="cb13-8"><a></a>  <span class="fu">select</span>(</span>
+<span id="cb13-9"><a></a>    Sale_Price,</span>
+<span id="cb13-10"><a></a>    Lot_Area,</span>
+<span id="cb13-11"><a></a>    Neighborhood,</span>
+<span id="cb13-12"><a></a>    Gr_Liv_Area,</span>
+<span id="cb13-13"><a></a>    Overall_Qual,</span>
+<span id="cb13-14"><a></a>    Bldg_Type,</span>
+<span id="cb13-15"><a></a>    Year_Built</span>
+<span id="cb13-16"><a></a>  ) <span class="co"># Selecionar apenas as colunas relevantes</span></span>
+<span id="cb13-17"><a></a></span>
+<span id="cb13-18"><a></a><span class="co"># Receita otimizada</span></span>
+<span id="cb13-19"><a></a>ames_recipe <span class="ot">&lt;-</span> <span class="fu">recipe</span>(</span>
+<span id="cb13-20"><a></a>  Sale_Price <span class="sc">~</span></span>
+<span id="cb13-21"><a></a>  Lot_Area <span class="sc">+</span></span>
+<span id="cb13-22"><a></a>  Neighborhood <span class="sc">+</span></span>
+<span id="cb13-23"><a></a>  Gr_Liv_Area <span class="sc">+</span></span>
+<span id="cb13-24"><a></a>  Overall_Qual <span class="sc">+</span></span>
+<span id="cb13-25"><a></a>  Bldg_Type <span class="sc">+</span></span>
+<span id="cb13-26"><a></a>  Year_Built,</span>
+<span id="cb13-27"><a></a>  <span class="at">data =</span> ames_data</span>
+<span id="cb13-28"><a></a>) <span class="sc">|&gt;</span></span>
+<span id="cb13-29"><a></a>  <span class="co"># Transformação na variável resposta</span></span>
+<span id="cb13-30"><a></a>  <span class="fu">step_log</span>(Sale_Price, <span class="at">base =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-31"><a></a></span>
+<span id="cb13-32"><a></a>  <span class="co"># Criar variável derivada</span></span>
+<span id="cb13-33"><a></a>  <span class="fu">step_mutate</span>(</span>
+<span id="cb13-34"><a></a>    <span class="at">House_Age =</span> <span class="dv">2025</span> <span class="sc">-</span> Year_Built,</span>
+<span id="cb13-35"><a></a>    <span class="at">Decade_Built =</span> <span class="fu">floor</span>(Year_Built <span class="sc">/</span> <span class="dv">10</span>) <span class="sc">*</span> <span class="dv">10</span></span>
+<span id="cb13-36"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb13-37"><a></a></span>
+<span id="cb13-38"><a></a>  <span class="co"># Remover variável original</span></span>
+<span id="cb13-39"><a></a>  <span class="fu">step_rm</span>(Year_Built) <span class="sc">|&gt;</span></span>
+<span id="cb13-40"><a></a></span>
+<span id="cb13-41"><a></a>  <span class="co"># Lidar com novos níveis em dados futuros</span></span>
+<span id="cb13-42"><a></a>  <span class="fu">step_novel</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb13-43"><a></a></span>
+<span id="cb13-44"><a></a>  <span class="co"># Agrupar níveis raros (8% threshold)</span></span>
+<span id="cb13-45"><a></a>  <span class="fu">step_other</span>(Neighborhood, <span class="at">threshold =</span> <span class="fl">0.08</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-46"><a></a>  <span class="fu">step_other</span>(Bldg_Type, <span class="at">threshold =</span> <span class="fl">0.05</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-47"><a></a></span>
+<span id="cb13-48"><a></a>  <span class="co"># Criar variáveis dummy</span></span>
+<span id="cb13-49"><a></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>(), <span class="at">one_hot =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-50"><a></a></span>
+<span id="cb13-51"><a></a>  <span class="co"># Interações APÓS criação de dummies</span></span>
+<span id="cb13-52"><a></a>  <span class="fu">step_interact</span>(<span class="sc">~</span> <span class="fu">starts_with</span>(<span class="st">"Neighborhood"</span>)<span class="sc">:</span><span class="fu">starts_with</span>(<span class="st">"Bldg_Type"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb13-53"><a></a></span>
+<span id="cb13-54"><a></a>  <span class="co"># Remover variáveis com zero variance (após interações)</span></span>
+<span id="cb13-55"><a></a>  <span class="fu">step_zv</span>(<span class="fu">all_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb13-56"><a></a></span>
+<span id="cb13-57"><a></a>  <span class="co"># Normalização (remove automaticamente colunas problemáticas)</span></span>
+<span id="cb13-58"><a></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb13-59"><a></a></span>
+<span id="cb13-60"><a></a>  <span class="co"># Passo adicional: seleção de variáveis por importância</span></span>
+<span id="cb13-61"><a></a>  <span class="fu">step_corr</span>(<span class="fu">all_numeric_predictors</span>(), <span class="at">threshold =</span> <span class="fl">0.9</span>)</span>
+<span id="cb13-62"><a></a></span>
+<span id="cb13-63"><a></a><span class="co"># Preparar a receita</span></span>
+<span id="cb13-64"><a></a>prep_recipe <span class="ot">&lt;-</span></span>
+<span id="cb13-65"><a></a>  <span class="fu">prep</span>(</span>
+<span id="cb13-66"><a></a>    ames_recipe,</span>
+<span id="cb13-67"><a></a>    <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
+<span id="cb13-68"><a></a>  )</span>
+<span id="cb13-69"><a></a></span>
+<span id="cb13-70"><a></a><span class="co"># Aplicar a receita</span></span>
+<span id="cb13-71"><a></a>ames_processed <span class="ot">&lt;-</span></span>
+<span id="cb13-72"><a></a>  <span class="fu">bake</span>(</span>
+<span id="cb13-73"><a></a>    prep_recipe,</span>
+<span id="cb13-74"><a></a>    <span class="at">new_data =</span> <span class="cn">NULL</span></span>
+<span id="cb13-75"><a></a>  )</span>
+<span id="cb13-76"><a></a></span>
+<span id="cb13-77"><a></a><span class="co"># Verificar resultado</span></span>
+<span id="cb13-78"><a></a><span class="fu">glimpse</span>(ames_processed)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure><p><img data-src="gifs/chefe_preparando.gif" style="width:45.0%"></p>
+<figcaption>🍲 🥗 🍠 🧄 🧅 🥬 <del>Cozinhando</del> aplicando tranquilamente a receita com os <del>ingredientes</del> <em>steps</em> corretos.</figcaption></figure>
+</div>
+</div></div>
+</section></section><section><section id="section-11" class="title-slide slide level1 title center" data-background-image="imgs/motor_parsnip.png" data-background-size="100% 100%"><h1></h1>
+
 </section><section id="parsnip" class="slide level2"><h2>parsnip <img src="imgs/parsnip.png" height="120px" style="vertical-align:middle;">
 </h2>
 <div class="columns">
@@ -1069,22 +1262,22 @@
 <p>Diversas bibliotecas na linguagem R são preparadas para trabalharem na área de aprendizagem de máquina. Várias dessas bibliotecas vem sendo desenvolvidas há anos. Por exemplo,as bibliotecas <a href="https://cran.r-project.org/web/packages/glmnet/index.html">glmnet</a>, <a href="https://cran.r-project.org/web/packages/ranger/index.html">ranger</a>, <a href="https://cran.r-project.org/web/packages/kknn/index.html">kknn</a>, <a href="https://cran.r-project.org/web/packages/xgboost/index.html">xgboost</a>, <a href="https://cran.r-project.org/web/packages/keras/index.html">keras</a>, <a href="https://cran.r-project.org/web/packages/rpart/index.html">rpart</a>, <a href="https://cran.r-project.org/web/packages/randomForest/index.html">randomForest</a>, entre diversos outros.</p>
 <p><br></p>
 <div class="cell">
-<details class="code-fold"><summary>O número de pacotes abaixo é o mais recente. Obtido automaticamente por webscraping.</summary><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">library</span>(xml2)</span>
-<span id="cb9-2"><a></a><span class="fu">library</span>(httr)</span>
-<span id="cb9-3"><a></a><span class="fu">library</span>(stringr)</span>
-<span id="cb9-4"><a></a><span class="fu">library</span>(<span class="st">"downlit"</span>)</span>
-<span id="cb9-5"><a></a></span>
-<span id="cb9-6"><a></a>numero_pacotes_r <span class="ot">&lt;-</span> httr<span class="sc">::</span><span class="fu">GET</span>(</span>
-<span id="cb9-7"><a></a>  <span class="st">"https://cloud.r-project.org/web/packages/index.html"</span></span>
-<span id="cb9-8"><a></a>) <span class="sc">|&gt;</span></span>
-<span id="cb9-9"><a></a>  xml2<span class="sc">::</span><span class="fu">read_html</span>() <span class="sc">|&gt;</span></span>
-<span id="cb9-10"><a></a>  xml2<span class="sc">::</span><span class="fu">xml_find_all</span>(<span class="st">"//p[1]"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb9-11"><a></a>  xml2<span class="sc">::</span><span class="fu">xml_text</span>() <span class="sc">|&gt;</span></span>
-<span id="cb9-12"><a></a>  stringr<span class="sc">::</span><span class="fu">str_extract</span>(<span class="at">pattern =</span> <span class="st">"[0-9]+"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>O número de pacotes abaixo é o mais recente. Obtido automaticamente por webscraping.</summary><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">library</span>(xml2)</span>
+<span id="cb14-2"><a></a><span class="fu">library</span>(httr)</span>
+<span id="cb14-3"><a></a><span class="fu">library</span>(stringr)</span>
+<span id="cb14-4"><a></a><span class="fu">library</span>(<span class="st">"downlit"</span>)</span>
+<span id="cb14-5"><a></a></span>
+<span id="cb14-6"><a></a>numero_pacotes_r <span class="ot">&lt;-</span> httr<span class="sc">::</span><span class="fu">GET</span>(</span>
+<span id="cb14-7"><a></a>  <span class="st">"https://cloud.r-project.org/web/packages/index.html"</span></span>
+<span id="cb14-8"><a></a>) <span class="sc">|&gt;</span></span>
+<span id="cb14-9"><a></a>  xml2<span class="sc">::</span><span class="fu">read_html</span>() <span class="sc">|&gt;</span></span>
+<span id="cb14-10"><a></a>  xml2<span class="sc">::</span><span class="fu">xml_find_all</span>(<span class="st">"//p[1]"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-11"><a></a>  xml2<span class="sc">::</span><span class="fu">xml_text</span>() <span class="sc">|&gt;</span></span>
+<span id="cb14-12"><a></a>  stringr<span class="sc">::</span><span class="fu">str_extract</span>(<span class="at">pattern =</span> <span class="st">"[0-9]+"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p><br></p>
-<p>Atualmente, a linguagem R possui <span class="red">22421</span>, em que muitos deles são preparados para para trabalharem em tarefas de aprendizagem de máquina, porém, cada com sua sintaxe específica. Muitos implementam o mesmo modelo, uns com algumas variações, porém, o uso é totalmente diferente, nomes de parâmetros distintos, saídas distintas, etc.</p>
+<p>Atualmente, a linguagem R possui <span class="red">22417</span>, em que muitos deles são preparados para para trabalharem em tarefas de aprendizagem de máquina, porém, cada com sua sintaxe específica. Muitos implementam o mesmo modelo, uns com algumas variações, porém, o uso é totalmente diferente, nomes de parâmetros distintos, saídas distintas, etc.</p>
 <p><img data-src="gifs/hum.gif"></p>
 </section><section id="parsnip-3" class="slide level2"><h2>parsnip <img src="imgs/parsnip.png" height="120px" style="vertical-align:middle;">
 </h2>
@@ -1094,30 +1287,30 @@
 <p><strong>Utilizando o pacote</strong> <span class="red"><strong>randomForest</strong></span>:</p>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10" data-code-line-numbers="1|7,9|1-17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">library</span>(randomForest)</span>
-<span id="cb10-2"><a></a></span>
-<span id="cb10-3"><a></a><span class="co"># Modelo básico</span></span>
-<span id="cb10-4"><a></a>modelo <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(</span>
-<span id="cb10-5"><a></a>  Species <span class="sc">~</span> .,</span>
-<span id="cb10-6"><a></a>  <span class="at">data =</span> iris,</span>
-<span id="cb10-7"><a></a>  <span class="at">ntree =</span> <span class="dv">500</span>,</span>
-<span id="cb10-8"><a></a>  <span class="at">mtry =</span> <span class="dv">2</span>,</span>
-<span id="cb10-9"><a></a>  <span class="at">importance =</span> <span class="cn">TRUE</span></span>
-<span id="cb10-10"><a></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15" data-code-line-numbers="1|7,9|1-17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">library</span>(randomForest)</span>
+<span id="cb15-2"><a></a></span>
+<span id="cb15-3"><a></a><span class="co"># Modelo básico</span></span>
+<span id="cb15-4"><a></a>modelo <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(</span>
+<span id="cb15-5"><a></a>  Species <span class="sc">~</span> .,</span>
+<span id="cb15-6"><a></a>  <span class="at">data =</span> iris,</span>
+<span id="cb15-7"><a></a>  <span class="at">ntree =</span> <span class="dv">500</span>,</span>
+<span id="cb15-8"><a></a>  <span class="at">mtry =</span> <span class="dv">2</span>,</span>
+<span id="cb15-9"><a></a>  <span class="at">importance =</span> <span class="cn">TRUE</span></span>
+<span id="cb15-10"><a></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
 <p><strong>Utilizando o pacote</strong> <span class="red"><strong>ranger</strong></span>:</p>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11" data-code-line-numbers="1|6,8|1-15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">library</span>(ranger)</span>
-<span id="cb11-2"><a></a></span>
-<span id="cb11-3"><a></a>modelo <span class="ot">&lt;-</span> <span class="fu">ranger</span>(</span>
-<span id="cb11-4"><a></a>  Species <span class="sc">~</span> .,</span>
-<span id="cb11-5"><a></a>  <span class="at">data =</span> iris,</span>
-<span id="cb11-6"><a></a>  <span class="at">num.trees =</span> <span class="dv">500</span>,</span>
-<span id="cb11-7"><a></a>  <span class="at">mtry =</span> <span class="dv">2</span>,</span>
-<span id="cb11-8"><a></a>  <span class="at">importance =</span> <span class="st">"impurity"</span></span>
-<span id="cb11-9"><a></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16" data-code-line-numbers="1|6,8|1-15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">library</span>(ranger)</span>
+<span id="cb16-2"><a></a></span>
+<span id="cb16-3"><a></a>modelo <span class="ot">&lt;-</span> <span class="fu">ranger</span>(</span>
+<span id="cb16-4"><a></a>  Species <span class="sc">~</span> .,</span>
+<span id="cb16-5"><a></a>  <span class="at">data =</span> iris,</span>
+<span id="cb16-6"><a></a>  <span class="at">num.trees =</span> <span class="dv">500</span>,</span>
+<span id="cb16-7"><a></a>  <span class="at">mtry =</span> <span class="dv">2</span>,</span>
+<span id="cb16-8"><a></a>  <span class="at">importance =</span> <span class="st">"impurity"</span></span>
+<span id="cb16-9"><a></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div></div>
 </section><section id="parsnip-4" class="slide level2"><h2>parsnip <img src="imgs/parsnip.png" height="120px" style="vertical-align:middle;">
@@ -1126,30 +1319,30 @@
 <p><strong>Utilizando o pacote</strong> <span class="red"><strong>ranger</strong></span>:</p>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12" data-code-line-numbers="3-6|7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="co"># Definir o modelo com parsnip</span></span>
-<span id="cb12-2"><a></a>modelo_parsnip <span class="ot">&lt;-</span></span>
-<span id="cb12-3"><a></a>  <span class="fu">rand_forest</span>(</span>
-<span id="cb12-4"><a></a>    <span class="at">trees =</span> <span class="dv">500</span>,       <span class="co"># Equivalente a num.trees</span></span>
-<span id="cb12-5"><a></a>    <span class="at">mtry =</span> <span class="dv">2</span>           <span class="co"># Mesmo valor que no ranger</span></span>
-<span id="cb12-6"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb12-7"><a></a>  <span class="fu">set_engine</span>(<span class="st">"ranger"</span>, <span class="at">importance =</span> <span class="st">"impurity"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb12-8"><a></a>  <span class="fu">set_mode</span>(<span class="st">"classification"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb12-9"><a></a>  <span class="fu">fit</span>(Species <span class="sc">~</span> ., <span class="at">data =</span> iris)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17" data-code-line-numbers="3-6|7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="co"># Definir o modelo com parsnip</span></span>
+<span id="cb17-2"><a></a>modelo_parsnip <span class="ot">&lt;-</span></span>
+<span id="cb17-3"><a></a>  <span class="fu">rand_forest</span>(</span>
+<span id="cb17-4"><a></a>    <span class="at">trees =</span> <span class="dv">500</span>,       <span class="co"># Equivalente a num.trees</span></span>
+<span id="cb17-5"><a></a>    <span class="at">mtry =</span> <span class="dv">2</span>           <span class="co"># Mesmo valor que no ranger</span></span>
+<span id="cb17-6"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb17-7"><a></a>  <span class="fu">set_engine</span>(<span class="st">"ranger"</span>, <span class="at">importance =</span> <span class="st">"impurity"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb17-8"><a></a>  <span class="fu">set_mode</span>(<span class="st">"classification"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb17-9"><a></a>  <span class="fu">fit</span>(Species <span class="sc">~</span> ., <span class="at">data =</span> iris)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="parsnip-5" class="slide level2"><h2>parsnip <img src="imgs/parsnip.png" height="120px" style="vertical-align:middle;">
 </h2>
 <p><strong>Utilizando o pacote</strong> <span class="red"><strong>randomForest</strong></span>:</p>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="7|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="co"># Definir o modelo com parsnip</span></span>
-<span id="cb13-2"><a></a>modelo_parsnip <span class="ot">&lt;-</span></span>
-<span id="cb13-3"><a></a>  <span class="fu">rand_forest</span>(</span>
-<span id="cb13-4"><a></a>    <span class="at">trees =</span> <span class="dv">500</span>,       <span class="co"># Equivalente a num.trees</span></span>
-<span id="cb13-5"><a></a>    <span class="at">mtry =</span> <span class="dv">2</span>           <span class="co"># Mesmo valor que no ranger</span></span>
-<span id="cb13-6"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb13-7"><a></a>  <span class="fu">set_engine</span>(<span class="st">"randomForest"</span>, <span class="at">importance =</span> <span class="st">"impurity"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-8"><a></a>  <span class="fu">set_mode</span>(<span class="st">"classification"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-9"><a></a>  <span class="fu">fit</span>(Species <span class="sc">~</span> ., <span class="at">data =</span> iris)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18" data-code-line-numbers="7|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="co"># Definir o modelo com parsnip</span></span>
+<span id="cb18-2"><a></a>modelo_parsnip <span class="ot">&lt;-</span></span>
+<span id="cb18-3"><a></a>  <span class="fu">rand_forest</span>(</span>
+<span id="cb18-4"><a></a>    <span class="at">trees =</span> <span class="dv">500</span>,       <span class="co"># Equivalente a num.trees</span></span>
+<span id="cb18-5"><a></a>    <span class="at">mtry =</span> <span class="dv">2</span>           <span class="co"># Mesmo valor que no ranger</span></span>
+<span id="cb18-6"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb18-7"><a></a>  <span class="fu">set_engine</span>(<span class="st">"randomForest"</span>, <span class="at">importance =</span> <span class="st">"impurity"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-8"><a></a>  <span class="fu">set_mode</span>(<span class="st">"classification"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-9"><a></a>  <span class="fu">fit</span>(Species <span class="sc">~</span> ., <span class="at">data =</span> iris)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="tidymodels-2" class="slide level2"><h2>💻 Tidymodels</h2>
 <p><br></p>
@@ -1195,92 +1388,92 @@
 <img data-src="gifs/mais_ou_menos.gif" class="r-stretch"></section><section id="balanço-viés-e-variância-3" class="slide level2"><h2>⚖️ Balanço viés e variância</h2>
 <p><br></p>
 <div class="cell">
-<details class="code-fold"><summary>Estude o código</summary><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb14-2"><a></a><span class="fu">library</span>(tibble)</span>
-<span id="cb14-3"><a></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb14-4"><a></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb14-5"><a></a></span>
-<span id="cb14-6"><a></a><span class="co"># Função de regressão verdadeira. Na prática é desconhecida.</span></span>
-<span id="cb14-7"><a></a>regressao_verdadeira <span class="ot">&lt;-</span> <span class="cf">function</span>(x)</span>
-<span id="cb14-8"><a></a>  <span class="dv">45</span> <span class="sc">*</span> <span class="fu">tanh</span>(x<span class="sc">/</span><span class="fl">1.9</span> <span class="sc">-</span> <span class="dv">7</span>) <span class="sc">+</span> <span class="dv">57</span></span>
-<span id="cb14-9"><a></a></span>
-<span id="cb14-10"><a></a>observacoes_regressao_real <span class="ot">&lt;-</span> <span class="cf">function</span>(n, <span class="at">desvio_padrao =</span> <span class="fl">0.2</span>) {</span>
-<span id="cb14-11"><a></a>  <span class="co"># Permitindo que o mesmo x possa ter dois pontos de y, como ocorre na</span></span>
-<span id="cb14-12"><a></a>  <span class="co"># pratica</span></span>
-<span id="cb14-13"><a></a>  seq_x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="fl">17.5</span>, <span class="at">length.out =</span> n), <span class="at">size =</span> n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb14-14"><a></a></span>
-<span id="cb14-15"><a></a>  step <span class="ot">&lt;-</span> <span class="cf">function</span>(x)</span>
-<span id="cb14-16"><a></a>    <span class="fu">regressao_verdadeira</span>(x) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>L, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> desvio_padrao)</span>
-<span id="cb14-17"><a></a></span>
-<span id="cb14-18"><a></a>  tibble<span class="sc">::</span><span class="fu">tibble</span>(<span class="at">y =</span> purrr<span class="sc">::</span><span class="fu">map_vec</span>(<span class="at">.x =</span> seq_x, <span class="at">.f =</span> step), <span class="at">x =</span> seq_x)</span>
-<span id="cb14-19"><a></a>}</span>
-<span id="cb14-20"><a></a></span>
-<span id="cb14-21"><a></a><span class="co"># Usaremos uma regressão polinomial para tentar ajustar à regressão -------</span></span>
-<span id="cb14-22"><a></a>regressao_polinomial <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">30</span>L, <span class="at">desvio_padrao =</span> <span class="dv">4</span>, <span class="at">grau =</span> <span class="dv">1</span>L) {</span>
-<span id="cb14-23"><a></a></span>
-<span id="cb14-24"><a></a>  dados <span class="ot">&lt;-</span> <span class="fu">observacoes_regressao_real</span>(<span class="at">n =</span> n, <span class="at">desvio_padrao =</span> desvio_padrao)</span>
-<span id="cb14-25"><a></a></span>
-<span id="cb14-26"><a></a>  iteracoes <span class="ot">&lt;-</span> <span class="cf">function</span>(tibble_data, grau) {</span>
-<span id="cb14-27"><a></a>      x <span class="ot">&lt;-</span> tibble_data<span class="sc">$</span>x</span>
-<span id="cb14-28"><a></a>      iteracoes <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="at">X =</span> <span class="dv">2</span>L<span class="sc">:</span>grau, <span class="at">FUN =</span> <span class="cf">function</span>(i) x<span class="sc">^</span>i)</span>
-<span id="cb14-29"><a></a></span>
-<span id="cb14-30"><a></a>      result <span class="ot">&lt;-</span> <span class="fu">cbind</span>(tibble_data, <span class="fu">do.call</span>(cbind, iteracoes))</span>
-<span id="cb14-31"><a></a>      <span class="fu">colnames</span>(result)[(<span class="fu">ncol</span>(tibble_data) <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span><span class="fu">ncol</span>(result)] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"x"</span>, <span class="dv">2</span>L<span class="sc">:</span>grau)</span>
-<span id="cb14-32"><a></a></span>
-<span id="cb14-33"><a></a>      <span class="fu">as_tibble</span>(result)</span>
-<span id="cb14-34"><a></a>  }</span>
-<span id="cb14-35"><a></a></span>
-<span id="cb14-36"><a></a>  <span class="cf">if</span>(grau <span class="sc">&gt;=</span> <span class="dv">2</span>L)</span>
-<span id="cb14-37"><a></a>    dados <span class="ot">&lt;-</span> <span class="fu">iteracoes</span>(dados, <span class="at">grau =</span> grau)</span>
-<span id="cb14-38"><a></a></span>
-<span id="cb14-39"><a></a>  ajuste <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> y <span class="sc">~</span> ., <span class="at">data =</span> dados)</span>
-<span id="cb14-40"><a></a>  dados<span class="sc">$</span>y_chapeu <span class="ot">&lt;-</span> <span class="fu">predict</span>(ajuste, <span class="at">new.data =</span> dados)</span>
-<span id="cb14-41"><a></a></span>
-<span id="cb14-42"><a></a>  dados <span class="sc">|&gt;</span></span>
-<span id="cb14-43"><a></a>    dplyr<span class="sc">::</span><span class="fu">relocate</span>(y_chapeu, <span class="at">.before =</span> x)</span>
-<span id="cb14-44"><a></a>}</span>
-<span id="cb14-45"><a></a></span>
-<span id="cb14-46"><a></a>plotando <span class="ot">&lt;-</span> <span class="cf">function</span>(dados){</span>
-<span id="cb14-47"><a></a>  dados <span class="sc">|&gt;</span></span>
-<span id="cb14-48"><a></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y_chapeu)) <span class="sc">+</span></span>
-<span id="cb14-49"><a></a>    <span class="fu">geom_point</span>()</span>
-<span id="cb14-50"><a></a>}</span>
-<span id="cb14-51"><a></a></span>
-<span id="cb14-52"><a></a>mc_ajustes <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">mc =</span> <span class="dv">100</span>L, <span class="at">n =</span> <span class="dv">50</span>L, <span class="at">desvio_padrao =</span> <span class="dv">5</span>, <span class="at">grau =</span> <span class="dv">1</span>L){</span>
-<span id="cb14-53"><a></a></span>
-<span id="cb14-54"><a></a>  p <span class="ot">&lt;-</span></span>
-<span id="cb14-55"><a></a>    <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb14-56"><a></a>      <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">17.5</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">110</span>)) <span class="sc">+</span></span>
-<span id="cb14-57"><a></a>      <span class="fu">ylab</span>(<span class="st">"Valores estimados"</span>)</span>
-<span id="cb14-58"><a></a></span>
-<span id="cb14-59"><a></a>  df <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb14-60"><a></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span>L<span class="sc">:</span>mc){</span>
-<span id="cb14-61"><a></a>    df <span class="ot">&lt;-</span> <span class="fu">regressao_polinomial</span>(<span class="at">n =</span> n, <span class="at">desvio_padrao =</span> desvio_padrao, <span class="at">grau =</span> grau)</span>
-<span id="cb14-62"><a></a>    p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y_chapeu))</span>
-<span id="cb14-63"><a></a>  }</span>
-<span id="cb14-64"><a></a>  p <span class="sc">+</span></span>
-<span id="cb14-65"><a></a>    <span class="fu">stat_function</span>(<span class="at">fun =</span> regressao_verdadeira, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">size=</span> <span class="fl">1.4</span>) <span class="sc">+</span></span>
-<span id="cb14-66"><a></a>    <span class="fu">labs</span>(</span>
-<span id="cb14-67"><a></a>      <span class="at">title =</span> <span class="st">"Regressão Polinomial"</span>,</span>
-<span id="cb14-68"><a></a>      <span class="at">subtitle =</span> <span class="fu">paste</span>(<span class="st">"Grau: "</span>, grau)</span>
-<span id="cb14-69"><a></a>    ) <span class="sc">+</span></span>
-<span id="cb14-70"><a></a>    <span class="fu">theme</span>(</span>
-<span id="cb14-71"><a></a>      <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb14-72"><a></a>      <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>)</span>
-<span id="cb14-73"><a></a>    )</span>
-<span id="cb14-74"><a></a>}</span>
-<span id="cb14-75"><a></a></span>
-<span id="cb14-76"><a></a><span class="co"># Fixando uma semente</span></span>
-<span id="cb14-77"><a></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
-<span id="cb14-78"><a></a></span>
-<span id="cb14-79"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">mc_ajustes</span>(<span class="at">grau =</span> <span class="dv">1</span>, <span class="at">n =</span> <span class="dv">100</span>, <span class="at">desvio_padrao =</span> <span class="dv">10</span>)</span>
-<span id="cb14-80"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">mc_ajustes</span>(<span class="at">grau =</span> <span class="dv">7</span>, <span class="at">n =</span> <span class="dv">100</span>, <span class="at">desvio_padrao =</span> <span class="dv">10</span>)</span>
-<span id="cb14-81"><a></a>p3 <span class="ot">&lt;-</span> <span class="fu">mc_ajustes</span>(<span class="at">grau =</span> <span class="dv">70</span>, <span class="at">n =</span> <span class="dv">100</span>, <span class="at">desvio_padrao =</span> <span class="dv">10</span>)</span>
-<span id="cb14-82"><a></a>p4 <span class="ot">&lt;-</span> <span class="fu">mc_ajustes</span>(<span class="at">grau =</span> <span class="dv">200</span>, <span class="at">n =</span> <span class="dv">100</span>, <span class="at">desvio_padrao =</span> <span class="dv">10</span>)</span>
-<span id="cb14-83"><a></a></span>
-<span id="cb14-84"><a></a>p <span class="ot">&lt;-</span> ((p1 <span class="sc">|</span> p2) <span class="sc">/</span> (p3 <span class="sc">|</span> p4)) <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">"A"</span>)</span>
-<span id="cb14-85"><a></a></span>
-<span id="cb14-86"><a></a><span class="fu">ggsave</span>(p, <span class="at">file =</span> <span class="st">"imgs/vies_variancia.png"</span>, <span class="at">device =</span> <span class="st">"png"</span>, <span class="at">width =</span> <span class="dv">40</span>, <span class="at">height =</span> <span class="dv">30</span>, <span class="at">units =</span> <span class="st">"cm"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Estude o código</summary><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb19-2"><a></a><span class="fu">library</span>(tibble)</span>
+<span id="cb19-3"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb19-4"><a></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb19-5"><a></a></span>
+<span id="cb19-6"><a></a><span class="co"># Função de regressão verdadeira. Na prática é desconhecida.</span></span>
+<span id="cb19-7"><a></a>regressao_verdadeira <span class="ot">&lt;-</span> <span class="cf">function</span>(x)</span>
+<span id="cb19-8"><a></a>  <span class="dv">45</span> <span class="sc">*</span> <span class="fu">tanh</span>(x<span class="sc">/</span><span class="fl">1.9</span> <span class="sc">-</span> <span class="dv">7</span>) <span class="sc">+</span> <span class="dv">57</span></span>
+<span id="cb19-9"><a></a></span>
+<span id="cb19-10"><a></a>observacoes_regressao_real <span class="ot">&lt;-</span> <span class="cf">function</span>(n, <span class="at">desvio_padrao =</span> <span class="fl">0.2</span>) {</span>
+<span id="cb19-11"><a></a>  <span class="co"># Permitindo que o mesmo x possa ter dois pontos de y, como ocorre na</span></span>
+<span id="cb19-12"><a></a>  <span class="co"># pratica</span></span>
+<span id="cb19-13"><a></a>  seq_x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="fl">17.5</span>, <span class="at">length.out =</span> n), <span class="at">size =</span> n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb19-14"><a></a></span>
+<span id="cb19-15"><a></a>  step <span class="ot">&lt;-</span> <span class="cf">function</span>(x)</span>
+<span id="cb19-16"><a></a>    <span class="fu">regressao_verdadeira</span>(x) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>L, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> desvio_padrao)</span>
+<span id="cb19-17"><a></a></span>
+<span id="cb19-18"><a></a>  tibble<span class="sc">::</span><span class="fu">tibble</span>(<span class="at">y =</span> purrr<span class="sc">::</span><span class="fu">map_vec</span>(<span class="at">.x =</span> seq_x, <span class="at">.f =</span> step), <span class="at">x =</span> seq_x)</span>
+<span id="cb19-19"><a></a>}</span>
+<span id="cb19-20"><a></a></span>
+<span id="cb19-21"><a></a><span class="co"># Usaremos uma regressão polinomial para tentar ajustar à regressão -------</span></span>
+<span id="cb19-22"><a></a>regressao_polinomial <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">30</span>L, <span class="at">desvio_padrao =</span> <span class="dv">4</span>, <span class="at">grau =</span> <span class="dv">1</span>L) {</span>
+<span id="cb19-23"><a></a></span>
+<span id="cb19-24"><a></a>  dados <span class="ot">&lt;-</span> <span class="fu">observacoes_regressao_real</span>(<span class="at">n =</span> n, <span class="at">desvio_padrao =</span> desvio_padrao)</span>
+<span id="cb19-25"><a></a></span>
+<span id="cb19-26"><a></a>  iteracoes <span class="ot">&lt;-</span> <span class="cf">function</span>(tibble_data, grau) {</span>
+<span id="cb19-27"><a></a>      x <span class="ot">&lt;-</span> tibble_data<span class="sc">$</span>x</span>
+<span id="cb19-28"><a></a>      iteracoes <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="at">X =</span> <span class="dv">2</span>L<span class="sc">:</span>grau, <span class="at">FUN =</span> <span class="cf">function</span>(i) x<span class="sc">^</span>i)</span>
+<span id="cb19-29"><a></a></span>
+<span id="cb19-30"><a></a>      result <span class="ot">&lt;-</span> <span class="fu">cbind</span>(tibble_data, <span class="fu">do.call</span>(cbind, iteracoes))</span>
+<span id="cb19-31"><a></a>      <span class="fu">colnames</span>(result)[(<span class="fu">ncol</span>(tibble_data) <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span><span class="fu">ncol</span>(result)] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"x"</span>, <span class="dv">2</span>L<span class="sc">:</span>grau)</span>
+<span id="cb19-32"><a></a></span>
+<span id="cb19-33"><a></a>      <span class="fu">as_tibble</span>(result)</span>
+<span id="cb19-34"><a></a>  }</span>
+<span id="cb19-35"><a></a></span>
+<span id="cb19-36"><a></a>  <span class="cf">if</span>(grau <span class="sc">&gt;=</span> <span class="dv">2</span>L)</span>
+<span id="cb19-37"><a></a>    dados <span class="ot">&lt;-</span> <span class="fu">iteracoes</span>(dados, <span class="at">grau =</span> grau)</span>
+<span id="cb19-38"><a></a></span>
+<span id="cb19-39"><a></a>  ajuste <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> y <span class="sc">~</span> ., <span class="at">data =</span> dados)</span>
+<span id="cb19-40"><a></a>  dados<span class="sc">$</span>y_chapeu <span class="ot">&lt;-</span> <span class="fu">predict</span>(ajuste, <span class="at">new.data =</span> dados)</span>
+<span id="cb19-41"><a></a></span>
+<span id="cb19-42"><a></a>  dados <span class="sc">|&gt;</span></span>
+<span id="cb19-43"><a></a>    dplyr<span class="sc">::</span><span class="fu">relocate</span>(y_chapeu, <span class="at">.before =</span> x)</span>
+<span id="cb19-44"><a></a>}</span>
+<span id="cb19-45"><a></a></span>
+<span id="cb19-46"><a></a>plotando <span class="ot">&lt;-</span> <span class="cf">function</span>(dados){</span>
+<span id="cb19-47"><a></a>  dados <span class="sc">|&gt;</span></span>
+<span id="cb19-48"><a></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y_chapeu)) <span class="sc">+</span></span>
+<span id="cb19-49"><a></a>    <span class="fu">geom_point</span>()</span>
+<span id="cb19-50"><a></a>}</span>
+<span id="cb19-51"><a></a></span>
+<span id="cb19-52"><a></a>mc_ajustes <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">mc =</span> <span class="dv">100</span>L, <span class="at">n =</span> <span class="dv">50</span>L, <span class="at">desvio_padrao =</span> <span class="dv">5</span>, <span class="at">grau =</span> <span class="dv">1</span>L){</span>
+<span id="cb19-53"><a></a></span>
+<span id="cb19-54"><a></a>  p <span class="ot">&lt;-</span></span>
+<span id="cb19-55"><a></a>    <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb19-56"><a></a>      <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">17.5</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">110</span>)) <span class="sc">+</span></span>
+<span id="cb19-57"><a></a>      <span class="fu">ylab</span>(<span class="st">"Valores estimados"</span>)</span>
+<span id="cb19-58"><a></a></span>
+<span id="cb19-59"><a></a>  df <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb19-60"><a></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span>L<span class="sc">:</span>mc){</span>
+<span id="cb19-61"><a></a>    df <span class="ot">&lt;-</span> <span class="fu">regressao_polinomial</span>(<span class="at">n =</span> n, <span class="at">desvio_padrao =</span> desvio_padrao, <span class="at">grau =</span> grau)</span>
+<span id="cb19-62"><a></a>    p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y_chapeu))</span>
+<span id="cb19-63"><a></a>  }</span>
+<span id="cb19-64"><a></a>  p <span class="sc">+</span></span>
+<span id="cb19-65"><a></a>    <span class="fu">stat_function</span>(<span class="at">fun =</span> regressao_verdadeira, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">size=</span> <span class="fl">1.4</span>) <span class="sc">+</span></span>
+<span id="cb19-66"><a></a>    <span class="fu">labs</span>(</span>
+<span id="cb19-67"><a></a>      <span class="at">title =</span> <span class="st">"Regressão Polinomial"</span>,</span>
+<span id="cb19-68"><a></a>      <span class="at">subtitle =</span> <span class="fu">paste</span>(<span class="st">"Grau: "</span>, grau)</span>
+<span id="cb19-69"><a></a>    ) <span class="sc">+</span></span>
+<span id="cb19-70"><a></a>    <span class="fu">theme</span>(</span>
+<span id="cb19-71"><a></a>      <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb19-72"><a></a>      <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>)</span>
+<span id="cb19-73"><a></a>    )</span>
+<span id="cb19-74"><a></a>}</span>
+<span id="cb19-75"><a></a></span>
+<span id="cb19-76"><a></a><span class="co"># Fixando uma semente</span></span>
+<span id="cb19-77"><a></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb19-78"><a></a></span>
+<span id="cb19-79"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">mc_ajustes</span>(<span class="at">grau =</span> <span class="dv">1</span>, <span class="at">n =</span> <span class="dv">100</span>, <span class="at">desvio_padrao =</span> <span class="dv">10</span>)</span>
+<span id="cb19-80"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">mc_ajustes</span>(<span class="at">grau =</span> <span class="dv">7</span>, <span class="at">n =</span> <span class="dv">100</span>, <span class="at">desvio_padrao =</span> <span class="dv">10</span>)</span>
+<span id="cb19-81"><a></a>p3 <span class="ot">&lt;-</span> <span class="fu">mc_ajustes</span>(<span class="at">grau =</span> <span class="dv">70</span>, <span class="at">n =</span> <span class="dv">100</span>, <span class="at">desvio_padrao =</span> <span class="dv">10</span>)</span>
+<span id="cb19-82"><a></a>p4 <span class="ot">&lt;-</span> <span class="fu">mc_ajustes</span>(<span class="at">grau =</span> <span class="dv">200</span>, <span class="at">n =</span> <span class="dv">100</span>, <span class="at">desvio_padrao =</span> <span class="dv">10</span>)</span>
+<span id="cb19-83"><a></a></span>
+<span id="cb19-84"><a></a>p <span class="ot">&lt;-</span> ((p1 <span class="sc">|</span> p2) <span class="sc">/</span> (p3 <span class="sc">|</span> p4)) <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">"A"</span>)</span>
+<span id="cb19-85"><a></a></span>
+<span id="cb19-86"><a></a><span class="fu">ggsave</span>(p, <span class="at">file =</span> <span class="st">"imgs/vies_variancia.png"</span>, <span class="at">device =</span> <span class="st">"png"</span>, <span class="at">width =</span> <span class="dv">40</span>, <span class="at">height =</span> <span class="dv">30</span>, <span class="at">units =</span> <span class="st">"cm"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 
@@ -1338,114 +1531,114 @@
 <p>Abaixo você poderá acessar o código que soluciona o problema. O parâmetro <code>errado = FALSE</code> da função validação no código que segue, conduz a solução correta (usando a validação cruzada), que sempre você deverá considerar na prática.</p>
 <p><br></p>
 <div class="cell">
-<details class="code-fold"><summary>Estude o código da solução de exemplo</summary><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">library</span>(rsample)</span>
-<span id="cb15-2"><a></a><span class="fu">library</span>(yardstick)</span>
-<span id="cb15-3"><a></a><span class="fu">library</span>(tibble)</span>
-<span id="cb15-4"><a></a><span class="fu">library</span>(purrr)</span>
-<span id="cb15-5"><a></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb15-6"><a></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb15-7"><a></a></span>
-<span id="cb15-8"><a></a><span class="co"># Lendo dados</span></span>
-<span id="cb15-9"><a></a>url <span class="ot">&lt;-</span> <span class="st">"https://github.com/prdm0/dados/raw/main/dados_expectativa_renda.RData"</span></span>
-<span id="cb15-10"><a></a>arquivo_temp <span class="ot">&lt;-</span> <span class="fu">tempfile</span>()</span>
-<span id="cb15-11"><a></a><span class="fu">download.file</span>(<span class="at">url =</span> url, <span class="at">destfile =</span> arquivo_temp)</span>
-<span id="cb15-12"><a></a><span class="fu">load</span>(arquivo_temp)</span>
-<span id="cb15-13"><a></a></span>
-<span id="cb15-14"><a></a>dados <span class="ot">&lt;-</span></span>
-<span id="cb15-15"><a></a>  dados_expectativa_renda <span class="sc">|&gt;</span></span>
-<span id="cb15-16"><a></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>CountryName) <span class="sc">|&gt;</span></span>
-<span id="cb15-17"><a></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">y =</span> LifeExpectancy, <span class="at">x =</span> GDPercapita)</span>
-<span id="cb15-18"><a></a></span>
-<span id="cb15-19"><a></a>iteracoes <span class="ot">&lt;-</span> <span class="cf">function</span>(tibble_data, grau) {</span>
-<span id="cb15-20"><a></a>  x <span class="ot">&lt;-</span> tibble_data<span class="sc">$</span>x</span>
-<span id="cb15-21"><a></a>  iteracoes <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="at">X =</span> <span class="dv">2</span>L<span class="sc">:</span>grau, <span class="at">FUN =</span> <span class="cf">function</span>(i) x<span class="sc">^</span>i)</span>
-<span id="cb15-22"><a></a></span>
-<span id="cb15-23"><a></a>  result <span class="ot">&lt;-</span> <span class="fu">cbind</span>(tibble_data, <span class="fu">do.call</span>(cbind, iteracoes))</span>
-<span id="cb15-24"><a></a>  <span class="fu">colnames</span>(result)[(<span class="fu">ncol</span>(tibble_data) <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span><span class="fu">ncol</span>(result)] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"x"</span>, <span class="dv">2</span>L<span class="sc">:</span>grau)</span>
-<span id="cb15-25"><a></a></span>
-<span id="cb15-26"><a></a>  <span class="fu">as_tibble</span>(result)</span>
-<span id="cb15-27"><a></a>}</span>
-<span id="cb15-28"><a></a></span>
-<span id="cb15-29"><a></a>regressao_polinomial <span class="ot">&lt;-</span> <span class="cf">function</span>(dados, <span class="at">grau =</span> <span class="dv">1</span>L) {</span>
-<span id="cb15-30"><a></a>  <span class="cf">if</span>(grau <span class="sc">&gt;=</span> <span class="dv">2</span>L)</span>
-<span id="cb15-31"><a></a>    dados <span class="ot">&lt;-</span> <span class="fu">iteracoes</span>(dados, <span class="at">grau =</span> grau)</span>
-<span id="cb15-32"><a></a></span>
-<span id="cb15-33"><a></a>  <span class="fu">lm</span>(<span class="at">formula =</span> y <span class="sc">~</span> ., <span class="at">data =</span> dados)</span>
-<span id="cb15-34"><a></a>}</span>
-<span id="cb15-35"><a></a></span>
-<span id="cb15-36"><a></a><span class="co"># Divisão dos dados</span></span>
-<span id="cb15-37"><a></a>divisao_inicial <span class="ot">&lt;-</span> rsample<span class="sc">::</span><span class="fu">initial_split</span>(dados)</span>
-<span id="cb15-38"><a></a>treinamento <span class="ot">&lt;-</span> rsample<span class="sc">::</span><span class="fu">training</span>(divisao_inicial)</span>
-<span id="cb15-39"><a></a>teste <span class="ot">&lt;-</span> rsample<span class="sc">::</span><span class="fu">testing</span>(divisao_inicial) <span class="co"># Teste final</span></span>
-<span id="cb15-40"><a></a></span>
-<span id="cb15-41"><a></a><span class="co"># v-folds cross-validation</span></span>
-<span id="cb15-42"><a></a>validacao <span class="ot">&lt;-</span> <span class="cf">function</span>(dados, <span class="at">grau =</span> <span class="dv">1</span>L, <span class="at">errado =</span> <span class="cn">FALSE</span>, ...){</span>
-<span id="cb15-43"><a></a></span>
-<span id="cb15-44"><a></a>  <span class="co"># Todas as divisões da validacao cruzada</span></span>
-<span id="cb15-45"><a></a>  cv <span class="ot">&lt;-</span> rsample<span class="sc">::</span><span class="fu">vfold_cv</span>(dados, ...)</span>
-<span id="cb15-46"><a></a></span>
-<span id="cb15-47"><a></a>  hiper <span class="ot">&lt;-</span> <span class="cf">function</span>(i){</span>
-<span id="cb15-48"><a></a>    treino <span class="ot">&lt;-</span> rsample<span class="sc">::</span><span class="fu">analysis</span>(cv<span class="sc">$</span>splits[[i]]) <span class="co"># Treinamento</span></span>
-<span id="cb15-49"><a></a>    validacao <span class="ot">&lt;-</span> rsample<span class="sc">::</span><span class="fu">assessment</span>(cv<span class="sc">$</span>splits[[i]]) <span class="co"># Validacação</span></span>
-<span id="cb15-50"><a></a>    ajuste <span class="ot">&lt;-</span> <span class="fu">regressao_polinomial</span>(<span class="at">dados =</span> treino, <span class="at">grau =</span> grau)</span>
-<span id="cb15-51"><a></a></span>
-<span id="cb15-52"><a></a>    <span class="cf">if</span>(errado){</span>
-<span id="cb15-53"><a></a>      df_treino <span class="ot">&lt;-</span> <span class="fu">iteracoes</span>(treino, <span class="at">grau =</span> grau)</span>
-<span id="cb15-54"><a></a>      df_treino <span class="ot">&lt;-</span> df_treino <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">y_chapeu =</span> <span class="fu">predict</span>(ajuste, <span class="at">newdata =</span> df_treino))</span>
-<span id="cb15-55"><a></a>      yardstick<span class="sc">::</span><span class="fu">rmse</span>(<span class="at">data =</span> df_treino, <span class="at">truth =</span> y, <span class="at">estimate =</span> y_chapeu)<span class="sc">$</span>.estimate</span>
-<span id="cb15-56"><a></a>    } <span class="cf">else</span> {</span>
-<span id="cb15-57"><a></a>      df_validacao <span class="ot">&lt;-</span> <span class="fu">iteracoes</span>(validacao, <span class="at">grau =</span> grau)</span>
-<span id="cb15-58"><a></a>      df_validacao <span class="ot">&lt;-</span> df_validacao <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">y_chapeu =</span> <span class="fu">predict</span>(ajuste, <span class="at">newdata =</span> df_validacao))</span>
-<span id="cb15-59"><a></a>      yardstick<span class="sc">::</span><span class="fu">rmse</span>(<span class="at">data =</span> df_validacao, <span class="at">truth =</span> y, <span class="at">estimate =</span> y_chapeu)<span class="sc">$</span>.estimate</span>
-<span id="cb15-60"><a></a>    }</span>
-<span id="cb15-61"><a></a>  }</span>
-<span id="cb15-62"><a></a>  purrr<span class="sc">::</span><span class="fu">map_dbl</span>(<span class="at">.x =</span> <span class="fu">seq_along</span>(cv<span class="sc">$</span>splits), <span class="at">.f =</span> hiper) <span class="sc">|&gt;</span></span>
-<span id="cb15-63"><a></a>    <span class="fu">mean</span>()</span>
-<span id="cb15-64"><a></a>}</span>
-<span id="cb15-65"><a></a></span>
-<span id="cb15-66"><a></a>plot_avaliacao <span class="ot">&lt;-</span> <span class="cf">function</span>(dados, <span class="at">errado =</span> <span class="cn">FALSE</span>){</span>
-<span id="cb15-67"><a></a>  <span class="co"># Testando iterativamente, vários valores de p:</span></span>
-<span id="cb15-68"><a></a>  p <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>L<span class="sc">:</span><span class="dv">11</span>L)</span>
-<span id="cb15-69"><a></a>  risco <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_dbl</span>(<span class="at">.x =</span> p, <span class="at">.f =</span> \(p) <span class="fu">validacao</span>(<span class="at">dados =</span> dados, <span class="at">grau =</span> p, <span class="at">errado =</span> errado))</span>
-<span id="cb15-70"><a></a>  df_risco <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(<span class="at">p =</span> p, <span class="at">risco =</span> risco)</span>
-<span id="cb15-71"><a></a></span>
-<span id="cb15-72"><a></a>  <span class="co"># Plotando</span></span>
-<span id="cb15-73"><a></a>  df_risco <span class="sc">|&gt;</span></span>
-<span id="cb15-74"><a></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> p, <span class="at">y =</span> risco, <span class="at">color =</span> risco)) <span class="sc">+</span></span>
-<span id="cb15-75"><a></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb15-76"><a></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> p) <span class="sc">+</span></span>
-<span id="cb15-77"><a></a>    <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> p) <span class="sc">+</span></span>
-<span id="cb15-78"><a></a>    <span class="fu">labs</span>(</span>
-<span id="cb15-79"><a></a>      <span class="at">title =</span> <span class="st">"Valiando o risco estimado para diversos graus do polinômio"</span>,</span>
-<span id="cb15-80"><a></a>      <span class="at">subtitle =</span> <span class="st">"EQM no conjunto de validação"</span></span>
-<span id="cb15-81"><a></a>    ) <span class="sc">+</span></span>
-<span id="cb15-82"><a></a>    <span class="fu">theme</span>(</span>
-<span id="cb15-83"><a></a>      <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb15-84"><a></a>      <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>),</span>
-<span id="cb15-85"><a></a>      <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
-<span id="cb15-86"><a></a>      <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">face =</span> <span class="st">"bold"</span>)</span>
-<span id="cb15-87"><a></a>    )</span>
-<span id="cb15-88"><a></a>}</span>
-<span id="cb15-89"><a></a></span>
-<span id="cb15-90"><a></a><span class="co"># Avaliacão errada versus correta</span></span>
-<span id="cb15-91"><a></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
-<span id="cb15-92"><a></a>grafico <span class="ot">&lt;-</span></span>
-<span id="cb15-93"><a></a>  <span class="fu">plot_avaliacao</span>(dados, <span class="at">errado =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb15-94"><a></a>  <span class="fu">plot_avaliacao</span>(dados, <span class="at">errado =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb15-95"><a></a>  <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>))</span>
-<span id="cb15-96"><a></a></span>
-<span id="cb15-97"><a></a><span class="fu">ggsave</span>(grafico, <span class="at">file =</span> <span class="st">"imgs/avaliacao_risco.png"</span>, <span class="at">device =</span> <span class="st">"png"</span>, <span class="at">width =</span> <span class="dv">50</span>, <span class="at">height =</span> <span class="dv">20</span>, <span class="at">units =</span> <span class="st">"cm"</span>, <span class="at">limitsize =</span> F)</span>
-<span id="cb15-98"><a></a></span>
-<span id="cb15-99"><a></a>plot_bar <span class="ot">&lt;-</span> <span class="cf">function</span>(grau){</span>
-<span id="cb15-100"><a></a>  ruim <span class="ot">&lt;-</span> <span class="fu">validacao</span>(dados, <span class="at">errado =</span> <span class="cn">TRUE</span>, <span class="at">grau =</span> grau)</span>
-<span id="cb15-101"><a></a>  bom <span class="ot">&lt;-</span> <span class="fu">validacao</span>(dados, <span class="at">errado =</span> <span class="cn">FALSE</span>, <span class="at">grau =</span> grau)</span>
-<span id="cb15-102"><a></a>  df <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="st">"Errado"</span>, <span class="st">"Certo"</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="fu">log</span>(ruim), <span class="fu">log</span>(bom)))</span>
-<span id="cb15-103"><a></a></span>
-<span id="cb15-104"><a></a>  df <span class="sc">|&gt;</span></span>
-<span id="cb15-105"><a></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
-<span id="cb15-106"><a></a>    <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb15-107"><a></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> y), <span class="at">vjust =</span> <span class="dv">0</span>)</span>
-<span id="cb15-108"><a></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Estude o código da solução de exemplo</summary><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">library</span>(rsample)</span>
+<span id="cb20-2"><a></a><span class="fu">library</span>(yardstick)</span>
+<span id="cb20-3"><a></a><span class="fu">library</span>(tibble)</span>
+<span id="cb20-4"><a></a><span class="fu">library</span>(purrr)</span>
+<span id="cb20-5"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb20-6"><a></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb20-7"><a></a></span>
+<span id="cb20-8"><a></a><span class="co"># Lendo dados</span></span>
+<span id="cb20-9"><a></a>url <span class="ot">&lt;-</span> <span class="st">"https://github.com/prdm0/dados/raw/main/dados_expectativa_renda.RData"</span></span>
+<span id="cb20-10"><a></a>arquivo_temp <span class="ot">&lt;-</span> <span class="fu">tempfile</span>()</span>
+<span id="cb20-11"><a></a><span class="fu">download.file</span>(<span class="at">url =</span> url, <span class="at">destfile =</span> arquivo_temp)</span>
+<span id="cb20-12"><a></a><span class="fu">load</span>(arquivo_temp)</span>
+<span id="cb20-13"><a></a></span>
+<span id="cb20-14"><a></a>dados <span class="ot">&lt;-</span></span>
+<span id="cb20-15"><a></a>  dados_expectativa_renda <span class="sc">|&gt;</span></span>
+<span id="cb20-16"><a></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>CountryName) <span class="sc">|&gt;</span></span>
+<span id="cb20-17"><a></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">y =</span> LifeExpectancy, <span class="at">x =</span> GDPercapita)</span>
+<span id="cb20-18"><a></a></span>
+<span id="cb20-19"><a></a>iteracoes <span class="ot">&lt;-</span> <span class="cf">function</span>(tibble_data, grau) {</span>
+<span id="cb20-20"><a></a>  x <span class="ot">&lt;-</span> tibble_data<span class="sc">$</span>x</span>
+<span id="cb20-21"><a></a>  iteracoes <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="at">X =</span> <span class="dv">2</span>L<span class="sc">:</span>grau, <span class="at">FUN =</span> <span class="cf">function</span>(i) x<span class="sc">^</span>i)</span>
+<span id="cb20-22"><a></a></span>
+<span id="cb20-23"><a></a>  result <span class="ot">&lt;-</span> <span class="fu">cbind</span>(tibble_data, <span class="fu">do.call</span>(cbind, iteracoes))</span>
+<span id="cb20-24"><a></a>  <span class="fu">colnames</span>(result)[(<span class="fu">ncol</span>(tibble_data) <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span><span class="fu">ncol</span>(result)] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"x"</span>, <span class="dv">2</span>L<span class="sc">:</span>grau)</span>
+<span id="cb20-25"><a></a></span>
+<span id="cb20-26"><a></a>  <span class="fu">as_tibble</span>(result)</span>
+<span id="cb20-27"><a></a>}</span>
+<span id="cb20-28"><a></a></span>
+<span id="cb20-29"><a></a>regressao_polinomial <span class="ot">&lt;-</span> <span class="cf">function</span>(dados, <span class="at">grau =</span> <span class="dv">1</span>L) {</span>
+<span id="cb20-30"><a></a>  <span class="cf">if</span>(grau <span class="sc">&gt;=</span> <span class="dv">2</span>L)</span>
+<span id="cb20-31"><a></a>    dados <span class="ot">&lt;-</span> <span class="fu">iteracoes</span>(dados, <span class="at">grau =</span> grau)</span>
+<span id="cb20-32"><a></a></span>
+<span id="cb20-33"><a></a>  <span class="fu">lm</span>(<span class="at">formula =</span> y <span class="sc">~</span> ., <span class="at">data =</span> dados)</span>
+<span id="cb20-34"><a></a>}</span>
+<span id="cb20-35"><a></a></span>
+<span id="cb20-36"><a></a><span class="co"># Divisão dos dados</span></span>
+<span id="cb20-37"><a></a>divisao_inicial <span class="ot">&lt;-</span> rsample<span class="sc">::</span><span class="fu">initial_split</span>(dados)</span>
+<span id="cb20-38"><a></a>treinamento <span class="ot">&lt;-</span> rsample<span class="sc">::</span><span class="fu">training</span>(divisao_inicial)</span>
+<span id="cb20-39"><a></a>teste <span class="ot">&lt;-</span> rsample<span class="sc">::</span><span class="fu">testing</span>(divisao_inicial) <span class="co"># Teste final</span></span>
+<span id="cb20-40"><a></a></span>
+<span id="cb20-41"><a></a><span class="co"># v-folds cross-validation</span></span>
+<span id="cb20-42"><a></a>validacao <span class="ot">&lt;-</span> <span class="cf">function</span>(dados, <span class="at">grau =</span> <span class="dv">1</span>L, <span class="at">errado =</span> <span class="cn">FALSE</span>, ...){</span>
+<span id="cb20-43"><a></a></span>
+<span id="cb20-44"><a></a>  <span class="co"># Todas as divisões da validacao cruzada</span></span>
+<span id="cb20-45"><a></a>  cv <span class="ot">&lt;-</span> rsample<span class="sc">::</span><span class="fu">vfold_cv</span>(dados, ...)</span>
+<span id="cb20-46"><a></a></span>
+<span id="cb20-47"><a></a>  hiper <span class="ot">&lt;-</span> <span class="cf">function</span>(i){</span>
+<span id="cb20-48"><a></a>    treino <span class="ot">&lt;-</span> rsample<span class="sc">::</span><span class="fu">analysis</span>(cv<span class="sc">$</span>splits[[i]]) <span class="co"># Treinamento</span></span>
+<span id="cb20-49"><a></a>    validacao <span class="ot">&lt;-</span> rsample<span class="sc">::</span><span class="fu">assessment</span>(cv<span class="sc">$</span>splits[[i]]) <span class="co"># Validacação</span></span>
+<span id="cb20-50"><a></a>    ajuste <span class="ot">&lt;-</span> <span class="fu">regressao_polinomial</span>(<span class="at">dados =</span> treino, <span class="at">grau =</span> grau)</span>
+<span id="cb20-51"><a></a></span>
+<span id="cb20-52"><a></a>    <span class="cf">if</span>(errado){</span>
+<span id="cb20-53"><a></a>      df_treino <span class="ot">&lt;-</span> <span class="fu">iteracoes</span>(treino, <span class="at">grau =</span> grau)</span>
+<span id="cb20-54"><a></a>      df_treino <span class="ot">&lt;-</span> df_treino <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">y_chapeu =</span> <span class="fu">predict</span>(ajuste, <span class="at">newdata =</span> df_treino))</span>
+<span id="cb20-55"><a></a>      yardstick<span class="sc">::</span><span class="fu">rmse</span>(<span class="at">data =</span> df_treino, <span class="at">truth =</span> y, <span class="at">estimate =</span> y_chapeu)<span class="sc">$</span>.estimate</span>
+<span id="cb20-56"><a></a>    } <span class="cf">else</span> {</span>
+<span id="cb20-57"><a></a>      df_validacao <span class="ot">&lt;-</span> <span class="fu">iteracoes</span>(validacao, <span class="at">grau =</span> grau)</span>
+<span id="cb20-58"><a></a>      df_validacao <span class="ot">&lt;-</span> df_validacao <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">y_chapeu =</span> <span class="fu">predict</span>(ajuste, <span class="at">newdata =</span> df_validacao))</span>
+<span id="cb20-59"><a></a>      yardstick<span class="sc">::</span><span class="fu">rmse</span>(<span class="at">data =</span> df_validacao, <span class="at">truth =</span> y, <span class="at">estimate =</span> y_chapeu)<span class="sc">$</span>.estimate</span>
+<span id="cb20-60"><a></a>    }</span>
+<span id="cb20-61"><a></a>  }</span>
+<span id="cb20-62"><a></a>  purrr<span class="sc">::</span><span class="fu">map_dbl</span>(<span class="at">.x =</span> <span class="fu">seq_along</span>(cv<span class="sc">$</span>splits), <span class="at">.f =</span> hiper) <span class="sc">|&gt;</span></span>
+<span id="cb20-63"><a></a>    <span class="fu">mean</span>()</span>
+<span id="cb20-64"><a></a>}</span>
+<span id="cb20-65"><a></a></span>
+<span id="cb20-66"><a></a>plot_avaliacao <span class="ot">&lt;-</span> <span class="cf">function</span>(dados, <span class="at">errado =</span> <span class="cn">FALSE</span>){</span>
+<span id="cb20-67"><a></a>  <span class="co"># Testando iterativamente, vários valores de p:</span></span>
+<span id="cb20-68"><a></a>  p <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>L<span class="sc">:</span><span class="dv">11</span>L)</span>
+<span id="cb20-69"><a></a>  risco <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_dbl</span>(<span class="at">.x =</span> p, <span class="at">.f =</span> \(p) <span class="fu">validacao</span>(<span class="at">dados =</span> dados, <span class="at">grau =</span> p, <span class="at">errado =</span> errado))</span>
+<span id="cb20-70"><a></a>  df_risco <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(<span class="at">p =</span> p, <span class="at">risco =</span> risco)</span>
+<span id="cb20-71"><a></a></span>
+<span id="cb20-72"><a></a>  <span class="co"># Plotando</span></span>
+<span id="cb20-73"><a></a>  df_risco <span class="sc">|&gt;</span></span>
+<span id="cb20-74"><a></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> p, <span class="at">y =</span> risco, <span class="at">color =</span> risco)) <span class="sc">+</span></span>
+<span id="cb20-75"><a></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb20-76"><a></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> p) <span class="sc">+</span></span>
+<span id="cb20-77"><a></a>    <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> p) <span class="sc">+</span></span>
+<span id="cb20-78"><a></a>    <span class="fu">labs</span>(</span>
+<span id="cb20-79"><a></a>      <span class="at">title =</span> <span class="st">"Valiando o risco estimado para diversos graus do polinômio"</span>,</span>
+<span id="cb20-80"><a></a>      <span class="at">subtitle =</span> <span class="st">"EQM no conjunto de validação"</span></span>
+<span id="cb20-81"><a></a>    ) <span class="sc">+</span></span>
+<span id="cb20-82"><a></a>    <span class="fu">theme</span>(</span>
+<span id="cb20-83"><a></a>      <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb20-84"><a></a>      <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb20-85"><a></a>      <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb20-86"><a></a>      <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">face =</span> <span class="st">"bold"</span>)</span>
+<span id="cb20-87"><a></a>    )</span>
+<span id="cb20-88"><a></a>}</span>
+<span id="cb20-89"><a></a></span>
+<span id="cb20-90"><a></a><span class="co"># Avaliacão errada versus correta</span></span>
+<span id="cb20-91"><a></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb20-92"><a></a>grafico <span class="ot">&lt;-</span></span>
+<span id="cb20-93"><a></a>  <span class="fu">plot_avaliacao</span>(dados, <span class="at">errado =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb20-94"><a></a>  <span class="fu">plot_avaliacao</span>(dados, <span class="at">errado =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb20-95"><a></a>  <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>))</span>
+<span id="cb20-96"><a></a></span>
+<span id="cb20-97"><a></a><span class="fu">ggsave</span>(grafico, <span class="at">file =</span> <span class="st">"imgs/avaliacao_risco.png"</span>, <span class="at">device =</span> <span class="st">"png"</span>, <span class="at">width =</span> <span class="dv">50</span>, <span class="at">height =</span> <span class="dv">20</span>, <span class="at">units =</span> <span class="st">"cm"</span>, <span class="at">limitsize =</span> F)</span>
+<span id="cb20-98"><a></a></span>
+<span id="cb20-99"><a></a>plot_bar <span class="ot">&lt;-</span> <span class="cf">function</span>(grau){</span>
+<span id="cb20-100"><a></a>  ruim <span class="ot">&lt;-</span> <span class="fu">validacao</span>(dados, <span class="at">errado =</span> <span class="cn">TRUE</span>, <span class="at">grau =</span> grau)</span>
+<span id="cb20-101"><a></a>  bom <span class="ot">&lt;-</span> <span class="fu">validacao</span>(dados, <span class="at">errado =</span> <span class="cn">FALSE</span>, <span class="at">grau =</span> grau)</span>
+<span id="cb20-102"><a></a>  df <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="st">"Errado"</span>, <span class="st">"Certo"</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="fu">log</span>(ruim), <span class="fu">log</span>(bom)))</span>
+<span id="cb20-103"><a></a></span>
+<span id="cb20-104"><a></a>  df <span class="sc">|&gt;</span></span>
+<span id="cb20-105"><a></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb20-106"><a></a>    <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb20-107"><a></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> y), <span class="at">vjust =</span> <span class="dv">0</span>)</span>
+<span id="cb20-108"><a></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 
@@ -1613,8 +1806,8 @@
 <p>No R, a regressão lasso poderá ser feita usando a biblioteca <a href="https://cran.r-project.org/web/packages/glmnet/index.html">glmnet</a>, assim:</p>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">library</span>(glmnet)</span>
-<span id="cb16-2"><a></a>ajuste <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(x, y, <span class="at">alpha =</span> <span class="dv">1</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">library</span>(glmnet)</span>
+<span id="cb21-2"><a></a>ajuste <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(x, y, <span class="at">alpha =</span> <span class="dv">1</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 
@@ -1631,8 +1824,8 @@
 <p>No R, também poderemos utilizar a biblioteca <a href="https://cran.r-project.org/web/packages/glmnet/index.html">glmnet</a>:</p>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">library</span>(glmnet)</span>
-<span id="cb17-2"><a></a>ajuste <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(x, y, <span class="at">alpha =</span> <span class="dv">0</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">library</span>(glmnet)</span>
+<span id="cb22-2"><a></a>ajuste <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(x, y, <span class="at">alpha =</span> <span class="dv">0</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 
@@ -1659,153 +1852,153 @@
 <img data-src="gifs/teclado-anime.gif" style="width:21.0%" class="r-stretch"></section><section id="exemplo-emq-ridge-lasso-e-elastic-net-1" class="slide level2"><h2>Exemplo: EMQ, Ridge, Lasso e Elastic Net</h2>
 <p><br></p>
 <div class="cell">
-<details class="code-fold"><summary>Solução utilizando o tidymodels</summary><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb18-2"><a></a><span class="fu">library</span>(tibble)</span>
-<span id="cb18-3"><a></a><span class="fu">library</span>(purrr)</span>
-<span id="cb18-4"><a></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb18-5"><a></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb18-6"><a></a></span>
-<span id="cb18-7"><a></a><span class="co"># Removendo possíveis conflitos de pacotes --------------------------------</span></span>
-<span id="cb18-8"><a></a>tidymodels<span class="sc">::</span><span class="fu">tidymodels_prefer</span>()</span>
-<span id="cb18-9"><a></a></span>
-<span id="cb18-10"><a></a><span class="co"># Função para gerar os dados ----------------------------------------------</span></span>
-<span id="cb18-11"><a></a>gerando_dados <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">300</span>L){</span>
-<span id="cb18-12"><a></a>  regressao <span class="ot">&lt;-</span> <span class="cf">function</span>(i){</span>
-<span id="cb18-13"><a></a>    x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">5</span>L)</span>
-<span id="cb18-14"><a></a>    y <span class="ot">&lt;-</span> <span class="dv">3</span><span class="sc">*</span>x[<span class="dv">1</span>L] <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span>x[<span class="dv">2</span>L] <span class="sc">+</span> x[<span class="dv">3</span>L] <span class="sc">-</span> <span class="dv">3</span><span class="sc">*</span>x[<span class="dv">4</span>L] <span class="sc">+</span> x[<span class="dv">5</span>L] <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1</span>L, <span class="dv">0</span>, <span class="fl">0.5</span>)</span>
-<span id="cb18-15"><a></a>    <span class="fu">tibble</span>(</span>
-<span id="cb18-16"><a></a>      <span class="at">y =</span> y,</span>
-<span id="cb18-17"><a></a>      <span class="at">x1 =</span> x[<span class="dv">1</span>L],</span>
-<span id="cb18-18"><a></a>      <span class="at">x2 =</span> x[<span class="dv">2</span>L],</span>
-<span id="cb18-19"><a></a>      <span class="at">x3 =</span> x[<span class="dv">3</span>L],</span>
-<span id="cb18-20"><a></a>      <span class="at">x4 =</span> x[<span class="dv">4</span>L],</span>
-<span id="cb18-21"><a></a>      <span class="at">x5 =</span> x[<span class="dv">5</span>L]</span>
-<span id="cb18-22"><a></a>    )</span>
-<span id="cb18-23"><a></a>  }</span>
-<span id="cb18-24"><a></a>  dados <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(<span class="at">.x =</span> <span class="dv">1</span>L<span class="sc">:</span>n, <span class="at">.f =</span> regressao) <span class="sc">|&gt;</span></span>
-<span id="cb18-25"><a></a>    purrr<span class="sc">::</span><span class="fu">list_rbind</span>()</span>
-<span id="cb18-26"><a></a></span>
-<span id="cb18-27"><a></a>  parte_esparsa <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, n, <span class="dv">15</span>)</span>
-<span id="cb18-28"><a></a></span>
-<span id="cb18-29"><a></a>  dados <span class="ot">&lt;-</span> <span class="fu">cbind</span>(dados, parte_esparsa)</span>
-<span id="cb18-30"><a></a>  <span class="fu">colnames</span>(dados) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"y"</span>, <span class="fu">paste0</span>(<span class="st">"x"</span>, <span class="dv">2</span>L<span class="sc">:</span><span class="fu">ncol</span>(dados)))</span>
-<span id="cb18-31"><a></a>  <span class="fu">as_tibble</span>(dados)</span>
-<span id="cb18-32"><a></a>}</span>
-<span id="cb18-33"><a></a></span>
-<span id="cb18-34"><a></a>dados <span class="ot">&lt;-</span> <span class="fu">gerando_dados</span>(<span class="at">n =</span> <span class="dv">500</span>)</span>
-<span id="cb18-35"><a></a></span>
-<span id="cb18-36"><a></a><span class="co"># Divisão inicial da base -------------------------------------------------</span></span>
-<span id="cb18-37"><a></a>hod_out <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(dados, <span class="at">prop =</span> <span class="fl">0.7</span>)</span>
-<span id="cb18-38"><a></a>treinamento <span class="ot">&lt;-</span> <span class="fu">training</span>(hod_out)</span>
-<span id="cb18-39"><a></a>teste <span class="ot">&lt;-</span> <span class="fu">testing</span>(hod_out)</span>
-<span id="cb18-40"><a></a></span>
-<span id="cb18-41"><a></a><span class="co"># Setando o modelo (set engine) -------------------------------------------</span></span>
-<span id="cb18-42"><a></a>modelo_eqm <span class="ot">&lt;-</span></span>
-<span id="cb18-43"><a></a>  <span class="fu">linear_reg</span>(<span class="at">penalty =</span> <span class="dv">0</span>, <span class="at">mixture =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
-<span id="cb18-44"><a></a>  <span class="fu">set_mode</span>(<span class="st">"regression"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb18-45"><a></a>  <span class="fu">set_engine</span>(<span class="st">"glmnet"</span>)</span>
-<span id="cb18-46"><a></a></span>
-<span id="cb18-47"><a></a>modelo_ridge <span class="ot">&lt;-</span></span>
-<span id="cb18-48"><a></a>  <span class="fu">linear_reg</span>(<span class="at">penalty =</span> tune<span class="sc">::</span><span class="fu">tune</span>(), <span class="at">mixture =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
-<span id="cb18-49"><a></a>  <span class="fu">set_mode</span>(<span class="st">"regression"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb18-50"><a></a>  <span class="fu">set_engine</span>(<span class="st">"glmnet"</span>)</span>
-<span id="cb18-51"><a></a></span>
-<span id="cb18-52"><a></a>modelo_lasso <span class="ot">&lt;-</span></span>
-<span id="cb18-53"><a></a>  parsnip<span class="sc">::</span><span class="fu">linear_reg</span>(<span class="at">penalty =</span> tune<span class="sc">::</span><span class="fu">tune</span>(), <span class="at">mixture =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
-<span id="cb18-54"><a></a>  <span class="fu">set_mode</span>(<span class="st">"regression"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb18-55"><a></a>  parsnip<span class="sc">::</span><span class="fu">set_engine</span>(<span class="st">"glmnet"</span>)</span>
-<span id="cb18-56"><a></a></span>
-<span id="cb18-57"><a></a>modelo_elastic <span class="ot">&lt;-</span></span>
-<span id="cb18-58"><a></a>  parsnip<span class="sc">::</span><span class="fu">linear_reg</span>(<span class="at">penalty =</span> tune<span class="sc">::</span><span class="fu">tune</span>(), <span class="at">mixture =</span> tune<span class="sc">::</span><span class="fu">tune</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb18-59"><a></a>  <span class="fu">set_mode</span>(<span class="st">"regression"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb18-60"><a></a>  parsnip<span class="sc">::</span><span class="fu">set_engine</span>(<span class="st">"glmnet"</span>)</span>
-<span id="cb18-61"><a></a></span>
-<span id="cb18-62"><a></a><span class="co"># Criando workflows -------------------------------------------------------</span></span>
-<span id="cb18-63"><a></a>all_wf <span class="ot">&lt;-</span></span>
-<span id="cb18-64"><a></a>  <span class="fu">workflow_set</span>(</span>
-<span id="cb18-65"><a></a>    <span class="at">preproc =</span> <span class="fu">list</span>(y <span class="sc">~</span> . ),</span>
-<span id="cb18-66"><a></a>    <span class="at">models =</span> <span class="fu">list</span>(<span class="at">eqm =</span> modelo_eqm, <span class="at">ridge =</span> modelo_ridge, <span class="at">lasso =</span> modelo_lasso, <span class="at">elastic =</span> modelo_elastic),</span>
-<span id="cb18-67"><a></a>    <span class="at">cross =</span> <span class="cn">TRUE</span></span>
-<span id="cb18-68"><a></a>  )</span>
-<span id="cb18-69"><a></a></span>
-<span id="cb18-70"><a></a><span class="co"># Validação cruzada -------------------------------------------------------</span></span>
-<span id="cb18-71"><a></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
-<span id="cb18-72"><a></a>cv <span class="ot">&lt;-</span> rsample<span class="sc">::</span><span class="fu">vfold_cv</span>(treinamento, <span class="at">v =</span> <span class="dv">5</span>L)</span>
-<span id="cb18-73"><a></a></span>
-<span id="cb18-74"><a></a><span class="co"># Setando a métrica -------------------------------------------------------</span></span>
-<span id="cb18-75"><a></a>metrica <span class="ot">&lt;-</span> yardstick<span class="sc">::</span><span class="fu">metric_set</span>(rmse)</span>
-<span id="cb18-76"><a></a></span>
-<span id="cb18-77"><a></a><span class="co"># Tunagem dos hiperparâmetros ---------------------------------------------</span></span>
-<span id="cb18-78"><a></a><span class="co"># A semente (seed = 0) faz com que dentro da validação cruzada para cada modelo</span></span>
-<span id="cb18-79"><a></a><span class="co"># a semente seja sempre a mesma.</span></span>
-<span id="cb18-80"><a></a>tunagem <span class="ot">&lt;-</span></span>
-<span id="cb18-81"><a></a>  all_wf <span class="sc">|&gt;</span></span>
-<span id="cb18-82"><a></a>  <span class="fu">workflow_map</span>(</span>
-<span id="cb18-83"><a></a>    <span class="at">seed =</span> <span class="dv">0</span>,</span>
-<span id="cb18-84"><a></a>    <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb18-85"><a></a>    <span class="at">resamples =</span> cv,</span>
-<span id="cb18-86"><a></a>    <span class="at">grid =</span> <span class="dv">50</span>,</span>
-<span id="cb18-87"><a></a>    <span class="at">metrics =</span> metrica</span>
-<span id="cb18-88"><a></a>  )</span>
-<span id="cb18-89"><a></a></span>
-<span id="cb18-90"><a></a><span class="co"># Rank dos melhores modelos -----------------------------------------------</span></span>
-<span id="cb18-91"><a></a>modelos_rank <span class="ot">&lt;-</span> tunagem <span class="sc">|&gt;</span> <span class="fu">rank_results</span>()</span>
-<span id="cb18-92"><a></a></span>
-<span id="cb18-93"><a></a>melhor_eqm <span class="ot">&lt;-</span></span>
-<span id="cb18-94"><a></a>  tunagem <span class="sc">|&gt;</span></span>
-<span id="cb18-95"><a></a>  <span class="fu">extract_workflow_set_result</span>(<span class="st">"formula_eqm"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb18-96"><a></a>  <span class="fu">select_best</span>(<span class="st">"rmse"</span>)</span>
-<span id="cb18-97"><a></a></span>
-<span id="cb18-98"><a></a>melhor_ridge <span class="ot">&lt;-</span></span>
-<span id="cb18-99"><a></a>  tunagem <span class="sc">|&gt;</span></span>
-<span id="cb18-100"><a></a>  <span class="fu">extract_workflow_set_result</span>(<span class="st">"formula_ridge"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb18-101"><a></a>  <span class="fu">select_best</span>(<span class="st">"rmse"</span>)</span>
-<span id="cb18-102"><a></a></span>
-<span id="cb18-103"><a></a>melhor_lasso <span class="ot">&lt;-</span></span>
-<span id="cb18-104"><a></a>  tunagem <span class="sc">|&gt;</span></span>
-<span id="cb18-105"><a></a>  <span class="fu">extract_workflow_set_result</span>(<span class="st">"formula_lasso"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb18-106"><a></a>  <span class="fu">select_best</span>(<span class="st">"rmse"</span>)</span>
-<span id="cb18-107"><a></a></span>
-<span id="cb18-108"><a></a>melhor_elastic <span class="ot">&lt;-</span></span>
-<span id="cb18-109"><a></a>  tunagem <span class="sc">|&gt;</span></span>
-<span id="cb18-110"><a></a>  <span class="fu">extract_workflow_set_result</span>(<span class="st">"formula_elastic"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb18-111"><a></a>  <span class="fu">select_best</span>(<span class="st">"rmse"</span>)</span>
-<span id="cb18-112"><a></a></span>
-<span id="cb18-113"><a></a>finalizando_eqm <span class="ot">&lt;-</span></span>
-<span id="cb18-114"><a></a>  tunagem <span class="sc">|&gt;</span></span>
-<span id="cb18-115"><a></a>  <span class="fu">extract_workflow</span>(<span class="st">"formula_eqm"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb18-116"><a></a>  <span class="fu">finalize_workflow</span>(melhor_eqm) <span class="sc">|&gt;</span></span>
-<span id="cb18-117"><a></a>  <span class="fu">last_fit</span>(<span class="at">split =</span> hod_out)</span>
-<span id="cb18-118"><a></a></span>
-<span id="cb18-119"><a></a>finalizando_ridge <span class="ot">&lt;-</span></span>
-<span id="cb18-120"><a></a>  tunagem <span class="sc">|&gt;</span></span>
-<span id="cb18-121"><a></a>  <span class="fu">extract_workflow</span>(<span class="st">"formula_ridge"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb18-122"><a></a>  <span class="fu">finalize_workflow</span>(melhor_ridge) <span class="sc">|&gt;</span></span>
-<span id="cb18-123"><a></a>  <span class="fu">last_fit</span>(<span class="at">split =</span> hod_out)</span>
-<span id="cb18-124"><a></a></span>
-<span id="cb18-125"><a></a>finalizando_lasso <span class="ot">&lt;-</span></span>
-<span id="cb18-126"><a></a>  tunagem <span class="sc">|&gt;</span></span>
-<span id="cb18-127"><a></a>  <span class="fu">extract_workflow</span>(<span class="st">"formula_lasso"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb18-128"><a></a>  <span class="fu">finalize_workflow</span>(melhor_lasso) <span class="sc">|&gt;</span></span>
-<span id="cb18-129"><a></a>  <span class="fu">last_fit</span>(<span class="at">split =</span> hod_out)</span>
-<span id="cb18-130"><a></a></span>
-<span id="cb18-131"><a></a>finalizando_elastic <span class="ot">&lt;-</span></span>
-<span id="cb18-132"><a></a>  tunagem <span class="sc">|&gt;</span></span>
-<span id="cb18-133"><a></a>  <span class="fu">extract_workflow</span>(<span class="st">"formula_elastic"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb18-134"><a></a>  <span class="fu">finalize_workflow</span>(melhor_elastic) <span class="sc">|&gt;</span></span>
-<span id="cb18-135"><a></a>  <span class="fu">last_fit</span>(<span class="at">split =</span> hod_out)</span>
-<span id="cb18-136"><a></a></span>
-<span id="cb18-137"><a></a><span class="co"># Visualizando as métricas</span></span>
-<span id="cb18-138"><a></a>finalizando_eqm <span class="sc">|&gt;</span> <span class="fu">collect_metrics</span>()</span>
-<span id="cb18-139"><a></a>finalizando_ridge <span class="sc">|&gt;</span> <span class="fu">collect_metrics</span>()</span>
-<span id="cb18-140"><a></a>finalizando_lasso <span class="sc">|&gt;</span> <span class="fu">collect_metrics</span>()</span>
-<span id="cb18-141"><a></a>finalizando_elastic <span class="sc">|&gt;</span> <span class="fu">collect_metrics</span>()</span>
-<span id="cb18-142"><a></a></span>
-<span id="cb18-143"><a></a><span class="co"># Visualizando predições:</span></span>
-<span id="cb18-144"><a></a>finalizando_eqm <span class="sc">|&gt;</span> <span class="fu">collect_predictions</span>()</span>
-<span id="cb18-145"><a></a>finalizando_ridge <span class="sc">|&gt;</span> <span class="fu">collect_predictions</span>()</span>
-<span id="cb18-146"><a></a>finalizando_lasso <span class="sc">|&gt;</span> <span class="fu">collect_predictions</span>()</span>
-<span id="cb18-147"><a></a>finalizando_elastic <span class="sc">|&gt;</span> <span class="fu">collect_predictions</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Solução utilizando o tidymodels</summary><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb23-2"><a></a><span class="fu">library</span>(tibble)</span>
+<span id="cb23-3"><a></a><span class="fu">library</span>(purrr)</span>
+<span id="cb23-4"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb23-5"><a></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb23-6"><a></a></span>
+<span id="cb23-7"><a></a><span class="co"># Removendo possíveis conflitos de pacotes --------------------------------</span></span>
+<span id="cb23-8"><a></a>tidymodels<span class="sc">::</span><span class="fu">tidymodels_prefer</span>()</span>
+<span id="cb23-9"><a></a></span>
+<span id="cb23-10"><a></a><span class="co"># Função para gerar os dados ----------------------------------------------</span></span>
+<span id="cb23-11"><a></a>gerando_dados <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">300</span>L){</span>
+<span id="cb23-12"><a></a>  regressao <span class="ot">&lt;-</span> <span class="cf">function</span>(i){</span>
+<span id="cb23-13"><a></a>    x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">5</span>L)</span>
+<span id="cb23-14"><a></a>    y <span class="ot">&lt;-</span> <span class="dv">3</span><span class="sc">*</span>x[<span class="dv">1</span>L] <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span>x[<span class="dv">2</span>L] <span class="sc">+</span> x[<span class="dv">3</span>L] <span class="sc">-</span> <span class="dv">3</span><span class="sc">*</span>x[<span class="dv">4</span>L] <span class="sc">+</span> x[<span class="dv">5</span>L] <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1</span>L, <span class="dv">0</span>, <span class="fl">0.5</span>)</span>
+<span id="cb23-15"><a></a>    <span class="fu">tibble</span>(</span>
+<span id="cb23-16"><a></a>      <span class="at">y =</span> y,</span>
+<span id="cb23-17"><a></a>      <span class="at">x1 =</span> x[<span class="dv">1</span>L],</span>
+<span id="cb23-18"><a></a>      <span class="at">x2 =</span> x[<span class="dv">2</span>L],</span>
+<span id="cb23-19"><a></a>      <span class="at">x3 =</span> x[<span class="dv">3</span>L],</span>
+<span id="cb23-20"><a></a>      <span class="at">x4 =</span> x[<span class="dv">4</span>L],</span>
+<span id="cb23-21"><a></a>      <span class="at">x5 =</span> x[<span class="dv">5</span>L]</span>
+<span id="cb23-22"><a></a>    )</span>
+<span id="cb23-23"><a></a>  }</span>
+<span id="cb23-24"><a></a>  dados <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(<span class="at">.x =</span> <span class="dv">1</span>L<span class="sc">:</span>n, <span class="at">.f =</span> regressao) <span class="sc">|&gt;</span></span>
+<span id="cb23-25"><a></a>    purrr<span class="sc">::</span><span class="fu">list_rbind</span>()</span>
+<span id="cb23-26"><a></a></span>
+<span id="cb23-27"><a></a>  parte_esparsa <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, n, <span class="dv">15</span>)</span>
+<span id="cb23-28"><a></a></span>
+<span id="cb23-29"><a></a>  dados <span class="ot">&lt;-</span> <span class="fu">cbind</span>(dados, parte_esparsa)</span>
+<span id="cb23-30"><a></a>  <span class="fu">colnames</span>(dados) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"y"</span>, <span class="fu">paste0</span>(<span class="st">"x"</span>, <span class="dv">2</span>L<span class="sc">:</span><span class="fu">ncol</span>(dados)))</span>
+<span id="cb23-31"><a></a>  <span class="fu">as_tibble</span>(dados)</span>
+<span id="cb23-32"><a></a>}</span>
+<span id="cb23-33"><a></a></span>
+<span id="cb23-34"><a></a>dados <span class="ot">&lt;-</span> <span class="fu">gerando_dados</span>(<span class="at">n =</span> <span class="dv">500</span>)</span>
+<span id="cb23-35"><a></a></span>
+<span id="cb23-36"><a></a><span class="co"># Divisão inicial da base -------------------------------------------------</span></span>
+<span id="cb23-37"><a></a>hod_out <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(dados, <span class="at">prop =</span> <span class="fl">0.7</span>)</span>
+<span id="cb23-38"><a></a>treinamento <span class="ot">&lt;-</span> <span class="fu">training</span>(hod_out)</span>
+<span id="cb23-39"><a></a>teste <span class="ot">&lt;-</span> <span class="fu">testing</span>(hod_out)</span>
+<span id="cb23-40"><a></a></span>
+<span id="cb23-41"><a></a><span class="co"># Setando o modelo (set engine) -------------------------------------------</span></span>
+<span id="cb23-42"><a></a>modelo_eqm <span class="ot">&lt;-</span></span>
+<span id="cb23-43"><a></a>  <span class="fu">linear_reg</span>(<span class="at">penalty =</span> <span class="dv">0</span>, <span class="at">mixture =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-44"><a></a>  <span class="fu">set_mode</span>(<span class="st">"regression"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-45"><a></a>  <span class="fu">set_engine</span>(<span class="st">"glmnet"</span>)</span>
+<span id="cb23-46"><a></a></span>
+<span id="cb23-47"><a></a>modelo_ridge <span class="ot">&lt;-</span></span>
+<span id="cb23-48"><a></a>  <span class="fu">linear_reg</span>(<span class="at">penalty =</span> tune<span class="sc">::</span><span class="fu">tune</span>(), <span class="at">mixture =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-49"><a></a>  <span class="fu">set_mode</span>(<span class="st">"regression"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-50"><a></a>  <span class="fu">set_engine</span>(<span class="st">"glmnet"</span>)</span>
+<span id="cb23-51"><a></a></span>
+<span id="cb23-52"><a></a>modelo_lasso <span class="ot">&lt;-</span></span>
+<span id="cb23-53"><a></a>  parsnip<span class="sc">::</span><span class="fu">linear_reg</span>(<span class="at">penalty =</span> tune<span class="sc">::</span><span class="fu">tune</span>(), <span class="at">mixture =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-54"><a></a>  <span class="fu">set_mode</span>(<span class="st">"regression"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-55"><a></a>  parsnip<span class="sc">::</span><span class="fu">set_engine</span>(<span class="st">"glmnet"</span>)</span>
+<span id="cb23-56"><a></a></span>
+<span id="cb23-57"><a></a>modelo_elastic <span class="ot">&lt;-</span></span>
+<span id="cb23-58"><a></a>  parsnip<span class="sc">::</span><span class="fu">linear_reg</span>(<span class="at">penalty =</span> tune<span class="sc">::</span><span class="fu">tune</span>(), <span class="at">mixture =</span> tune<span class="sc">::</span><span class="fu">tune</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb23-59"><a></a>  <span class="fu">set_mode</span>(<span class="st">"regression"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-60"><a></a>  parsnip<span class="sc">::</span><span class="fu">set_engine</span>(<span class="st">"glmnet"</span>)</span>
+<span id="cb23-61"><a></a></span>
+<span id="cb23-62"><a></a><span class="co"># Criando workflows -------------------------------------------------------</span></span>
+<span id="cb23-63"><a></a>all_wf <span class="ot">&lt;-</span></span>
+<span id="cb23-64"><a></a>  <span class="fu">workflow_set</span>(</span>
+<span id="cb23-65"><a></a>    <span class="at">preproc =</span> <span class="fu">list</span>(y <span class="sc">~</span> . ),</span>
+<span id="cb23-66"><a></a>    <span class="at">models =</span> <span class="fu">list</span>(<span class="at">eqm =</span> modelo_eqm, <span class="at">ridge =</span> modelo_ridge, <span class="at">lasso =</span> modelo_lasso, <span class="at">elastic =</span> modelo_elastic),</span>
+<span id="cb23-67"><a></a>    <span class="at">cross =</span> <span class="cn">TRUE</span></span>
+<span id="cb23-68"><a></a>  )</span>
+<span id="cb23-69"><a></a></span>
+<span id="cb23-70"><a></a><span class="co"># Validação cruzada -------------------------------------------------------</span></span>
+<span id="cb23-71"><a></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb23-72"><a></a>cv <span class="ot">&lt;-</span> rsample<span class="sc">::</span><span class="fu">vfold_cv</span>(treinamento, <span class="at">v =</span> <span class="dv">5</span>L)</span>
+<span id="cb23-73"><a></a></span>
+<span id="cb23-74"><a></a><span class="co"># Setando a métrica -------------------------------------------------------</span></span>
+<span id="cb23-75"><a></a>metrica <span class="ot">&lt;-</span> yardstick<span class="sc">::</span><span class="fu">metric_set</span>(rmse)</span>
+<span id="cb23-76"><a></a></span>
+<span id="cb23-77"><a></a><span class="co"># Tunagem dos hiperparâmetros ---------------------------------------------</span></span>
+<span id="cb23-78"><a></a><span class="co"># A semente (seed = 0) faz com que dentro da validação cruzada para cada modelo</span></span>
+<span id="cb23-79"><a></a><span class="co"># a semente seja sempre a mesma.</span></span>
+<span id="cb23-80"><a></a>tunagem <span class="ot">&lt;-</span></span>
+<span id="cb23-81"><a></a>  all_wf <span class="sc">|&gt;</span></span>
+<span id="cb23-82"><a></a>  <span class="fu">workflow_map</span>(</span>
+<span id="cb23-83"><a></a>    <span class="at">seed =</span> <span class="dv">0</span>,</span>
+<span id="cb23-84"><a></a>    <span class="at">verbose =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb23-85"><a></a>    <span class="at">resamples =</span> cv,</span>
+<span id="cb23-86"><a></a>    <span class="at">grid =</span> <span class="dv">50</span>,</span>
+<span id="cb23-87"><a></a>    <span class="at">metrics =</span> metrica</span>
+<span id="cb23-88"><a></a>  )</span>
+<span id="cb23-89"><a></a></span>
+<span id="cb23-90"><a></a><span class="co"># Rank dos melhores modelos -----------------------------------------------</span></span>
+<span id="cb23-91"><a></a>modelos_rank <span class="ot">&lt;-</span> tunagem <span class="sc">|&gt;</span> <span class="fu">rank_results</span>()</span>
+<span id="cb23-92"><a></a></span>
+<span id="cb23-93"><a></a>melhor_eqm <span class="ot">&lt;-</span></span>
+<span id="cb23-94"><a></a>  tunagem <span class="sc">|&gt;</span></span>
+<span id="cb23-95"><a></a>  <span class="fu">extract_workflow_set_result</span>(<span class="st">"formula_eqm"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-96"><a></a>  <span class="fu">select_best</span>(<span class="st">"rmse"</span>)</span>
+<span id="cb23-97"><a></a></span>
+<span id="cb23-98"><a></a>melhor_ridge <span class="ot">&lt;-</span></span>
+<span id="cb23-99"><a></a>  tunagem <span class="sc">|&gt;</span></span>
+<span id="cb23-100"><a></a>  <span class="fu">extract_workflow_set_result</span>(<span class="st">"formula_ridge"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-101"><a></a>  <span class="fu">select_best</span>(<span class="st">"rmse"</span>)</span>
+<span id="cb23-102"><a></a></span>
+<span id="cb23-103"><a></a>melhor_lasso <span class="ot">&lt;-</span></span>
+<span id="cb23-104"><a></a>  tunagem <span class="sc">|&gt;</span></span>
+<span id="cb23-105"><a></a>  <span class="fu">extract_workflow_set_result</span>(<span class="st">"formula_lasso"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-106"><a></a>  <span class="fu">select_best</span>(<span class="st">"rmse"</span>)</span>
+<span id="cb23-107"><a></a></span>
+<span id="cb23-108"><a></a>melhor_elastic <span class="ot">&lt;-</span></span>
+<span id="cb23-109"><a></a>  tunagem <span class="sc">|&gt;</span></span>
+<span id="cb23-110"><a></a>  <span class="fu">extract_workflow_set_result</span>(<span class="st">"formula_elastic"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-111"><a></a>  <span class="fu">select_best</span>(<span class="st">"rmse"</span>)</span>
+<span id="cb23-112"><a></a></span>
+<span id="cb23-113"><a></a>finalizando_eqm <span class="ot">&lt;-</span></span>
+<span id="cb23-114"><a></a>  tunagem <span class="sc">|&gt;</span></span>
+<span id="cb23-115"><a></a>  <span class="fu">extract_workflow</span>(<span class="st">"formula_eqm"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-116"><a></a>  <span class="fu">finalize_workflow</span>(melhor_eqm) <span class="sc">|&gt;</span></span>
+<span id="cb23-117"><a></a>  <span class="fu">last_fit</span>(<span class="at">split =</span> hod_out)</span>
+<span id="cb23-118"><a></a></span>
+<span id="cb23-119"><a></a>finalizando_ridge <span class="ot">&lt;-</span></span>
+<span id="cb23-120"><a></a>  tunagem <span class="sc">|&gt;</span></span>
+<span id="cb23-121"><a></a>  <span class="fu">extract_workflow</span>(<span class="st">"formula_ridge"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-122"><a></a>  <span class="fu">finalize_workflow</span>(melhor_ridge) <span class="sc">|&gt;</span></span>
+<span id="cb23-123"><a></a>  <span class="fu">last_fit</span>(<span class="at">split =</span> hod_out)</span>
+<span id="cb23-124"><a></a></span>
+<span id="cb23-125"><a></a>finalizando_lasso <span class="ot">&lt;-</span></span>
+<span id="cb23-126"><a></a>  tunagem <span class="sc">|&gt;</span></span>
+<span id="cb23-127"><a></a>  <span class="fu">extract_workflow</span>(<span class="st">"formula_lasso"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-128"><a></a>  <span class="fu">finalize_workflow</span>(melhor_lasso) <span class="sc">|&gt;</span></span>
+<span id="cb23-129"><a></a>  <span class="fu">last_fit</span>(<span class="at">split =</span> hod_out)</span>
+<span id="cb23-130"><a></a></span>
+<span id="cb23-131"><a></a>finalizando_elastic <span class="ot">&lt;-</span></span>
+<span id="cb23-132"><a></a>  tunagem <span class="sc">|&gt;</span></span>
+<span id="cb23-133"><a></a>  <span class="fu">extract_workflow</span>(<span class="st">"formula_elastic"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-134"><a></a>  <span class="fu">finalize_workflow</span>(melhor_elastic) <span class="sc">|&gt;</span></span>
+<span id="cb23-135"><a></a>  <span class="fu">last_fit</span>(<span class="at">split =</span> hod_out)</span>
+<span id="cb23-136"><a></a></span>
+<span id="cb23-137"><a></a><span class="co"># Visualizando as métricas</span></span>
+<span id="cb23-138"><a></a>finalizando_eqm <span class="sc">|&gt;</span> <span class="fu">collect_metrics</span>()</span>
+<span id="cb23-139"><a></a>finalizando_ridge <span class="sc">|&gt;</span> <span class="fu">collect_metrics</span>()</span>
+<span id="cb23-140"><a></a>finalizando_lasso <span class="sc">|&gt;</span> <span class="fu">collect_metrics</span>()</span>
+<span id="cb23-141"><a></a>finalizando_elastic <span class="sc">|&gt;</span> <span class="fu">collect_metrics</span>()</span>
+<span id="cb23-142"><a></a></span>
+<span id="cb23-143"><a></a><span class="co"># Visualizando predições:</span></span>
+<span id="cb23-144"><a></a>finalizando_eqm <span class="sc">|&gt;</span> <span class="fu">collect_predictions</span>()</span>
+<span id="cb23-145"><a></a>finalizando_ridge <span class="sc">|&gt;</span> <span class="fu">collect_predictions</span>()</span>
+<span id="cb23-146"><a></a>finalizando_lasso <span class="sc">|&gt;</span> <span class="fu">collect_predictions</span>()</span>
+<span id="cb23-147"><a></a>finalizando_elastic <span class="sc">|&gt;</span> <span class="fu">collect_predictions</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section><section id="exercícios-2" class="slide level2"><h2>📚 Exercícios</h2>
