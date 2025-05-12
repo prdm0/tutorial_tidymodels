@@ -224,25 +224,18 @@
     "text": "rsample \n\nO site do pacote rsample é muito bom e possui diversos exemplos de como utilizar as funções do pacote."
   },
   {
-    "objectID": "index.html#rsample-3",
-    "href": "index.html#rsample-3",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "rsample",
-    "text": "rsample\n\n\n\n\n\nImagem em aquarela da logo do pacote rsample.\n\n\n\nlibrary(tidymodels)\n\ntidymodels::tidymodels_prefer()\n\nset.seed(123)\ndados_split &lt;- rsample::initial_split(\n  dados,\n  prop = 0.7,\n  strata = \"Resposta\"\n)\n\ntreino &lt;- rsample::training(dados_split)\nteste &lt;- rsample::testing(dados_split)\n\n\n📌 Atenção:  É possível estratificar a variável resposta, para que o conjunto de treinamento e teste possuam a mesma proporção de classes."
-  },
-  {
-    "objectID": "index.html#rsample-4",
-    "href": "index.html#rsample-4",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "rsample",
-    "text": "rsample\n\n\n\n\n\nImagem em aquarela da logo do pacote rsample.\n\n\n\nComo a estratificação funciona❓\n 1. Variável resposta numérica: A estratificação selecionará uma amostra aleatória dentro de cada quartil da variável resposta para compor o conjunto de teste.\n\n\nVariável resposta categórica: A amostra aleatória será feita de forma que a proporção de classes no conjunto de teste seja a mesma do conjunto de treinamento."
-  },
-  {
     "objectID": "index.html#data-splitting-hold-out",
     "href": "index.html#data-splitting-hold-out",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Data Splitting / Hold-Out \n",
     "text": "Data Splitting / Hold-Out \n\n\nCorrigir o problema de dependência que há ao estimar o risco preditivo por meio do EQM usando toda a base é fácil. Uma abordagem muito utilizada é utilizar data splitting, também chamado de método hold-out. Algo como a segunda linha da imagem abaixo:\n\n\n\n\n\n\nHummmm, entendi! Então para que eu tenha tenha uma sequência de EQM’s independentes já que são identicamente distribuídos, preciso de um conjunto reservado dos dados (conjunto de teste) para valer a lei forte dos grandes números."
+  },
+  {
+    "objectID": "index.html#data-splitting-hold-out-1",
+    "href": "index.html#data-splitting-hold-out-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Data Splitting / Hold-Out \n",
+    "text": "Data Splitting / Hold-Out \n\n\n\n\nO termo validação refere-se à parcela do conjunto de treinamento incial que dividimos em validação e treinamento, dentro de uma validação cruzada.\n\nO conjunto Testing na segunda hierarquia da árvore ao lado, só usamos no final para avaliar o desempenho do modelo nesse conjunto. Isto é, usamos o Testing para o cálculo do risco observado.\n\nPerceba que o conjunto de treinamento (Not Testing) é particionado em treinamento e validação. Poderíamos fazer uma única partição, mas o procedimento comumente utilizado é particionar entre Training e Validation uzando algum procedimento de validação cruzada."
   },
   {
     "objectID": "index.html#data-splitting",
@@ -264,6 +257,20 @@
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Data Splitting \n",
     "text": "Data Splitting \n\n\nAgora você entende por que dividimos os dados em treinamento e teste?\n\n\n\nDividimos para obermos um bom estimador do risco utilizando o EQM. 🎁"
+  },
+  {
+    "objectID": "index.html#rsample-3",
+    "href": "index.html#rsample-3",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "rsample",
+    "text": "rsample\n\n\n\n\n\nImagem em aquarela da logo do pacote rsample.\n\n\n\nlibrary(tidymodels)\n\ntidymodels::tidymodels_prefer()\n\nset.seed(123)\ndados_split &lt;- rsample::initial_split(\n  dados,\n  prop = 0.7,\n  strata = \"Resposta\"\n)\n\ntreino &lt;- rsample::training(dados_split)\nteste &lt;- rsample::testing(dados_split)\n\n\n📌 Atenção:  É possível estratificar a variável resposta, para que o conjunto de treinamento e teste possuam a mesma proporção de classes."
+  },
+  {
+    "objectID": "index.html#rsample-4",
+    "href": "index.html#rsample-4",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "rsample",
+    "text": "rsample\n\n\n\n\n\nImagem em aquarela da logo do pacote rsample.\n\n\n\nComo a estratificação funciona❓\n 1. Variável resposta numérica: A estratificação selecionará uma amostra aleatória dentro de cada quartil da variável resposta para compor o conjunto de teste.\n\n\nVariável resposta categórica: A amostra aleatória será feita de forma que a proporção de classes no conjunto de teste seja a mesma do conjunto de treinamento."
   },
   {
     "objectID": "index.html#leave-one-out-cross-validation",
@@ -315,11 +322,11 @@
     "text": "k-fold cross-validation \n\nA imagem abaixo ilustra o procedimento k-fold cross-validation, em que uma 5-fold cross-validation é realizada dentro do conjunto de treinamento. Em cada split, o conjunto verde de observações (fold verde) são utilizados para treinar/ajustar o modelo e o conjunto azul, em cada um dos splits é utilizado para avaliar o risco preditivo R(g) (através, por exemplo do EQM)."
   },
   {
-    "objectID": "index.html#k-fold-cross-validation-3",
-    "href": "index.html#k-fold-cross-validation-3",
+    "objectID": "index.html#rsample-validação-cruzada",
+    "href": "index.html#rsample-validação-cruzada",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "\nk-fold cross-validation \n",
-    "text": "k-fold cross-validation \n\nA imagem abaixo ilustra o procedimento k-fold cross-validation, em que uma 5-fold cross-validation é realizada dentro do conjunto de treinamento. Em cada split, o conjunto verde de observações (fold verde) são utilizados para treinar/ajustar o modelo e o conjunto azul, em cada um dos splits é utilizado para avaliar o risco preditivo R(g) (através, por exemplo do EQM)."
+    "section": "rsample (validação cruzada)",
+    "text": "rsample (validação cruzada)\n\n\n\n\n\nImagem em aquarela da logo do pacote rsample.\n\n\n\nlibrary(tidymodels)\n\ntidymodels::tidymodels_prefer()\n\nset.seed(123)\ndados_split &lt;- rsample::initial_split(\n  dados,\n  prop = 0.7,\n  strata = \"Resposta\"\n)\n\ntreino &lt;- rsample::training(dados_split)\nteste &lt;- rsample::testing(dados_split)\n\n# Criando as amostras para realizar a validação cruzada\n# com o pacote tune (5-fold cross-validation)\ncv &lt;- rsample::vfold_cv(\n  treino,\n  v = 5,\n  strata = \"Resposta\"\n)\n\n📌 Atenção:\n\nTambém é possível estratificar a variável resposta, para que o conjunto de treinamento e teste validação possuam a mesma proporção de classes."
   },
   {
     "objectID": "index.html#resumindo-data-splitting-validação-cruzada-e-conjunto-de-validação",
@@ -329,11 +336,116 @@
     "text": "Resumindo: data splitting, validação cruzada e conjunto de validação \n\n\nA validação cruzada k-fold é particularmente útil quando o conjunto de dados é limitado, pois aproveita ao máximo os dados disponíveis. Além disso, ela permite verificar se o modelo é estável e se seu desempenho varia significativamente com diferentes divisões dos dados. É importante ressaltar que a validação cruzada k-fold pode ser computacionalmente mais cara do que a abordagem do conjunto de validação, uma vez que envolve treinar e avaliar o modelo várias vezes."
   },
   {
-    "objectID": "index.html#rsample-5",
-    "href": "index.html#rsample-5",
+    "objectID": "index.html#resumindo-data-splitting-validação-cruzada-e-conjunto-de-validação-1",
+    "href": "index.html#resumindo-data-splitting-validação-cruzada-e-conjunto-de-validação-1",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "rsample",
-    "text": "rsample\n\n\n\n\n\nImagem de aquarela da logo do pacote rsample.\n\n\n\nlibrary(tidymodels)\n\ntidymodels::tidymodels_prefer()\n\nset.seed(123)\ndados_split &lt;- rsample::initial_split(\n  dados,\n  prop = 0.7,\n  strata = \"Resposta\"\n)\n\ntreino &lt;- rsample::training(dados_split)\nteste &lt;- rsample::testing(dados_split)\n\n# Criando as amostras para realizar a validação cruzada\n# com o pacote tune (5-fold cross-validation)\ncv &lt;- rsample::vfold_cv(\n  treino,\n  v = 5,\n  strata = \"Resposta\"\n)\n\n📌 Atenção:\n\nTambém é possível estratificar a variável resposta, para que o conjunto de treinamento e teste validação possuam a mesma proporção de classes."
+    "section": "Resumindo: data splitting, validação cruzada e conjunto de validação",
+    "text": "Resumindo: data splitting, validação cruzada e conjunto de validação\n\nNo tidymodels, utilizamos a biblioteca rsample para realizar procedimentos de validação cruzada:\n\n\ninitial_split(): útil para uma divisão inicial dos dados, i.e., para aplicação do hold-out;\nloo_cv(): se desejar realizar um procedimento de leave-one-out cross-validation;\nvfold_cv(): para um procedimento de k-folds cross-validation. Podemos inclusive realizar várias repetições de validação cruzada o que poderá remelhorar ainda mais a seleção da melhor combinação de hiperparâmetros. O número de repetições de validação cruzada poderá ser especificado no argumento repeats que por padrão é 1L;\nbootstraps(): se for desejado utilizar um procedimento de bootstrap não-paramétrico ao invés de uma validação cruzada. O papel do bootstrap é o mesmo da validação cruzada, porém, a seleção das amostras de treinamento é de mesmo tamanho da amostra de treinamento original e o procedimento é feito com reposição, i.e., os mesmos dados podem aparecer nas amostras. O conjunto de avaliação é definido como as linhas dos dados originais que não foram incluídos na amostra bootstrap. Isso geralmente é chamado de amostra out-of-bag - OOB. Podemos alterar o número de amostras bootstrap modificando o argumento times que por padrão é 25L.\n\n\n📌 Lembre-se que qualquer procedimento de validação cruzada que você escolher deve ser realizado no conjunto de treinamento!"
+  },
+  {
+    "objectID": "index.html#recipes",
+    "href": "index.html#recipes",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes \n",
+    "text": "recipes \n\n\n\n\n\nImagem em aquarela da logo do pacote recipes.\n\n\nAntes de ajustar o modelo, precisamos preparar os dados. O pacote recipes é o responsável por realizar o pré-processamento dos dados.\n 1. Permite encadear etapas de transformação (como normalização, imputação, codificação, etc.) de forma organizada e reutilizável.\n\nAutomatiza tarefas como criação de dummies, spline bases, PCA, interação entre variáveis e muito mais.\nPossui mais de 100 funções step_*() para aplicar transformações específicas e customizáveis em variáveis contínuas, categóricas e textuais."
+  },
+  {
+    "objectID": "index.html#recipes-1",
+    "href": "index.html#recipes-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes \n",
+    "text": "recipes \n\n\n\n\n\nImagem em aquarela da logo do pacote recipes.\n\n\nDefinindo uma receita (fase de pré-processamento):\n\n# Definindo uma receita (fase de pré-processamento)\nreceita &lt;-\n  recipes::recipe(\n    y ~ x1 + x3:x4 + x5\n    data = dados_treino\n  ) |&gt;\n  step_*() |&gt;\n  step_*() |&gt;\n  ...      |&gt;\n  step_*()"
+  },
+  {
+    "objectID": "index.html#recipes-a-fórmula-é-o-coração-da-receita",
+    "href": "index.html#recipes-a-fórmula-é-o-coração-da-receita",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes: a Fórmula é o Coração da Receita \n",
+    "text": "recipes: a Fórmula é o Coração da Receita \n\nA função recipe() inicia a criação de uma receita e seu primeiro argumento é uma fórmula.\nrecipe(formula, data, ...)\n\nEstrutura da Fórmula:\n\nvariavel_resposta ~ preditor1 + preditor2 + ... + preditorN\n\n\n\nLado Esquerdo (variavel_resposta ~ ...): Especifica a(s) variável(is) resultado/alvo.\n\nPode ser uma única variável.\nMúltiplas variáveis respostas podem ser especificadas com cbind(resp1, resp2) ~ ... (menos comum para a maioria dos modelos).\n\n\n\nLado Direito (... ~ preditor1 + preditor2): Especifica as variáveis preditoras.\n\nTil (~): Separa a variável resposta dos preditores.\n\nSinal de Mais (+): Usado para adicionar preditores."
+  },
+  {
+    "objectID": "index.html#interações-entre-variáveis-e",
+    "href": "index.html#interações-entre-variáveis-e",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Interações Entre Variáveis: * e : \n",
+    "text": "Interações Entre Variáveis: * e : \n\n\nFórmulas no R permitem especificar termos de interação diretamente.\n1. O Asterisco (*): Efeitos Principais + Interação\npreditorA * preditorB expande para preditorA + preditorB + preditorA:preditorB. Inclui os efeitos principais de cada variável E o termo de interação entre elas. Não é possível usar * ou : diretamente no recipe(). Para isso você deve usar o step_interact().\n# Prever 'mpg' usando 'wt', 'hp' e a interação entre 'wt' e 'hp'\nreceita_interacao_asterisco &lt;- recipe(mpg ~ wt * hp + qsec, data = mtcars_tbl)\n\n# summary(receita_interacao_asterisco)\n# Note os termos: wt, hp, qsec, wt_x_hp (ou similar)\nEsta é a forma mais comum e geralmente recomendada para incluir interações, seguindo o princípio da hierarquia."
+  },
+  {
+    "objectID": "index.html#interações-entre-variáveis-e-cont.",
+    "href": "index.html#interações-entre-variáveis-e-cont.",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Interações Entre Variáveis: * e : (Cont.) \n",
+    "text": "Interações Entre Variáveis: * e : (Cont.) \n\n\n2. Os Dois Pontos (:): Apenas a Interação\n\npreditorA:preditorB especifica apenas o termo de interação entre preditorA e preditorB. Não inclui os efeitos principais automaticamente.\n# Prever 'mpg' usando 'wt', 'hp' e APENAS a interação wt:hp\n# (geralmente, você adicionaria os efeitos principais manualmente se usar ':')\nreceita &lt;-\n  recipe(\n    mpg ~ wt + hp + wt:hp + qsec,\n    data = mtcars_tbl\n  )\n\n# summary(receita_interacao_doispontos)\n# É semanticamente igual ao exemplo com '*' se os termos principais estiverem presentes.\n\n# Apenas a interação (menos comum isoladamente):\n# receita_so_interacao &lt;- recipe(mpg ~ wt:hp, data = mtcars_tbl)\n# summary(receita_so_interacao) # Resultaria apenas no termo wt_x_hp\n\n📌 Use : com cautela e geralmente certifique-se de que os efeitos principais também estão no modelo."
+  },
+  {
+    "objectID": "index.html#papéis-das-variáveis-e-seletores-step_",
+    "href": "index.html#papéis-das-variáveis-e-seletores-step_",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Papéis das Variáveis e Seletores step_* \n",
+    "text": "Papéis das Variáveis e Seletores step_* \n\nA fórmula no recipe() define os papéis iniciais das variáveis: outcome (resposta) e predictor (preditora).\n\n\nreceita &lt;- recipe(mpg ~ ., data = mtcars_tbl)\n# summary(receita) # Mostra os papéis iniciais\n\n\nMuitas funções step_* usam seletores para escolher em quais variáveis atuar, baseando-se nesses papéis ou em suas propriedades:\n 🎉 Seletores ajudam a selecionar mais facilmente:\n\n\nall_numeric_predictors(): Todos os preditores numéricos.\n\nall_nominal_predictors(): Todos os preditores categóricos (fatores, caracteres).\n\nall_predictors(): Todos os preditores.\n\nall_outcomes(): Todas as variáveis resposta.\n\nstarts_with(\"prefix_\"), ends_with(\"_suffix\"), contains(\"substring\")"
+  },
+  {
+    "objectID": "index.html#papéis-das-variáveis-e-seletores-step_-1",
+    "href": "index.html#papéis-das-variáveis-e-seletores-step_-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Papéis das Variáveis e Seletores step_* \n",
+    "text": "Papéis das Variáveis e Seletores step_* \n\n\nExemplo de uso de seletores:\n\n\nreceita_com_passos &lt;-\n  recipe(mpg ~ ., data = mtcars_tbl) |&gt;\n  # Remove a variável 'car_name'\n  step_rm(car_name) |&gt;\n  # Centraliza apenas preditores numéricos\n  step_center(all_numeric_predictors()) |&gt;\n  # Escala apenas preditores numéricos\n  step_scale(all_numeric_predictors()) |&gt;\n  # Cria dummies para preditores nominais\n  step_dummy(all_nominal_predictors(), one_hot = TRUE)"
+  },
+  {
+    "objectID": "index.html#recipes-2",
+    "href": "index.html#recipes-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes \n",
+    "text": "recipes \n\n\n\n\n\n\n\nAlugumas funções step_*()\n\nDescrição\n\n\n\nstep_center()\nCentraliza variáveis numéricas subtraindo a média.\n\n\nstep_scale()\nPadroniza variáveis numéricas dividindo pelo desvio padrão.\n\n\nstep_normalize()\nRealiza centralização e padronização em um único passo.\n\n\nstep_knnimpute()\nImputa valores faltantes usando o método dos k-vizinhos mais próximos.\n\n\nstep_dummy()\nConverte variáveis categóricas em variáveis indicadoras (dummies).\n\n\nstep_nzv()\nRemove variáveis com variância próxima de zero.\n\n\nstep_corr()\nRemove variáveis altamente correlacionadas entre si.\n\n\nstep_pca()\nAplica análise de componentes principais (PCA) para redução de dimensão.\n\n\nstep_poly()\nGera termos polinomiais de variáveis numéricas.\n\n\nstep_log()\nAplica transformação logarítmica em variáveis numéricas.\n\n\nstep_other()\nAgrupa categorias menos frequentes em uma nova categoria “outras”."
+  },
+  {
+    "objectID": "index.html#recipes-3",
+    "href": "index.html#recipes-3",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes \n",
+    "text": "recipes \n\nVocê poderá encontrar uma lista completa das funções step_*() em:"
+  },
+  {
+    "objectID": "index.html#recipes-4",
+    "href": "index.html#recipes-4",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes \n",
+    "text": "recipes \n\n\nConsulte a documentação do pacote recipes para saber mais sobre as funções step_*() e como utilizá-las."
+  },
+  {
+    "objectID": "index.html#recipes-5",
+    "href": "index.html#recipes-5",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes \n",
+    "text": "recipes \n\n\n\n\n\n\n\n📌 A ordem das etapas de pré-processamento é importante.\n\nPor exemplo, se você aplicar a transformação logarítmica em uma variável antes de centralizá-la, o resultado será diferente do que se você centralizá-la antes de aplicar a transformação logarítmica.\nPortanto, a ordem das etapas de pré-processamento é importante e deve ser cuidadosamente planejada.\nVeja outros detalhes em https://recipes.tidymodels.org/articles/Ordering.html."
+  },
+  {
+    "objectID": "index.html#recipes-6",
+    "href": "index.html#recipes-6",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes \n",
+    "text": "recipes \n\n\n\n\nTirar o logaritmo e normalizar (melhor):\n\nreceita &lt;-\n  recipes::recipe(\n    y ~ .,\n    data = dados_treino\n  ) |&gt;\n  step_log(\n    all_numeric_predictors()\n  ) |&gt;\n  step_normalize(\n    all_numeric_predictors()\n  )\n\n\nNormalizar e tomar o logaritmo:\n\n\nreceita &lt;-\n  recipes::recipe(\n    y ~ .,\n    data = dados_treino\n  ) |&gt;\n  step_normalize(\n    all_numeric_predictors()\n  ) |&gt;\n  step_log(\n    all_numeric_predictors()\n  ) |&gt;\n\n\n📌 Observação: y ~ . significa que y é a variável de interesse e todas as outas serão preditoras (features)."
+  },
+  {
+    "objectID": "index.html#recipes-preparando-e-aplicando-a-receita",
+    "href": "index.html#recipes-preparando-e-aplicando-a-receita",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes: preparando e aplicando a receita \n",
+    "text": "recipes: preparando e aplicando a receita \n\nApós definir os passos da receita, você pode prepará-la e aplicá-la aos dados usando os comandos prep() e bake(), respectivamente.\n\n\n\n\nlibrary(AmesHousing)\nlibrary(recipes)\nlibrary(dplyr)\n\n# Carregar e preparar dados\names_data &lt;- make_ames() |&gt;\n  as_tibble() |&gt;\n  select(\n    Sale_Price,\n    Lot_Area,\n    Neighborhood,\n    Gr_Liv_Area,\n    Overall_Qual,\n    Bldg_Type,\n    Year_Built\n  ) # Selecionar apenas as colunas relevantes\n\n# Receita otimizada\names_recipe &lt;- recipe(\n  Sale_Price ~\n  Lot_Area +\n  Neighborhood +\n  Gr_Liv_Area +\n  Overall_Qual +\n  Bldg_Type +\n  Year_Built,\n  data = ames_data\n) |&gt;\n  # Transformação na variável resposta\n  step_log(Sale_Price, base = 10) |&gt;\n\n  # Criar variável derivada\n  step_mutate(\n    House_Age = 2025 - Year_Built,\n    Decade_Built = floor(Year_Built / 10) * 10\n  ) |&gt;\n\n  # Remover variável original\n  step_rm(Year_Built) |&gt;\n\n  # Lidar com novos níveis em dados futuros\n  step_novel(all_nominal_predictors()) |&gt;\n\n  # Agrupar níveis raros (8% threshold)\n  step_other(Neighborhood, threshold = 0.08) |&gt;\n  step_other(Bldg_Type, threshold = 0.05) |&gt;\n\n  # Criar variáveis dummy\n  step_dummy(all_nominal_predictors(), one_hot = FALSE) |&gt;\n\n  # Interações APÓS criação de dummies\n  step_interact(~ starts_with(\"Neighborhood\"):starts_with(\"Bldg_Type\")) |&gt;\n\n  # Remover variáveis com zero variance (após interações)\n  step_zv(all_predictors()) |&gt;\n\n  # Normalização (remove automaticamente colunas problemáticas)\n  step_normalize(all_numeric_predictors()) |&gt;\n\n  # Passo adicional: seleção de variáveis por importância\n  step_corr(all_numeric_predictors(), threshold = 0.9)\n\n# Preparar a receita\nprep_recipe &lt;-\n  prep(\n    ames_recipe,\n    verbose = TRUE\n  )\n\n# Aplicar a receita\names_processed &lt;-\n  bake(\n    prep_recipe,\n    new_data = NULL\n  )\n\n# Verificar resultado\nglimpse(ames_processed)\n\n\n\n\n🍲 🥗 🍠 🧄 🧅 🥬 Cozinhando aplicando tranquilamente a receita com os ingredientes steps corretos. As funções prep() e bake() para preparar e aplicar."
+  },
+  {
+    "objectID": "index.html#recipes-preparando-e-aplicando-a-receita-1",
+    "href": "index.html#recipes-preparando-e-aplicando-a-receita-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes: preparando e aplicando a receita \n",
+    "text": "recipes: preparando e aplicando a receita \n\n\nPreparando a receita com prep() e aplicando com bake():\n\n\nlibrary(tidymodels)\nlibrary(modeldata)\nlibrary(DT)  # Pacote para tabelas interativas\n\ntidymodels::tidymodels_prefer()\n\ndados &lt;- rsample::initial_split(ames, prop = 0.7, strata = \"Sale_Price\")\ntreino &lt;- training(dados)\nteste &lt;- testing(dados)\n\nreceita &lt;-\n  recipe(Sale_Price ~ Neighborhood + Gr_Liv_Area + Year_Built + Bldg_Type, data = treino) |&gt;\n  step_log(Gr_Liv_Area, base = 10) |&gt;\n  step_dummy(all_nominal_predictors(),  one_hot = TRUE)\n\ndados_preparado &lt;- prep(receita, training = treino)\nreceita_aplicada &lt;- bake(dados_preparado, new_data = treino)"
+  },
+  {
+    "objectID": "index.html#recipes-preparando-e-aplicando-a-receita-2",
+    "href": "index.html#recipes-preparando-e-aplicando-a-receita-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes: preparando e aplicando a receita \n",
+    "text": "recipes: preparando e aplicando a receita \n\n\n\n\nDados de treino original (treino):\n\n\n\n\n\n\n\nDados Pós-Transformação (receita_aplicada):"
   },
   {
     "objectID": "index.html#parsnip",
@@ -354,7 +466,7 @@
     "href": "index.html#parsnip-2",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "parsnip \n",
-    "text": "parsnip \n\n\nDiversas bibliotecas na linguagem R são preparadas para trabalharem na área de aprendizagem de máquina. Várias dessas bibliotecas vem sendo desenvolvidas há anos. Por exemplo,as bibliotecas glmnet, ranger, kknn, xgboost, keras, rpart, randomForest, entre diversos outros.\n\n\nO número de pacotes abaixo é o mais recente. Obtido automaticamente por webscraping.library(xml2)\nlibrary(httr)\nlibrary(stringr)\nlibrary(\"downlit\")\n\nnumero_pacotes_r &lt;- httr::GET(\n  \"https://cloud.r-project.org/web/packages/index.html\"\n) |&gt;\n  xml2::read_html() |&gt;\n  xml2::xml_find_all(\"//p[1]\") |&gt;\n  xml2::xml_text() |&gt;\n  stringr::str_extract(pattern = \"[0-9]+\")\n\n\n\nAtualmente, a linguagem R possui 22417, em que muitos deles são preparados para para trabalharem em tarefas de aprendizagem de máquina, porém, cada com sua sintaxe específica. Muitos implementam o mesmo modelo, uns com algumas variações, porém, o uso é totalmente diferente, nomes de parâmetros distintos, saídas distintas, etc."
+    "text": "parsnip \n\n\nDiversas bibliotecas na linguagem R são preparadas para trabalharem na área de aprendizagem de máquina. Várias dessas bibliotecas vem sendo desenvolvidas há anos. Por exemplo,as bibliotecas glmnet, ranger, kknn, xgboost, keras, rpart, randomForest, entre diversos outros.\n\n\nO número de pacotes abaixo é o mais recente. Obtido automaticamente por webscraping.library(xml2)\nlibrary(httr)\nlibrary(stringr)\nlibrary(\"downlit\")\n\nnumero_pacotes_r &lt;- httr::GET(\n  \"https://cloud.r-project.org/web/packages/index.html\"\n) |&gt;\n  xml2::read_html() |&gt;\n  xml2::xml_find_all(\"//p[1]\") |&gt;\n  xml2::xml_text() |&gt;\n  stringr::str_extract(pattern = \"[0-9]+\")\n\n\n\nAtualmente, a linguagem R possui 22411, em que muitos deles são preparados para para trabalharem em tarefas de aprendizagem de máquina, porém, cada com sua sintaxe específica. Muitos implementam o mesmo modelo, uns com algumas variações, porém, o uso é totalmente diferente, nomes de parâmetros distintos, saídas distintas, etc."
   },
   {
     "objectID": "index.html#parsnip-3",
@@ -362,6 +474,20 @@
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "parsnip \n",
     "text": "parsnip \n\n\n\n\nUtilizando o pacote randomForest:\n\n\nlibrary(randomForest)\n\n# Modelo básico\nmodelo &lt;- randomForest(\n  Species ~ .,\n  data = iris,\n  ntree = 500,\n  mtry = 2,\n  importance = TRUE\n)\n\n\nUtilizando o pacote ranger:\n\n\nlibrary(ranger)\n\nmodelo &lt;- ranger(\n  Species ~ .,\n  data = iris,\n  num.trees = 500,\n  mtry = 2,\n  importance = \"impurity\"\n)"
+  },
+  {
+    "objectID": "index.html#parsnip-4",
+    "href": "index.html#parsnip-4",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "parsnip \n",
+    "text": "parsnip \n\n\nUtilizando o pacote ranger em um problema de classificação:\n\n\n\n\n# Definir o modelo com parsnip\nmodelo_parsnip &lt;-\n  rand_forest(\n    trees = 500,       # Equivalente a num.trees\n    mtry = 2           # Mesmo valor que no ranger\n  ) |&gt;\n  set_engine(\"ranger\", importance = \"impurity\") |&gt;\n  set_mode(\"classification\") |&gt;\n  fit(Species ~ ., data = iris)\n\n\n\n\n❤️ Imagem em aquarela de um cientista de dados apaixonado pelas coisas certas."
+  },
+  {
+    "objectID": "index.html#parsnip-5",
+    "href": "index.html#parsnip-5",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "parsnip \n",
+    "text": "parsnip \n\n\nUtilizando o pacote randomForest em um problema de regressão:\n\n\n\n\n# Definir o modelo com parsnip\nmodelo_parsnip &lt;-\n  rand_forest(\n    trees = 500,       # Equivalente a num.trees\n    mtry = 2           # Mesmo valor que no ranger\n  ) |&gt;\n  set_engine(\"randomForest\", importance = \"impurity\") |&gt;\n  set_mode(\"regression\") |&gt;\n  fit(Species ~ ., data = iris)\n\n\n\n\n❤️ Imagem em aquarela de um cientista de dados apaixonado pelas coisas certas."
   },
   {
     "objectID": "index.html#tidymodels-2",
@@ -378,11 +504,39 @@
     "text": "💻 Tidymodels\n\n\nPerceba o papel da biblioteca workflows de R. Basicamente gostaríamos de ter uma automação da faze do tratamento das features realizada com o recipes com a modelagem."
   },
   {
-    "objectID": "index.html#resumindo-data-splitting-validação-cruzada-e-conjunto-de-validação-1",
-    "href": "index.html#resumindo-data-splitting-validação-cruzada-e-conjunto-de-validação-1",
+    "objectID": "index.html#o-jogo-inteiro",
+    "href": "index.html#o-jogo-inteiro",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "Resumindo: data splitting, validação cruzada e conjunto de validação",
-    "text": "Resumindo: data splitting, validação cruzada e conjunto de validação\n\nNo tidymodels, utilizamos a biblioteca rsample para realizar procedimentos de validação cruzada:\n\n\ninitial_split(): útil para uma divisão inicial dos dados, i.e., para aplicação do hold-out;\nloo_cv(): se desejar realizar um procedimento de leave-one-out cross-validation;\nvfold_cv(): para um procedimento de k-folds cross-validation. Podemos inclusive realizar várias repetições de validação cruzada o que poderá remelhorar ainda mais a seleção da melhor combinação de hiperparâmetros. O número de repetições de validação cruzada poderá ser especificado no argumento repeats que por padrão é 1L;\nbootstraps(): se for desejado utilizar um procedimento de bootstrap não-paramétrico ao invés de uma validação cruzada. O papel do bootstrap é o mesmo da validação cruzada, porém, a seleção das amostras de treinamento é de mesmo tamanho da amostra de treinamento original e o procedimento é feito com reposição, i.e., os mesmos dados podem aparecer nas amostras. O conjunto de avaliação é definido como as linhas dos dados originais que não foram incluídos na amostra bootstrap. Isso geralmente é chamado de amostra out-of-bag - OOB. Podemos alterar o número de amostras bootstrap modificando o argumento times que por padrão é 25L.\n\n\n📌 Lembre-se que qualquer procedimento de validação cruzada que você escolher deve ser realizado no conjunto de treinamento!"
+    "section": "🕹️ O jogo inteiro",
+    "text": "🕹️ O jogo inteiro"
+  },
+  {
+    "objectID": "index.html#o-jogo-inteiro-1",
+    "href": "index.html#o-jogo-inteiro-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🕹️ O jogo inteiro",
+    "text": "🕹️ O jogo inteiro"
+  },
+  {
+    "objectID": "index.html#o-jogo-inteiro-2",
+    "href": "index.html#o-jogo-inteiro-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🕹️ O jogo inteiro",
+    "text": "🕹️ O jogo inteiro"
+  },
+  {
+    "objectID": "index.html#o-jogo-inteiro-3",
+    "href": "index.html#o-jogo-inteiro-3",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🕹️ O jogo inteiro",
+    "text": "🕹️ O jogo inteiro"
+  },
+  {
+    "objectID": "index.html#o-jogo-inteiro-4",
+    "href": "index.html#o-jogo-inteiro-4",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🕹️ O jogo inteiro",
+    "text": "🕹️ O jogo inteiro"
   },
   {
     "objectID": "index.html#balanço-viés-e-variância",
@@ -658,220 +812,59 @@
     "text": "📚 Exercícios\n\nExercício: Considere agora o conjunto de dados de despesas médicas, disponível aqui. Refaça o mesmo exercício dos dados de vinho vermelho, em que aqui, o objetivo é prever a variável charges. Perceba que algumas variáveis são qualitativas, e portanto, você deverá transformá-las em dummy. Indique os melhores cenários dos quatro modelos e informe qual modelo você utilizaria. Explique! Dica: usando a função step_dummy() da biblioteca recipes, você poderá facilmente transformar variáveis qualitativas em numéricas."
   },
   {
-    "objectID": "index.html#data-splitting-hold-out-1",
-    "href": "index.html#data-splitting-hold-out-1",
+    "objectID": "index.html#tune",
+    "href": "index.html#tune",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "Data Splitting / Hold-Out \n",
-    "text": "Data Splitting / Hold-Out \n\n\n\n\nO termo validação refere-se à parcela do conjunto de treinamento incial que dividimos em validação e treinamento, dentro de uma validação cruzada.\n\nO conjunto Testing na segunda hierarquia da árvore ao lado, só usamos no final para avaliar o desempenho do modelo nesse conjunto. Isto é, usamos o Testing para o cálculo do risco observado.\n\nPerceba que o conjunto de treinamento (Not Testing) é particionado em treinamento e validação. Poderíamos fazer uma única partição, mas o procedimento comumente utilizado é particionar entre Training e Validation uzando algum procedimento de validação cruzada."
+    "section": "tune \n",
+    "text": "tune \n\n\n\n\n\nImagem em aquarela da logo do pacote tune.\n\n\n\nMuitos algoritmos de Machine Learning possuem hiperparâmetros.\nEstes não são aprendidos diretamente dos dados durante o treinamento.\n\nExemplos: número de vizinhos em KNN, profundidade de uma árvore de decisão, número de arvores em um random forest, taxa de aprendizado em redes neurais, penalidade em regularização como em modelos LASSO, Ridge ou Elastic Net.\nA escolha dos hiperparâmetros pode impactar significativamente a performance do modelo.\n\nObjetivo: Encontrar a combinação de hiperparâmetros que resulta no melhor desempenho preditivo em dados não vistos dado uma métrica de desenpenho, por exemplo, Erro Quadrático Médio (EQM) ou Acurácia."
   },
   {
-    "objectID": "index.html#the-whole-game",
-    "href": "index.html#the-whole-game",
+    "objectID": "index.html#tune-por-que-otimizar-hiperparâmetros",
+    "href": "index.html#tune-por-que-otimizar-hiperparâmetros",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "The whole game",
-    "text": "The whole game"
+    "section": "tune: Por que Otimizar Hiperparâmetros? \n",
+    "text": "tune: Por que Otimizar Hiperparâmetros? \n\n\n\n\nHiperparâmetros: São parâmetros do modelo que não são aprendidos diretamente dos dados.\n\nImpacto no Desempenho: A escolha dos hiperparâmetros pode ter um impacto significativo na performance do modelo.\n\nBusca pelo Melhor: Tunar significa buscar encontrar a combinação de hiperparâmetros que resulta no melhor desempenho do modelo em dados não vistos, com base em uma métrica escolhida."
   },
   {
-    "objectID": "index.html#the-whole-game-1",
-    "href": "index.html#the-whole-game-1",
+    "objectID": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso",
+    "href": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "The whole game",
-    "text": "The whole game"
+    "section": "tune: Tunando o hiperparâmetro do modelo Lasso \n",
+    "text": "tune: Tunando o hiperparâmetro do modelo Lasso \n\n\n\n\nO lasso foi desenvolvido pelo Robert Tibshirani, em um artigo publicado no artigo Regression Shrinkage and Selection via the Lasso."
   },
   {
-    "objectID": "index.html#the-whole-game-2",
-    "href": "index.html#the-whole-game-2",
+    "objectID": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-1",
+    "href": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-1",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "The whole game",
-    "text": "The whole game"
+    "section": "tune: Tunando o hiperparâmetro do modelo Lasso \n",
+    "text": "tune: Tunando o hiperparâmetro do modelo Lasso \n\n\nNo lasso, ao invés de reduzir a variância do estimador de mínimos quadrados usando a complexidade (L_0 = \\sum_{i = 1}^d\\mathbb{I}(\\beta_i) \\neq 0) em Equação 3, usa-se a penalização L_1 = \\sum_{i = 1}^d|\\beta_i|. No lasso, buscamos:\n\\widehat{\\beta}_{L_1,\\lambda} = \\argmin_{\\beta_0 \\in \\mathbb{R}, \\beta \\in \\mathbb{R}^d}\\sum_{k = 1}^n\\overbrace{\\left(y_k - \\beta_0 - \\sum_{i = 1}^d \\beta_i x_{x,i}\\right)^2}^{n \\times EQM} + \\overbrace{\\lambda \\,\\,\\underbrace{\\sum_{j = 1}^d|\\beta_j|}_{\\text{Penalização}}}^{\\text{A magnitude do coeficiente importa!}}, em que \\lambda é um tuning parameter 🎛. Perceba que quando \\lambda = 0, caímos no caso do modelo de regressão por mínimos quadrados sem penalização. Já, quando \\lambda \\rightarrow \\infty, temos um modelo em que todas as variáveis são removidas, uma vez que a primeira parte do modelo torna-se insignificante."
   },
   {
-    "objectID": "index.html#the-whole-game-3",
-    "href": "index.html#the-whole-game-3",
+    "objectID": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-2",
+    "href": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-2",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "The whole game",
-    "text": "The whole game"
+    "section": "tune: Tunando o hiperparâmetro do modelo Lasso \n",
+    "text": "tune: Tunando o hiperparâmetro do modelo Lasso \n\n\nQuando \\lambda é grande, temos que\n\\sum_{k = 1}^n \\left(y_k - \\beta_0 - \\sum_{j = 1}^d \\beta_j x_{k,j}\\right)^2 + \\lambda \\sum_{j = 1}^d |\\beta_j| \\approx \\lambda \\sum_{j = 1}^d |\\beta_j|, e portanto, \\widehat{\\beta}_1 = 0, \\cdots, \\widehat{\\beta}_d = 0.\n\nA escolha de \\lambda, em geral, é feita utilizado algum método de validação/validação cruzada. 🔍"
   },
   {
-    "objectID": "index.html#the-whole-game-4",
-    "href": "index.html#the-whole-game-4",
+    "objectID": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-3",
+    "href": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-3",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "The whole game",
-    "text": "The whole game"
+    "section": "tune: Tunando o hiperparâmetro do modelo Lasso \n",
+    "text": "tune: Tunando o hiperparâmetro do modelo Lasso \n\nExemplo: Considere uma base de dados simulada, com n = 500 observações, de tal forma que\nY = 3X_{1} - 2X_2 + X_3 + -3X_4 + X_5 + \\sum_{i = 6}^{20}0X_i + \\varepsilon, em que \\varepsilon \\sim \\text{Normal}(0, 0.5^2) e X_i \\sim \\text{Normal}(0, 1), independentes, com i = 1, \\cdots, 20. Desejamos ajustar quatro modelos de regressão. Para o caso do Estimador de Mínimos Quadrados - EMQ e do modelo Ridge, que não tem seleção automática de variáveis, usaremos todas as variáveis. Desejamos avaliar o risco estimado de cada uma das regressões."
   },
   {
-    "objectID": "index.html#o-jogo-inteiro",
-    "href": "index.html#o-jogo-inteiro",
+    "objectID": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-4",
+    "href": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-4",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "🕹️ O jogo inteiro",
-    "text": "🕹️ O jogo inteiro"
+    "section": "tune: Tunando o hiperparâmetro do modelo Lasso \n",
+    "text": "tune: Tunando o hiperparâmetro do modelo Lasso \n\n\n\n\n\nImagem em aquarela que faz alusão à geração de dados sintéticos.\n\n\n\nlibrary(tibble)\n\ngerar_dados &lt;- function(n = 500, semente = 123) {\n  set.seed(semente)\n\n  # Gerar matriz X (500 x 20) com variáveis normais independentes\n  x &lt;- matrix(rnorm(n * 20, mean = 0, sd = 1), nrow = n, ncol = 20)\n  colnames(X) &lt;- paste0(\"x\", 1:20)\n\n  # Coeficientes verdadeiros (beta)\n  beta &lt;- c(3, -2, 1, -3, 1, rep(0, 15))  # X6 a X20 têm efeito zero\n\n  # Gerar erro aleatório (epsilon)\n  epsilon &lt;- rnorm(n, mean = 0, sd = 0.5)\n\n  # Calcular Y conforme o modelo\n  y &lt;- as.vector(x %*% beta + epsilon)\n  dados &lt;- tibble(y = y, as_tibble(x))\n\n  return(dados)\n}\n\n# Exemplo de uso:\ndados &lt;- gerar_dados(n = 500)\nhead(dados)  # Y agora é a primeira coluna!"
   },
   {
-    "objectID": "index.html#o-jogo-inteiro-1",
-    "href": "index.html#o-jogo-inteiro-1",
+    "objectID": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-5",
+    "href": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-5",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "🕹️ O jogo inteiro",
-    "text": "🕹️ O jogo inteiro"
-  },
-  {
-    "objectID": "index.html#o-jogo-inteiro-2",
-    "href": "index.html#o-jogo-inteiro-2",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "🕹️ O jogo inteiro",
-    "text": "🕹️ O jogo inteiro"
-  },
-  {
-    "objectID": "index.html#o-jogo-inteiro-3",
-    "href": "index.html#o-jogo-inteiro-3",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "🕹️ O jogo inteiro",
-    "text": "🕹️ O jogo inteiro"
-  },
-  {
-    "objectID": "index.html#o-jogo-inteiro-4",
-    "href": "index.html#o-jogo-inteiro-4",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "🕹️ O jogo inteiro",
-    "text": "🕹️ O jogo inteiro"
-  },
-  {
-    "objectID": "index.html#parsnip-4",
-    "href": "index.html#parsnip-4",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "parsnip \n",
-    "text": "parsnip \n\n\nUtilizando o pacote ranger:\n\n\n# Definir o modelo com parsnip\nmodelo_parsnip &lt;-\n  rand_forest(\n    trees = 500,       # Equivalente a num.trees\n    mtry = 2           # Mesmo valor que no ranger\n  ) |&gt;\n  set_engine(\"ranger\", importance = \"impurity\") |&gt;\n  set_mode(\"classification\") |&gt;\n  fit(Species ~ ., data = iris)"
-  },
-  {
-    "objectID": "index.html#parsnip-5",
-    "href": "index.html#parsnip-5",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "parsnip \n",
-    "text": "parsnip \n\nUtilizando o pacote randomForest:\n\n\n# Definir o modelo com parsnip\nmodelo_parsnip &lt;-\n  rand_forest(\n    trees = 500,       # Equivalente a num.trees\n    mtry = 2           # Mesmo valor que no ranger\n  ) |&gt;\n  set_engine(\"randomForest\", importance = \"impurity\") |&gt;\n  set_mode(\"classification\") |&gt;\n  fit(Species ~ ., data = iris)"
-  },
-  {
-    "objectID": "index.html#rsample-validação-cruzada",
-    "href": "index.html#rsample-validação-cruzada",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "rsample (validação cruzada)",
-    "text": "rsample (validação cruzada)\n\n\n\n\n\nImagem em aquarela da logo do pacote rsample.\n\n\n\nlibrary(tidymodels)\n\ntidymodels::tidymodels_prefer()\n\nset.seed(123)\ndados_split &lt;- rsample::initial_split(\n  dados,\n  prop = 0.7,\n  strata = \"Resposta\"\n)\n\ntreino &lt;- rsample::training(dados_split)\nteste &lt;- rsample::testing(dados_split)\n\n# Criando as amostras para realizar a validação cruzada\n# com o pacote tune (5-fold cross-validation)\ncv &lt;- rsample::vfold_cv(\n  treino,\n  v = 5,\n  strata = \"Resposta\"\n)\n\n📌 Atenção:\n\nTambém é possível estratificar a variável resposta, para que o conjunto de treinamento e teste validação possuam a mesma proporção de classes."
-  },
-  {
-    "objectID": "index.html#recipes",
-    "href": "index.html#recipes",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "recipes \n",
-    "text": "recipes \n\n\n\n\n\nImagem em aquarela da logo do pacote recipes.\n\n\nAntes de ajustar o modelo, precisamos preparar os dados. O pacote recipes é o responsável por realizar o pré-processamento dos dados.\n 1. Permite encadear etapas de transformação (como normalização, imputação, codificação, etc.) de forma organizada e reutilizável.\n\nAutomatiza tarefas como criação de dummies, spline bases, PCA, interação entre variáveis e muito mais.\nPossui mais de 100 funções step_*() para aplicar transformações específicas e customizáveis em variáveis contínuas, categóricas e textuais."
-  },
-  {
-    "objectID": "index.html#tidymodels-img-srcimgslogo_pacote_future.png-height220px",
-    "href": "index.html#tidymodels-img-srcimgslogo_pacote_future.png-height220px",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "💻 Tidymodels <img src=“imgs/logo_pacote_future.png” height=“220px”",
-    "text": "💻 Tidymodels &lt;img src=“imgs/logo_pacote_future.png” height=“220px”\n\n\n\nUma das primeiras ideias mais conhecidas de unificação de sintaxe do workflow de machine learning, na linguagem R, foi idealizada pelo estatístico Max Khun.\n\nEle criou a biblioteca caret - Classification And REgression Training de R que é muito bem desenvolvida e abrangente. Você poderá estudar o caret clicando aqui.\n\nNão foi um trabalho simples, veja uma tabela com a quantidade de modelos que o caret suporta, clicando aqui. Então, “por baixo dos panos”, a ideia era unificar a entrada e saída. A biblioteca caret continua sendo mantida, apesar da existência do tidymodels."
-  },
-  {
-    "objectID": "index.html#tidymodels-img-srcimgstidymodels.png-height220px",
-    "href": "index.html#tidymodels-img-srcimgstidymodels.png-height220px",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "💻 Tidymodels <img src=“imgs/tidymodels.png” height=“220px”",
-    "text": "💻 Tidymodels &lt;img src=“imgs/tidymodels.png” height=“220px”\n\n\n\nUma das primeiras ideias mais conhecidas de unificação de sintaxe do workflow de machine learning, na linguagem R, foi idealizada pelo estatístico Max Khun.\n\nEle criou a biblioteca caret - Classification And REgression Training de R que é muito bem desenvolvida e abrangente. Você poderá estudar o caret clicando aqui.\n\nNão foi um trabalho simples, veja uma tabela com a quantidade de modelos que o caret suporta, clicando aqui. Então, “por baixo dos panos”, a ideia era unificar a entrada e saída. A biblioteca caret continua sendo mantida, apesar da existência do tidymodels."
-  },
-  {
-    "objectID": "index.html#recipes-1",
-    "href": "index.html#recipes-1",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "recipes \n",
-    "text": "recipes \n\n\n\n\n\nImagem em aquarela da logo do pacote recipes.\n\n\nDefinindo uma receita (fase de pré-processamento):\n\n# Definindo uma receita (fase de pré-processamento)\nreceita &lt;-\n  recipes::recipe(\n    y ~ x1 + x3:x4 + x5\n    data = dados_treino\n  ) |&gt;\n  step_*() |&gt;\n  step_*() |&gt;\n  ...      |&gt;\n  step_*()"
-  },
-  {
-    "objectID": "index.html#recipes-2",
-    "href": "index.html#recipes-2",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "recipes \n",
-    "text": "recipes \n\n\n\n\n\n\n\nAlugumas funções step_*()\n\nDescrição\n\n\n\nstep_center()\nCentraliza variáveis numéricas subtraindo a média.\n\n\nstep_scale()\nPadroniza variáveis numéricas dividindo pelo desvio padrão.\n\n\nstep_normalize()\nRealiza centralização e padronização em um único passo.\n\n\nstep_knnimpute()\nImputa valores faltantes usando o método dos k-vizinhos mais próximos.\n\n\nstep_dummy()\nConverte variáveis categóricas em variáveis indicadoras (dummies).\n\n\nstep_nzv()\nRemove variáveis com variância próxima de zero.\n\n\nstep_corr()\nRemove variáveis altamente correlacionadas entre si.\n\n\nstep_pca()\nAplica análise de componentes principais (PCA) para redução de dimensão.\n\n\nstep_poly()\nGera termos polinomiais de variáveis numéricas.\n\n\nstep_log()\nAplica transformação logarítmica em variáveis numéricas.\n\n\nstep_other()\nAgrupa categorias menos frequentes em uma nova categoria “outras”."
-  },
-  {
-    "objectID": "index.html#recipes-3",
-    "href": "index.html#recipes-3",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "recipes \n",
-    "text": "recipes \n\nVocê poderá encontrar uma lista completa das funções step_*() em:"
-  },
-  {
-    "objectID": "index.html#recipes-4",
-    "href": "index.html#recipes-4",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "recipes \n",
-    "text": "recipes \n\n\nConsulte a documentação do pacote recipes para saber mais sobre as funções step_*() e como utilizá-las."
-  },
-  {
-    "objectID": "index.html#recipes-5",
-    "href": "index.html#recipes-5",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "recipes \n",
-    "text": "recipes \n\n\n\n\n\n\n\n📌 A ordem das etapas de pré-processamento é importante.\n\nPor exemplo, se você aplicar a transformação logarítmica em uma variável antes de centralizá-la, o resultado será diferente do que se você centralizá-la antes de aplicar a transformação logarítmica.\nPortanto, a ordem das etapas de pré-processamento é importante e deve ser cuidadosamente planejada.\nVeja outros detalhes em https://recipes.tidymodels.org/articles/Ordering.html."
-  },
-  {
-    "objectID": "index.html#recipes-6",
-    "href": "index.html#recipes-6",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "recipes \n",
-    "text": "recipes \n\n\n\n\nTirar o logaritmo e normalizar (melhor):\n\nreceita &lt;-\n  recipes::recipe(\n    y ~ .,\n    data = dados_treino\n  ) |&gt;\n  step_log(\n    all_numeric_predictors()\n  ) |&gt;\n  step_normalize(\n    all_numeric_predictors()\n  )\n\n\nNormalizar e tomar o logaritmo:\n\n\nreceita &lt;-\n  recipes::recipe(\n    y ~ .,\n    data = dados_treino\n  ) |&gt;\n  step_normalize(\n    all_numeric_predictors()\n  ) |&gt;\n  step_log(\n    all_numeric_predictors()\n  ) |&gt;\n\n\n📌 Observação: y ~ . significa que y é a variável de interesse e todas as outas serão preditoras (features)."
-  },
-  {
-    "objectID": "index.html#a-fórmula-o-coração-da-receita",
-    "href": "index.html#a-fórmula-o-coração-da-receita",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "A Fórmula: O Coração da Receita",
-    "text": "A Fórmula: O Coração da Receita\nA função recipe() inicia a criação de uma receita e seu primeiro argumento é uma fórmula.\nrecipe(formula, data, ...)\nEstrutura da Fórmula:\nvariavel_resposta ~ preditor1 + preditor2 + ... + preditorN\n\n\nLado Esquerdo (variavel_resposta ~ ...): Especifica a(s) variável(is) resultado/alvo.\n\nPode ser uma única variável.\nMúltiplas variáveis respostas podem ser especificadas com cbind(resp1, resp2) ~ ... (menos comum para a maioria dos modelos).\n\n\n\nLado Direito (... ~ preditor1 + preditor2): Especifica as variáveis preditoras.\n\nTil (~): Separa a variável resposta dos preditores.\n\nSinal de Mais (+): Usado para adicionar preditores."
-  },
-  {
-    "objectID": "index.html#recipes-a-fórmula-é-o-coração-da-receita",
-    "href": "index.html#recipes-a-fórmula-é-o-coração-da-receita",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "recipes: a Fórmula é o Coração da Receita \n",
-    "text": "recipes: a Fórmula é o Coração da Receita \n\nA função recipe() inicia a criação de uma receita e seu primeiro argumento é uma fórmula.\nrecipe(formula, data, ...)\n\nEstrutura da Fórmula:\n\nvariavel_resposta ~ preditor1 + preditor2 + ... + preditorN\n\n\n\nLado Esquerdo (variavel_resposta ~ ...): Especifica a(s) variável(is) resultado/alvo.\n\nPode ser uma única variável.\nMúltiplas variáveis respostas podem ser especificadas com cbind(resp1, resp2) ~ ... (menos comum para a maioria dos modelos).\n\n\n\nLado Direito (... ~ preditor1 + preditor2): Especifica as variáveis preditoras.\n\nTil (~): Separa a variável resposta dos preditores.\n\nSinal de Mais (+): Usado para adicionar preditores."
-  },
-  {
-    "objectID": "index.html#interações-entre-variáveis-e",
-    "href": "index.html#interações-entre-variáveis-e",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "Interações Entre Variáveis: * e : \n",
-    "text": "Interações Entre Variáveis: * e : \n\n\nFórmulas no R permitem especificar termos de interação diretamente.\n1. O Asterisco (*): Efeitos Principais + Interação\npreditorA * preditorB expande para preditorA + preditorB + preditorA:preditorB. Inclui os efeitos principais de cada variável E o termo de interação entre elas. Não é possível usar * ou : diretamente no recipe(). Para isso você deve usar o step_interact().\n# Prever 'mpg' usando 'wt', 'hp' e a interação entre 'wt' e 'hp'\nreceita_interacao_asterisco &lt;- recipe(mpg ~ wt * hp + qsec, data = mtcars_tbl)\n\n# summary(receita_interacao_asterisco)\n# Note os termos: wt, hp, qsec, wt_x_hp (ou similar)\nEsta é a forma mais comum e geralmente recomendada para incluir interações, seguindo o princípio da hierarquia."
-  },
-  {
-    "objectID": "index.html#interações-entre-variáveis-e-cont.",
-    "href": "index.html#interações-entre-variáveis-e-cont.",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "Interações Entre Variáveis: * e : (Cont.) \n",
-    "text": "Interações Entre Variáveis: * e : (Cont.) \n\n\n2. Os Dois Pontos (:): Apenas a Interação\n\npreditorA:preditorB especifica apenas o termo de interação entre preditorA e preditorB. Não inclui os efeitos principais automaticamente.\n# Prever 'mpg' usando 'wt', 'hp' e APENAS a interação wt:hp\n# (geralmente, você adicionaria os efeitos principais manualmente se usar ':')\nreceita &lt;-\n  recipe(\n    mpg ~ wt + hp + wt:hp + qsec,\n    data = mtcars_tbl\n  )\n\n# summary(receita_interacao_doispontos)\n# É semanticamente igual ao exemplo com '*' se os termos principais estiverem presentes.\n\n# Apenas a interação (menos comum isoladamente):\n# receita_so_interacao &lt;- recipe(mpg ~ wt:hp, data = mtcars_tbl)\n# summary(receita_so_interacao) # Resultaria apenas no termo wt_x_hp\n\n📌 Use : com cautela e geralmente certifique-se de que os efeitos principais também estão no modelo."
-  },
-  {
-    "objectID": "index.html#papéis-das-variáveis-e-seletores-step_",
-    "href": "index.html#papéis-das-variáveis-e-seletores-step_",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "Papéis das Variáveis e Seletores step_* \n",
-    "text": "Papéis das Variáveis e Seletores step_* \n\nA fórmula no recipe() define os papéis iniciais das variáveis: outcome (resposta) e predictor (preditora).\n\n\nreceita &lt;- recipe(mpg ~ ., data = mtcars_tbl)\n# summary(receita) # Mostra os papéis iniciais\n\n\nMuitas funções step_* usam seletores para escolher em quais variáveis atuar, baseando-se nesses papéis ou em suas propriedades:\n 🎉 Seletores ajudam a selecionar mais facilmente:\n\n\nall_numeric_predictors(): Todos os preditores numéricos.\n\nall_nominal_predictors(): Todos os preditores categóricos (fatores, caracteres).\n\nall_predictors(): Todos os preditores.\n\nall_outcomes(): Todas as variáveis resposta.\n\nstarts_with(\"prefix_\"), ends_with(\"_suffix\"), contains(\"substring\")"
-  },
-  {
-    "objectID": "index.html#papéis-das-variáveis-e-seletores-step_-1",
-    "href": "index.html#papéis-das-variáveis-e-seletores-step_-1",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "Papéis das Variáveis e Seletores step_* \n",
-    "text": "Papéis das Variáveis e Seletores step_* \n\n\nExemplo de uso de seletores:\n\n\nreceita_com_passos &lt;-\n  recipe(mpg ~ ., data = mtcars_tbl) |&gt;\n  # Remove a variável 'car_name'\n  step_rm(car_name) |&gt;\n  # Centraliza apenas preditores numéricos\n  step_center(all_numeric_predictors()) |&gt;\n  # Escala apenas preditores numéricos\n  step_scale(all_numeric_predictors()) |&gt;\n  # Cria dummies para preditores nominais\n  step_dummy(all_nominal_predictors(), one_hot = TRUE)"
-  },
-  {
-    "objectID": "index.html#recipes-preparando-a-receita-e",
-    "href": "index.html#recipes-preparando-a-receita-e",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "recipes: preparando a receita e \n",
-    "text": "recipes: preparando a receita e \n\n\nlibrary(AmesHousing)\nlibrary(recipes)\nlibrary(dplyr)\n\n# Carregar e preparar dados\names_data &lt;- make_ames() |&gt;\n  as_tibble() |&gt;\n  select(\n    Sale_Price,\n    Lot_Area,\n    Neighborhood,\n    Gr_Liv_Area,\n    Overall_Qual,\n    Bldg_Type,\n    Year_Built\n  ) # Selecionar apenas as colunas relevantes\n\n# Receita otimizada\names_recipe &lt;- recipe(\n  Sale_Price ~\n    Lot_Area +\n      Neighborhood +\n      Gr_Liv_Area +\n      Overall_Qual +\n      Bldg_Type +\n      Year_Built,\n  data = ames_data\n) |&gt;\n  # Transformação na variável resposta\n  step_log(Sale_Price, base = 10) |&gt;\n\n  # Criar variável derivada\n  step_mutate(\n    House_Age = 2025 - Year_Built,\n    Decade_Built = floor(Year_Built / 10) * 10\n  ) |&gt;\n\n  # Remover variável original\n  step_rm(Year_Built) |&gt;\n\n  # Lidar com novos níveis em dados futuros\n  step_novel(all_nominal_predictors()) |&gt;\n\n  # Agrupar níveis raros (8% threshold)\n  step_other(Neighborhood, threshold = 0.08) |&gt;\n  step_other(Bldg_Type, threshold = 0.05) |&gt;\n\n  # Criar variáveis dummy\n  step_dummy(all_nominal_predictors(), one_hot = FALSE) |&gt;\n\n  # Interações APÓS criação de dummies\n  step_interact(~ starts_with(\"Neighborhood\"):starts_with(\"Bldg_Type\")) |&gt;\n\n  # Remover variáveis com zero variance (após interações)\n  step_zv(all_predictors()) |&gt;\n\n  # Normalização (remove automaticamente colunas problemáticas)\n  step_normalize(all_numeric_predictors()) |&gt;\n\n  # Passo adicional: seleção de variáveis por importância\n  step_corr(all_numeric_predictors(), threshold = 0.9)\n\n# Preparar a receita\nprep_recipe &lt;- prep(ames_recipe, verbose = TRUE)\n\n# Aplicar a receita\names_processed &lt;- bake(prep_recipe, new_data = NULL)\n\n# Verificar resultado\nglimpse(ames_processed)"
-  },
-  {
-    "objectID": "index.html#recipes-preparando-e-aplicando-a-receita",
-    "href": "index.html#recipes-preparando-e-aplicando-a-receita",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "recipes: preparando e aplicando a receita \n",
-    "text": "recipes: preparando e aplicando a receita \n\n\nApós definir os passos da receita, você pode prepará-la e aplicá-la aos dados usando os comandos prep() e bake(), respectivamente.\n\n\n\n\nlibrary(AmesHousing)\nlibrary(recipes)\nlibrary(dplyr)\n\n# Carregar e preparar dados\names_data &lt;- make_ames() |&gt;\n  as_tibble() |&gt;\n  select(\n    Sale_Price,\n    Lot_Area,\n    Neighborhood,\n    Gr_Liv_Area,\n    Overall_Qual,\n    Bldg_Type,\n    Year_Built\n  ) # Selecionar apenas as colunas relevantes\n\n# Receita otimizada\names_recipe &lt;- recipe(\n  Sale_Price ~\n  Lot_Area +\n  Neighborhood +\n  Gr_Liv_Area +\n  Overall_Qual +\n  Bldg_Type +\n  Year_Built,\n  data = ames_data\n) |&gt;\n  # Transformação na variável resposta\n  step_log(Sale_Price, base = 10) |&gt;\n\n  # Criar variável derivada\n  step_mutate(\n    House_Age = 2025 - Year_Built,\n    Decade_Built = floor(Year_Built / 10) * 10\n  ) |&gt;\n\n  # Remover variável original\n  step_rm(Year_Built) |&gt;\n\n  # Lidar com novos níveis em dados futuros\n  step_novel(all_nominal_predictors()) |&gt;\n\n  # Agrupar níveis raros (8% threshold)\n  step_other(Neighborhood, threshold = 0.08) |&gt;\n  step_other(Bldg_Type, threshold = 0.05) |&gt;\n\n  # Criar variáveis dummy\n  step_dummy(all_nominal_predictors(), one_hot = FALSE) |&gt;\n\n  # Interações APÓS criação de dummies\n  step_interact(~ starts_with(\"Neighborhood\"):starts_with(\"Bldg_Type\")) |&gt;\n\n  # Remover variáveis com zero variance (após interações)\n  step_zv(all_predictors()) |&gt;\n\n  # Normalização (remove automaticamente colunas problemáticas)\n  step_normalize(all_numeric_predictors()) |&gt;\n\n  # Passo adicional: seleção de variáveis por importância\n  step_corr(all_numeric_predictors(), threshold = 0.9)\n\n# Preparar a receita\nprep_recipe &lt;-\n  prep(\n    ames_recipe,\n    verbose = TRUE\n  )\n\n# Aplicar a receita\names_processed &lt;-\n  bake(\n    prep_recipe,\n    new_data = NULL\n  )\n\n# Verificar resultado\nglimpse(ames_processed)\n\n\n\n\n🍲 🥗 🍠 🧄 🧅 🥬 Cozinhando aplicando tranquilamente a receita com os ingredientes steps corretos."
+    "section": "tune: Tunando o hiperparâmetro do modelo Lasso \n",
+    "text": "tune: Tunando o hiperparâmetro do modelo Lasso"
   }
 ]

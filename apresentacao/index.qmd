@@ -1570,8 +1570,6 @@ receita <-
 
 ## recipes: preparando e aplicando a receita <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
 
-<br>
-
 Após definir os passos da receita, você pode prepará-la e aplicá-la aos dados usando os comandos `prep()` e `bake()`, respectivamente.
 
 <br>
@@ -1663,7 +1661,88 @@ glimpse(ames_processed)
 ```
 :::
 ::: {.column width="50%"}
-![🍲 🥗 🍠 🧄 🧅 🥬 ~~Cozinhando~~ aplicando tranquilamente a receita com os ~~ingredientes~~ *steps* corretos.](gifs/chefe_preparando.gif){fig-aling="right" width="45%"}
+![🍲 🥗 🍠 🧄 🧅 🥬 ~~Cozinhando~~ aplicando tranquilamente a receita com os ~~ingredientes~~ *steps* corretos. As funções `prep()` e `bake()` para preparar e aplicar.](gifs/chefe_preparando.gif){fig-aling="right" width="45%"}
+:::
+:::
+
+## recipes: preparando e aplicando a receita <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
+
+<br>
+
+**Preparando a receita com `prep()` e aplicando com `bake()`**:
+
+<br>
+
+```{r}
+#| eval: true
+#| class-source: smallcode
+#| code-line-numbers: 1-5|7-9|11-14|15-17
+library(tidymodels)
+library(modeldata)
+library(DT)  # Pacote para tabelas interativas
+
+tidymodels::tidymodels_prefer()
+
+dados <- rsample::initial_split(ames, prop = 0.7, strata = "Sale_Price")
+treino <- training(dados)
+teste <- testing(dados)
+
+receita <-
+  recipe(Sale_Price ~ Neighborhood + Gr_Liv_Area + Year_Built + Bldg_Type, data = treino) |>
+  step_log(Gr_Liv_Area, base = 10) |>
+  step_dummy(all_nominal_predictors(),  one_hot = TRUE)
+
+dados_preparado <- prep(receita, training = treino)
+receita_aplicada <- bake(dados_preparado, new_data = treino)
+```
+
+## recipes: preparando e aplicando a receita <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
+
+<br>
+
+::: {.columns}
+::: {.column width="50%"}
+**Dados de treino original (`treino`):**
+```{r}
+#| eval: true
+#| echo: false
+# Resumo da receita em tabela
+library(dplyr)
+treino <- treino |>
+  select(Sale_Price, Neighborhood, Gr_Liv_Area, Year_Built, Bldg_Type)
+treino |>
+  datatable(
+    options = list(
+      scrollX = TRUE,
+      pageLength = 5,
+      dom = 'tip'
+    ),
+    caption = "Dados de treino original."
+  )
+```
+:::
+
+::: {.column width="50%"}
+**Dados Pós-Transformação (`receita_aplicada`):**
+```{r}
+#| eval: true
+#| echo: false
+receita_aplicada |>
+  dplyr::mutate(
+    across(
+      where(is.numeric),
+      ~ round(., 2)
+    )
+  ) |>
+  datatable(
+    options = list(
+      scrollX = TRUE,
+      pageLength = 5,
+      dom = 'tip'
+    ),
+    caption = "Dados Aplicados (Head)"
+  )
+```
 :::
 :::
 
@@ -1801,13 +1880,15 @@ modelo <- ranger(
 
 <br>
 
-**Utilizando o pacote** [**ranger**]{.red}:
+**Utilizando o pacote** [**ranger**]{.red} em um problema de classificação:
 
 <br>
 
+::: columns
+::: {.column width="50%"}
 ```{r}
 #| eval: false
-#| code-line-numbers: 3-6|7
+#| code-line-numbers: 3-6|7-8
 # Definir o modelo com parsnip
 modelo_parsnip <-
   rand_forest(
@@ -1818,16 +1899,26 @@ modelo_parsnip <-
   set_mode("classification") |>
   fit(Species ~ ., data = iris)
 ```
+:::
+::: {.column width="50%"}
+
+[![❤️ Imagem em aquarela de um cientista de dados apaixonado pelas coisas certas.](imgs/apaixonado_pasnip.png){fig-alt="Imagem em aquarela de um cientista de dados apaixonado pelas coisas certas." width="35%" height="auto"}](https://parsnip.tidymodels.org/)
+:::
+:::
 
 ## parsnip <img src="imgs/parsnip.png" height="120px" style="vertical-align:middle;">
 
-**Utilizando o pacote** [**randomForest**]{.red}:
+<br>
+
+**Utilizando o pacote** [**randomForest**]{.red} em um problema de regressão:
 
 <br>
 
+::: columns
+::: {.column width="50%"}
 ```{r}
 #| eval: false
-#| code-line-numbers: 7|
+#| code-line-numbers: 3-6|7-8
 # Definir o modelo com parsnip
 modelo_parsnip <-
   rand_forest(
@@ -1835,9 +1926,187 @@ modelo_parsnip <-
     mtry = 2           # Mesmo valor que no ranger
   ) |>
   set_engine("randomForest", importance = "impurity") |>
-  set_mode("classification") |>
+  set_mode("regression") |>
   fit(Species ~ ., data = iris)
 ```
+:::
+::: {.column width="50%"}
+
+[![❤️ Imagem em aquarela de um cientista de dados apaixonado pelas coisas certas.](imgs/apaixonado_parsnip_2.png){fig-alt="Imagem em aquarela de um cientista de dados apaixonado pelas coisas certas." width="35%" height="auto"}](https://parsnip.tidymodels.org/)
+:::
+:::
+
+## tune <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
+
+::: columns
+::: {.column width="50%"}
+[![Imagem em aquarela da logo do pacote **tune**.](imgs/aquarela_tune.png){fig-alt="Imagem em aquarela fazendo alusão ao uso do pacote tune." width="70%" height="auto"}](https://tune.tidymodels.org/)
+:::
+::: {.column width="50%"}
+- Muitos algoritmos de Machine Learning possuem **hiperparâmetros**.
+- Estes não são aprendidos diretamente dos dados durante o treinamento.
+- **Exemplos**: número de vizinhos em KNN, profundidade de uma árvore de decisão, número de arvores em um random forest, taxa de aprendizado em redes neurais, penalidade em regularização como em modelos LASSO, Ridge ou Elastic Net.
+- A escolha dos hiperparâmetros pode impactar significativamente a performance do modelo.
+- **Objetivo:** Encontrar a combinação de hiperparâmetros que resulta no melhor desempenho preditivo em dados não vistos dado uma métrica de desenpenho, por exemplo, Erro Quadrático Médio (EQM) ou Acurácia.
+:::
+:::
+
+## tune: Por que Otimizar Hiperparâmetros? <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
+
+<br>
+
+* **Hiperparâmetros:** São parâmetros do modelo que não são aprendidos diretamente dos dados.
+* **Impacto no Desempenho:** A escolha dos hiperparâmetros pode ter um impacto significativo na performance do modelo.
+* **Busca pelo Melhor:** [Tunar]{.red} significa buscar encontrar a combinação de hiperparâmetros que resulta no melhor desempenho do modelo em dados não vistos, com base em uma métrica escolhida.
+
+![](gifs/prestando_atencao.gif){fig-aling="right" width="25f%"}
+
+## tune: Tunando o hiperparâmetro do modelo Lasso <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
+
+<br>
+
+::: columns
+::: {.column width="50%"}
+O lasso foi desenvolvido pelo Robert Tibshirani, em um artigo publicado
+no artigo [Regression Shrinkage and Selection via the
+Lasso](https://www.jstor.org/stable/2346178).
+
+![](imgs/lasso.png)
+:::
+
+::: {.column width="50%"}
+![](imgs/P55268-Robert-Tibshirani.jpg){width="60%"}
+:::
+:::
+
+## tune: Tunando o hiperparâmetro do modelo Lasso <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
+
+<br>
+
+No lasso, ao invés de reduzir a variância do estimador de mínimos
+quadrados usando a complexidade
+($L_0 = \sum_{i = 1}^d\mathbb{I}(\beta_i) \neq 0$) em
+@eq-risco-penalizacao, usa-se a penalização
+$L_1 = \sum_{i = 1}^d|\beta_i|$. No lasso, buscamos:
+
+$$\widehat{\beta}_{L_1,\lambda} = \argmin_{\beta_0 \in \mathbb{R}, \beta \in \mathbb{R}^d}\sum_{k = 1}^n\overbrace{\left(y_k - \beta_0 - \sum_{i = 1}^d \beta_i x_{x,i}\right)^2}^{n \times EQM} + \overbrace{\lambda \,\,\underbrace{\sum_{j = 1}^d|\beta_j|}_{\text{Penalização}}}^{\text{A magnitude do coeficiente importa!}},$$
+em que $\lambda$ é um *tuning parameter* 🎛. Perceba que quando
+$\lambda = 0$, caímos no caso do modelo de regressão por mínimos
+quadrados sem penalização. Já, quando $\lambda \rightarrow \infty$,
+temos um modelo em que todas as variáveis são removidas, uma vez que a
+primeira parte do modelo torna-se insignificante.
+
+## tune: Tunando o hiperparâmetro do modelo Lasso <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
+
+<br> <br>
+
+Quando $\lambda$ é grande, temos que
+
+$$\sum_{k = 1}^n \left(y_k - \beta_0 - \sum_{j = 1}^d \beta_j x_{k,j}\right)^2 + \lambda \sum_{j = 1}^d |\beta_j| \approx \lambda \sum_{j = 1}^d |\beta_j|,$$
+e portanto, $\widehat{\beta}_1 = 0, \cdots, \widehat{\beta}_d = 0$.
+
+<br>
+
+A escolha de $\lambda$, em geral, é feita utilizado algum método de
+validação/validação cruzada. 🔍
+
+<br>
+
+![](gifs/hum.gif)
+
+## tune: Tunando o hiperparâmetro do modelo Lasso <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
+
+[Exemplo]{.red}: Considere uma base de dados simulada, com $n = 500$
+observações, de tal forma que
+
+$$Y = 3X_{1} - 2X_2 + X_3 - 3X_4 + X_5 + \sum_{i = 6}^{20}0X_i + \varepsilon,$$
+em que $\varepsilon \sim \text{Normal}(0, 0.5^2)$ e
+$X_i \sim \text{Normal}(0, 1)$, independentes, com $i = 1, \cdots, 20$.
+Desejamos ajustar quatro modelos de regressão. Para o caso do Estimador
+de Mínimos Quadrados - EMQ e do modelo Ridge, que não tem seleção
+automática de variáveis, usaremos **todas** as variáveis. Desejamos
+avaliar o risco estimado de cada uma das regressões.
+
+![](gifs/teclado-anime.gif){width="21%"}
+
+## tune: Tunando o hiperparâmetro do modelo Lasso <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
+
+::: columns
+::: {.column width="50%"}
+![Imagem em aquarela que faz alusão à geração de dados sintéticos.](imgs/aquarela_dados_sinteticos.png){fig-alt="Imagem em aquarela que faz alusão à geração de dados sintéticos." width="70%" height="auto"}
+:::
+::: {.column width="50%"}
+```{r}
+#| eval: false
+#| class-source: smallcode
+library(tibble)
+
+gerar_dados <- function(n = 500, semente = 123) {
+  set.seed(semente)
+
+  # Gerar matriz X (500 x 20) com variáveis normais independentes
+  x <- matrix(rnorm(n * 20, mean = 0, sd = 1), nrow = n, ncol = 20)
+  colnames(X) <- paste0("x", 1:20)
+
+  # Coeficientes verdadeiros (beta)
+  beta <- c(3, -2, 1, -3, 1, rep(0, 15))  # X6 a X20 têm efeito zero
+
+  # Gerar erro aleatório (epsilon)
+  epsilon <- rnorm(n, mean = 0, sd = 0.5)
+
+  # Calcular Y conforme o modelo
+  y <- as.vector(x %*% beta + epsilon)
+  dados <- tibble(y = y, as_tibble(x))
+
+  return(dados)
+}
+
+# Exemplo de uso:
+dados <- gerar_dados(n = 500)
+head(dados)  # Y agora é a primeira coluna!
+```
+:::
+:::
+
+## tune: Tunando o hiperparâmetro do modelo Lasso <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
+
+<br>
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+library(tidyverse)
+library(DT)
+
+# Função para gerar dados (mesma do exemplo anterior)
+gerar_dados <- function(n = 500, semente = 123) {
+  set.seed(semente)
+  x <- matrix(rnorm(n * 20, mean = 0, sd = 1), nrow = n, ncol = 20)
+  colnames(x) <- paste0("x", 1:20)
+  beta <- c(3, -2, 1, -3, 1, rep(0, 15))
+  epsilon <- rnorm(n, mean = 0, sd = 0.5)
+  y <- as.vector(x %*% beta + epsilon)
+  tibble(y = y, as_tibble(x))
+}
+
+# Gerar dados e selecionar 10 linhas
+dados <- gerar_dados() |> slice(1:10)
+
+# Tabela interativa com DT
+datatable(
+  dados,
+  rownames = FALSE,
+  extensions = 'Buttons',
+  options = list(
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel'),
+    pageLength = 8,
+    scrollX = TRUE
+  )
+) |> formatRound(columns = 1:21, digits = 3)
+```
+
 
 ## 💻 Tidymodels
 
