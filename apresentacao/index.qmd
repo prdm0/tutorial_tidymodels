@@ -1994,6 +1994,8 @@ workflows::workflow(
 
 ![Um fluxo de trabalho bom, em que o modelo se comunica com o pré-processamento. 😊](imgs/good_workflow.png){fig-aling="right" width="75%"}
 
+![](gifs/hum_02.gif){fig-aling="right" width="15%"}
+
 ## tune <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
 
 ::: columns
