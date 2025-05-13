@@ -887,5 +887,12 @@
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "workflows \n",
     "text": "workflows \n\n\n\n\nUm fluxo de trabalho bom, em que o modelo se comunica com o pré-processamento. 😊"
+  },
+  {
+    "objectID": "index.html#workflows-3",
+    "href": "index.html#workflows-3",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "workflows \n",
+    "text": "workflows \n\nEm resumo, em um fluxo de trabalho, teríamos a definição do modelo com o pacote parsnip:\n\nmodelo &lt;- rand_forest(\n  trees = 500,\n  mtry = 2\n) |&gt;\n  set_engine(\"ranger\", importance = \"impurity\") |&gt;\n  set_mode(\"classification\")\n\nA definição da receita com o pacote recipes:\n\nreceita &lt;- recipe(\n  Species ~ .,\n  data = iris\n) |&gt;\n  step_log(all_numeric_predictors()) |&gt;\n  step_dummy(all_nominal_predictors(), one_hot = TRUE)\n\nInterligando em um fluxo de trabalho com o pacote workflows:\n\nwf &lt;- workflows::workflow() |&gt;\n  workflows::add_recipe(receita) |&gt;\n  workflows::add_model(modelo)"
   }
 ]

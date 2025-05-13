@@ -1996,6 +1996,46 @@ workflows::workflow(
 
 ![](gifs/hum_02.gif){fig-aling="right" width="15%"}
 
+## workflows <img src="imgs/workflows_lib.png" height="120px" style="vertical-align:middle;">
+
+Em resumo, em um fluxo de trabalho, teríamos a definição do modelo com o pacote
+[**parsnip**](https://parsnip.tidymodels.org/):
+
+```{r}
+#| eval: false
+
+modelo <- rand_forest(
+  trees = 500,
+  mtry = 2
+) |>
+  set_engine("ranger", importance = "impurity") |>
+  set_mode("classification")
+```
+
+A definição da receita com o pacote
+[**recipes**](https://recipes.tidymodels.org/):
+
+```{r}
+#| eval: false
+
+receita <- recipe(
+  Species ~ .,
+  data = iris
+) |>
+  step_log(all_numeric_predictors()) |>
+  step_dummy(all_nominal_predictors(), one_hot = TRUE)
+```
+
+Interligando em um fluxo de trabalho com o pacote
+[**workflows**](https://workflows.tidymodels.org/):
+
+```{r}
+#| eval: false
+wf <- workflows::workflow() |>
+  workflows::add_recipe(receita) |>
+  workflows::add_model(modelo)
+```
+
 ## tune <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
 
 ::: columns
