@@ -432,7 +432,7 @@ $Y \in \mathbb{R}$ e um vetor de covariáveis (features)
 $\mathbf{x} = (x_1, \cdots, x_d) \in \mathbb{R}^d$. Mais
 especificamente, busaca-se estimar
 
-$$r(\bf{x}) := \mathbb{E}(Y|\bf{X} = \bf{x}),$$
+$$r({\bf x}) := \mathbb{E}(Y|X = {\bf x}),$$
 
 sendo esta chamada de [função de regressão]{.red}. Temos que:
 
@@ -447,9 +447,9 @@ sendo esta chamada de [função de regressão]{.red}. Temos que:
 
 Em aprendizagem de máquina, assumimos que não temos meios de calcular
 $r({\bf{x}})$, i.e., não conhecemos a distribuição condicional de
-${\bf{Y}\,|\,X}$. Portanto, não temos meios de calcular
+${Y\,|\,X}$. Portanto, não temos meios de calcular
 
-$$\mathbb{E}({\bf Y}|{\bf X = x}) = \int y\,\mathrm{d}F_{\bf Y}(y | {\bf X = x}).$$
+$$\mathbb{E}(Y|X = {\bf x}) = \int y\,\mathrm{d}F_{Y}(y | X = {\bf x}).$$
 
 ## Regressão
 
