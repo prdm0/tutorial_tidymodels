@@ -1322,7 +1322,7 @@ receita <-
 :::
 :::
 
-## recipes: a Fórmula é o Coração da Receita <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
+## recipes: a fórmula é o coração da receita <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
 
 A função `recipe()` inicia a criação de uma receita e seu primeiro argumento é uma **fórmula**.
 
@@ -1346,55 +1346,26 @@ A função `recipe()` inicia a criação de uma receita e seu primeiro argumento
 * **Sinal de Mais (`+`):** Usado para adicionar preditores.
 
 
-## Interações Entre Variáveis: `*` e `:` <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
+## Interações entre variáveis: utilizando o operador `:` <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
 
 <br>
 
+As fórmulas do R permitem especificar termos de interação diretamente. Para isso você deve usar o `step_interact()` e o operador `:`. Por exemplo, para prever `mpg` usando `wt`, `hp` e a interação entre `wt` e `hp` ($wt * hp$), você pode fazer o seguinte:
 
-Fórmulas no R permitem especificar termos de interação diretamente.
+<br>
 
-**1. O Asterisco (`*`): Efeitos Principais + Interação**
-
-`preditorA * preditorB` expande para `preditorA + preditorB + preditorA:preditorB`.
-Inclui os efeitos principais de cada variável E o termo de interação entre elas. Não é
-possível usar `*` ou `:` diretamente no `recipe()`. Para isso você deve usar o `step_interact()`.
-
-```r
+```{r}
+#| eval: false
 # Prever 'mpg' usando 'wt', 'hp' e a interação entre 'wt' e 'hp'
-receita_interacao_asterisco <- recipe(mpg ~ wt * hp + qsec, data = mtcars_tbl)
-
-# summary(receita_interacao_asterisco)
-# Note os termos: wt, hp, qsec, wt_x_hp (ou similar)
-```
-*Esta é a forma mais comum e geralmente recomendada para incluir interações, seguindo o princípio da hierarquia.*
-
-## Interações Entre Variáveis: `*` e `:` (Cont.) <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
-
-<br>
-
-**2. Os Dois Pontos (`:`): Apenas a Interação**
-
-<br>
-
-`preditorA:preditorB` especifica **apenas o termo de interação** entre `preditorA` e `preditorB`.
-Não inclui os efeitos principais automaticamente.
-
-```r
-# Prever 'mpg' usando 'wt', 'hp' e APENAS a interação wt:hp
-# (geralmente, você adicionaria os efeitos principais manualmente se usar ':')
-receita <-
-  recipe(
-    mpg ~ wt + hp + wt:hp + qsec,
-    data = mtcars_tbl
+receita <- recipe(
+  mpg ~ wt + hp + qsec,
+  data = mtcars_tbl
+) |>
+  step_interact(
+    ~ wt : hp
   )
-
-# summary(receita_interacao_doispontos)
-# É semanticamente igual ao exemplo com '*' se os termos principais estiverem presentes.
-
-# Apenas a interação (menos comum isoladamente):
-# receita_so_interacao <- recipe(mpg ~ wt:hp, data = mtcars_tbl)
-# summary(receita_so_interacao) # Resultaria apenas no termo wt_x_hp
 ```
+
 <br>
 
 📌 *Use `:` com cautela e geralmente certifique-se de que os efeitos principais também estão no modelo.*
@@ -1424,7 +1395,7 @@ Muitas funções `step_*` usam seletores para escolher em quais variáveis atuar
 * `all_outcomes()`: Todas as variáveis resposta.
 * `starts_with("prefix_")`, `ends_with("_suffix")`, `contains("substring")`
 
-## Papéis das Variáveis e Seletores `step_*` <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
+## Papéis das variáveis e seletores `step_*` <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
 
 <br>
 
@@ -2030,6 +2001,15 @@ wf <- workflows::workflow() |>
   workflows::add_recipe(receita) |>
   workflows::add_model(modelo)
 ```
+
+## workflows <img src="imgs/workflows_lib.png" height="120px" style="vertical-align:middle;">
+
+<br>
+
+::: {.iframe-container}
+<iframe src="https://workflows.tidymodels.org/reference/index.html" width="100%" height="800px" frameborder="0"></iframe>
+:::
+
 
 ## tune <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
 

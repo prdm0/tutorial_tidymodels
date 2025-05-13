@@ -360,8 +360,8 @@
     "objectID": "index.html#recipes-a-fórmula-é-o-coração-da-receita",
     "href": "index.html#recipes-a-fórmula-é-o-coração-da-receita",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "recipes: a Fórmula é o Coração da Receita \n",
-    "text": "recipes: a Fórmula é o Coração da Receita \n\nA função recipe() inicia a criação de uma receita e seu primeiro argumento é uma fórmula.\nrecipe(formula, data, ...)\n\nEstrutura da Fórmula:\n\nvariavel_resposta ~ preditor1 + preditor2 + ... + preditorN\n\n\n\nLado Esquerdo (variavel_resposta ~ ...): Especifica a(s) variável(is) resultado/alvo.\n\nPode ser uma única variável.\nMúltiplas variáveis respostas podem ser especificadas com cbind(resp1, resp2) ~ ... (menos comum para a maioria dos modelos).\n\n\n\nLado Direito (... ~ preditor1 + preditor2): Especifica as variáveis preditoras.\n\nTil (~): Separa a variável resposta dos preditores.\n\nSinal de Mais (+): Usado para adicionar preditores."
+    "section": "recipes: a fórmula é o coração da receita \n",
+    "text": "recipes: a fórmula é o coração da receita \n\nA função recipe() inicia a criação de uma receita e seu primeiro argumento é uma fórmula.\nrecipe(formula, data, ...)\n\nEstrutura da Fórmula:\n\nvariavel_resposta ~ preditor1 + preditor2 + ... + preditorN\n\n\n\nLado Esquerdo (variavel_resposta ~ ...): Especifica a(s) variável(is) resultado/alvo.\n\nPode ser uma única variável.\nMúltiplas variáveis respostas podem ser especificadas com cbind(resp1, resp2) ~ ... (menos comum para a maioria dos modelos).\n\n\n\nLado Direito (... ~ preditor1 + preditor2): Especifica as variáveis preditoras.\n\nTil (~): Separa a variável resposta dos preditores.\n\nSinal de Mais (+): Usado para adicionar preditores."
   },
   {
     "objectID": "index.html#interações-entre-variáveis-e",
@@ -388,8 +388,8 @@
     "objectID": "index.html#papéis-das-variáveis-e-seletores-step_-1",
     "href": "index.html#papéis-das-variáveis-e-seletores-step_-1",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "Papéis das Variáveis e Seletores step_* \n",
-    "text": "Papéis das Variáveis e Seletores step_* \n\n\nExemplo de uso de seletores:\n\n\nreceita_com_passos &lt;-\n  recipe(mpg ~ ., data = mtcars_tbl) |&gt;\n  # Remove a variável 'car_name'\n  step_rm(car_name) |&gt;\n  # Centraliza apenas preditores numéricos\n  step_center(all_numeric_predictors()) |&gt;\n  # Escala apenas preditores numéricos\n  step_scale(all_numeric_predictors()) |&gt;\n  # Cria dummies para preditores nominais\n  step_dummy(all_nominal_predictors(), one_hot = TRUE)"
+    "section": "Papéis das variáveis e seletores step_* \n",
+    "text": "Papéis das variáveis e seletores step_* \n\n\nExemplo de uso de seletores:\n\n\nreceita_com_passos &lt;-\n  recipe(mpg ~ ., data = mtcars_tbl) |&gt;\n  # Remove a variável 'car_name'\n  step_rm(car_name) |&gt;\n  # Centraliza apenas preditores numéricos\n  step_center(all_numeric_predictors()) |&gt;\n  # Escala apenas preditores numéricos\n  step_scale(all_numeric_predictors()) |&gt;\n  # Cria dummies para preditores nominais\n  step_dummy(all_nominal_predictors(), one_hot = TRUE)"
   },
   {
     "objectID": "index.html#recipes-2",
@@ -894,5 +894,26 @@
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "workflows \n",
     "text": "workflows \n\nEm resumo, em um fluxo de trabalho, teríamos a definição do modelo com o pacote parsnip:\n\nmodelo &lt;- rand_forest(\n  trees = 500,\n  mtry = 2\n) |&gt;\n  set_engine(\"ranger\", importance = \"impurity\") |&gt;\n  set_mode(\"classification\")\n\nA definição da receita com o pacote recipes:\n\nreceita &lt;- recipe(\n  Species ~ .,\n  data = iris\n) |&gt;\n  step_log(all_numeric_predictors()) |&gt;\n  step_dummy(all_nominal_predictors(), one_hot = TRUE)\n\nInterligando em um fluxo de trabalho com o pacote workflows:\n\nwf &lt;- workflows::workflow() |&gt;\n  workflows::add_recipe(receita) |&gt;\n  workflows::add_model(modelo)"
+  },
+  {
+    "objectID": "index.html#interações-entre-variáveis",
+    "href": "index.html#interações-entre-variáveis",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Interações Entre Variáveis: : \n",
+    "text": "Interações Entre Variáveis: : \n\n\nAs fórmulas do R permitem especificar termos de interação diretamente. Para isso você deve usar o step_interact() e o operador :. Por exemplo, para prever mpg usando wt, hp e a interação entre wt e hp (wt * hp), você pode fazer o seguinte:\n# Prever 'mpg' usando 'wt', 'hp' e a interação entre 'wt' e 'hp'\nreceita &lt;- recipe(\n  mpg ~ wt + hp + qsec,\n  data = mtcars_tbl\n) |&gt;\n  step_interact(\n    ~ wt : hp\n  )\n📌 Use : com cautela e geralmente certifique-se de que os efeitos principais também estão no modelo."
+  },
+  {
+    "objectID": "index.html#interações-entre-variáveis-utilizando-o-operador",
+    "href": "index.html#interações-entre-variáveis-utilizando-o-operador",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Interações entre variáveis: utilizando o operador : \n",
+    "text": "Interações entre variáveis: utilizando o operador : \n\n\nAs fórmulas do R permitem especificar termos de interação diretamente. Para isso você deve usar o step_interact() e o operador :. Por exemplo, para prever mpg usando wt, hp e a interação entre wt e hp (wt * hp), você pode fazer o seguinte:\n\n\n# Prever 'mpg' usando 'wt', 'hp' e a interação entre 'wt' e 'hp'\nreceita &lt;- recipe(\n  mpg ~ wt + hp + qsec,\n  data = mtcars_tbl\n) |&gt;\n  step_interact(\n    ~ wt : hp\n  )\n\n\n📌 Use : com cautela e geralmente certifique-se de que os efeitos principais também estão no modelo."
+  },
+  {
+    "objectID": "index.html#workflows-4",
+    "href": "index.html#workflows-4",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "workflows \n",
+    "text": "workflows"
   }
 ]
