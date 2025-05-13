@@ -449,7 +449,7 @@ Em aprendizagem de máquina, assumimos que não temos meios de calcular
 $r({\bf{x}})$, i.e., não conhecemos a distribuição condicional de
 ${\bf{Y}\,|\,X}$. Portanto, não temos meios de calcular
 
-$$\mathbb{E}({\bf X}|Y = y) = \int x\,\mathrm{d}F_{\bf X}({\bf x} | Y = y).$$
+$$\mathbb{E}({\bf Y}|{\bf X = x}) = \int y\,\mathrm{d}F_{\bf Y}(y | {\bf X = x}).$$
 
 ## Regressão
 
