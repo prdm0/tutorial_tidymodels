@@ -494,7 +494,7 @@
     "href": "index.html#workflows",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "workflows \n",
-    "text": "workflows \n\n\n\n{fig-alt=“O pacote workflows age como um”maestro” e conecta a pré-processamento (recipes) com o modelo parsnip.” width=“70%” height=“auto”}\n\n\nO pacote workflows conecta o pré-processamento (com o pacote recipes) com o modelo (com o pacote parsnip).\n\n\nUso geral:  wf &lt;- workflows::workflow() |&gt; workflows::add_recipe(receita) |&gt; workflows::add_model(modelo)"
+    "text": "workflows \n\n\n\n\n\nO pacote workflows age como um “maestro” e conecta a pré-processamento (recipes) com o modelo parsnip.\n\n\n\nO pacote workflows conecta o pré-processamento (faze realizada com o pacote recipes) com o modelo (definido com o pacote parsnip).\n\nUso geral:\n\nwf &lt;- workflows::workflow() |&gt;\n  workflows::add_recipe(receita) |&gt;\n  workflows::add_model(modelo)\n\n\nou\n\n\nwf &lt;-\nworkflows::workflow(\n  receita,\n  modelo\n)"
   },
   {
     "objectID": "index.html#tune",
@@ -873,5 +873,19 @@
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "📚 Exercícios",
     "text": "📚 Exercícios\n\nExercício: Considere agora o conjunto de dados de despesas médicas, disponível aqui. Refaça o mesmo exercício dos dados de vinho vermelho, em que aqui, o objetivo é prever a variável charges. Perceba que algumas variáveis são qualitativas, e portanto, você deverá transformá-las em dummy. Indique os melhores cenários dos quatro modelos e informe qual modelo você utilizaria. Explique! Dica: usando a função step_dummy() da biblioteca recipes, você poderá facilmente transformar variáveis qualitativas em numéricas."
+  },
+  {
+    "objectID": "index.html#workflows-1",
+    "href": "index.html#workflows-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "workflows \n",
+    "text": "workflows \n\n\n\n\nUm fluxo de trabalho ruim, em que o modelo não se comunica com o pré-processamento. 😢"
+  },
+  {
+    "objectID": "index.html#workflows-2",
+    "href": "index.html#workflows-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "workflows \n",
+    "text": "workflows \n\n\n\n\nUm fluxo de trabalho bom, em que o modelo se comunica com o pré-processamento. 😊"
   }
 ]

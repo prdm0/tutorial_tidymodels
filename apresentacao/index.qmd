@@ -1942,23 +1942,57 @@ modelo_parsnip <-
 
 ::: columns
 ::: {.column width="50%"}
-[![O pacote **workflows** age como um "maestro" e conecta a pré-processamento (**recipes**) com o modelo **parsnip**.](imgs/orquestra_workflows.png){fig-alt="O pacote **workflows** age como um "maestro" e conecta a pré-processamento (**recipes**) com o modelo **parsnip**." width="70%" height="auto"}](https://workflows.tidymodels.org/)
+[![O pacote **workflows** age como um "maestro" e conecta a pré-processamento (**recipes**) com o modelo **parsnip**.](imgs/orquestra_workflows.png){fig-alt="O pacote workflows age como um maestro e conecta a pré-processamento (**recipes**) com o modelo parsnip." width="70%" height="auto"}](https://workflows.tidymodels.org/)
 :::
 
 ::: {.column width="50%"}
 + O pacote [**workflows**](https://workflows.tidymodels.org/) conecta o pré-processamento
-  (com o pacote [**recipes**](https://recipes.tidymodels.org/)) com o modelo (com o pacote
+  (faze realizada com o pacote [**recipes**](https://recipes.tidymodels.org/)) com o modelo (definido com o pacote
   [**parsnip**](https://parsnip.tidymodels.org/)).
 
-<br>
 
 **Uso geral**:
-<br>
+
+```{r}
+#| eval: false
+#| code-line-numbers: 1|2|3
 wf <- workflows::workflow() |>
   workflows::add_recipe(receita) |>
   workflows::add_model(modelo)
+```
+
+<br>
+
+ou
+
+<br>
+
+```{r}
+#| eval: false
+wf <-
+workflows::workflow(
+  receita,
+  modelo
+)
+```
 :::
 :::
+
+## workflows <img src="imgs/workflows_lib.png" height="120px" style="vertical-align:middle;">
+
+<br>
+<br>
+<br>
+
+![Um fluxo de trabalho ruim, em que o modelo não se comunica com o pré-processamento. 😢](imgs/bad_workflow.png){fig-aling="right" width="75%"}
+
+## workflows <img src="imgs/workflows_lib.png" height="120px" style="vertical-align:middle;">
+
+<br>
+<br>
+<br>
+
+![Um fluxo de trabalho bom, em que o modelo se comunica com o pré-processamento. 😊](imgs/good_workflow.png){fig-aling="right" width="75%"}
 
 ## tune <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
 
