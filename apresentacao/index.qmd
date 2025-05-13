@@ -75,7 +75,7 @@ UFPB
 [Apresentação]{.flow}
 :::
 
-##  {background-image="https://raw.githubusercontent.com/prdm0/imagens/main/eu.jpg" background-size="contain" background-position="left"}
+##  {background-image="imgs/eu_2.jpg" background-size="contain" background-position="left"}
 
 ::: columns
 ::: {.column width="60%"}
@@ -373,7 +373,7 @@ Após a detecção dos grupos, é preciso analisar o resultado de modo a
 tentar extrair informações coerentes de modo a saber o que cada grupo
 representa no problema em questão.
 
-## Aprendizagem semi-supervisionada
+<!-- ## Aprendizagem semi-supervisionada
 
 <br>
 
@@ -411,7 +411,7 @@ código clicando
 
 <br>
 
-{{< video https://www.youtube.com/watch?v=9NXUtwGkkDw&t=2s width="50%" height="50%" >}}
+{{< video https://www.youtube.com/watch?v=9NXUtwGkkDw&t=2s width="50%" height="50%" >}} -->
 
 
 # {.title background-image="imgs/ml_illustration.jpg" background-size="100% 100%"}
@@ -1942,14 +1942,13 @@ modelo_parsnip <-
 
 ::: columns
 ::: {.column width="50%"}
-[![O pacote **workflows** age como um "maestro" e conecta a pré-processamento (**recipes**) com o modelo **parsnip**.](imgs/orquestra_workflows.png){fig-alt="O pacote workflows age como um maestro e conecta a pré-processamento (**recipes**) com o modelo parsnip." width="70%" height="auto"}](https://workflows.tidymodels.org/)
+[![O pacote **workflows** age como um "maestro" e conecta o pré-processamento (**recipes**) com o modelo **parsnip**.](imgs/orquestra_workflows.png){fig-alt="O pacote workflows age como um maestro e conecta a pré-processamento (**recipes**) com o modelo parsnip." width="70%" height="auto"}](https://workflows.tidymodels.org/)
 :::
 
 ::: {.column width="50%"}
 + O pacote [**workflows**](https://workflows.tidymodels.org/) conecta o pré-processamento
   (faze realizada com o pacote [**recipes**](https://recipes.tidymodels.org/)) com o modelo (definido com o pacote
   [**parsnip**](https://parsnip.tidymodels.org/)).
-
 
 **Uso geral**:
 
@@ -1961,11 +1960,7 @@ wf <- workflows::workflow() |>
   workflows::add_model(modelo)
 ```
 
-<br>
-
 ou
-
-<br>
 
 ```{r}
 #| eval: false

@@ -494,7 +494,7 @@
     "href": "index.html#workflows",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "workflows \n",
-    "text": "workflows \n\n\n\n\n\nO pacote workflows age como um “maestro” e conecta a pré-processamento (recipes) com o modelo parsnip.\n\n\n\nO pacote workflows conecta o pré-processamento (faze realizada com o pacote recipes) com o modelo (definido com o pacote parsnip).\n\nUso geral:\n\nwf &lt;- workflows::workflow() |&gt;\n  workflows::add_recipe(receita) |&gt;\n  workflows::add_model(modelo)\n\n\nou\n\n\nwf &lt;-\nworkflows::workflow(\n  receita,\n  modelo\n)"
+    "text": "workflows \n\n\n\n\n\nO pacote workflows age como um “maestro” e conecta o pré-processamento (recipes) com o modelo parsnip.\n\n\n\nO pacote workflows conecta o pré-processamento (faze realizada com o pacote recipes) com o modelo (definido com o pacote parsnip).\n\nUso geral:\n\nwf &lt;- workflows::workflow() |&gt;\n  workflows::add_recipe(receita) |&gt;\n  workflows::add_model(modelo)\n\nou\n\nwf &lt;-\nworkflows::workflow(\n  receita,\n  modelo\n)"
   },
   {
     "objectID": "index.html#tune",
