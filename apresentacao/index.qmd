@@ -930,7 +930,7 @@ observações (tamanho do conjunto de dados).
 <br>
 
 Portanto, utilizar o EQM sob o conjunto de dados de teste para avaliar
-$g_1({\bf x}), g_2({\bf x}), \cdots,$, é uma boa estratégia, uma vez que
+$g_1({\bf x}), g_2({\bf x}), \cdots$, é uma boa estratégia, uma vez que
 agora não teremos mais uma dependência no numerador do cálculo do EQM.
 Em notação matemática, poderíamos escrever como já apresentado
 anteriormente, em @eq-risco-correto, i.e.,
@@ -1933,6 +1933,30 @@ modelo_parsnip <-
 ::: {.column width="50%"}
 
 [![❤️ Imagem em aquarela de um cientista de dados apaixonado pelas coisas certas.](imgs/apaixonado_parsnip_2.png){fig-alt="Imagem em aquarela de um cientista de dados apaixonado pelas coisas certas." width="35%" height="auto"}](https://parsnip.tidymodels.org/)
+:::
+:::
+
+# {.title background-image="imgs/workflows_montanha_russa.png" background-size="100% 100%"}
+
+## workflows <img src="imgs/workflows_lib.png" height="120px" style="vertical-align:middle;">
+
+::: columns
+::: {.column width="50%"}
+[![O pacote **workflows** age como um "maestro" e conecta a pré-processamento (**recipes**) com o modelo **parsnip**.](imgs/orquestra_workflows.png){fig-alt="O pacote **workflows** age como um "maestro" e conecta a pré-processamento (**recipes**) com o modelo **parsnip**." width="70%" height="auto"}](https://workflows.tidymodels.org/)
+:::
+
+::: {.column width="50%"}
++ O pacote [**workflows**](https://workflows.tidymodels.org/) conecta o pré-processamento
+  (com o pacote [**recipes**](https://recipes.tidymodels.org/)) com o modelo (com o pacote
+  [**parsnip**](https://parsnip.tidymodels.org/)).
+
+<br>
+
+**Uso geral**:
+<br>
+wf <- workflows::workflow() |>
+  workflows::add_recipe(receita) |>
+  workflows::add_model(modelo)
 :::
 :::
 

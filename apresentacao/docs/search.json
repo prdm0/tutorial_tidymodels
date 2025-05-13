@@ -242,7 +242,7 @@
     "href": "index.html#data-splitting",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Data Splitting \n",
-    "text": "Data Splitting \n\n\nO percentual de divisão dos dados normalmente é empírico. Usa-se normalmente a proporção de 70\\% para treinamento e 30\\% para teste (70\\%, 30\\%). Outros esquemas de divisões são bastante utilizados, por exemplo, (80\\%, 20\\%), (99\\%, 1\\%), a depender da quantidade de observações (tamanho do conjunto de dados).\n\nPortanto, utilizar o EQM sob o conjunto de dados de teste para avaliar g_1({\\bf x}), g_2({\\bf x}), \\cdots,, é uma boa estratégia, uma vez que agora não teremos mais uma dependência no numerador do cálculo do EQM. Em notação matemática, poderíamos escrever como já apresentado anteriormente, em Equação 1, i.e.,\n\\frac{1}{m}\\sum_{i = 1}^m (Y_{n + i} - g(X_{n + i}))^2 \\approx R(g) := \\mathbb{E}\\left[(Y - g({\\bf X}))^2\\right].\n\nEsse resultado valeria para qualquer outra função de perda."
+    "text": "Data Splitting \n\n\nO percentual de divisão dos dados normalmente é empírico. Usa-se normalmente a proporção de 70\\% para treinamento e 30\\% para teste (70\\%, 30\\%). Outros esquemas de divisões são bastante utilizados, por exemplo, (80\\%, 20\\%), (99\\%, 1\\%), a depender da quantidade de observações (tamanho do conjunto de dados).\n\nPortanto, utilizar o EQM sob o conjunto de dados de teste para avaliar g_1({\\bf x}), g_2({\\bf x}), \\cdots, é uma boa estratégia, uma vez que agora não teremos mais uma dependência no numerador do cálculo do EQM. Em notação matemática, poderíamos escrever como já apresentado anteriormente, em Equação 1, i.e.,\n\\frac{1}{m}\\sum_{i = 1}^m (Y_{n + i} - g(X_{n + i}))^2 \\approx R(g) := \\mathbb{E}\\left[(Y - g({\\bf X}))^2\\right].\n\nEsse resultado valeria para qualquer outra função de perda."
   },
   {
     "objectID": "index.html#data-splitting-1",
@@ -466,7 +466,7 @@
     "href": "index.html#parsnip-2",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "parsnip \n",
-    "text": "parsnip \n\n\nDiversas bibliotecas na linguagem R são preparadas para trabalharem na área de aprendizagem de máquina. Várias dessas bibliotecas vem sendo desenvolvidas há anos. Por exemplo,as bibliotecas glmnet, ranger, kknn, xgboost, keras, rpart, randomForest, entre diversos outros.\n\n\nO número de pacotes abaixo é o mais recente. Obtido automaticamente por webscraping.library(xml2)\nlibrary(httr)\nlibrary(stringr)\nlibrary(\"downlit\")\n\nnumero_pacotes_r &lt;- httr::GET(\n  \"https://cloud.r-project.org/web/packages/index.html\"\n) |&gt;\n  xml2::read_html() |&gt;\n  xml2::xml_find_all(\"//p[1]\") |&gt;\n  xml2::xml_text() |&gt;\n  stringr::str_extract(pattern = \"[0-9]+\")\n\n\n\nAtualmente, a linguagem R possui 22411, em que muitos deles são preparados para para trabalharem em tarefas de aprendizagem de máquina, porém, cada com sua sintaxe específica. Muitos implementam o mesmo modelo, uns com algumas variações, porém, o uso é totalmente diferente, nomes de parâmetros distintos, saídas distintas, etc."
+    "text": "parsnip \n\n\nDiversas bibliotecas na linguagem R são preparadas para trabalharem na área de aprendizagem de máquina. Várias dessas bibliotecas vem sendo desenvolvidas há anos. Por exemplo,as bibliotecas glmnet, ranger, kknn, xgboost, keras, rpart, randomForest, entre diversos outros.\n\n\nO número de pacotes abaixo é o mais recente. Obtido automaticamente por webscraping.library(xml2)\nlibrary(httr)\nlibrary(stringr)\nlibrary(\"downlit\")\n\nnumero_pacotes_r &lt;- httr::GET(\n  \"https://cloud.r-project.org/web/packages/index.html\"\n) |&gt;\n  xml2::read_html() |&gt;\n  xml2::xml_find_all(\"//p[1]\") |&gt;\n  xml2::xml_text() |&gt;\n  stringr::str_extract(pattern = \"[0-9]+\")\n\n\n\nAtualmente, a linguagem R possui 22421, em que muitos deles são preparados para para trabalharem em tarefas de aprendizagem de máquina, porém, cada com sua sintaxe específica. Muitos implementam o mesmo modelo, uns com algumas variações, porém, o uso é totalmente diferente, nomes de parâmetros distintos, saídas distintas, etc."
   },
   {
     "objectID": "index.html#parsnip-3",
@@ -488,6 +488,69 @@
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "parsnip \n",
     "text": "parsnip \n\n\nUtilizando o pacote randomForest em um problema de regressão:\n\n\n\n\n# Definir o modelo com parsnip\nmodelo_parsnip &lt;-\n  rand_forest(\n    trees = 500,       # Equivalente a num.trees\n    mtry = 2           # Mesmo valor que no ranger\n  ) |&gt;\n  set_engine(\"randomForest\", importance = \"impurity\") |&gt;\n  set_mode(\"regression\") |&gt;\n  fit(Species ~ ., data = iris)\n\n\n\n\n❤️ Imagem em aquarela de um cientista de dados apaixonado pelas coisas certas."
+  },
+  {
+    "objectID": "index.html#workflows",
+    "href": "index.html#workflows",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "workflows \n",
+    "text": "workflows \n\n\n\n{fig-alt=“O pacote workflows age como um”maestro” e conecta a pré-processamento (recipes) com o modelo parsnip.” width=“70%” height=“auto”}\n\n\nO pacote workflows conecta o pré-processamento (com o pacote recipes) com o modelo (com o pacote parsnip).\n\n\nUso geral:  wf &lt;- workflows::workflow() |&gt; workflows::add_recipe(receita) |&gt; workflows::add_model(modelo)"
+  },
+  {
+    "objectID": "index.html#tune",
+    "href": "index.html#tune",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "tune \n",
+    "text": "tune \n\n\n\n\n\nImagem em aquarela da logo do pacote tune.\n\n\n\nMuitos algoritmos de Machine Learning possuem hiperparâmetros.\nEstes não são aprendidos diretamente dos dados durante o treinamento.\n\nExemplos: número de vizinhos em KNN, profundidade de uma árvore de decisão, número de arvores em um random forest, taxa de aprendizado em redes neurais, penalidade em regularização como em modelos LASSO, Ridge ou Elastic Net.\nA escolha dos hiperparâmetros pode impactar significativamente a performance do modelo.\n\nObjetivo: Encontrar a combinação de hiperparâmetros que resulta no melhor desempenho preditivo em dados não vistos dado uma métrica de desenpenho, por exemplo, Erro Quadrático Médio (EQM) ou Acurácia."
+  },
+  {
+    "objectID": "index.html#tune-por-que-otimizar-hiperparâmetros",
+    "href": "index.html#tune-por-que-otimizar-hiperparâmetros",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "tune: Por que Otimizar Hiperparâmetros? \n",
+    "text": "tune: Por que Otimizar Hiperparâmetros? \n\n\n\n\nHiperparâmetros: São parâmetros do modelo que não são aprendidos diretamente dos dados.\n\nImpacto no Desempenho: A escolha dos hiperparâmetros pode ter um impacto significativo na performance do modelo.\n\nBusca pelo Melhor: Tunar significa buscar encontrar a combinação de hiperparâmetros que resulta no melhor desempenho do modelo em dados não vistos, com base em uma métrica escolhida."
+  },
+  {
+    "objectID": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso",
+    "href": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "tune: Tunando o hiperparâmetro do modelo Lasso \n",
+    "text": "tune: Tunando o hiperparâmetro do modelo Lasso \n\n\n\n\nO lasso foi desenvolvido pelo Robert Tibshirani, em um artigo publicado no artigo Regression Shrinkage and Selection via the Lasso."
+  },
+  {
+    "objectID": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-1",
+    "href": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "tune: Tunando o hiperparâmetro do modelo Lasso \n",
+    "text": "tune: Tunando o hiperparâmetro do modelo Lasso \n\n\nNo lasso, ao invés de reduzir a variância do estimador de mínimos quadrados usando a complexidade (L_0 = \\sum_{i = 1}^d\\mathbb{I}(\\beta_i) \\neq 0) em Equação 3, usa-se a penalização L_1 = \\sum_{i = 1}^d|\\beta_i|. No lasso, buscamos:\n\\widehat{\\beta}_{L_1,\\lambda} = \\argmin_{\\beta_0 \\in \\mathbb{R}, \\beta \\in \\mathbb{R}^d}\\sum_{k = 1}^n\\overbrace{\\left(y_k - \\beta_0 - \\sum_{i = 1}^d \\beta_i x_{x,i}\\right)^2}^{n \\times EQM} + \\overbrace{\\lambda \\,\\,\\underbrace{\\sum_{j = 1}^d|\\beta_j|}_{\\text{Penalização}}}^{\\text{A magnitude do coeficiente importa!}}, em que \\lambda é um tuning parameter 🎛. Perceba que quando \\lambda = 0, caímos no caso do modelo de regressão por mínimos quadrados sem penalização. Já, quando \\lambda \\rightarrow \\infty, temos um modelo em que todas as variáveis são removidas, uma vez que a primeira parte do modelo torna-se insignificante."
+  },
+  {
+    "objectID": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-2",
+    "href": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "tune: Tunando o hiperparâmetro do modelo Lasso \n",
+    "text": "tune: Tunando o hiperparâmetro do modelo Lasso \n\n\nQuando \\lambda é grande, temos que\n\\sum_{k = 1}^n \\left(y_k - \\beta_0 - \\sum_{j = 1}^d \\beta_j x_{k,j}\\right)^2 + \\lambda \\sum_{j = 1}^d |\\beta_j| \\approx \\lambda \\sum_{j = 1}^d |\\beta_j|, e portanto, \\widehat{\\beta}_1 = 0, \\cdots, \\widehat{\\beta}_d = 0.\n\nA escolha de \\lambda, em geral, é feita utilizado algum método de validação/validação cruzada. 🔍"
+  },
+  {
+    "objectID": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-3",
+    "href": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-3",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "tune: Tunando o hiperparâmetro do modelo Lasso \n",
+    "text": "tune: Tunando o hiperparâmetro do modelo Lasso \n\nExemplo: Considere uma base de dados simulada, com n = 500 observações, de tal forma que\nY = 3X_{1} - 2X_2 + X_3 - 3X_4 + X_5 + \\sum_{i = 6}^{20}0X_i + \\varepsilon, em que \\varepsilon \\sim \\text{Normal}(0, 0.5^2) e X_i \\sim \\text{Normal}(0, 1), independentes, com i = 1, \\cdots, 20. Desejamos ajustar quatro modelos de regressão. Para o caso do Estimador de Mínimos Quadrados - EMQ e do modelo Ridge, que não tem seleção automática de variáveis, usaremos todas as variáveis. Desejamos avaliar o risco estimado de cada uma das regressões."
+  },
+  {
+    "objectID": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-4",
+    "href": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-4",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "tune: Tunando o hiperparâmetro do modelo Lasso \n",
+    "text": "tune: Tunando o hiperparâmetro do modelo Lasso \n\n\n\n\n\nImagem em aquarela que faz alusão à geração de dados sintéticos.\n\n\n\nlibrary(tibble)\n\ngerar_dados &lt;- function(n = 500, semente = 123) {\n  set.seed(semente)\n\n  # Gerar matriz X (500 x 20) com variáveis normais independentes\n  x &lt;- matrix(rnorm(n * 20, mean = 0, sd = 1), nrow = n, ncol = 20)\n  colnames(X) &lt;- paste0(\"x\", 1:20)\n\n  # Coeficientes verdadeiros (beta)\n  beta &lt;- c(3, -2, 1, -3, 1, rep(0, 15))  # X6 a X20 têm efeito zero\n\n  # Gerar erro aleatório (epsilon)\n  epsilon &lt;- rnorm(n, mean = 0, sd = 0.5)\n\n  # Calcular Y conforme o modelo\n  y &lt;- as.vector(x %*% beta + epsilon)\n  dados &lt;- tibble(y = y, as_tibble(x))\n\n  return(dados)\n}\n\n# Exemplo de uso:\ndados &lt;- gerar_dados(n = 500)\nhead(dados)  # Y agora é a primeira coluna!"
+  },
+  {
+    "objectID": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-5",
+    "href": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-5",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "tune: Tunando o hiperparâmetro do modelo Lasso \n",
+    "text": "tune: Tunando o hiperparâmetro do modelo Lasso"
   },
   {
     "objectID": "index.html#tidymodels-2",
@@ -810,61 +873,5 @@
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "📚 Exercícios",
     "text": "📚 Exercícios\n\nExercício: Considere agora o conjunto de dados de despesas médicas, disponível aqui. Refaça o mesmo exercício dos dados de vinho vermelho, em que aqui, o objetivo é prever a variável charges. Perceba que algumas variáveis são qualitativas, e portanto, você deverá transformá-las em dummy. Indique os melhores cenários dos quatro modelos e informe qual modelo você utilizaria. Explique! Dica: usando a função step_dummy() da biblioteca recipes, você poderá facilmente transformar variáveis qualitativas em numéricas."
-  },
-  {
-    "objectID": "index.html#tune",
-    "href": "index.html#tune",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "tune \n",
-    "text": "tune \n\n\n\n\n\nImagem em aquarela da logo do pacote tune.\n\n\n\nMuitos algoritmos de Machine Learning possuem hiperparâmetros.\nEstes não são aprendidos diretamente dos dados durante o treinamento.\n\nExemplos: número de vizinhos em KNN, profundidade de uma árvore de decisão, número de arvores em um random forest, taxa de aprendizado em redes neurais, penalidade em regularização como em modelos LASSO, Ridge ou Elastic Net.\nA escolha dos hiperparâmetros pode impactar significativamente a performance do modelo.\n\nObjetivo: Encontrar a combinação de hiperparâmetros que resulta no melhor desempenho preditivo em dados não vistos dado uma métrica de desenpenho, por exemplo, Erro Quadrático Médio (EQM) ou Acurácia."
-  },
-  {
-    "objectID": "index.html#tune-por-que-otimizar-hiperparâmetros",
-    "href": "index.html#tune-por-que-otimizar-hiperparâmetros",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "tune: Por que Otimizar Hiperparâmetros? \n",
-    "text": "tune: Por que Otimizar Hiperparâmetros? \n\n\n\n\nHiperparâmetros: São parâmetros do modelo que não são aprendidos diretamente dos dados.\n\nImpacto no Desempenho: A escolha dos hiperparâmetros pode ter um impacto significativo na performance do modelo.\n\nBusca pelo Melhor: Tunar significa buscar encontrar a combinação de hiperparâmetros que resulta no melhor desempenho do modelo em dados não vistos, com base em uma métrica escolhida."
-  },
-  {
-    "objectID": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso",
-    "href": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "tune: Tunando o hiperparâmetro do modelo Lasso \n",
-    "text": "tune: Tunando o hiperparâmetro do modelo Lasso \n\n\n\n\nO lasso foi desenvolvido pelo Robert Tibshirani, em um artigo publicado no artigo Regression Shrinkage and Selection via the Lasso."
-  },
-  {
-    "objectID": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-1",
-    "href": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-1",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "tune: Tunando o hiperparâmetro do modelo Lasso \n",
-    "text": "tune: Tunando o hiperparâmetro do modelo Lasso \n\n\nNo lasso, ao invés de reduzir a variância do estimador de mínimos quadrados usando a complexidade (L_0 = \\sum_{i = 1}^d\\mathbb{I}(\\beta_i) \\neq 0) em Equação 3, usa-se a penalização L_1 = \\sum_{i = 1}^d|\\beta_i|. No lasso, buscamos:\n\\widehat{\\beta}_{L_1,\\lambda} = \\argmin_{\\beta_0 \\in \\mathbb{R}, \\beta \\in \\mathbb{R}^d}\\sum_{k = 1}^n\\overbrace{\\left(y_k - \\beta_0 - \\sum_{i = 1}^d \\beta_i x_{x,i}\\right)^2}^{n \\times EQM} + \\overbrace{\\lambda \\,\\,\\underbrace{\\sum_{j = 1}^d|\\beta_j|}_{\\text{Penalização}}}^{\\text{A magnitude do coeficiente importa!}}, em que \\lambda é um tuning parameter 🎛. Perceba que quando \\lambda = 0, caímos no caso do modelo de regressão por mínimos quadrados sem penalização. Já, quando \\lambda \\rightarrow \\infty, temos um modelo em que todas as variáveis são removidas, uma vez que a primeira parte do modelo torna-se insignificante."
-  },
-  {
-    "objectID": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-2",
-    "href": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-2",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "tune: Tunando o hiperparâmetro do modelo Lasso \n",
-    "text": "tune: Tunando o hiperparâmetro do modelo Lasso \n\n\nQuando \\lambda é grande, temos que\n\\sum_{k = 1}^n \\left(y_k - \\beta_0 - \\sum_{j = 1}^d \\beta_j x_{k,j}\\right)^2 + \\lambda \\sum_{j = 1}^d |\\beta_j| \\approx \\lambda \\sum_{j = 1}^d |\\beta_j|, e portanto, \\widehat{\\beta}_1 = 0, \\cdots, \\widehat{\\beta}_d = 0.\n\nA escolha de \\lambda, em geral, é feita utilizado algum método de validação/validação cruzada. 🔍"
-  },
-  {
-    "objectID": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-3",
-    "href": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-3",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "tune: Tunando o hiperparâmetro do modelo Lasso \n",
-    "text": "tune: Tunando o hiperparâmetro do modelo Lasso \n\nExemplo: Considere uma base de dados simulada, com n = 500 observações, de tal forma que\nY = 3X_{1} - 2X_2 + X_3 + -3X_4 + X_5 + \\sum_{i = 6}^{20}0X_i + \\varepsilon, em que \\varepsilon \\sim \\text{Normal}(0, 0.5^2) e X_i \\sim \\text{Normal}(0, 1), independentes, com i = 1, \\cdots, 20. Desejamos ajustar quatro modelos de regressão. Para o caso do Estimador de Mínimos Quadrados - EMQ e do modelo Ridge, que não tem seleção automática de variáveis, usaremos todas as variáveis. Desejamos avaliar o risco estimado de cada uma das regressões."
-  },
-  {
-    "objectID": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-4",
-    "href": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-4",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "tune: Tunando o hiperparâmetro do modelo Lasso \n",
-    "text": "tune: Tunando o hiperparâmetro do modelo Lasso \n\n\n\n\n\nImagem em aquarela que faz alusão à geração de dados sintéticos.\n\n\n\nlibrary(tibble)\n\ngerar_dados &lt;- function(n = 500, semente = 123) {\n  set.seed(semente)\n\n  # Gerar matriz X (500 x 20) com variáveis normais independentes\n  x &lt;- matrix(rnorm(n * 20, mean = 0, sd = 1), nrow = n, ncol = 20)\n  colnames(X) &lt;- paste0(\"x\", 1:20)\n\n  # Coeficientes verdadeiros (beta)\n  beta &lt;- c(3, -2, 1, -3, 1, rep(0, 15))  # X6 a X20 têm efeito zero\n\n  # Gerar erro aleatório (epsilon)\n  epsilon &lt;- rnorm(n, mean = 0, sd = 0.5)\n\n  # Calcular Y conforme o modelo\n  y &lt;- as.vector(x %*% beta + epsilon)\n  dados &lt;- tibble(y = y, as_tibble(x))\n\n  return(dados)\n}\n\n# Exemplo de uso:\ndados &lt;- gerar_dados(n = 500)\nhead(dados)  # Y agora é a primeira coluna!"
-  },
-  {
-    "objectID": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-5",
-    "href": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-5",
-    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "tune: Tunando o hiperparâmetro do modelo Lasso \n",
-    "text": "tune: Tunando o hiperparâmetro do modelo Lasso"
   }
 ]

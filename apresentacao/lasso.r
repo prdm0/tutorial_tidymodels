@@ -12,7 +12,7 @@ future::plan(multicore)
 # Math: \epsilon \sim N(0, 0.5)
 # Math: X_i \sim N(0, 1)\,\, \forall i \in [1, 20]
 # Função para gerar dados sintéticos do problema de regressão
-gerar_dados <- function(n = 500, semente = 123) {
+gerar_dados <- function(n = 5000, semente = 123) {
   set.seed(semente)
 
   # Gerar matriz X (500 x 20) com variáveis normais independentes
@@ -104,10 +104,10 @@ tidy(modelo_final) |>
   filter(estimate == 0)
 
 # Salvando o modelo
-saveRDS(modelo_final, "modelo_lasso.rds")
+# saveRDS(modelo_final, "modelo_lasso.rds")
 
 # Carregando o modelo
-modelo_lasso <- readRDS("modelo_lasso.rds")
+# modelo_lasso <- readRDS("modelo_lasso.rds")
 
 # Realizando predições
 predicoes <- predict(modelo_lasso, new_data = teste) # ou
