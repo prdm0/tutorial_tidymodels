@@ -1346,11 +1346,11 @@ A função `recipe()` inicia a criação de uma receita e seu primeiro argumento
 * **Sinal de Mais (`+`):** Usado para adicionar preditores.
 
 
-## Interações entre variáveis: utilizando o operador `:` <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
+## Interações entre variáveis: utilizando o operador "`:`" <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
 
 <br>
 
-As fórmulas do R permitem especificar termos de interação diretamente. Para isso você deve usar o `step_interact()` e o operador `:`. Por exemplo, para prever `mpg` usando `wt`, `hp` e a interação entre `wt` e `hp` ($wt * hp$), você pode fazer o seguinte:
+As fórmulas do R permitem especificar termos de interação diretamente. Para isso você deve usar o `step_interact()` e o operador "`:`". Por exemplo, para prever `mpg` usando `wt`, `hp` e a interação entre `wt` e `hp` ($wt * hp$), você pode fazer o seguinte:
 
 <br>
 
@@ -1368,7 +1368,7 @@ receita <- recipe(
 
 <br>
 
-📌 *Use `:` com cautela e geralmente certifique-se de que os efeitos principais também estão no modelo.*
+📌 Utilize o operador "`:`" com cautela. Certifique-se de que os efeitos principais também estão no modelo.
 
 ## Papéis das Variáveis e Seletores `step_*` <img src="imgs/recipes.png" height="120px" style="vertical-align:middle;">
 
@@ -1909,6 +1909,76 @@ modelo_parsnip <-
 
 # {.title background-image="imgs/workflows_montanha_russa.png" background-size="100% 100%"}
 
+
+## workflows <img src="imgs/workflows_lib.png" height="120px" style="vertical-align:middle;">
+
+*   O pacote [**`workflows`**](https://workflows.tidymodels.org/index.html) é um dos principais pacotes do *framework* [[**tidymodels**]{.red}](https://www.tidymodels.org/).
+*   Seu papel fundamental é **gerenciar e combinar** o **pré-processamento de dados** (definido com [[**recipes**]{.red}](https://recipes.tidymodels.org/)) com a **especificação do modelo** (definida com [[**parsnip**]{.red}](https://parsnip.tidymodels.org/)).
+
+## workflows: o "varal" 🧦 da modelagem <img src="imgs/workflows_lib.png" height="120px" style="vertical-align:middle;">
+
+::: columns
+::: {.column width="50%"}
+*   Pense em um objeto da classe `workflow` como um "**varal**" ou um "**container**".
+*   É um **objeto único** onde você **"pendura"** a **receita** (construída com o pacote [**recipe**]{.red}) e a especificação do modelo (especificado com o pacote [**parsnip**]{.red}).
+*   Este objeto encapsula o **processo completo** de preparar os dados e depois aplicar o modelo.
+
+**Vantagem Chave:** **Organização**. Centraliza a lógica, evitando gerenciar receita e modelo separadamente em cada etapa do fluxo.
+:::
+
+::: {.column width="50%"}
+![🧦👕👖👚 Pense no papel do pacote **workflows** como um "varal" em que penduramos receita e modelo.](imgs/varal_workflows.png){fig-aling="right" width="70%"}
+:::
+![](gifs/pensativo.gif){fig-aling="right" width="20%"}
+:::
+
+## workflows <img src="imgs/workflows_lib.png" height="120px" style="vertical-align:middle;">
+
+<br>
+
+Você cria um objeto da classe `workflow` usando a função `workflow()` do pacote [**worflows**]{.red} e adiciona a especificação do modelo e a receita a ele. Um exemplo simples:
+
+<br>
+
+::: columns
+::: {.column width="50%"}
+![🎉 $workflows = receita + modelo$.](imgs/orquestra.png){fig-aling="right" width="50%"}
+:::
+::: {.column width="50%"}
+```{r}
+#| eval: false
+#| code-line-numbers: 1-7|5-7|13-15|18-20
+#| class-source: smallcode
+library(tidymodels) # Carrega o meta-pacote
+
+# 1. Definir a Especificação do Modelo (pacote parsnip)
+#    Ex: Regressão Linear
+especificacao_modelo <- linear_reg() |>
+  set_engine("lm") |>
+  set_mode("regression")
+
+# 2. Definir a Receita de Pré-processamento (pacote recipes)
+#    Ex: Normalizar preditores numéricos e criar dummies
+dados_exemplo <- tibble(
+  x = 1:10,
+  y = x * 2 + rnorm(10),
+  cat = factor(rep(letters[1:2], 5))
+)
+
+receita_exemplo <- recipe(y ~ x + cat, data = dados_exemplo) |>
+  step_normalize(x) |>
+  step_dummy(cat)
+
+# 3. Combinar usando workflow()
+meu_workflow <- workflow() |>
+  add_recipe(receita_exemplo) |> # Adiciona a receita
+  add_model(especificacao_modelo) # Adiciona o modelo
+
+meu_workflow # Visão geral do workflow
+```
+:::
+:::
+
 ## workflows <img src="imgs/workflows_lib.png" height="120px" style="vertical-align:middle;">
 
 ::: columns
@@ -2008,6 +2078,62 @@ wf <- workflows::workflow() |>
 
 ::: {.iframe-container}
 <iframe src="https://workflows.tidymodels.org/reference/index.html" width="100%" height="800px" frameborder="0"></iframe>
+:::
+
+## workflows: criando múltiplos fluxos <img src="imgs/workflows_lib.png" height="120px" style="vertical-align:middle;">
+
+Quando precisamos comparar diferentes combinações de receitas de pré-processamento e especificações de modelos, a abordagem recomendada é utilizar `workflow_set()`. Adiante, discutiremos detalhadamente essa função e seu complemento `workflow_map()`, especialmente útil para processos de tuning de hiperparâmetros.
+
+<br>
+
+📌 **Atenção**: As funções `workflow_set()` e `workflow_map()` fazem parte do pacote [**workflowsets**](https://workflowsets.tidymodels.org/) que complementa o pacote [**workflows**](https://workflows.tidymodels.org/reference/workflows-package.html).
+
+::: columns
+::: {.column width="50%"}
+<br>
+![](gifs/mr-bean_ok.gif){fig-aling="right" width="30%"}
+:::
+
+::: {.column width="50%"}
+```{r}
+#| eval: false
+#| class-source: smallcode
+#| code-line-numbers: 1-7|9-14|16-18|20-22|24-29|31-32
+
+# É algo assim parecido com:
+receita_1 <- recipes(
+    y ~ .,
+    data = treino
+  ) |>
+  step_*()
+  step_*()
+
+receita_2 <- recipes(
+    y ~ .,
+    data = treino
+  ) |>
+  step_*()
+  step_*()
+
+modelo_1 <- rand_forest() |>
+  set_engine("ranger") |>
+  set_mode("regression")
+
+modelo_2 <- rand_forest() |>
+  set_engine("rpart") |>
+  set_mode("regression")
+
+wf_set <- workflow_set(
+  # Passando os modelos
+  # (modelo_1, modelo_2)
+  # Passando as receitas
+  # (receita_1, receita_2)
+)
+
+# Tunando os hiperparâmetros
+workflow_map(wf_set)
+```
+:::
 :::
 
 

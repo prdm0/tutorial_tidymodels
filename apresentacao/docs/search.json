@@ -466,7 +466,7 @@
     "href": "index.html#parsnip-2",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "parsnip \n",
-    "text": "parsnip \n\n\nDiversas bibliotecas na linguagem R são preparadas para trabalharem na área de aprendizagem de máquina. Várias dessas bibliotecas vem sendo desenvolvidas há anos. Por exemplo,as bibliotecas glmnet, ranger, kknn, xgboost, keras, rpart, randomForest, entre diversos outros.\n\n\nO número de pacotes abaixo é o mais recente. Obtido automaticamente por webscraping.library(xml2)\nlibrary(httr)\nlibrary(stringr)\nlibrary(\"downlit\")\n\nnumero_pacotes_r &lt;- httr::GET(\n  \"https://cloud.r-project.org/web/packages/index.html\"\n) |&gt;\n  xml2::read_html() |&gt;\n  xml2::xml_find_all(\"//p[1]\") |&gt;\n  xml2::xml_text() |&gt;\n  stringr::str_extract(pattern = \"[0-9]+\")\n\n\n\nAtualmente, a linguagem R possui 22421, em que muitos deles são preparados para para trabalharem em tarefas de aprendizagem de máquina, porém, cada com sua sintaxe específica. Muitos implementam o mesmo modelo, uns com algumas variações, porém, o uso é totalmente diferente, nomes de parâmetros distintos, saídas distintas, etc."
+    "text": "parsnip \n\n\nDiversas bibliotecas na linguagem R são preparadas para trabalharem na área de aprendizagem de máquina. Várias dessas bibliotecas vem sendo desenvolvidas há anos. Por exemplo,as bibliotecas glmnet, ranger, kknn, xgboost, keras, rpart, randomForest, entre diversos outros.\n\n\nO número de pacotes abaixo é o mais recente. Obtido automaticamente por webscraping.library(xml2)\nlibrary(httr)\nlibrary(stringr)\nlibrary(\"downlit\")\n\nnumero_pacotes_r &lt;- httr::GET(\n  \"https://cloud.r-project.org/web/packages/index.html\"\n) |&gt;\n  xml2::read_html() |&gt;\n  xml2::xml_find_all(\"//p[1]\") |&gt;\n  xml2::xml_text() |&gt;\n  stringr::str_extract(pattern = \"[0-9]+\")\n\n\n\nAtualmente, a linguagem R possui 22432, em que muitos deles são preparados para para trabalharem em tarefas de aprendizagem de máquina, porém, cada com sua sintaxe específica. Muitos implementam o mesmo modelo, uns com algumas variações, porém, o uso é totalmente diferente, nomes de parâmetros distintos, saídas distintas, etc."
   },
   {
     "objectID": "index.html#parsnip-3",
@@ -494,7 +494,7 @@
     "href": "index.html#workflows",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "workflows \n",
-    "text": "workflows \n\n\n\n\n\nO pacote workflows age como um “maestro” e conecta o pré-processamento (recipes) com o modelo parsnip.\n\n\n\nO pacote workflows conecta o pré-processamento (faze realizada com o pacote recipes) com o modelo (definido com o pacote parsnip).\n\nUso geral:\n\nwf &lt;- workflows::workflow() |&gt;\n  workflows::add_recipe(receita) |&gt;\n  workflows::add_model(modelo)\n\nou\n\nwf &lt;-\nworkflows::workflow(\n  receita,\n  modelo\n)"
+    "text": "workflows \n\n\nO pacote workflows é um dos principais pacotes do framework tidymodels.\nSeu papel fundamental é gerenciar e combinar o pré-processamento de dados (definido com recipes) com a especificação do modelo (definida com parsnip)."
   },
   {
     "objectID": "index.html#tune",
@@ -879,21 +879,21 @@
     "href": "index.html#workflows-1",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "workflows \n",
-    "text": "workflows \n\n\n\n\nUm fluxo de trabalho ruim, em que o modelo não se comunica com o pré-processamento. 😢"
+    "text": "workflows \n\n\nVocê cria um objeto da classe workflow usando a função workflow() do pacote worflows e adiciona a especificação do modelo e a receita a ele. Um exemplo simples:\n\n\n\n\n\n🎉 workflows = receita + modelo.\n\n\n\nlibrary(tidymodels) # Carrega o meta-pacote\n\n# 1. Definir a Especificação do Modelo (pacote parsnip)\n#    Ex: Regressão Linear\nespecificacao_modelo &lt;- linear_reg() |&gt;\n  set_engine(\"lm\") |&gt;\n  set_mode(\"regression\")\n\n# 2. Definir a Receita de Pré-processamento (pacote recipes)\n#    Ex: Normalizar preditores numéricos e criar dummies\ndados_exemplo &lt;- tibble(\n  x = 1:10,\n  y = x * 2 + rnorm(10),\n  cat = factor(rep(letters[1:2], 5))\n)\n\nreceita_exemplo &lt;- recipe(y ~ x + cat, data = dados_exemplo) |&gt;\n  step_normalize(x) |&gt;\n  step_dummy(cat)\n\n# 3. Combinar usando workflow()\nmeu_workflow &lt;- workflow() |&gt;\n  add_recipe(receita_exemplo) |&gt; # Adiciona a receita\n  add_model(especificacao_modelo) # Adiciona o modelo\n\nmeu_workflow # Visão geral do workflow"
   },
   {
     "objectID": "index.html#workflows-2",
     "href": "index.html#workflows-2",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "workflows \n",
-    "text": "workflows \n\n\n\n\nUm fluxo de trabalho bom, em que o modelo se comunica com o pré-processamento. 😊"
+    "text": "workflows \n\n\n\n\n\nO pacote workflows age como um “maestro” e conecta o pré-processamento (recipes) com o modelo parsnip.\n\n\n\nO pacote workflows conecta o pré-processamento (faze realizada com o pacote recipes) com o modelo (definido com o pacote parsnip).\n\nUso geral:\n\nwf &lt;- workflows::workflow() |&gt;\n  workflows::add_recipe(receita) |&gt;\n  workflows::add_model(modelo)\n\nou\n\nwf &lt;-\nworkflows::workflow(\n  receita,\n  modelo\n)"
   },
   {
     "objectID": "index.html#workflows-3",
     "href": "index.html#workflows-3",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "workflows \n",
-    "text": "workflows \n\nEm resumo, em um fluxo de trabalho, teríamos a definição do modelo com o pacote parsnip:\n\nmodelo &lt;- rand_forest(\n  trees = 500,\n  mtry = 2\n) |&gt;\n  set_engine(\"ranger\", importance = \"impurity\") |&gt;\n  set_mode(\"classification\")\n\nA definição da receita com o pacote recipes:\n\nreceita &lt;- recipe(\n  Species ~ .,\n  data = iris\n) |&gt;\n  step_log(all_numeric_predictors()) |&gt;\n  step_dummy(all_nominal_predictors(), one_hot = TRUE)\n\nInterligando em um fluxo de trabalho com o pacote workflows:\n\nwf &lt;- workflows::workflow() |&gt;\n  workflows::add_recipe(receita) |&gt;\n  workflows::add_model(modelo)"
+    "text": "workflows \n\n\n\n\nUm fluxo de trabalho ruim, em que o modelo não se comunica com o pré-processamento. 😢"
   },
   {
     "objectID": "index.html#interações-entre-variáveis",
@@ -906,14 +906,70 @@
     "objectID": "index.html#interações-entre-variáveis-utilizando-o-operador",
     "href": "index.html#interações-entre-variáveis-utilizando-o-operador",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
-    "section": "Interações entre variáveis: utilizando o operador : \n",
-    "text": "Interações entre variáveis: utilizando o operador : \n\n\nAs fórmulas do R permitem especificar termos de interação diretamente. Para isso você deve usar o step_interact() e o operador :. Por exemplo, para prever mpg usando wt, hp e a interação entre wt e hp (wt * hp), você pode fazer o seguinte:\n\n\n# Prever 'mpg' usando 'wt', 'hp' e a interação entre 'wt' e 'hp'\nreceita &lt;- recipe(\n  mpg ~ wt + hp + qsec,\n  data = mtcars_tbl\n) |&gt;\n  step_interact(\n    ~ wt : hp\n  )\n\n\n📌 Use : com cautela e geralmente certifique-se de que os efeitos principais também estão no modelo."
+    "section": "Interações entre variáveis: utilizando o operador “:” \n",
+    "text": "Interações entre variáveis: utilizando o operador “:” \n\n\nAs fórmulas do R permitem especificar termos de interação diretamente. Para isso você deve usar o step_interact() e o operador “:”. Por exemplo, para prever mpg usando wt, hp e a interação entre wt e hp (wt * hp), você pode fazer o seguinte:\n\n\n# Prever 'mpg' usando 'wt', 'hp' e a interação entre 'wt' e 'hp'\nreceita &lt;- recipe(\n  mpg ~ wt + hp + qsec,\n  data = mtcars_tbl\n) |&gt;\n  step_interact(\n    ~ wt : hp\n  )\n\n\n📌 Utilize o operador “:” com cautela. Certifique-se de que os efeitos principais também estão no modelo."
   },
   {
     "objectID": "index.html#workflows-4",
     "href": "index.html#workflows-4",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "workflows \n",
+    "text": "workflows \n\n\n\n\nUm fluxo de trabalho bom, em que o modelo se comunica com o pré-processamento. 😊"
+  },
+  {
+    "objectID": "index.html#o-fluxo-típico-de-modelagem",
+    "href": "index.html#o-fluxo-típico-de-modelagem",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "O Fluxo Típico de Modelagem",
+    "text": "O Fluxo Típico de Modelagem\nUm fluxo de trabalho comum em modelagem preditiva envolve várias etapas:\n\nSeparação dos dados (Treino/Teste) e Reamostragem (rsample) [6-11].\nPré-processamento e Feature Engineering (recipes) [6-8, 10, 12-18].\nEspecificação do Modelo (parsnip) [6, 7, 19-21].\nCombinar Pré-processamento e Modelo.\nTuning de hiperparâmetros (tune) [3, 7, 17, 19, 21-28].\nAvaliação de Desempenho (yardstick) [3, 6, 7, 21, 29].\nAjuste final e Predição (last_fit) [19, 30-32]."
+  },
+  {
+    "objectID": "index.html#introduzindo-o-pacote-workflows",
+    "href": "index.html#introduzindo-o-pacote-workflows",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Introduzindo o Pacote workflows\n",
+    "text": "Introduzindo o Pacote workflows\n\n\nO pacote workflows é um dos pacotes principais do tidymodels(https://www.tidymodels.org/).\nSeu papel fundamental é gerenciar e combinar o pré-processamento de dados (definido com recipes(https://recipes.tidymodels.org/)) com a especificação do modelo (definida com parsnip(https://parsnip.tidymodels.org/))."
+  },
+  {
+    "objectID": "index.html#workflow-o-varal-da-modelagem",
+    "href": "index.html#workflow-o-varal-da-modelagem",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Workflow: O “Varal” da Modelagem",
+    "text": "Workflow: O “Varal” da Modelagem\n\nPense em um objeto workflow como um “varal” [10, 21] ou um “container” [18].\nÉ um objeto único [18, 21, 22] onde você “pendura” a receita (recipes) e a especificação do modelo (parsnip) [10, 21].\nEste objeto encapsula o processo completo de “preparar os dados e depois aplicar o modelo” [23].\n\n\nVantagem Chave: Organização [23]. Centraliza a lógica, evitando gerenciar receita e modelo separadamente em cada etapa do fluxo."
+  },
+  {
+    "objectID": "index.html#fluxo-de-trabalho-em-machine-learning",
+    "href": "index.html#fluxo-de-trabalho-em-machine-learning",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Fluxo de Trabalho em Machine Learning",
+    "text": "Fluxo de Trabalho em Machine Learning\nUm processo típico envolve várias etapas:\n\n\nSeparação dos dados (Treino/Teste) e Reamostragem (pacote rsample) [2, 4, 7-9].\n\nPré-processamento e Engenharia de Features (pacote recipes) [2, 4, 7, 9-15].\n\nEspecificação do Modelo (pacote parsnip) [2, 4, 7, 9-11].\n\nCombinação de Pré-processamento e Modelo.\n\nTuning de Hiperparâmetros (pacote tune) [2, 9, 11, 16-19].\n\nAvaliação de Desempenho (pacote yardstick) [6, 9, 19].\n\nAjuste Final e Predição (last_fit) [2, 20]."
+  },
+  {
+    "objectID": "index.html#workflows-o-varal-da-modelagem",
+    "href": "index.html#workflows-o-varal-da-modelagem",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "workflows: o “varal” 🧦 da modelagem \n",
+    "text": "workflows: o “varal” 🧦 da modelagem \n\n\n\n\nPense em um objeto da classe workflow como um “varal” ou um “container”.\nÉ um objeto único onde você “pendura” a receita (construída com o pacote recipe) e a especificação do modelo (especificado com o pacote parsnip).\nEste objeto encapsula o processo completo de preparar os dados e depois aplicar o modelo.\n\nVantagem Chave: Organização. Centraliza a lógica, evitando gerenciar receita e modelo separadamente em cada etapa do fluxo.\n\n\n\n🧦👕👖👚 Pense no papel do pacote workflows como um “varal” em que penduramos receita e modelo."
+  },
+  {
+    "objectID": "index.html#workflows-5",
+    "href": "index.html#workflows-5",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "workflows \n",
+    "text": "workflows \n\nEm resumo, em um fluxo de trabalho, teríamos a definição do modelo com o pacote parsnip:\n\nmodelo &lt;- rand_forest(\n  trees = 500,\n  mtry = 2\n) |&gt;\n  set_engine(\"ranger\", importance = \"impurity\") |&gt;\n  set_mode(\"classification\")\n\nA definição da receita com o pacote recipes:\n\nreceita &lt;- recipe(\n  Species ~ .,\n  data = iris\n) |&gt;\n  step_log(all_numeric_predictors()) |&gt;\n  step_dummy(all_nominal_predictors(), one_hot = TRUE)\n\nInterligando em um fluxo de trabalho com o pacote workflows:\n\nwf &lt;- workflows::workflow() |&gt;\n  workflows::add_recipe(receita) |&gt;\n  workflows::add_model(modelo)"
+  },
+  {
+    "objectID": "index.html#workflows-6",
+    "href": "index.html#workflows-6",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "workflows \n",
     "text": "workflows"
+  },
+  {
+    "objectID": "index.html#workflows-criando-múltiplos-fluxos",
+    "href": "index.html#workflows-criando-múltiplos-fluxos",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "workflows: criando múltiplos fluxos \n",
+    "text": "workflows: criando múltiplos fluxos \n\nQuando precisamos comparar diferentes combinações de receitas de pré-processamento e especificações de modelos, a abordagem recomendada é utilizar workflow_set(). Adiante, discutiremos detalhadamente essa função e seu complemento workflow_map(), especialmente útil para processos de tuning de hiperparâmetros.\n\n📌 Atenção: As funções workflow_set() e workflow_map() fazem parte do pacote workflowsets que complementa o pacote workflows.\n\n\n\n\n\n# É algo assim parecido com:\nreceita_1 &lt;- recipes(\n    y ~ .,\n    data = treino\n  ) |&gt;\n  step_*()\n  step_*()\n\nreceita_2 &lt;- recipes(\n    y ~ .,\n    data = treino\n  ) |&gt;\n  step_*()\n  step_*()\n\nmodelo_1 &lt;- rand_forest() |&gt;\n  set_engine(\"ranger\") |&gt;\n  set_mode(\"regression\")\n\nmodelo_2 &lt;- rand_forest() |&gt;\n  set_engine(\"rpart\") |&gt;\n  set_mode(\"regression\")\n\nwf_set &lt;- workflow_set(\n  # Passando os modelos\n  # (modelo_1, modelo_2)\n  # Passando as receitas\n  # (receita_1, receita_2)\n)\n\n# Tunando os hiperparâmetros\nworkflow_map(wf_set)"
   }
 ]
