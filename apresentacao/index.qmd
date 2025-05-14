@@ -1947,7 +1947,7 @@ Você cria um objeto da classe `workflow` usando a função `workflow()` do paco
 ::: {.column width="50%"}
 ```{r}
 #| eval: false
-#| code-line-numbers: 1-7|5-7|13-15|18-20
+#| code-line-numbers: 1-7|17-20|22-26
 #| class-source: smallcode
 library(tidymodels) # Carrega o meta-pacote
 
@@ -2034,39 +2034,35 @@ workflows::workflow(
 
 ## workflows <img src="imgs/workflows_lib.png" height="120px" style="vertical-align:middle;">
 
-Em resumo, em um fluxo de trabalho, teríamos a definição do modelo com o pacote
-[**parsnip**](https://parsnip.tidymodels.org/):
+Em resumo,
+
+<br>
+
+$parnip + recipes + workflows$:
+
+<br>
 
 ```{r}
 #| eval: false
-
-modelo <- rand_forest(
-  trees = 500,
-  mtry = 2
-) |>
-  set_engine("ranger", importance = "impurity") |>
-  set_mode("classification")
-```
-
-A definição da receita com o pacote
-[**recipes**](https://recipes.tidymodels.org/):
-
-```{r}
-#| eval: false
-
+#| class-source: smallcode
+#| code-line-numbers: 1-7|9-15|17-20
+# Definindo uma receita e a fórmula
 receita <- recipe(
   Species ~ .,
   data = iris
 ) |>
   step_log(all_numeric_predictors()) |>
   step_dummy(all_nominal_predictors(), one_hot = TRUE)
-```
 
-Interligando em um fluxo de trabalho com o pacote
-[**workflows**](https://workflows.tidymodels.org/):
+# Definindo o modelo
+modelo <- rand_forest(
+  trees = 500,
+  mtry = 2
+) |>
+  set_engine("ranger", importance = "impurity") |>
+  set_mode("classification")
 
-```{r}
-#| eval: false
+# receita + modelo = workflow
 wf <- workflows::workflow() |>
   workflows::add_recipe(receita) |>
   workflows::add_model(modelo)
@@ -2086,7 +2082,7 @@ Quando precisamos comparar diferentes combinações de receitas de pré-processa
 
 <br>
 
-📌 **Atenção**: As funções `workflow_set()` e `workflow_map()` fazem parte do pacote [**workflowsets**](https://workflowsets.tidymodels.org/) que complementa o pacote [**workflows**](https://workflows.tidymodels.org/reference/workflows-package.html).
+📌 **Atenção**: As funções [`workflow_set()`]{.mark} e [`workflow_map()`]{.mark} fazem parte do pacote [**workflowsets**](https://workflowsets.tidymodels.org/) que complementa o pacote [**workflows**](https://workflows.tidymodels.org/reference/workflows-package.html).
 
 ::: columns
 ::: {.column width="50%"}
@@ -2136,33 +2132,76 @@ workflow_map(wf_set)
 :::
 :::
 
+## 🎛 tune: o problema dos hiperparâmetros <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
 
-## tune <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
+<br>
+
+- Modelos de Machine Learning (ML) frequentemente possuem **hiperparâmetros**.
+- Hiperparâmetros são **valores de configuração** que não são aprendidos a partir dos dados durante o treino do modelo. Eles precisam ser definidos *antes* do processo de ajuste.
+- **Exemplos**: penalidade (`penalty`) e mistura (`mixture`) em modelos lineares regularizados (como no pacote [**glmnet**](https://cran.r-project.org/web/packages/glmnet/index.html)), número de árvores (`trees`), `mtry` ou `min_n` no pacote [**randomForest**](https://cran.r-project.org/web/packages/randomForest/index.html)/[**ranger**](https://cran.r-project.org/web/packages/ranger/index.html), profundidade de árvores de decisão (`tree_depth`), grau de liberdade (`deg_free`) em splines.
+- A **escolha** dos valores para esses hiperparâmetros afeta diretamente o desempenho e a generalização do modelo.
+- Como encontrar a **melhor combinação** de hiperparâmetros para o seu problema e dados específicos? Isso é o que chamamos de [**tunagem**]{.mark} ou [*tuning*]{.mark}.
+
+
+## 🎛 tune: por que otimizar hiperparâmetros? <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
+
+<br>
 
 ::: columns
 ::: {.column width="50%"}
 [![Imagem em aquarela da logo do pacote **tune**.](imgs/aquarela_tune.png){fig-alt="Imagem em aquarela fazendo alusão ao uso do pacote tune." width="70%" height="auto"}](https://tune.tidymodels.org/)
 :::
 ::: {.column width="50%"}
-- Muitos algoritmos de Machine Learning possuem **hiperparâmetros**.
-- Estes não são aprendidos diretamente dos dados durante o treinamento.
-- **Exemplos**: número de vizinhos em KNN, profundidade de uma árvore de decisão, número de arvores em um random forest, taxa de aprendizado em redes neurais, penalidade em regularização como em modelos LASSO, Ridge ou Elastic Net.
-- A escolha dos hiperparâmetros pode impactar significativamente a performance do modelo.
-- **Objetivo:** Encontrar a combinação de hiperparâmetros que resulta no melhor desempenho preditivo em dados não vistos dado uma métrica de desenpenho, por exemplo, Erro Quadrático Médio (EQM) ou Acurácia.
+* **Hiperparâmetros:** são parâmetros do modelo que não são aprendidos diretamente dos dados.
+* **Impacto no desempenho:** a escolha dos hiperparâmetros pode ter um impacto significativo na performance do modelo.
+* **Busca pelo melhor:** ["tunar"]{.mark} significa buscar encontrar a combinação de hiperparâmetros que resulta no melhor desempenho do modelo em dados não vistos, com base em uma métrica escolhida.
+
+![](gifs/prestando_atencao.gif){fig-aling="right" width="25f%"}
 :::
 :::
 
-## tune: Por que Otimizar Hiperparâmetros? <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
+## 🎛 tune: preparando o terreno para a tunagem <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
+
+O processo geralmente envolve:
+
+1.  **Marcar parâmetros tunáveis**:
+    -   Dentro da especificação do modelo (`parsnip`) ou de um step de receita (`recipe`), use a função `tune()` para indicar quais parâmetros devem ser tunados.
+    -   Exemplo: `linear_reg() |> set_engine("glmnet") |> set_args(penalty = tune(), mixture = tune())`. Todas estas funções são do pacote [**parsnip**](https://parsnip.tidymodels.org/).
+
+2.  **Definir a estratégia de reamostragem**:
+    -   É essencial usar reamostragem (como cross-validation) para obter uma avaliação robusta do desempenho de cada combinação de hiperparâmetros e evitar overfitting nos dados de treino.
+    -   O pacote **rsample** fornece funções para isso, sendo `vfold_cv()` para $k$-fold cross-validation a mais comum.
+
+3.  **Criar o workflow**:
+    -   Combine sua receita (se houver) e a especificação do modelo em um objeto `workflow()`. Este workflow conterá as indicações dos parâmetros a serem tunados.
+
+## 🎛 tune: tunando parâmetros da receita <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
+
+::: columns
+::: {.column width="50%"}
+- A tunagem não se limita aos hiperparâmetros do modelo!
+- Parâmetros em **etapas de pré-processamento** também podem precisar de otimização.
+- Assim como nos modelos, marque os parâmetros desejados com `tune()` dentro da função do *step*.
+- Exemplo: `step_pca(all_predictors(), num_comp = tune())` ou `step_spline(longitude, latitude, deg_free = tune())`.
+- Ao incluir uma receita com parâmetros `tune()` em um `workflow()`, o processo de tunagem com `tune_grid()` avaliará **simultaneamente** as combinações de hiperparâmetros do modelo e da receita.
+:::
+::: {.column width="50%"}
 
 <br>
 
-* **Hiperparâmetros:** São parâmetros do modelo que não são aprendidos diretamente dos dados.
-* **Impacto no Desempenho:** A escolha dos hiperparâmetros pode ter um impacto significativo na performance do modelo.
-* **Busca pelo Melhor:** [Tunar]{.red} significa buscar encontrar a combinação de hiperparâmetros que resulta no melhor desempenho do modelo em dados não vistos, com base em uma métrica escolhida.
+![Hummmm, então quer dizer que posso tunar parâmetros dos *steps* `step_*()` de uma receita?](gifs/mr-bean_ok.gif){fig-aling="right" width="35%"}
+:::
+:::
 
-![](gifs/prestando_atencao.gif){fig-aling="right" width="25f%"}
+## 🎛 tune: estude a documentação do pacote tune <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
 
-## tune: Tunando o hiperparâmetro do modelo Lasso <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
+<br>
+
+::: {.iframe-container}
+<iframe src="https://tune.tidymodels.org/reference/index.html" width="100%" height="800px" frameborder="0"></iframe>
+:::
+
+## 🎛 tune: tunando o hiperparâmetro do modelo lasso <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
 
 <br>
 
@@ -2180,14 +2219,11 @@ Lasso](https://www.jstor.org/stable/2346178).
 :::
 :::
 
-## tune: Tunando o hiperparâmetro do modelo Lasso <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
+## 🎛 tune: tunando o hiperparâmetro do modelo lasso <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
 
 <br>
 
-No lasso, ao invés de reduzir a variância do estimador de mínimos
-quadrados usando a complexidade
-($L_0 = \sum_{i = 1}^d\mathbb{I}(\beta_i) \neq 0$) em
-@eq-risco-penalizacao, usa-se a penalização
+O lasso é um modelo de regressão linear múltipla usual, porém, usa-se a penalização
 $L_1 = \sum_{i = 1}^d|\beta_i|$. No lasso, buscamos:
 
 $$\widehat{\beta}_{L_1,\lambda} = \argmin_{\beta_0 \in \mathbb{R}, \beta \in \mathbb{R}^d}\sum_{k = 1}^n\overbrace{\left(y_k - \beta_0 - \sum_{i = 1}^d \beta_i x_{x,i}\right)^2}^{n \times EQM} + \overbrace{\lambda \,\,\underbrace{\sum_{j = 1}^d|\beta_j|}_{\text{Penalização}}}^{\text{A magnitude do coeficiente importa!}},$$
@@ -2197,7 +2233,7 @@ quadrados sem penalização. Já, quando $\lambda \rightarrow \infty$,
 temos um modelo em que todas as variáveis são removidas, uma vez que a
 primeira parte do modelo torna-se insignificante.
 
-## tune: Tunando o hiperparâmetro do modelo Lasso <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
+## 🎛 tune: tunando o hiperparâmetro do modelo lasso <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
 
 <br> <br>
 
@@ -2215,7 +2251,7 @@ validação/validação cruzada. 🔍
 
 ![](gifs/hum.gif)
 
-## tune: Tunando o hiperparâmetro do modelo Lasso <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
+## 🎛 tune: tunando o hiperparâmetro do modelo lasso <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
 
 [Exemplo]{.red}: Considere uma base de dados simulada, com $n = 500$
 observações, de tal forma que
@@ -2230,7 +2266,7 @@ avaliar o risco estimado de cada uma das regressões.
 
 ![](gifs/teclado-anime.gif){width="21%"}
 
-## tune: Tunando o hiperparâmetro do modelo Lasso <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
+## 🎛 tune: tunando o hiperparâmetro do modelo lasso <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
 
 ::: columns
 ::: {.column width="50%"}
@@ -2269,7 +2305,7 @@ head(dados)  # Y agora é a primeira coluna!
 :::
 :::
 
-## tune: Tunando o hiperparâmetro do modelo Lasso <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
+## 🎛 tune: tunando o hiperparâmetro do modelo lasso <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
 
 <br>
 
@@ -2308,6 +2344,263 @@ datatable(
 ) |> formatRound(columns = 1:21, digits = 3)
 ```
 
+## Ridge
+
+<br>
+
+Uma alternativa que surgiu antes do lasso é a [regressão ridge]{.red}.
+Ela foi proposta no artigo [Hoerl, A. E. & Kennard, R. W. (1970). Ridge
+regression: Biased estimation for nonorthogonal problems. Technometrics,
+12(1), 55--67](https://www.jstor.org/stable/1267351). Aqui, utiliza-se
+como medida de complexidade a norma $L_2$, em que, o estimador é dado
+por:
+
+$$\widehat{\beta}_{L_2,\lambda} = \argmin_{\beta_0 \in \mathbb{R}, \beta \in \mathbb{R}^d}\sum_{k = 1}^n\overbrace{\left(y_k - \beta_0 - \sum_{i = 1}^d \beta_i x_{x,i}\right)^2}^{n \times EQM} + \lambda \,\,\underbrace{\sum_{j = 1}^d\beta_j^2}_{\text{Penalização}}.$$
+Diferentemente do lasso, a regressão ridge possui solução analítica,
+dada por:
+
+$$\widehat{\beta}_{L_2,\lambda} = ({\bf X}^{T}{\bf X} + \lambda\mathbb{\bf I}_0)^{-1}{\bf X}^{T}Y,$$
+em que $\mathbb{\bf I}_0$ é a matriz identidade $(d + 1) \times (d + 1)$
+com $\mathbb{\bf I}_0(1,1) = 0$.
+
+<br>
+
+## Ridge
+
+<br>
+
+A regressão ridge poderá ter uma variância menor que a regressão lasso,
+porém seu viés poderá ser maior. Outra característica da regressão ridge
+é que ela possue uma única solução, enquanto a regressão lasso poderá
+ter multiplas soluções. Os autores também demonstram que a regressão
+ridge lida melhor com multicolinearidade.
+
+<br>
+
+No R, também poderemos utilizar a biblioteca
+[glmnet](https://cran.r-project.org/web/packages/glmnet/index.html):
+
+<br>
+
+```{r}
+#| eval: false
+library(glmnet)
+ajuste <- cv.glmnet(x, y, alpha = 0)
+```
+
+<br>
+
+![](gifs/teclado-anime.gif){width="21%"}
+
+## Elastic Net
+
+<br>
+
+Na documentação da função [`glmnet`](https://www.rdocumentation.org/packages/glmnet/versions/4.1-7/topics/glmnet), note que a função realiza o lasso mais o ridge, i.e.,
+
+<br>
+
+$$(1 - \alpha)/2 ||\beta_j||^2_2 + \alpha||\beta_j||_2.$$
+
+<br>
+
+Note que para $\alpha = 1$, temos uma regressão do tipo lasso, já para $\alpha = 0$ recaímos para uma penalização do tipo ridge. Para $\alpha$ diferente de zero e um, temos uma *elastic net*, ok?!
+
+<br>
+
+![](gifs/thumbs-up-nod.gif)
+
+## Elastic Net
+
+<br>
+
+Nesse tipo de modelo de regressão, combina-se as penalizações da regressão
+ridge com a utilizada na regressão lasso, herdando os benefícios do uso
+de cada um dos métodos isoladamente, melhorando a estabilidade das
+estimativas do lasso, em situações de multicolinearidade entre as
+variáveis e também permitindo a seleção automática de variáveis.
+
+$$(1-\alpha)\widehat{\beta}_{L_2,\lambda} + \alpha\widehat{\beta}_{L_1,\lambda},$$
+em que $0 \leq \alpha \leq1$. Em R, basta especificar para a função
+[`glmnet`](https://www.rdocumentation.org/packages/glmnet/versions/4.1-7/topics/glmnet) um valor de $\alpha$ diferente de 0 e 1. Esse valor normalmente é escolhido por um procedimento de validação cruzada.
+
+<br>
+
+![](gifs/teclado-anime.gif){width="21%"}
+
+## Exemplo: EMQ, Ridge, Lasso e Elastic Net
+
+<br>
+
+[Exemplo]{.red}: Considere uma base de dados simulada, com $n = 500$
+observações, de tal forma que
+
+$$Y = 3X_{1} - 2X_2 + X_3 -3X_4 + X_5 + \sum_{i = 6}^{20}0X_i + \varepsilon,$$
+em que $\varepsilon \sim \text{Normal}(0, 0.5^2)$ e
+$X_i \sim \text{Normal}(0, 1)$, independentes, com $i = 1, \cdots, 20$.
+Desejamos ajustar quatro modelos de regressão. Para o caso do Estimador
+de Mínimos Quadrados - EMQ e do modelo Ridge, que não tem seleção
+automática de variáveis, usaremos **todas** as variáveis. Desejamos
+avaliar o risco estimado de cada uma das regressões.
+
+![](gifs/teclado-anime.gif){width="21%"}
+
+## Exemplo: EMQ, Ridge, Lasso e Elastic Net
+
+<br>
+
+```{r}
+#| code-fold: true
+#| code-summary: "Solução utilizando o tidymodels"
+#| eval: false
+library(tidymodels)
+library(tibble)
+library(purrr)
+library(ggplot2)
+library(patchwork)
+
+# Removendo possíveis conflitos de pacotes --------------------------------
+tidymodels::tidymodels_prefer()
+
+# Função para gerar os dados ----------------------------------------------
+gerando_dados <- function(n = 300L){
+  regressao <- function(i){
+    x <- rnorm(n = 5L)
+    y <- 3*x[1L] - 2*x[2L] + x[3L] - 3*x[4L] + x[5L] + rnorm(1L, 0, 0.5)
+    tibble(
+      y = y,
+      x1 = x[1L],
+      x2 = x[2L],
+      x3 = x[3L],
+      x4 = x[4L],
+      x5 = x[5L]
+    )
+  }
+  dados <- purrr::map(.x = 1L:n, .f = regressao) |>
+    purrr::list_rbind()
+
+  parte_esparsa <- matrix(0, n, 15)
+
+  dados <- cbind(dados, parte_esparsa)
+  colnames(dados) <- c("y", paste0("x", 2L:ncol(dados)))
+  as_tibble(dados)
+}
+
+dados <- gerando_dados(n = 500)
+
+# Divisão inicial da base -------------------------------------------------
+hod_out <- initial_split(dados, prop = 0.7)
+treinamento <- training(hod_out)
+teste <- testing(hod_out)
+
+# Setando o modelo (set engine) -------------------------------------------
+modelo_eqm <-
+  linear_reg(penalty = 0, mixture = 0) |>
+  set_mode("regression") |>
+  set_engine("glmnet")
+
+modelo_ridge <-
+  linear_reg(penalty = tune::tune(), mixture = 0) |>
+  set_mode("regression") |>
+  set_engine("glmnet")
+
+modelo_lasso <-
+  parsnip::linear_reg(penalty = tune::tune(), mixture = 1) |>
+  set_mode("regression") |>
+  parsnip::set_engine("glmnet")
+
+modelo_elastic <-
+  parsnip::linear_reg(penalty = tune::tune(), mixture = tune::tune()) |>
+  set_mode("regression") |>
+  parsnip::set_engine("glmnet")
+
+# Criando workflows -------------------------------------------------------
+all_wf <-
+  workflow_set(
+    preproc = list(y ~ . ),
+    models = list(eqm = modelo_eqm, ridge = modelo_ridge, lasso = modelo_lasso, elastic = modelo_elastic),
+    cross = TRUE
+  )
+
+# Validação cruzada -------------------------------------------------------
+set.seed(0)
+cv <- rsample::vfold_cv(treinamento, v = 5L)
+
+# Setando a métrica -------------------------------------------------------
+metrica <- yardstick::metric_set(rmse)
+
+# Tunagem dos hiperparâmetros ---------------------------------------------
+# A semente (seed = 0) faz com que dentro da validação cruzada para cada modelo
+# a semente seja sempre a mesma.
+tunagem <-
+  all_wf |>
+  workflow_map(
+    seed = 0,
+    verbose = TRUE,
+    resamples = cv,
+    grid = 50,
+    metrics = metrica
+  )
+
+# Rank dos melhores modelos -----------------------------------------------
+modelos_rank <- tunagem |> rank_results()
+
+melhor_eqm <-
+  tunagem |>
+  extract_workflow_set_result("formula_eqm") |>
+  select_best("rmse")
+
+melhor_ridge <-
+  tunagem |>
+  extract_workflow_set_result("formula_ridge") |>
+  select_best("rmse")
+
+melhor_lasso <-
+  tunagem |>
+  extract_workflow_set_result("formula_lasso") |>
+  select_best("rmse")
+
+melhor_elastic <-
+  tunagem |>
+  extract_workflow_set_result("formula_elastic") |>
+  select_best("rmse")
+
+finalizando_eqm <-
+  tunagem |>
+  extract_workflow("formula_eqm") |>
+  finalize_workflow(melhor_eqm) |>
+  last_fit(split = hod_out)
+
+finalizando_ridge <-
+  tunagem |>
+  extract_workflow("formula_ridge") |>
+  finalize_workflow(melhor_ridge) |>
+  last_fit(split = hod_out)
+
+finalizando_lasso <-
+  tunagem |>
+  extract_workflow("formula_lasso") |>
+  finalize_workflow(melhor_lasso) |>
+  last_fit(split = hod_out)
+
+finalizando_elastic <-
+  tunagem |>
+  extract_workflow("formula_elastic") |>
+  finalize_workflow(melhor_elastic) |>
+  last_fit(split = hod_out)
+
+# Visualizando as métricas
+finalizando_eqm |> collect_metrics()
+finalizando_ridge |> collect_metrics()
+finalizando_lasso |> collect_metrics()
+finalizando_elastic |> collect_metrics()
+
+# Visualizando predições:
+finalizando_eqm |> collect_predictions()
+finalizando_ridge |> collect_predictions()
+finalizando_lasso |> collect_predictions()
+finalizando_elastic |> collect_predictions()
+```
 
 ## 💻 Tidymodels
 
@@ -2563,1005 +2856,7 @@ Experimente de forma interativa altera a complefixade do modelo.
 
 Para ampliar a aplicação, clique [aqui](https://pedro-rafael.shinyapps.io/shiny_apps/).
 
-## 🎛 Tuning Parameters
+#  {.title background-image="gifs/aplausos.gif" background-size="100% 100%"}
 
-<br>
 
-No exemplo anterior, note que os parâmetros dos modelos são os
-coeficientes $\beta$'s que indexam a regressão polinomial. Porém,
-perceba que á um **parâmetro de sintonização** ([*tuning
-parameter*]{.red}) que é o valor de $p$, isto é, qual o grau do
-polinômio que iremos utilizar.
-
-<br>
-
-Normalmente a escolha é feita realizando um [*grid search*]{.red} por
-meio de um [*cross-validation*]{.red}.
-
-<br>
-
-No exemplo anterior, fizemos uma simulação e observamos que ao
-considerar graus nem muito grandes nem muito pequenos, aparentemente
-teremos escolhas razoáveis.
-
-<br>
-
-![](gifs/interesting-batman.gif)
-
-## 🎛 Tuning Parameters
-
-<br>
-
-[Exemplo]{.red}: Consedere os dados de expectativa de vida versus PIB
-per Capita, disponíveis
-[aqui](https://github.com/prdm0/dados/raw/main/dados_expectativa_renda.RData).
-Selecione o melhor estimador $g$ da classe $\mathbb{G}$, em que
-
-$$\mathbb{G} = \left\{g(x)\,\,:\,\, \beta_0 + \sum_{i = 1}^p \beta_i x^i\,\, \text{para } p \in \{1, 2, \cdots,11\} \right\}.$$
-Note que selecionar o melhor polinômio é uma busca em $p$. Devemos
-utilizar o erro quadrático médio - EQM sob o conjunto de validação, uma
-vez que sabemos que apenas em um conjunto de validação ou em novas
-observações o estimador do risco pelo EQM é consistente, pela Lei dos
-Grandes Números.
-
-<br>
-
-Vamos utilizar a biblioteca
-[rsample](https://rsample.tidymodels.org/index.html) para a tarefa de
-validação cruzada. Leia a documentação da biblioteca, em especial, a da
-função `vfold_cv`, responsável por construir a validação cruzada. Na
-verdade ela faz a divisão da base de dados em $v$ *splits* de tamanho
-aproximadamente iguais. Por padrão, $v = 10$. Esse é o procedimento de
-$k$-*fold cross-validation* que apresentamos aqui, em que $v = k$.
-
-## 🎛 Tuning Parameters
-
-<br>
-
-Algumas observações gerais a respetio da biblioteca
-[rsample](https://rsample.tidymodels.org/index.html), que são úteis para
-resolver esse problema:
-
-![](imgs/rsample.png){fig-align="center"}
-
-1.  Para realizar uma **primeira divisão** do conjunto de dados (*data
-    splitting/hold-out*), utiliza-se a função `initial_split`;
-2.  Para acessar o conjunto de **treinamento** dos dados, usamos a
-    função `training`;
-3.  Para acessar o conjunto de **teste**, usamos a função `testing`;
-4.  Para constuir todas as divisões da validação cruzada, entre
-    treinamento e validação, no conjunto de treinamento inicial, usamos
-    a função `vfold_cv` já mencionada;
-5.  Para acessar o conjunto de **treinamento** de um *split* da
-    validação cruzada, usamos a função `analysis`;
-6.  Para acessar o conjunto de **validação**, utilizamos a função
-    `assessment`.
-
-## 🎛 Tuning Parameters
-
-![](imgs/rsample.png){fig-align="center" width="5%"}
-
-<br> Note que realizar uma validação cruzada é importante para podemos
-selecionar o melhor polinômio, i.e., o melhor valor de $p$. Caso
-venhamos negligenciar esse aspecto da análise, iremos cair na falácia de
-acreditarmos que quanto maior o grau do polinômio, maior será o poder
-preditivo do modelo. Isso não é verdade e você deverá selecionar o
-melhor modelo dentro de um esquema de validação cruzada.
-
-<br>
-
-No mundo de aprendizagem de máquina, muitos chamam o processo de
-encontrar o melhor hiperparâmetro de ["tunagem"]{.red}. Em vários
-modelos, podemos ter mais de um.
-
-## 🎛 Tuning Parameters
-
-<br>
-
-As Figuras abaixo, mostram a avaliação dos polinômios da classe
-$\mathbb{G}$, usando o risco estimado $\widehat{R}(g)$ pelo erro
-quadrático médio - EQM. Porém, a Figura [A]{.red} aprenseta a avaliação
-dos modelos, usando simplesmente o conjunto de treinamento e a Figura
-[B]{.red} aprensenta a avaliação do grau do polinômio considerando uma
-validação cruzada dentro do conjunto de treinamento.
-
-<br> ![](imgs/avaliacao_risco.png){fig-align="center"}
-
-<br>
-
-A mensagem equivocada passada pela Figura [A]{.red} é que supostamente
-aumentar a complexidade do modelo seria uma uma boa alternativa e nos
-conduziríamos à bons modelos preditivos. Mas sempre se lembre do
-equilíbrio que temos que ter entre viés e variância. A Figura [B]{.red}
-mostra que um polinômio com grau próximo à $p = 8$ é a melhor
-alternativa.
-
-## 🎛 Tuning Parameters
-
-<br>
-
-Observe o *dashboard* interativo! Sabemos que para que tenhamos uma boa
-estimativa do risco preditivo, devemos utilizar novas observações. No
-*dashboard*, é possível observar que a forma errada (usando o conjunto
-de treinamento para avaliar o risco), sugere que sempre será bom
-adicionar mais parâmetros ao modelo, levando a *overfitting*. Perceba
-que usando a forma correta (usando validação cruzada), o EQM (risco
-estimado) sugere que não podemos aumentar muito a quantidade de
-parâmetros.
-
-<br>
-
-```{=html}
- <iframe id="example1" src="https://pedro-rafael.shinyapps.io/shiny_apps/#section-avalia%C3%A7%C3%A3o-do-risco-preditivo" style="border: none; width: 100%; height: 90%" frameborder="0"></iframe>
-```
-## 🎛 Tuning Parameters
-
-<br>
-
-Abaixo você poderá acessar o código que soluciona o problema. O
-parâmetro `errado = FALSE` da função validação no código que segue,
-conduz a solução correta (usando a validação cruzada), que sempre você
-deverá considerar na prática.
-
-<br>
-
-```{r}
-#| code-fold: true
-#| code-summary: "Estude o código da solução de exemplo"
-#| eval: false
-
-library(rsample)
-library(yardstick)
-library(tibble)
-library(purrr)
-library(ggplot2)
-library(patchwork)
-
-# Lendo dados
-url <- "https://github.com/prdm0/dados/raw/main/dados_expectativa_renda.RData"
-arquivo_temp <- tempfile()
-download.file(url = url, destfile = arquivo_temp)
-load(arquivo_temp)
-
-dados <-
-  dados_expectativa_renda |>
-  dplyr::select(-CountryName) |>
-  dplyr::rename(y = LifeExpectancy, x = GDPercapita)
-
-iteracoes <- function(tibble_data, grau) {
-  x <- tibble_data$x
-  iteracoes <- lapply(X = 2L:grau, FUN = function(i) x^i)
-
-  result <- cbind(tibble_data, do.call(cbind, iteracoes))
-  colnames(result)[(ncol(tibble_data) + 1):ncol(result)] <- paste0("x", 2L:grau)
-
-  as_tibble(result)
-}
-
-regressao_polinomial <- function(dados, grau = 1L) {
-  if(grau >= 2L)
-    dados <- iteracoes(dados, grau = grau)
-
-  lm(formula = y ~ ., data = dados)
-}
-
-# Divisão dos dados
-divisao_inicial <- rsample::initial_split(dados)
-treinamento <- rsample::training(divisao_inicial)
-teste <- rsample::testing(divisao_inicial) # Teste final
-
-# v-folds cross-validation
-validacao <- function(dados, grau = 1L, errado = FALSE, ...){
-
-  # Todas as divisões da validacao cruzada
-  cv <- rsample::vfold_cv(dados, ...)
-
-  hiper <- function(i){
-    treino <- rsample::analysis(cv$splits[[i]]) # Treinamento
-    validacao <- rsample::assessment(cv$splits[[i]]) # Validacação
-    ajuste <- regressao_polinomial(dados = treino, grau = grau)
-
-    if(errado){
-      df_treino <- iteracoes(treino, grau = grau)
-      df_treino <- df_treino |> dplyr::mutate(y_chapeu = predict(ajuste, newdata = df_treino))
-      yardstick::rmse(data = df_treino, truth = y, estimate = y_chapeu)$.estimate
-    } else {
-      df_validacao <- iteracoes(validacao, grau = grau)
-      df_validacao <- df_validacao |> dplyr::mutate(y_chapeu = predict(ajuste, newdata = df_validacao))
-      yardstick::rmse(data = df_validacao, truth = y, estimate = y_chapeu)$.estimate
-    }
-  }
-  purrr::map_dbl(.x = seq_along(cv$splits), .f = hiper) |>
-    mean()
-}
-
-plot_avaliacao <- function(dados, errado = FALSE){
-  # Testando iterativamente, vários valores de p:
-  p <- seq(1L:11L)
-  risco <- purrr::map_dbl(.x = p, .f = \(p) validacao(dados = dados, grau = p, errado = errado))
-  df_risco <- tibble::tibble(p = p, risco = risco)
-
-  # Plotando
-  df_risco |>
-    ggplot(aes(x = p, y = risco, color = risco)) +
-    geom_point(size = 5) +
-    scale_x_continuous(breaks = p) +
-    scale_y_continuous(breaks = p) +
-    labs(
-      title = "Valiando o risco estimado para diversos graus do polinômio",
-      subtitle = "EQM no conjunto de validação"
-    ) +
-    theme(
-      plot.title = element_text(size = 18, face = "bold"),
-      plot.subtitle = element_text(size = 16),
-      axis.text = element_text(size = 10),
-      axis.title = element_text(size = 14, face = "bold")
-    )
-}
-
-# Avaliacão errada versus correta
-set.seed(0)
-grafico <-
-  plot_avaliacao(dados, errado = TRUE) +
-  plot_avaliacao(dados, errado = FALSE) +
-  plot_annotation(tag_levels = c("A", "B"))
-
-ggsave(grafico, file = "imgs/avaliacao_risco.png", device = "png", width = 50, height = 20, units = "cm", limitsize = F)
-
-plot_bar <- function(grau){
-  ruim <- validacao(dados, errado = TRUE, grau = grau)
-  bom <- validacao(dados, errado = FALSE, grau = grau)
-  df <- tibble::tibble(x = c("Errado", "Certo"), y = c(log(ruim), log(bom)))
-
-  df |>
-    ggplot(aes(x = x, y = y)) +
-    geom_bar(stat = "identity") +
-    geom_text(aes(label = y), vjust = 0)
-}
-```
-
-![](gifs/mr-bean-pivot.gif)
-
-## 📚 Exercícios
-
-<br>
-
-[Exercício]{.red}: Explique resumidamente o que é aprendizagem
-supervisionada e não-supervisionada. Cite um problema de aprendizagem
-supervisionada e um outro de aprendizagem não-supervisionada.
-
-<br>
-
-[Exercício]{.red}: Considere o conjunto de dados de Expectativa de vida
-versus PIB per Capita, disponível
-[aqui](https://github.com/prdm0/dados/raw/main/dados_expectativa_renda.RData).
-Considere a função $g$, da seguinte forma:
-
-$$g(x) = \beta_0 + \sum_{i = 1}^p \beta_i x^i,$$ com
-$p \in \{1, 2, ..., 50\}$. Utilizando o erro quadrático médio observado,
-sem fazer nenhuma estratégia de divisão dos dados, implemente um código
-em R para checar qual o melhor modelo.
-
-<br>
-
-[Exercício]{.red}: Explique qual o motivo que faz com que o Erro
-Quadrático Médio - EQM para avaliar o desempenho de um modelo é ruim
-quando não adotamos nenhuma estratégia de divisão do conjunto de dados
-em treinamento e teste.
-
-## 📚 Exercícios
-
-<br>
-
-[Exercício]{.red}: Com suas palavras, explique o dilema de balanço entre
-víes e variância.
-
-<br>
-
-[Exercício]{.red}: Refaça o exercício do polinômio, utilizando a
-estratégia de [*data splitting*]{.red}, em que divide-se o conjunto de
-dados em treinamento e teste. Utilize o conjunto de teste para calcular
-a estimativa do risco, usando o EQM.
-
-<br>
-
-[Exercício]{.red}: Ainda considerando o exercício do polinômio,
-implemente uma estratégia de [*leave-one-out cross-validation*]{.red} e
-selecione o melhor modelo minimizando a função de risco.
-
-<br>
-
-[Exercício]{.red}: Por fim, considerando o exercício do polinômio,
-rafaça-o utilizando um procedimento de [$k$-fold
-cross-validation]{.red}. Considere $k = 5$. **Dica**: considere utiliza
-a biblioteca [rsample](https://rsample.tidymodels.org/).
-
-![](imgs/rsample.png)
-
-## Melhor subconjunto de covariáveis
-
-<br>
-
-O estimador de mínimos quadrados - EMQ, na presença de muitas *features*
-(covariáveis), i.e., quando temos $d$ grande, possui um baixo poder
-preditivo devido a possibilidade de *overfitting* (super-ajuste). Isso, porquê haverá
-muitos parâmetros a serem estimados, e portanto, a função de regressão
-estimada $\widehat{r}({\bf x})$ terá baixo poder preditivo.
-
-<br>
-
-Isso se deve ao fato do balanço de viés e variância. Havendo muitos
-parâmetros, como já tinhamos visto, a variância do modelo poderá ser muito
-alta.
-
-<br>
-
-**Portanto, deveremos buscar meios de encontrar o melhor (ao menos um
-bom) conjunto de covariáveis. Queremos diminuir a variância do Estimador de Mínimos Quadrados!**
-
-<br>
-
-![](gifs/chapulin-colorado-no.gif){width="20%"}
-
-## Melhor subconjunto de covariáveis
-
-<br>
-
-A ideia para resolver esse problema é retirar algumas covariáveis do
-modelo de regressão, com o objetivo de diminuir a variância de
-$\widehat{g}$.
-
-<br>
-
-Você poderá entender que estamos em busca de um estimador $\widehat{g}$
-de $g$ um **pouco** mais viesado. Trata-se de uma troca em que desejamos
-reduzir substancialmente a variabilidade do estimador do modelo em troca
-de um pouco mais de viés.
-
-<br>
-
-![](gifs/kiko.gif)
-
-## Melhor subconjunto de covariáveis
-
-<br>
-
-Matematicamente, uma maneira de fazer isso, é buscar a estimativa para
-
-$$\widehat{\beta}_{L_0} = \argmin_{\beta_0 \in \mathbb{R}, \beta \in \mathbb{R}^d}\sum_{k = 1}^n\overbrace{\left(y_k - \beta_0 - \sum_{i = 1}^d \beta_i x_{k,i}\right)^2}^{n \times EQM} + \lambda \,\,\underbrace{\sum_{i = 1}^d \mathbb{I}(\beta_i \neq 0)}_{\text{Penalização}}.$$ {#eq-risco-penalizacao}
-
-Note que a penalização $\sum_{i = 1}^d \mathbb{I}(\beta_i \neq 0)$ nos
-conduz na direção de modelos com poucas covariáveis, quando $\lambda$ é
-um valor alto. Em particualr, quando $\lambda \to \infty$, forçamos a
-retirada de todas as covariáveis $\beta_i$'s, i.e., a solução para o
-problema seria $\widehat{\beta}_{L_0} \equiv (\overline{y}, {\bf 0})$.
-Note que não há penalização para o intercepto $\beta_0$.
-
-<br> No outro extremo, para $\lambda = 0$, temos o estimador de mínimos
-quadrados, em que nenhuma penalização será considerada.
-
-<br> [Não há uma forma fácil de minimizar
-$\widehat{\beta}_{L_0}$.]{.red} 🤯
-
-## Melhor subconjunto de covariáveis
-
-<br>
-
-Poderíamos, ingenuamente, pensar em ajustar todas as combinações
-possíveis de parâmetros e utilizar algum critério, por exemplo, o EQM em
-novas observações para escolher o melhor modelo entre todas as combinações
-possíveis. Isto é, escolher o melhor modelo entre todas as $2^d$
-combinações possíveis de modelos em $\mathbb{G}$.
-
-<br>
-
-Se $\widehat{\lambda} = \frac{2}{n}\widehat{\sigma}^2$, estimar
-$\widehat{\beta}_{L_0}$ equivale uma busca entre $2^d$ modelos da classe
-$\mathbb{G}$:
-
-<br>
-
-```{=tex}
-\begin{align*}
-\mathbb{G} = \{
-&g({\bf x}) = \widehat{\beta}_0, \\
-&g({\bf x}) = \widehat{\beta}_0 + \widehat{\beta}_1x_1,\\
-&g({\bf x}) = \widehat{\beta}_0 + \widehat{\beta}_2x_2,\\
-&\cdots\\
-&g({\bf x}) = \widehat{\beta}_0 + \widehat{\beta}_dx_d,\\
-&g({\bf x}) = \widehat{\beta}_0 + \widehat{\beta}_1x_1 + \widehat{\beta}_2x_2,\\
-&g({\bf x}) = \widehat{\beta}_0 + \widehat{\beta}_1x_1 + \widehat{\beta}_3x_3,\\
-&\cdots\\
-&g({\bf x}) = \widehat{\beta}_0 + \widehat{\beta}_1x_1 + \widehat{\beta}_dx_d,\\
-&g({\bf x}) = \widehat{\beta}_0 + \widehat{\beta}_1x_1 + \widehat{\beta}_2x_2 + \widehat{\beta}_3x_3,\\
-&g({\bf x}) = \widehat{\beta}_0 + \widehat{\beta}_1x_1 + \widehat{\beta}_2x_2 + \widehat{\beta}_dx_d,\\
-&\cdots\\
-&g({\bf x}) = \widehat{\beta}_0 + \widehat{\beta}_1x_1 + \widehat{\beta}_2x_2 + \widehat{\beta}_3x_3 + \cdots + &\widehat{\beta}_dx_d
-\}.
-\end{align*}
-```
-## Melhor subconjunto de covariáveis
-
-<br>
-
-Utilizar $\lambda = \frac{2}{n}\widehat{\sigma}^2$ é o mesmo que
-utilizar o critério AIC para determinar o melhor modelo, em que dado
-
-$$\widehat{R}(g) = \frac{1}{m}\sum_{k = 1}^m \underbrace{(\widetilde{Y}_k - g({\bf \widetilde{X}}_k))^2}_{W_k},$$
-em que
-$(\widetilde{{\bf X}}_1, \widetilde{Y}_1), \cdots, (\widetilde{{\bf X}}_m, \widetilde{Y}_m)$,
-representa o conjunto de teste, i.e., calculado com base em $m$
-observações em um conjundo de dados não utilizados para treinar o
-modelo, independentemente da estratégia de divisão utilizada, em que
-
-$$\widehat{\sigma}^2 = \frac{1}{m}\sum_{k = 1}^m (W_k - \overline{W})^2,$$
-com $\overline{W} = \frac{1}{m}\sum_{k=1}^m W_k$.
-
-## Melhor subconjunto de covariáveis
-
-<br>
-
-Temos que $\widehat{R}(g)$, calculado em novas observações (observações
-não utilizadas no treinamento), pode se valer do Teorema Central do
-Limite, uma vez que $\widehat{R}(g)$ é calculado em uma sequência de
-variáveis aleatórias i.i.d.'s. Então:
-
-$$\widehat{R}(g) \sim \text{Normal}\left(R(g), \frac{1}{m}\mathbb{V}[W_1]\right).$$
-
-Portanto, um intervalo aleatório de aproximadamente $95\%$ de confiança
-para o erro preditivo $R(g)$ poderá ser calculado como:
-
-$$\widehat{R}(g) \pm 1,645 \sqrt{\frac{1}{m}\widehat{\sigma}^2}.$$
-
-O cálculo de um intervalo de confiança poderá ser útil para entendermos
-como está variando o risco preditivo do nosso modelo. Gostamos de ter
-modelos com intervalo de amplitude pequena. O intervalo poderá ser
-utilizado para fornecer *insight* de como escolher a divisão de
-treinamento e teste. **Por exemplo, pode-se escolher o menor valor de $m$
-de modo que a amplitude seja a menor possível**. 💭💡
-
-## Melhor subconjunto de covariáveis
-
-<br>
-
-Por que essa seria uma escolha ingênua? Pense na situação em que temos
-$d = 30$, i.e., trinta covariáveis. Teríamos portanto $2^{30}$ modelos
-para ajustar, ou seja, um bilhão e setenta e três milhões, setecentos e
-quarenta e um mil, oitocentos e vinte e quatro modelos para ajustar. É
-um a quantidade absurda de modelos para serem estimados!
-
-<br>
-
-Se $d = 100$, teríamos que estimar uma quantidade de modelos que a
-quantidade estimada de estrelas no universo. A depender do número de covariáveis,
-esqueça a ideia de estimar $2^d$ modelos! Não permita se frustrar facilmente. 😏
-
-<br>
-
-![](gifs/side-eyeing-chloe-chloe.gif)
-
-## Regressão *Stepwise*
-
-<br> Devido a impossibilidade de experimentar uma grande quantidade de
-modelos ($2^d$), existe uma série de algoritmos (heurísticas), que visam
-reduzir a quantidade de modelos avaliados. Um dos mais conhecidos é o
-[forward stepwise]{.red}. Trata-se de um algoritmo sequencial, que em
-cada passo, apenas uma variável é adicionada:
-
-<br>
-
-1 - Para $j = 1, \cdots, d$, ajuste a regressão de $Y$ na $j$-ésima
-variável $X_j$. Seja $\widehat{R}(g_j)$ o risco estimado desta função.
-Então,
-
-$$\widehat{j} = \argmin_j \widehat{R}(g_j)\,\,\,\,\,\, \text{e}\,\,\,\,\,\, S = \{\widehat{j}\}.$$
-2 - Para cada $j \in S^c$, ajuste a regressão
-$Y = \beta_jX_j + \sum_{s \in S}\beta_sX_S$, em que $\widehat{R}(g_j)$ é
-o risco estimado desta função. Defina
-
-$$\widehat{j} = \argmin_{j \in S^c} \widehat{R}(g_j)\,\,\,\,\,\, \text{e atualize}\,\,\,\,\,\, S \leftarrow \{S \cup \widehat{j}\}.$$
-
-3 - Repita os passos anteriores até que todas as variáveis estejam em
-$S$ ou até quando não seja mais possível ajustar o modelo de regressão.
-
-4 - Selecione o modelo com menor risco estimado.
-
-## Regressão *Stepwise*
-
-<br>
-
-Utilizar o algoritmo de seleção de variáveis [*foward stepwise*]{.red},
-ao invés de buscarmos o melhor ajuste entre $2^d$ possíveis modelos, que
-muitas vezes é impossível, precisaremos investigar apenas
-$1 + d(d + 1)/2$ modelos. Reduzimos a complexidade da seleção que antes
-era um problema exponencial. Melhor, não?!
-
-<br>
-
-![](gifs/bom.gif)
-
-## Penalização
-
-<br>
-
-Quando temos modelos que envolve $d$ parâmetros e que temos controle
-sobre eles (conhecemos muito bem cada um deles), acrescentar algum tipo
-de penalização à função objetivo poderá ser útil. A penalização é uma
-[medida de complexidade]{.red}, em que é útil para equilibrar o modelo,
-de modo a tentar buscar um equilibrio entre viés e variância, discutidos
-anteriormente. Assim, sob novas observações, desejamos estimar o risco
-$R(g)$, por
-
-<br>
-
-$$R(g) \approx EQM(g) + \mathcal{P}(g).$$
-
-<br>
-
-Desejamos minimiar $R(g)$, mas não a custa de muitos parâmetros, pois
-assim teríamos [*overfitting*]{.red}. Portanto, para muitos parâmetros
-temos que ter EQM baixo, porém, $\mathcal{P}(g)$ deve ser alto. Já em
-modelos viesados, quando temos poucos parâmetros, o EQM normalmente é
-alto, mas a complexidade $\mathcal{P}(g)$ deve ser baixo, pois temos um
-modelo mais simplista.
-
-## AIC e BIC
-
-<br>
-
-Existem diversas penalizações, em que o AIC (**A**kaike **I**nformation
-**C**riterion) e BIC (**B**ayesian **I**nformation **C**riterion) são as
-mais conhecidas. Com base nesses critérios, temos que
-
-<br>
-
-::: {columns}
-::: {.column width="30%"}
-1.  [AIC]{.red}: $$EQM + \frac{2}{n\,d\, \widehat{\sigma}^2}.$$
-2.  [BIC]{.red}: $$EQM + \frac{\log(n)}{n\, d\, \widehat{\sigma}^2}.$$
-:::
-
-::: {.column width="70%"}
-$$\widehat{\sigma}^2 = \frac{1}{m}\sum_{k = 1}^m (W_k - \overline{W})^2.$$
-:::
-:::
-
-<br>
-
-Aqui, $d$ é a quantidade de parâmetros no modelo e $\widehat{\sigma}^2$
-é uma estimativa da variância do erro, que para um conjunto de teste
-suficientemente grande, poderá ser considerado o estimador de
-$\widehat{\sigma}^2$ conforme descrito anteriormente. Segundo [James,
-Gareth, et al. An introduction to statistical learning. Ed. 2, p.
-233](https://hastie.su.domains/ISLR2/ISLRv2_corrected_June_2023.pdf),
-assume-se o modelo com todos os preditores para o cálculo de
-$\widehat{\sigma}^2$.
-
-## Lasso
-
-<br>
-
-::: columns
-::: {.column width="50%"}
-O lasso foi desenvolvido pelo Robert Tibshirani, em um artigo publicado
-no artigo [Regression Shrinkage and Selection via the
-Lasso](https://www.jstor.org/stable/2346178).
-
-![](imgs/lasso.png)
-:::
-
-::: {.column width="50%"}
-![](imgs/P55268-Robert-Tibshirani.jpg){width="60%"}
-:::
-:::
-
-## Lasso
-
-<br>
-
-O lasso tem como objetivo encontrar um estimador de uma regressão linear
-que possui risco menor que o de mínimos quadrados, possuindo duas
-grandes vantagens, em relação ao *stepwise*:
-
-<br>
-
-1.  Sua solução é mais rápida, ainda que *stepwise* seja
-    consideravalmente mais rápido do que avaliar $2^d$ modelos;
-2.  O lasso é capaz de selecionar automaticamente as variáveis mais
-    relevantes para o modelo, reduzindo a dimensionalidade dos dados.
-
-<br>
-
-A segunda vantagem ocorre, uma vez que ele realiza uma penalização que
-leva à estimativas de alguns coeficientes $\beta_i$ igual a zero,
-eliminando as variáveis menos importantes. Normalmente o vetor $\beta$ é esparso!
-
-<br>
-
-![](gifs/uau.gif)
-
-## Lasso
-
-<br>
-
-No lasso, ao invés de reduzir a variância do estimador de mínimos
-quadrados usando a complexidade
-($L_0 = \sum_{i = 1}^d\mathbb{I}(\beta_i) \neq 0$) em
-@eq-risco-penalizacao, usa-se a penalização
-$L_1 = \sum_{i = 1}^d|\beta_i|$. No lasso, buscamos:
-
-$$\widehat{\beta}_{L_1,\lambda} = \argmin_{\beta_0 \in \mathbb{R}, \beta \in \mathbb{R}^d}\sum_{k = 1}^n\overbrace{\left(y_k - \beta_0 - \sum_{i = 1}^d \beta_i x_{x,i}\right)^2}^{n \times EQM} + \overbrace{\lambda \,\,\underbrace{\sum_{j = 1}^d|\beta_j|}_{\text{Penalização}}}^{\text{A magnitude do coeficiente importa!}},$$
-em que $\lambda$ é um *tuning parameter* 🎛. Perceba que quando
-$\lambda = 0$, caímos no caso do modelo de regressão por mínimos
-quadrados sem penalização. Já, quando $\lambda \rightarrow \infty$,
-temos um modelo em que todas as variáveis são removidas, uma vez que a
-primeira parte do modelo torna-se insignificante.
-
-## Lasso
-
-<br> <br>
-
-Quando $\lambda$ é grande, temos que
-
-$$\sum_{k = 1}^n \left(y_k - \beta_0 - \sum_{j = 1}^d \beta_j x_{k,j}\right)^2 + \lambda \sum_{j = 1}^d |\beta_j| \approx \lambda \sum_{j = 1}^d |\beta_j|,$$
-e portanto, $\widehat{\beta}_1 = 0, \cdots, \widehat{\beta}_d = 0$.
-
-<br>
-
-A escolha de $\lambda$, em geral, é feita utilizado algum método de
-validação cruzada. 🔍
-
-<br>
-
-![](gifs/hum.gif)
-
-## Lasso
-
-<br>
-
-O lasso é extremamente rápido, e nos últimos anos, diversos algoritmos
-foram construídos para fazer essa taréfa de forma eficiente. O LARS foi
-um dos primeiros algoritmos desenvolvidos em 2010. Para detalhes, ler
-[Friedman, J. H. (2001). Greedy function approximation: a gradient
-boosting machine. Annals of statistics,
-1189--1232](https://www.jstor.org/stable/2699986).
-
-<br>
-
-No R, a regressão lasso poderá ser feita usando a biblioteca
-[glmnet](https://cran.r-project.org/web/packages/glmnet/index.html),
-assim:
-
-<br>
-
-```{r}
-#| eval: false
-library(glmnet)
-ajuste <- cv.glmnet(x, y, alpha = 1)
-```
-
-<br>
-
-![](gifs/teclado-anime.gif){width="21%"}
-
-## Ridge
-
-<br>
-
-Uma alternativa que surgiu antes do lasso é a [regressão ridge]{.red}.
-Ela foi proposta no artigo [Hoerl, A. E. & Kennard, R. W. (1970). Ridge
-regression: Biased estimation for nonorthogonal problems. Technometrics,
-12(1), 55--67](https://www.jstor.org/stable/1267351). Aqui, utiliza-se
-como medida de complexidade a norma $L_2$, em que, o estimador é dado
-por:
-
-$$\widehat{\beta}_{L_2,\lambda} = \argmin_{\beta_0 \in \mathbb{R}, \beta \in \mathbb{R}^d}\sum_{k = 1}^n\overbrace{\left(y_k - \beta_0 - \sum_{i = 1}^d \beta_i x_{x,i}\right)^2}^{n \times EQM} + \lambda \,\,\underbrace{\sum_{j = 1}^d\beta_j^2}_{\text{Penalização}}.$$
-Diferentemente do lasso, a regressão ridge possui solução analítica,
-dada por:
-
-$$\widehat{\beta}_{L_2,\lambda} = ({\bf X}^{T}{\bf X} + \lambda\mathbb{\bf I}_0)^{-1}{\bf X}^{T}Y,$$
-em que $\mathbb{\bf I}_0$ é a matriz identidade $(d + 1) \times (d + 1)$
-com $\mathbb{\bf I}_0(1,1) = 0$.
-
-<br>
-
-## Ridge
-
-<br>
-
-A regressão ridge poderá ter uma variância menor que a regressão lasso,
-porém seu viés poderá ser maior. Outra característica da regressão ridge
-é que ela possue uma única solução, enquanto a regressão lasso poderá
-ter multiplas soluções. Os autores também demonstram que a regressão
-ridge lida melhor com multicolinearidade.
-
-<br>
-
-No R, também poderemos utilizar a biblioteca
-[glmnet](https://cran.r-project.org/web/packages/glmnet/index.html):
-
-<br>
-
-```{r}
-#| eval: false
-library(glmnet)
-ajuste <- cv.glmnet(x, y, alpha = 0)
-```
-
-<br>
-
-![](gifs/teclado-anime.gif){width="21%"}
-
-## Elastic Net
-
-<br>
-
-Na documentação da função [`glmnet`](https://www.rdocumentation.org/packages/glmnet/versions/4.1-7/topics/glmnet), note que a função realiza o lasso mais o ridge, i.e.,
-
-<br>
-
-$$(1 - \alpha)/2 ||\beta_j||^2_2 + \alpha||\beta_j||_2.$$
-
-<br>
-
-Note que para $\alpha = 1$, temos uma regressão do tipo lasso, já para $\alpha = 0$ recaímos para uma penalização do tipo ridge. Para $\alpha$ diferente de zero e um, temos uma *elastic net*, ok?!
-
-<br>
-
-![](gifs/thumbs-up-nod.gif)
-
-## Elastic Net
-
-<br>
-
-Nesse tipo de modelo de regressão, combina-se as penalizações da regressão
-ridge com a utilizada na regressão lasso, herdando os benefícios do uso
-de cada um dos métodos isoladamente, melhorando a estabilidade das
-estimativas do lasso, em situações de multicolinearidade entre as
-variáveis e também permitindo a seleção automática de variáveis.
-
-$$(1-\alpha)\widehat{\beta}_{L_2,\lambda} + \alpha\widehat{\beta}_{L_1,\lambda},$$
-em que $0 \leq \alpha \leq1$. Em R, basta especificar para a função
-[`glmnet`](https://www.rdocumentation.org/packages/glmnet/versions/4.1-7/topics/glmnet) um valor de $\alpha$ diferente de 0 e 1. Esse valor normalmente é escolhido por um procedimento de validação cruzada.
-
-<br>
-
-![](gifs/teclado-anime.gif){width="21%"}
-
-## Exemplo: EMQ, Ridge, Lasso e Elastic Net
-
-<br>
-
-[Exemplo]{.red}: Considere uma base de dados simulada, com $n = 500$
-observações, de tal forma que
-
-$$Y = 3X_{1} - 2X_2 + X_3 + -3X_4 + X_5 + \sum_{i = 6}^{20}0X_i + \varepsilon,$$
-em que $\varepsilon \sim \text{Normal}(0, 0.5^2)$ e
-$X_i \sim \text{Normal}(0, 1)$, independentes, com $i = 1, \cdots, 20$.
-Desejamos ajustar quatro modelos de regressão. Para o caso do Estimador
-de Mínimos Quadrados - EMQ e do modelo Ridge, que não tem seleção
-automática de variáveis, usaremos **todas** as variáveis. Desejamos
-avaliar o risco estimado de cada uma das regressões.
-
-![](gifs/teclado-anime.gif){width="21%"}
-
-## Exemplo: EMQ, Ridge, Lasso e Elastic Net
-
-<br>
-
-```{r}
-#| code-fold: true
-#| code-summary: "Solução utilizando o tidymodels"
-#| eval: false
-library(tidymodels)
-library(tibble)
-library(purrr)
-library(ggplot2)
-library(patchwork)
-
-# Removendo possíveis conflitos de pacotes --------------------------------
-tidymodels::tidymodels_prefer()
-
-# Função para gerar os dados ----------------------------------------------
-gerando_dados <- function(n = 300L){
-  regressao <- function(i){
-    x <- rnorm(n = 5L)
-    y <- 3*x[1L] - 2*x[2L] + x[3L] - 3*x[4L] + x[5L] + rnorm(1L, 0, 0.5)
-    tibble(
-      y = y,
-      x1 = x[1L],
-      x2 = x[2L],
-      x3 = x[3L],
-      x4 = x[4L],
-      x5 = x[5L]
-    )
-  }
-  dados <- purrr::map(.x = 1L:n, .f = regressao) |>
-    purrr::list_rbind()
-
-  parte_esparsa <- matrix(0, n, 15)
-
-  dados <- cbind(dados, parte_esparsa)
-  colnames(dados) <- c("y", paste0("x", 2L:ncol(dados)))
-  as_tibble(dados)
-}
-
-dados <- gerando_dados(n = 500)
-
-# Divisão inicial da base -------------------------------------------------
-hod_out <- initial_split(dados, prop = 0.7)
-treinamento <- training(hod_out)
-teste <- testing(hod_out)
-
-# Setando o modelo (set engine) -------------------------------------------
-modelo_eqm <-
-  linear_reg(penalty = 0, mixture = 0) |>
-  set_mode("regression") |>
-  set_engine("glmnet")
-
-modelo_ridge <-
-  linear_reg(penalty = tune::tune(), mixture = 0) |>
-  set_mode("regression") |>
-  set_engine("glmnet")
-
-modelo_lasso <-
-  parsnip::linear_reg(penalty = tune::tune(), mixture = 1) |>
-  set_mode("regression") |>
-  parsnip::set_engine("glmnet")
-
-modelo_elastic <-
-  parsnip::linear_reg(penalty = tune::tune(), mixture = tune::tune()) |>
-  set_mode("regression") |>
-  parsnip::set_engine("glmnet")
-
-# Criando workflows -------------------------------------------------------
-all_wf <-
-  workflow_set(
-    preproc = list(y ~ . ),
-    models = list(eqm = modelo_eqm, ridge = modelo_ridge, lasso = modelo_lasso, elastic = modelo_elastic),
-    cross = TRUE
-  )
-
-# Validação cruzada -------------------------------------------------------
-set.seed(0)
-cv <- rsample::vfold_cv(treinamento, v = 5L)
-
-# Setando a métrica -------------------------------------------------------
-metrica <- yardstick::metric_set(rmse)
-
-# Tunagem dos hiperparâmetros ---------------------------------------------
-# A semente (seed = 0) faz com que dentro da validação cruzada para cada modelo
-# a semente seja sempre a mesma.
-tunagem <-
-  all_wf |>
-  workflow_map(
-    seed = 0,
-    verbose = TRUE,
-    resamples = cv,
-    grid = 50,
-    metrics = metrica
-  )
-
-# Rank dos melhores modelos -----------------------------------------------
-modelos_rank <- tunagem |> rank_results()
-
-melhor_eqm <-
-  tunagem |>
-  extract_workflow_set_result("formula_eqm") |>
-  select_best("rmse")
-
-melhor_ridge <-
-  tunagem |>
-  extract_workflow_set_result("formula_ridge") |>
-  select_best("rmse")
-
-melhor_lasso <-
-  tunagem |>
-  extract_workflow_set_result("formula_lasso") |>
-  select_best("rmse")
-
-melhor_elastic <-
-  tunagem |>
-  extract_workflow_set_result("formula_elastic") |>
-  select_best("rmse")
-
-finalizando_eqm <-
-  tunagem |>
-  extract_workflow("formula_eqm") |>
-  finalize_workflow(melhor_eqm) |>
-  last_fit(split = hod_out)
-
-finalizando_ridge <-
-  tunagem |>
-  extract_workflow("formula_ridge") |>
-  finalize_workflow(melhor_ridge) |>
-  last_fit(split = hod_out)
-
-finalizando_lasso <-
-  tunagem |>
-  extract_workflow("formula_lasso") |>
-  finalize_workflow(melhor_lasso) |>
-  last_fit(split = hod_out)
-
-finalizando_elastic <-
-  tunagem |>
-  extract_workflow("formula_elastic") |>
-  finalize_workflow(melhor_elastic) |>
-  last_fit(split = hod_out)
-
-# Visualizando as métricas
-finalizando_eqm |> collect_metrics()
-finalizando_ridge |> collect_metrics()
-finalizando_lasso |> collect_metrics()
-finalizando_elastic |> collect_metrics()
-
-# Visualizando predições:
-finalizando_eqm |> collect_predictions()
-finalizando_ridge |> collect_predictions()
-finalizando_lasso |> collect_predictions()
-finalizando_elastic |> collect_predictions()
-```
-
-## 📚 Exercícios
-
-<br> [Exercício]{.red}: Utilizando os dados de vinho vermelho🍷,
-disponíveis
-[aqui](https://www.kaggle.com/datasets/uciml/red-wine-quality-cortez-et-al-2009),
-faça uma pequena análise exploratória dos dados. No
-[link](https://www.kaggle.com/datasets/uciml/red-wine-quality-cortez-et-al-2009)
-do Kaggle você consegue uma explicação sobre o que significa cada uma
-das variáveis.
-
-![](gifs/mr-bean-test.gif){width="211"}
-
-## 📚 Exercícios
-
-<br>
-
-[Exercício]{.red}: Utilizando os dados de vinho vermelho🍷, disponíveis
-[aqui](https://www.kaggle.com/datasets/uciml/red-wine-quality-cortez-et-al-2009),
-obtenha o melhor modelo de regressão linear para modelar a qualidade do
-vinho, considerando:
-
-<br>
-
-1.  $g_1$ - Método dos mínimos quadrados;
-2.  $g_2$ - Regressão ridge;
-3.  $g_3$ - Regressao lasso;
-4.  $g_4$ - Elastic Net.
-
-<br>
-
-Você deverá selecionar o melhor modelo de cada uma das classes de
-modelos de regressão e construir uma tabela com o risco estimado
-$\widehat{R}(g_i),\,\, i = 1, \cdots, 4$, em que aqui, $g_i$ representa o
-modelo geral não estimado. Ao fim, construa quatro gráficos mostrando o
-ajuste de cada um dos modelos.
-
-<br>
-
-[Exercício]{.red}: Se você utilizou o
-[tidymodels](https://www.tidymodels.org/) para resolver o exercício
-anterior, rafaça usando a biblioteca
-[glmnet](https://cran.r-project.org/web/packages/glmnet/index.html).
-Caso contrário, resolva-o utilizando o
-[tidymodels](https://www.tidymodels.org/).
-
-## 📚 Exercícios
-
-<br>
-
-[Exercício]{.red}: Considere agora o conjunto de dados de despesas
-médicas, disponível
-[aqui](https://www.kaggle.com/datasets/mirichoi0218/insurance). Refaça o
-mesmo exercício dos dados de vinho vermelho, em que aqui, o objetivo é
-prever a variável `charges`. Perceba que algumas variáveis são
-qualitativas, e portanto, você deverá transformá-las em [*dummy*]{.red}.
-Indique os melhores cenários dos quatro modelos e informe qual modelo
-você utilizaria. Explique! **Dica**: usando a função `step_dummy()` da
-biblioteca [recipes](https://recipes.tidymodels.org/), você poderá facilmente
-transformar variáveis qualitativas em numéricas.
-
-<br>
-
-![](gifs/bean_simple.gif)
+# Obrigado! 🙏

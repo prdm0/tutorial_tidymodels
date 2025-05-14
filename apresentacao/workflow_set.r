@@ -57,7 +57,7 @@ wf_set <- workflow_set(
 cv <- vfold_cv(dados_treino, v = 5, strata = quality)
 
 # Usando workflow_map para ajustar os modelos
-wf_set <- wf_set |>
+tunagem <- wf_set |>
   workflow_map(
     "fit_resamples",
     resamples = cv,
@@ -66,8 +66,11 @@ wf_set <- wf_set |>
     verbose = TRUE
   )
 
-collect_metrics(wf_set) |>
-  filter(.metric == "rmse") |>
+collect_metrics(tunagem) |>
+  filter(.metric == "rsq") |>
   arrange(desc(mean))
 
-autoplot(wf_set)
+
+collect_metrics(tunagem) |>
+  filter(.metric == "rsq") |>
+  rank_results()

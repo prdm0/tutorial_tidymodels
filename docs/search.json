@@ -1,0 +1,1003 @@
+[
+  {
+    "objectID": "index.html#section-1",
+    "href": "index.html#section-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "",
+    "text": "Sobre mim\n\n\nMe chamo Prof. Dr. Pedro Rafael D. Marinho. Meu currículo Lattes poderá ser acessado clicando aqui.\nSou docente do Departamento de Estatística da UFPB. 👨‍🏫\nToda minha formação acadêmica é na área de estatística (bacharelado ao doutorado).\nTenho entusiasmo por programação, ciência de dados e aprendizagem de máquina 💻📈.\n Me acompanhe no GitHub: https://github.com/prdm0.\n Me acompanhe no Linkedin: https://www.linkedin.com/in/prdm0/."
+  },
+  {
+    "objectID": "index.html#sobre-mim",
+    "href": "index.html#sobre-mim",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Sobre mim",
+    "text": "Sobre mim\n\n\nMe chamo Prof. Dr. Pedro Rafael D. Marinho. Meu currículo Lattes poderá ser acessado clicando aqui.\nSou docente do Departamento de Estatística da UFPB. 👨‍🏫\nToda minha formação acadêmica é na área de estatística (bacharelado ao doutorado).\nTenho entusiasmo por programação, ciência de dados e aprendizagem de máquina 💻📈.\n Me acompanhe no GitHub: https://github.com/prdm0.\n Me acompanhe no Linkedin: https://www.linkedin.com/in/prdm0/."
+  },
+  {
+    "objectID": "index.html#meu-segundo-lar",
+    "href": "index.html#meu-segundo-lar",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Meu segundo lar",
+    "text": "Meu segundo lar\n\n\n\nDepartamento de Estatística da UFPB."
+  },
+  {
+    "objectID": "index.html#o-que-é-machine-learning---ml",
+    "href": "index.html#o-que-é-machine-learning---ml",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "O que é Machine Learning - ML?",
+    "text": "O que é Machine Learning - ML?\n\nÉ um ramo da inteligência artificial que estuda algoritmos e modelos computacionais capazes de aprender padrões a partir de dados e fazer previsões ou tomar decisões sem serem explicitamente programados para isso. Em essência, o modelo é ajustado com base em um conjunto de dados de entrada (dados de treino) para que ele generalize e funcione bem em dados novos.\n\n\nO bebê robô representa um algoritmo de ML que está sendo treinado com dados — ele aprende observando exemplos/dados."
+  },
+  {
+    "objectID": "index.html#o-que-é-aprender-no-contexto-de-ml",
+    "href": "index.html#o-que-é-aprender-no-contexto-de-ml",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "O que é Aprender (no contexto de ML)?",
+    "text": "O que é Aprender (no contexto de ML)?\n\nAprender é o processo pelo qual um algoritmo de ML ajusta seus parâmetros internos com base em exemplos observados, de modo a minimizar um erro (função de perda) e melhorar sua capacidade de prever ou classificar dados futuros.\nFormalmente, é encontrar uma função g:X \\rightarrow Y que generalize bem de um conjunto de treinamento para dados não vistos."
+  },
+  {
+    "objectID": "index.html#o-que-é-treinar",
+    "href": "index.html#o-que-é-treinar",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "O que é treinar?",
+    "text": "O que é treinar?\n\nTreinar é o ato de executar um algoritmo de aprendizado sobre um conjunto de dados rotulado (supervisionado) ou não rotulado (não supervisionado), ajustando os parâmetros do modelo para que ele represente o melhor possível a estrutura dos dados. Envolve geralmente:\n\n\n\n\nDefinir um modelo;\nOtimizar seus parâmetros e hiperparâmetros;\nAvaliar o desempenho do modelo treinado em um conjunto de dados independente (conjunto de teste)."
+  },
+  {
+    "objectID": "index.html#tipos-de-aprendizado",
+    "href": "index.html#tipos-de-aprendizado",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "\n Tipos de Aprendizado",
+    "text": "Tipos de Aprendizado\n\nMuito embora nesse tutorial focaremos na abordagem de aprendizagem supervisionada, os tipos de aprendizagem, em geral, podem ser mais amplos:\n\n\n\nAprendizagem supervisionada;\nAprendizagem não-supervisionada;\nAprendizagem semi-supervisionada;\nAprendizagem por reforço."
+  },
+  {
+    "objectID": "index.html#aprendizagem-supervisionada",
+    "href": "index.html#aprendizagem-supervisionada",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Aprendizagem supervisionada",
+    "text": "Aprendizagem supervisionada\n\nNesse tipo de aprendizagem, o algoritmo irá receber um conjunto de dados em que conhecemos rótulos para a variável de interesse. É como se você soubesse onde um bom modelo deve chegar, para assim ser reconhecido como um bom modelo. Por exemplo,\n\n\n\nClassificação: precisamos determinar a classe de uma instância de dados, o seu atributo, i.e., \\hat{y} = \\mathop{\\arg\\max}_{y} P(Y = y \\mid X = \\mathbf{x}), em que y é um atributo que desejamos prever (cahorro, gato, sapo), e \\bf{x} é um vetor de características (peso, altura, comprimento, se tem rabo, etc).\n\n\n\n\nRegressão: precisamos estimar uma quantidade numérica, i.e., o valor da variável alvo por meio de uma instância de dados, ou seja, precisamos estimar Y = \\mathbb{E}(Y|X = \\bf{x}), i.e., devemos encontrar meios de obter \\widehat{Y}."
+  },
+  {
+    "objectID": "index.html#aprendizagem-supervisionada-1",
+    "href": "index.html#aprendizagem-supervisionada-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Aprendizagem supervisionada",
+    "text": "Aprendizagem supervisionada\n\n\n\n\n\n Poderíamos estar interessados em classificar o tamanho de morangos:\n\n\nS (Slow): pequeno;\nM (Medium): médio;\nL (Large): grande."
+  },
+  {
+    "objectID": "index.html#aprendizagem-supervisionada-2",
+    "href": "index.html#aprendizagem-supervisionada-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Aprendizagem supervisionada",
+    "text": "Aprendizagem supervisionada\n\nUm outro exemplo seria a classificação de imagem/vídeo, utilizando um algoritmo de rede neural, por exemplo, usando uma Convolutional Neural Network - CNN. Foram utilizados diversas imagens de pessoas “com” e “sem” máscara. Em que “com” representa detecção da máscara na face da pessoa e “sem” a não detecção."
+  },
+  {
+    "objectID": "index.html#aprendizagem-não-supervisionada",
+    "href": "index.html#aprendizagem-não-supervisionada",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Aprendizagem não-supervisionada",
+    "text": "Aprendizagem não-supervisionada\n\nNesse tipo de aprendizagem, os algoritmos trabalham sobre dados não rotulados, por exemplo, em uma trarefa de agrupamento.\n\nOs algoritmos verificam se as instâncias observadas poderão ser arranjadas de alguma maneira, por exemplo, usando alguma métrica de distância, formando grupos (clusters).\n\nA ideia é maximizar a distância entre os clusters e minimizar a distância entre os elementos no interior do grupo. Em outras palavras, o que se quer é tornar os grupos mais diferentes possíveis e tornar os elementos dos grupos o mais parecido possível.\n\nAqui, por não haver rótulos, um problema comum é determinar a quantidade de grupos ideal que muitas vezes são obtidos de forma subjetiva ou por heurísticas. A quantidade de grupos é um dilema!"
+  },
+  {
+    "objectID": "index.html#aprendizagem-não-supervisionada-1",
+    "href": "index.html#aprendizagem-não-supervisionada-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Aprendizagem não-supervisionada",
+    "text": "Aprendizagem não-supervisionada\n\n\nApós a detecção dos grupos, é preciso analisar o resultado de modo a tentar extrair informações coerentes de modo a saber o que cada grupo representa no problema em questão."
+  },
+  {
+    "objectID": "index.html#aprendizagem-semi-supervisionada",
+    "href": "index.html#aprendizagem-semi-supervisionada",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Aprendizagem semi-supervisionada",
+    "text": "Aprendizagem semi-supervisionada\n\nA aprendizagem semi-supervisionada é uma abordagem na área de aprendizagem de máquina, em que um algoritmo utiliza tanto dados rotulados quanto não rotulados para treinamento. Por exemplo, algoritmos que propagam rótulos, como o Label Propagation, em que rótulos conhecidos são propagados para dados não rotulados com base em sua sua proximidade no espaço de características.\n\nUma outra abordagem seria misturar modelos (Model Blending), em que diferentes modelos são treinados em diferentes partes do conjunto de dados, por exemplo, um modelo para a parte roturada e um para a parte não rotulada."
+  },
+  {
+    "objectID": "index.html#aprendizagem-por-reforço",
+    "href": "index.html#aprendizagem-por-reforço",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Aprendizagem por reforço",
+    "text": "Aprendizagem por reforço\n\nNesse tipo de aprendizagem, não há uma fonte externa de exemplos. O agente (modelo) aprende aprende com sua própria experiência, por tentativas e erros, em que você deverá definir uma medida de sucesso, e eventualmente recompensar os acertos. No vídeo abaixo, veja um joguinho que criei em R, em que o carrinho aprendeu a desviar de obstáculos aleatórios que aparecem em sua frente. Utilizou-se uma rede neural cuja a saída poderia ser (“parado”, “para cima” ou “para baixo”). Veja o código clicando aqui."
+  },
+  {
+    "objectID": "index.html#regressão",
+    "href": "index.html#regressão",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Regressão",
+    "text": "Regressão\n\nDe forma geral, temos que o objetivo de um modelo de regressão é determinar a relação entre uma variável aleatória (label) Y \\in \\mathbb{R} e um vetor de covariáveis (features) \\mathbf{x} = (x_1, \\cdots, x_d) \\in \\mathbb{R}^d. Mais especificamente, busaca-se estimar\nr({\\bf x}) := \\mathbb{E}(Y|X = {\\bf x}),\nsendo esta chamada de função de regressão. Temos que:\n\n\nSe Y é uma variável quantitativa, então estamos sob um problema de regressão;\nSe Y é uma variável qualitativa, então teremos um problema de classificação.\n\nEm aprendizagem de máquina, assumimos que não temos meios de calcular r({\\bf{x}}), i.e., não conhecemos a distribuição condicional de {Y\\,|\\,X}. Portanto, não temos meios de calcular\n\\mathbb{E}(Y|X = {\\bf x}) = \\int y\\,\\mathrm{d}F_{Y}(y | X = {\\bf x})."
+  },
+  {
+    "objectID": "index.html#regressão-1",
+    "href": "index.html#regressão-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Regressão",
+    "text": "Regressão\nNossa ideia é construir uma boa estimativa g da função de regressão r(\\bf{x}) := \\mathbb{E}(Y\\,|\\,\\bf{X} = \\bf{x}), para novas observações, i.e., queremos obter uma função g, tal que:\ng: \\mathbb{R}^d \\rightarrow \\mathbb{R},\nde tal forma que g possua um bom poder preditivo. Em aprendizagem de máquina, só estaremos interessados em obter uma função g que estime bem um número real (em problemas de regressão), ou que classifique bem (em um problema de classificação), utilizando as d covariáveis. Ou seja, para m novas observações, desejamos obter g, que\ng({\\bf{x}}_{n + 1}) \\approx y_{n + 1}, \\cdots, g({\\bf{x}}_{n + m}) \\approx y_{n + m}."
+  },
+  {
+    "objectID": "index.html#função-de-risco",
+    "href": "index.html#função-de-risco",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Função de risco",
+    "text": "Função de risco\n\nPara que possamos construir boas funções de predição, é preciso que tenhamos um critério para medir o desempenho de uma dada função g:\\mathbb{R}^d \\rightarrow \\mathbb{R}. Em contexto de regressão, usaremos o risco quadrático, muito embora esta não é a única opção. Denotaremos a função de risco quadrático por:\nR_{pred}(g) = \\mathbb{E}\\left[({\\bf Y} - g({\\bf X}))^2\\right], em que (\\bf X, Y) são observações novas que não foram utilizadas para treinar/estimar g. Lê-se R_{pred}(g) como “risco preditivo de g”. Note que, como \\bf X são observações conhecidas e g(\\cdot) é um modelo preditivo, portanto, g é conhecido, então, \\widehat{\\bf Y} = g(\\bf X) é um estimador dos labels, i.e., de \\bf Y.\n\nDiremos que L(g({\\bf X}); {\\bf Y}) = ({\\bf Y} - g({\\bf X}))^2 é a função de perda quadrática, as vezes chamado de perda L_2. Outra funções como a função de perda absoluta denotada por L(g({\\bf X}); {\\bf Y}) = |{\\bf Y} - g({\\bf X})|, as vezes chamada de perda L_1 poderiam ser consideradas."
+  },
+  {
+    "objectID": "index.html#função-de-risco-1",
+    "href": "index.html#função-de-risco-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Função de risco",
+    "text": "Função de risco\n\nNormalmente considera-se a perda L_2, uma vez que em modelos de regressão, minimizar R_{pred}(g), em g, equivale a encontrar r({\\bf x}) = \\mathbb{E}({\\bf X}|{\\bf Y}), i.e., equivale a estimar a função de regressão.\n\nTeorema: Suponha que definimos o risco de uma função de predição g: \\mathbb{R}^d \\rightarrow \\mathbb{R} via função perda quadrática, i.e, R_{pred}(g) = \\mathbb{E}\\left[({\\bf Y} - g({\\bf X}))^2\\right], em que \\bf (X, Y) são novas observações que não foram utilizadas para estimar g. Suponha também que estimamos o risco de um estimador de regressão r({\\bf X}) via função perda quadrática R_{reg}(g) = \\mathbb{E}\\left[(r({\\bf X}) - g({\\bf X}))^2\\right]. Então,\nR_{pred}(g) = R_{reg}(g) + \\mathbb{E}\\left[\\mathbb{V}[{\\bf Y} | {\\bf X}]\\right],\nem que \\mathbb{E}\\left[\\mathbb{V}[{\\bf Y} | {\\bf X}]\\right] é a variância média do modelo que não depende de g. Portanto, estimar bem r({\\bf x}) é de fundamental importância para criar uma boa função de predição. Em especial, sob a ótica do risco quadrático, a melhor função de predição para \\bf Y é a função de regressão r({\\bf x}), de tal modo que:\n\\argmin_g R_{pred}(g) = \\argmin_g R_{reg}(g) = r({\\bf x})."
+  },
+  {
+    "objectID": "index.html#função-de-risco-2",
+    "href": "index.html#função-de-risco-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Função de risco",
+    "text": "Função de risco\n\nLembre-se: r({\\bf x}) = \\mathbb{E}(Y | \\bf{X} = \\bf{x}) é a nossa função de regressão.\n\nA definição de risco preditivo R_{pred}, que também denotaremos simplesmente por R, tem um apelo frequentista. Dessa forma, para um novo conjunto com m novas observaçõs, ({\\bf X}_{n+1}, Y_{n+1}), \\cdots, ({\\bf X}_{n+m}, Y_{n+m}), temos que essa nova amostra é i.i.d. à amostra observada (utilizada no treinamento do modelo/na estimação). Então, pela Lei dos Grandes Números, temos que um bom estimador para a função para o risco preditivo é dado por:\n\\frac{1}{m}\\sum_{i = 1}^m (Y_{n + i} - g(X_{n + i}))^2 \\approx R(g) := \\mathbb{E}\\left[(Y - g({\\bf X}))^2\\right]. \\tag{1}\nChamaremos a quantidade acima de Erro Quadrático Médio - EQM. Em aprendizagem de máquina, normalmente estaremos no contexto em que temos muitas observações, e que portanto, poderemos fazer esse apelo frequentista.\n\nDesejamos encontrar g (encontrar métodos) que minimize de forma satisfatória R, i.e., métodos que nos conduzam à um risco baixo."
+  },
+  {
+    "objectID": "index.html#função-de-risco-3",
+    "href": "index.html#função-de-risco-3",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Função de risco",
+    "text": "Função de risco\n\nSendo assim, se R(g) possui um valor baixo, então, temos que\ng({\\bf x}_{n+1}) \\approx y_{n+1}, \\cdots, g({\\bf x}_{n+m}) \\approx y_{n+m}."
+  },
+  {
+    "objectID": "index.html#erro-quadrático-médio",
+    "href": "index.html#erro-quadrático-médio",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Erro quadrático médio",
+    "text": "Erro quadrático médio\n\nComo exposto anteriormente, para avaliar o poder preditivo de uma modelo, i.e., a aprendizagem de um modelo, devemos avaliar a função de risco, i.e., devemos avaliar R(g) := \\mathbb{E}\\left[L(g({\\bf X}); Y)\\right]. Em particular, considere L = L_2 (função perda quadrática). Então, poderíamos ser levados a acreditar que o melhor estimador de R(g), utilizando a Lei dos Grandes Números seria:\n\\frac{1}{n}\\sum_{i = 1}^n(Y_{i} - g({\\bf X_{i}}))^2 \\approx R(g) := \\mathbb{E}\\left[L_2(g({\\bf X}); Y)\\right].\n\nEssa quantidade é chamada, de Erro Quadrático Médio - EQM. Desejamos escolher o melhor mode, entre os modelos testados, que minimiza o EQM.\n\nO apelo frequentista em utilizar a Lei dos Grandes Números na forma acima não é correto, uma vez que usamos as n observações para treinar/ajustar o modelo g."
+  },
+  {
+    "objectID": "index.html#erro-quadrático-médio-1",
+    "href": "index.html#erro-quadrático-médio-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Erro quadrático médio",
+    "text": "Erro quadrático médio\n\nPor exemplo, no problema de PIB per Capita versus expectativa de vida, em que consideramos uma aproximação linear, não poderíamos utilizar o EQM da forma acima, com as n observações utilizadas para treinar o modelo. É um detalhe sutil, mas que muitas pessoas cometem esse erro.\n\nNão podemos utilizar as n observações para estimar o risco R(g) através do EQM, uma vez que estamos utilizando o mesmo conjunto de dados para ajustar e avaliar g.\n\nQual o problema?\n\n\nNão vale a Lei dos Grandes Números;\nUsamos os mesmos valores de {\\bf x} e y para treinar e avaliar o modelo."
+  },
+  {
+    "objectID": "index.html#erro-quadrático-médio-2",
+    "href": "index.html#erro-quadrático-médio-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Erro quadrático médio",
+    "text": "Erro quadrático médio\n\nO que diz a Lei dos Grandes Números, em particular, a Lei Forte de Kolmogorov?\n\nTeorema (Lei Forte de Kolmogorov): Sejam X_1, \\cdots, X_n uma sequência de veriáveis aleatórias - v.a. i.i.d. e integráveis, i.e., com valor esperado limitado, tal que \\mathbb{E}(X) = \\mu\\,\\, \\forall i. Então,\n\\frac{X_1 + X_2 + \\cdots + X_n}{n} \\rightarrow \\mu,\nquase certamente, i.e., com probabilidade 1.\n\nNote que se desejamos comparar diversos modelos, g_1({\\bf x}), g_2({\\bf x}), \\cdots, e se utilizarmos as mesmas n obervações para calularmos R(g_1({\\bf x})), R(g_2({\\bf x})), \\cdots, os termos de cada uma das somas não são independentes. Lembre-se que desejamos obter \\argmin_g R_{pred}(g)."
+  },
+  {
+    "objectID": "index.html#erro-quadrático-médio-3",
+    "href": "index.html#erro-quadrático-médio-3",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Erro quadrático médio",
+    "text": "Erro quadrático médio\n\nPortanto, nunca utilize as mesmas observações utilizadas para treinar o modelo, como aquelas que serão utilizadas para se estimar R(g). Nunca! Isso é um pecado mortal! Ok?!"
+  },
+  {
+    "objectID": "index.html#tidymodels-1",
+    "href": "index.html#tidymodels-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Tidymodels \n",
+    "text": "Tidymodels \n\n\n\n\nUma das primeiras ideias mais conhecidas de unificação de sintaxe do workflow de machine learning, na linguagem R, foi idealizada pelo estatístico Max Khun.\n\nEle criou a biblioteca caret - Classification And REgression Training de R que é muito bem desenvolvida e abrangente. Você poderá estudar o caret clicando aqui.\n\nNão foi um trabalho simples, veja uma tabela com a quantidade de modelos que o caret suporta, clicando aqui. Então, “por baixo dos panos”, a ideia era unificar a entrada e saída. A biblioteca caret continua sendo mantida, apesar da existência do tidymodels.\n\n\n\nFotografia do Max Kuhn, desenvolvedor do tidymodels."
+  },
+  {
+    "objectID": "index.html#instalando-e-configurações-inicias",
+    "href": "index.html#instalando-e-configurações-inicias",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Instalando e configurações inicias \n",
+    "text": "Instalando e configurações inicias \n\n\n\n\nA biblioteca future é útil para paraleizar partes do processo de modelagem que são matematicamente independêntes. Instale install.packages(\"future\") e carregue-a com library(future).\nO paralelismo é muito útil no processo de tunagem dos hiperparâmetros, pois o tempo de execução pode ser reduzido significativamente.\nO código tidymodels::tidymodels_prefer() é útil para resolver problemas de conflitos entre pacotes.\n\n\n\n# Instale o pacote future para habilitar o paralelismo\n# install.packages(\"future\")\nlibrary(tidymodels)\nlibrary(future)\ntidymodels::tidymodels_prefer()\n\nfuture::plan(multisession)\n\n# Aqui fica sua modelagem no\n# tidymodels: validacao cruzada e tunagem de hiperparâmetros\n\nfuture::plan(sequential) # Tornando o código sequencial novamente"
+  },
+  {
+    "objectID": "index.html#paralelizando",
+    "href": "index.html#paralelizando",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Paralelizando",
+    "text": "Paralelizando\n\n\n\n\n\nIlustração de um processador multicores com 4 núleos (na cor azul) e 8 threads (na cor vemelho).\n\n\n\nO pacote future permite programar tarefas em paralelo de forma simples e intuitiva em R.\nO objetivo do pacote future é fornecer uma maneira muito simples e uniforme de avaliar expressões R de forma assíncrona.\nEm programação, um future é uma abstração para um valor que pode estar disponível em algum momento no futuro.\n\n\n\nLogo do pacoture future que permite paralelismo em R em diferentes sistemas POSIX."
+  },
+  {
+    "objectID": "index.html#paralelizando-1",
+    "href": "index.html#paralelizando-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Paralelizando \n",
+    "text": "Paralelizando \n\n\n\nfuture::plan(multicore)\n\n\nNo sistema operacional Linux. Esse é o Tux, mascote do sistema operacional linux.\n\n\nfuture::plan(multisession)\n\n\nEm todos os sistemas operacionais, incluindo o Windows (Linux, Unix e Windows)."
+  },
+  {
+    "objectID": "index.html#biblioteca-future",
+    "href": "index.html#biblioteca-future",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Biblioteca future \n",
+    "text": "Biblioteca future \n\nCom a biblioteca future você pode utilizar paralelismo nos seus códigos, criar funcionais paralelos, loops paralelos e não se limita ao uso com o tidymodels. Na verdade é o tidymodels (pacote tune) que faz uso do pacote future."
+  },
+  {
+    "objectID": "index.html#rsample",
+    "href": "index.html#rsample",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "rsample \n",
+    "text": "rsample \n\n\n\n O pacote rsample é um dos pacotes do framework tidymodels. Ele é responsável por realizar a divisão dos dados em conjuntos de treinamento e teste.\n Utilizamos o rsample para criar as amostras para a validação cruzada, úteis na faze de tunagem de hiperparâmetros.\n\n\n\nImagem no estilo aquarela fazendo alusão ao uso do pacote rsample."
+  },
+  {
+    "objectID": "index.html#rsample-1",
+    "href": "index.html#rsample-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "rsample \n",
+    "text": "rsample \n\n\nAnumero as funções do rsample que você irá mais utilizar:\n\n\ninitial_split(): divide o conjunto de dados em conjuntos de treinamento e teste.\nvfold_cv(): cria amostras para validação cruzada, úteis na faze de tunagem de hiperparâmetros. Falaremos em breve sobre isso.\nloo_cv(): cria amostras para validação cruzada via leave-one-out.\nbootstraps(): cria amostras para validação cruzada via bootstrap."
+  },
+  {
+    "objectID": "index.html#rsample-2",
+    "href": "index.html#rsample-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "rsample \n",
+    "text": "rsample \n\nO site do pacote rsample é muito bom e possui diversos exemplos de como utilizar as funções do pacote."
+  },
+  {
+    "objectID": "index.html#data-splitting-hold-out",
+    "href": "index.html#data-splitting-hold-out",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Data Splitting / Hold-Out \n",
+    "text": "Data Splitting / Hold-Out \n\n\nCorrigir o problema de dependência que há ao estimar o risco preditivo por meio do EQM usando toda a base é fácil. Uma abordagem muito utilizada é utilizar data splitting, também chamado de método hold-out. Algo como a segunda linha da imagem abaixo:\n\n\n\n\n\n\nHummmm, entendi! Então para que eu tenha tenha uma sequência de EQM’s independentes já que são identicamente distribuídos, preciso de um conjunto reservado dos dados (conjunto de teste) para valer a lei forte dos grandes números."
+  },
+  {
+    "objectID": "index.html#data-splitting-hold-out-1",
+    "href": "index.html#data-splitting-hold-out-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Data Splitting / Hold-Out \n",
+    "text": "Data Splitting / Hold-Out \n\n\n\n\nO termo validação refere-se à parcela do conjunto de treinamento incial que dividimos em validação e treinamento, dentro de uma validação cruzada.\n\nO conjunto Testing na segunda hierarquia da árvore ao lado, só usamos no final para avaliar o desempenho do modelo nesse conjunto. Isto é, usamos o Testing para o cálculo do risco observado.\n\nPerceba que o conjunto de treinamento (Not Testing) é particionado em treinamento e validação. Poderíamos fazer uma única partição, mas o procedimento comumente utilizado é particionar entre Training e Validation uzando algum procedimento de validação cruzada."
+  },
+  {
+    "objectID": "index.html#data-splitting",
+    "href": "index.html#data-splitting",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Data Splitting \n",
+    "text": "Data Splitting \n\n\nO percentual de divisão dos dados normalmente é empírico. Usa-se normalmente a proporção de 70\\% para treinamento e 30\\% para teste (70\\%, 30\\%). Outros esquemas de divisões são bastante utilizados, por exemplo, (80\\%, 20\\%), (99\\%, 1\\%), a depender da quantidade de observações (tamanho do conjunto de dados).\n\nPortanto, utilizar o EQM sob o conjunto de dados de teste para avaliar g_1({\\bf x}), g_2({\\bf x}), \\cdots, é uma boa estratégia, uma vez que agora não teremos mais uma dependência no numerador do cálculo do EQM. Em notação matemática, poderíamos escrever como já apresentado anteriormente, em Equação 1, i.e.,\n\\frac{1}{m}\\sum_{i = 1}^m (Y_{n + i} - g(X_{n + i}))^2 \\approx R(g) := \\mathbb{E}\\left[(Y - g({\\bf X}))^2\\right].\n\nEsse resultado valeria para qualquer outra função de perda."
+  },
+  {
+    "objectID": "index.html#data-splitting-1",
+    "href": "index.html#data-splitting-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Data Splitting \n",
+    "text": "Data Splitting \n\nReescrevendo, suponha que o conjunto de dados total possua n observações e que separamos aleatoriamente s &lt; n observações para o conjunto de treinamento. Assim, temos, algo como:\n\n\\overbrace{(X_1, Y_1), (X_2, Y_2), \\cdots, (X_s, Y_s)}^{70\\%}, \\,\\,\\, \\overbrace{(X_{s + 1}, Y_{s + 1}), (X_{s + 2}, Y_{s + 2}), \\cdots, (X_n, Y_n)}^{30\\%}.\n\nEntão, temos que uma boa estimativa de R(g) é dada pelo EQM calculado sobre o conjunto de dados de teste, que nesse caso considerei o conjunto com 30\\%, mas esse percentual poderia ser outro. Então, temos que um bom estimador é:\n\\frac{1}{n - s}\\sum_{i = s + 1}^n (Y_{i} - g(X_{i}))^2 \\approx R(g) := \\mathbb{E}\\left[(Y - g({\\bf X}))^2\\right]."
+  },
+  {
+    "objectID": "index.html#data-splitting-2",
+    "href": "index.html#data-splitting-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Data Splitting \n",
+    "text": "Data Splitting \n\n\nAgora você entende por que dividimos os dados em treinamento e teste?\n\n\n\nDividimos para obermos um bom estimador do risco utilizando o EQM. 🎁"
+  },
+  {
+    "objectID": "index.html#rsample-3",
+    "href": "index.html#rsample-3",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "rsample",
+    "text": "rsample\n\n\n\n\n\nImagem em aquarela da logo do pacote rsample.\n\n\n\nlibrary(tidymodels)\n\ntidymodels::tidymodels_prefer()\n\nset.seed(123)\ndados_split &lt;- rsample::initial_split(\n  dados,\n  prop = 0.7,\n  strata = \"Resposta\"\n)\n\ntreino &lt;- rsample::training(dados_split)\nteste &lt;- rsample::testing(dados_split)\n\n\n📌 Atenção:  É possível estratificar a variável resposta, para que o conjunto de treinamento e teste possuam a mesma proporção de classes."
+  },
+  {
+    "objectID": "index.html#rsample-4",
+    "href": "index.html#rsample-4",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "rsample",
+    "text": "rsample\n\n\n\n\n\nImagem em aquarela da logo do pacote rsample.\n\n\n\nComo a estratificação funciona❓\n 1. Variável resposta numérica: A estratificação selecionará uma amostra aleatória dentro de cada quartil da variável resposta para compor o conjunto de teste.\n\n\nVariável resposta categórica: A amostra aleatória será feita de forma que a proporção de classes no conjunto de teste seja a mesma do conjunto de treinamento."
+  },
+  {
+    "objectID": "index.html#leave-one-out-cross-validation",
+    "href": "index.html#leave-one-out-cross-validation",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Leave-one-out cross-validation \n",
+    "text": "Leave-one-out cross-validation \n\n\nObserve a animação abaixo que ilustra o procedimento de leave-one-out cross-validation - LOOCV, em uma amostra de tamanho n = 8. Ao fim, teremos n modelos ajustados, em que calculamos as suas respectivas performances, i.e., com o risco observado, estimamos o risco de R(g)."
+  },
+  {
+    "objectID": "index.html#leave-one-out-cross-validation-1",
+    "href": "index.html#leave-one-out-cross-validation-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Leave-one-out cross-validation \n",
+    "text": "Leave-one-out cross-validation \n\n\nVejo muitas pessoas que usam uma validação cruzada, por exemplo, leave-one-out cross-validation - LOOCV comparando com o método Jackknife e algumas inclusive dizendo ser a mesma coisa. Não, não são!\n\nO algoritmo Jackknife é um procedimento de estimação, e que, por sua vez, deve estar dentro do conjunto de treinamento. Para haver algum Jackknife, a estimativa com n-1 observações deve estar dentro do conjunto de treinamento e seria nesse conjunto onde se teria a remoção de uma observação por vez. Consegue perceber a diferença sutil?"
+  },
+  {
+    "objectID": "index.html#leave-one-out-cross-validation-2",
+    "href": "index.html#leave-one-out-cross-validation-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Leave-one-out cross-validation \n",
+    "text": "Leave-one-out cross-validation \n\n\nO método LOOCV foi proposto por Stones (1974), no artigo intitulado Cross-Validatory Choice and Assessment of Statistical Predictions, no Royal Statistical Society, Série B. Clique aqui se tiver curiosidade em ler o artigo.\n\nEscrevendo o estimador do risco em um procedimento de LOOCV, temos que:\n\\widehat{R}(g) = \\frac{1}{n}\\sum_{i = 1}^n (Y_i - g_{-i}({\\bf X}_i))^2, em que g_{-i}(\\bf{X}_i), representa o ajuste do modelo no conjunto de dados sem a i-ésima observação.\n\nNão é difícil perceber que a depender do valor de n, o método LOOCV é computacionalmente intensivo. O método requer que ajustemos n modelos. Em algumas situações isso não é um grande problema, porém, em diversas outras pode ser impeditivo utilizar o LOOCV. 🤯"
+  },
+  {
+    "objectID": "index.html#leave-one-out-cross-validation-3",
+    "href": "index.html#leave-one-out-cross-validation-3",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Leave-one-out cross-validation \n",
+    "text": "Leave-one-out cross-validation \n\n\nEssa relação entre o LOOCV e o Akaike Information Criterion - AIC foi provada no paper Stone (1977) intitulado An Asymptotic Equivalence of Choice of Model by Cross-Validation and Akaike’s Criterion e publicado no Journal of the Royal Statistical Society, Series B. Clique aqui, se quiser ler o artigo."
+  },
+  {
+    "objectID": "index.html#k-fold-cross-validation",
+    "href": "index.html#k-fold-cross-validation",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "\nk-fold cross-validation \n",
+    "text": "k-fold cross-validation \n\n\nUma alternativa ao LOOCV é utilizar o método k-fold cross-validation. Nessa abordagem, dividimos o conjunto de dados em k-folds (lotes) disjuntos e com aproximadamente o mesmo tamanho. Dessa forma, temos L_1, \\cdots, L_k \\subset \\{1, \\cdots, n\\} são, cada um, um conjunto de índices aleatórios associados a cada um dos lotes. A ideia aqui é construir k estimadores da função de regressão, denotados por \\widehat{g}_{-1}, \\cdots, \\widehat{g}_{-k}, em que \\widehat{g}_{-j} é criado usando todas as observações do banco de dados, com exceção daquelas do lote L_j, utilizado para validação. O estimador do risco é dado por:\n\\widehat{R}(g) = \\frac{1}{n}\\sum_{j=1}^k \\sum_{i \\in L_j}(Y_i - g_{-j}({\\bf X}_i))^2. Perceba que, que o LOOCV é um caso particular do k-fold cross-validation, quando fazemos k = n. Em outras palavras, L_1, \\cdots, L_k \\subset \\{1, \\cdots, n\\} representam os índices aleatórios do conjunto de treinamento nos k lotes."
+  },
+  {
+    "objectID": "index.html#k-fold-cross-validation-1",
+    "href": "index.html#k-fold-cross-validation-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "\nk-fold cross-validation \n",
+    "text": "k-fold cross-validation \n\nA animação abaixo, ilustra o procedimento de 3-fold cross-validation (k = 3), para uma amostra de tamanho n = 12 observações. Note que os valores que pertencem a cada um dos lotes são aleatórios. Portanto, o procedimento LOOCV é deterministico, já o procedimento de k-fold cross-validation é randomizado.\n\n\nPerceba que teremos agora apenas 3 modelos. Para cada um desses lotes, calulamos o EQM com o conjunto de teste (parte azul) e treinamos o modelo com o conjunto de treinamento (parte vermelha)."
+  },
+  {
+    "objectID": "index.html#k-fold-cross-validation-2",
+    "href": "index.html#k-fold-cross-validation-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "\nk-fold cross-validation \n",
+    "text": "k-fold cross-validation \n\nA imagem abaixo ilustra o procedimento k-fold cross-validation, em que uma 5-fold cross-validation é realizada dentro do conjunto de treinamento. Em cada split, o conjunto verde de observações (fold verde) são utilizados para treinar/ajustar o modelo e o conjunto azul, em cada um dos splits é utilizado para avaliar o risco preditivo R(g) (através, por exemplo do EQM)."
+  },
+  {
+    "objectID": "index.html#rsample-validação-cruzada",
+    "href": "index.html#rsample-validação-cruzada",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "rsample (validação cruzada)",
+    "text": "rsample (validação cruzada)\n\n\n\n\n\nImagem em aquarela da logo do pacote rsample.\n\n\n\nlibrary(tidymodels)\n\ntidymodels::tidymodels_prefer()\n\nset.seed(123)\ndados_split &lt;- rsample::initial_split(\n  dados,\n  prop = 0.7,\n  strata = \"Resposta\"\n)\n\ntreino &lt;- rsample::training(dados_split)\nteste &lt;- rsample::testing(dados_split)\n\n# Criando as amostras para realizar a validação cruzada\n# com o pacote tune (5-fold cross-validation)\ncv &lt;- rsample::vfold_cv(\n  treino,\n  v = 5,\n  strata = \"Resposta\"\n)\n\n📌 Atenção:\n\nTambém é possível estratificar a variável resposta, para que o conjunto de treinamento e teste validação possuam a mesma proporção de classes."
+  },
+  {
+    "objectID": "index.html#resumindo-data-splitting-validação-cruzada-e-conjunto-de-validação",
+    "href": "index.html#resumindo-data-splitting-validação-cruzada-e-conjunto-de-validação",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Resumindo: data splitting, validação cruzada e conjunto de validação \n",
+    "text": "Resumindo: data splitting, validação cruzada e conjunto de validação \n\n\nA validação cruzada k-fold é particularmente útil quando o conjunto de dados é limitado, pois aproveita ao máximo os dados disponíveis. Além disso, ela permite verificar se o modelo é estável e se seu desempenho varia significativamente com diferentes divisões dos dados. É importante ressaltar que a validação cruzada k-fold pode ser computacionalmente mais cara do que a abordagem do conjunto de validação, uma vez que envolve treinar e avaliar o modelo várias vezes."
+  },
+  {
+    "objectID": "index.html#resumindo-data-splitting-validação-cruzada-e-conjunto-de-validação-1",
+    "href": "index.html#resumindo-data-splitting-validação-cruzada-e-conjunto-de-validação-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Resumindo: data splitting, validação cruzada e conjunto de validação",
+    "text": "Resumindo: data splitting, validação cruzada e conjunto de validação\n\nNo tidymodels, utilizamos a biblioteca rsample para realizar procedimentos de validação cruzada:\n\n\ninitial_split(): útil para uma divisão inicial dos dados, i.e., para aplicação do hold-out;\nloo_cv(): se desejar realizar um procedimento de leave-one-out cross-validation;\nvfold_cv(): para um procedimento de k-folds cross-validation. Podemos inclusive realizar várias repetições de validação cruzada o que poderá remelhorar ainda mais a seleção da melhor combinação de hiperparâmetros. O número de repetições de validação cruzada poderá ser especificado no argumento repeats que por padrão é 1L;\nbootstraps(): se for desejado utilizar um procedimento de bootstrap não-paramétrico ao invés de uma validação cruzada. O papel do bootstrap é o mesmo da validação cruzada, porém, a seleção das amostras de treinamento é de mesmo tamanho da amostra de treinamento original e o procedimento é feito com reposição, i.e., os mesmos dados podem aparecer nas amostras. O conjunto de avaliação é definido como as linhas dos dados originais que não foram incluídos na amostra bootstrap. Isso geralmente é chamado de amostra out-of-bag - OOB. Podemos alterar o número de amostras bootstrap modificando o argumento times que por padrão é 25L.\n\n\n📌 Lembre-se que qualquer procedimento de validação cruzada que você escolher deve ser realizado no conjunto de treinamento!"
+  },
+  {
+    "objectID": "index.html#recipes",
+    "href": "index.html#recipes",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes \n",
+    "text": "recipes \n\n\n\n\n\nImagem em aquarela da logo do pacote recipes.\n\n\nAntes de ajustar o modelo, precisamos preparar os dados. O pacote recipes é o responsável por realizar o pré-processamento dos dados.\n 1. Permite encadear etapas de transformação (como normalização, imputação, codificação, etc.) de forma organizada e reutilizável.\n\nAutomatiza tarefas como criação de dummies, spline bases, PCA, interação entre variáveis e muito mais.\nPossui mais de 100 funções step_*() para aplicar transformações específicas e customizáveis em variáveis contínuas, categóricas e textuais."
+  },
+  {
+    "objectID": "index.html#recipes-1",
+    "href": "index.html#recipes-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes \n",
+    "text": "recipes \n\n\n\n\n\nImagem em aquarela da logo do pacote recipes.\n\n\nDefinindo uma receita (fase de pré-processamento):\n\n# Definindo uma receita (fase de pré-processamento)\nreceita &lt;-\n  recipes::recipe(\n    y ~ x1 + x3:x4 + x5\n    data = dados_treino\n  ) |&gt;\n  step_*() |&gt;\n  step_*() |&gt;\n  ...      |&gt;\n  step_*()"
+  },
+  {
+    "objectID": "index.html#recipes-a-fórmula-é-o-coração-da-receita",
+    "href": "index.html#recipes-a-fórmula-é-o-coração-da-receita",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes: a fórmula é o coração da receita \n",
+    "text": "recipes: a fórmula é o coração da receita \n\nA função recipe() inicia a criação de uma receita e seu primeiro argumento é uma fórmula.\nrecipe(formula, data, ...)\n\nEstrutura da Fórmula:\n\nvariavel_resposta ~ preditor1 + preditor2 + ... + preditorN\n\n\n\nLado Esquerdo (variavel_resposta ~ ...): Especifica a(s) variável(is) resultado/alvo.\n\nPode ser uma única variável.\nMúltiplas variáveis respostas podem ser especificadas com cbind(resp1, resp2) ~ ... (menos comum para a maioria dos modelos).\n\n\n\nLado Direito (... ~ preditor1 + preditor2): Especifica as variáveis preditoras.\n\nTil (~): Separa a variável resposta dos preditores.\n\nSinal de Mais (+): Usado para adicionar preditores."
+  },
+  {
+    "objectID": "index.html#interações-entre-variáveis-e",
+    "href": "index.html#interações-entre-variáveis-e",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Interações Entre Variáveis: * e : \n",
+    "text": "Interações Entre Variáveis: * e : \n\n\nFórmulas no R permitem especificar termos de interação diretamente.\n1. O Asterisco (*): Efeitos Principais + Interação\npreditorA * preditorB expande para preditorA + preditorB + preditorA:preditorB. Inclui os efeitos principais de cada variável E o termo de interação entre elas. Não é possível usar * ou : diretamente no recipe(). Para isso você deve usar o step_interact().\n# Prever 'mpg' usando 'wt', 'hp' e a interação entre 'wt' e 'hp'\nreceita_interacao_asterisco &lt;- recipe(mpg ~ wt * hp + qsec, data = mtcars_tbl)\n\n# summary(receita_interacao_asterisco)\n# Note os termos: wt, hp, qsec, wt_x_hp (ou similar)\nEsta é a forma mais comum e geralmente recomendada para incluir interações, seguindo o princípio da hierarquia."
+  },
+  {
+    "objectID": "index.html#interações-entre-variáveis-e-cont.",
+    "href": "index.html#interações-entre-variáveis-e-cont.",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Interações Entre Variáveis: * e : (Cont.) \n",
+    "text": "Interações Entre Variáveis: * e : (Cont.) \n\n\n2. Os Dois Pontos (:): Apenas a Interação\n\npreditorA:preditorB especifica apenas o termo de interação entre preditorA e preditorB. Não inclui os efeitos principais automaticamente.\n# Prever 'mpg' usando 'wt', 'hp' e APENAS a interação wt:hp\n# (geralmente, você adicionaria os efeitos principais manualmente se usar ':')\nreceita &lt;-\n  recipe(\n    mpg ~ wt + hp + wt:hp + qsec,\n    data = mtcars_tbl\n  )\n\n# summary(receita_interacao_doispontos)\n# É semanticamente igual ao exemplo com '*' se os termos principais estiverem presentes.\n\n# Apenas a interação (menos comum isoladamente):\n# receita_so_interacao &lt;- recipe(mpg ~ wt:hp, data = mtcars_tbl)\n# summary(receita_so_interacao) # Resultaria apenas no termo wt_x_hp\n\n📌 Use : com cautela e geralmente certifique-se de que os efeitos principais também estão no modelo."
+  },
+  {
+    "objectID": "index.html#papéis-das-variáveis-e-seletores-step_",
+    "href": "index.html#papéis-das-variáveis-e-seletores-step_",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Papéis das Variáveis e Seletores step_* \n",
+    "text": "Papéis das Variáveis e Seletores step_* \n\nA fórmula no recipe() define os papéis iniciais das variáveis: outcome (resposta) e predictor (preditora).\n\n\nreceita &lt;- recipe(mpg ~ ., data = mtcars_tbl)\n# summary(receita) # Mostra os papéis iniciais\n\n\nMuitas funções step_* usam seletores para escolher em quais variáveis atuar, baseando-se nesses papéis ou em suas propriedades:\n 🎉 Seletores ajudam a selecionar mais facilmente:\n\n\nall_numeric_predictors(): Todos os preditores numéricos.\n\nall_nominal_predictors(): Todos os preditores categóricos (fatores, caracteres).\n\nall_predictors(): Todos os preditores.\n\nall_outcomes(): Todas as variáveis resposta.\n\nstarts_with(\"prefix_\"), ends_with(\"_suffix\"), contains(\"substring\")"
+  },
+  {
+    "objectID": "index.html#papéis-das-variáveis-e-seletores-step_-1",
+    "href": "index.html#papéis-das-variáveis-e-seletores-step_-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Papéis das variáveis e seletores step_* \n",
+    "text": "Papéis das variáveis e seletores step_* \n\n\nExemplo de uso de seletores:\n\n\nreceita_com_passos &lt;-\n  recipe(mpg ~ ., data = mtcars_tbl) |&gt;\n  # Remove a variável 'car_name'\n  step_rm(car_name) |&gt;\n  # Centraliza apenas preditores numéricos\n  step_center(all_numeric_predictors()) |&gt;\n  # Escala apenas preditores numéricos\n  step_scale(all_numeric_predictors()) |&gt;\n  # Cria dummies para preditores nominais\n  step_dummy(all_nominal_predictors(), one_hot = TRUE)"
+  },
+  {
+    "objectID": "index.html#recipes-2",
+    "href": "index.html#recipes-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes \n",
+    "text": "recipes \n\n\n\n\n\n\n\nAlugumas funções step_*()\n\nDescrição\n\n\n\nstep_center()\nCentraliza variáveis numéricas subtraindo a média.\n\n\nstep_scale()\nPadroniza variáveis numéricas dividindo pelo desvio padrão.\n\n\nstep_normalize()\nRealiza centralização e padronização em um único passo.\n\n\nstep_knnimpute()\nImputa valores faltantes usando o método dos k-vizinhos mais próximos.\n\n\nstep_dummy()\nConverte variáveis categóricas em variáveis indicadoras (dummies).\n\n\nstep_nzv()\nRemove variáveis com variância próxima de zero.\n\n\nstep_corr()\nRemove variáveis altamente correlacionadas entre si.\n\n\nstep_pca()\nAplica análise de componentes principais (PCA) para redução de dimensão.\n\n\nstep_poly()\nGera termos polinomiais de variáveis numéricas.\n\n\nstep_log()\nAplica transformação logarítmica em variáveis numéricas.\n\n\nstep_other()\nAgrupa categorias menos frequentes em uma nova categoria “outras”."
+  },
+  {
+    "objectID": "index.html#recipes-3",
+    "href": "index.html#recipes-3",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes \n",
+    "text": "recipes \n\nVocê poderá encontrar uma lista completa das funções step_*() em:"
+  },
+  {
+    "objectID": "index.html#recipes-4",
+    "href": "index.html#recipes-4",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes \n",
+    "text": "recipes \n\n\nConsulte a documentação do pacote recipes para saber mais sobre as funções step_*() e como utilizá-las."
+  },
+  {
+    "objectID": "index.html#recipes-5",
+    "href": "index.html#recipes-5",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes \n",
+    "text": "recipes \n\n\n\n\n\n\n\n📌 A ordem das etapas de pré-processamento é importante.\n\nPor exemplo, se você aplicar a transformação logarítmica em uma variável antes de centralizá-la, o resultado será diferente do que se você centralizá-la antes de aplicar a transformação logarítmica.\nPortanto, a ordem das etapas de pré-processamento é importante e deve ser cuidadosamente planejada.\nVeja outros detalhes em https://recipes.tidymodels.org/articles/Ordering.html."
+  },
+  {
+    "objectID": "index.html#recipes-6",
+    "href": "index.html#recipes-6",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes \n",
+    "text": "recipes \n\n\n\n\nTirar o logaritmo e normalizar (melhor):\n\nreceita &lt;-\n  recipes::recipe(\n    y ~ .,\n    data = dados_treino\n  ) |&gt;\n  step_log(\n    all_numeric_predictors()\n  ) |&gt;\n  step_normalize(\n    all_numeric_predictors()\n  )\n\n\nNormalizar e tomar o logaritmo:\n\n\nreceita &lt;-\n  recipes::recipe(\n    y ~ .,\n    data = dados_treino\n  ) |&gt;\n  step_normalize(\n    all_numeric_predictors()\n  ) |&gt;\n  step_log(\n    all_numeric_predictors()\n  ) |&gt;\n\n\n📌 Observação: y ~ . significa que y é a variável de interesse e todas as outas serão preditoras (features)."
+  },
+  {
+    "objectID": "index.html#recipes-preparando-e-aplicando-a-receita",
+    "href": "index.html#recipes-preparando-e-aplicando-a-receita",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes: preparando e aplicando a receita \n",
+    "text": "recipes: preparando e aplicando a receita \n\nApós definir os passos da receita, você pode prepará-la e aplicá-la aos dados usando os comandos prep() e bake(), respectivamente.\n\n\n\n\nlibrary(AmesHousing)\nlibrary(recipes)\nlibrary(dplyr)\n\n# Carregar e preparar dados\names_data &lt;- make_ames() |&gt;\n  as_tibble() |&gt;\n  select(\n    Sale_Price,\n    Lot_Area,\n    Neighborhood,\n    Gr_Liv_Area,\n    Overall_Qual,\n    Bldg_Type,\n    Year_Built\n  ) # Selecionar apenas as colunas relevantes\n\n# Receita otimizada\names_recipe &lt;- recipe(\n  Sale_Price ~\n  Lot_Area +\n  Neighborhood +\n  Gr_Liv_Area +\n  Overall_Qual +\n  Bldg_Type +\n  Year_Built,\n  data = ames_data\n) |&gt;\n  # Transformação na variável resposta\n  step_log(Sale_Price, base = 10) |&gt;\n\n  # Criar variável derivada\n  step_mutate(\n    House_Age = 2025 - Year_Built,\n    Decade_Built = floor(Year_Built / 10) * 10\n  ) |&gt;\n\n  # Remover variável original\n  step_rm(Year_Built) |&gt;\n\n  # Lidar com novos níveis em dados futuros\n  step_novel(all_nominal_predictors()) |&gt;\n\n  # Agrupar níveis raros (8% threshold)\n  step_other(Neighborhood, threshold = 0.08) |&gt;\n  step_other(Bldg_Type, threshold = 0.05) |&gt;\n\n  # Criar variáveis dummy\n  step_dummy(all_nominal_predictors(), one_hot = FALSE) |&gt;\n\n  # Interações APÓS criação de dummies\n  step_interact(~ starts_with(\"Neighborhood\"):starts_with(\"Bldg_Type\")) |&gt;\n\n  # Remover variáveis com zero variance (após interações)\n  step_zv(all_predictors()) |&gt;\n\n  # Normalização (remove automaticamente colunas problemáticas)\n  step_normalize(all_numeric_predictors()) |&gt;\n\n  # Passo adicional: seleção de variáveis por importância\n  step_corr(all_numeric_predictors(), threshold = 0.9)\n\n# Preparar a receita\nprep_recipe &lt;-\n  prep(\n    ames_recipe,\n    verbose = TRUE\n  )\n\n# Aplicar a receita\names_processed &lt;-\n  bake(\n    prep_recipe,\n    new_data = NULL\n  )\n\n# Verificar resultado\nglimpse(ames_processed)\n\n\n\n\n🍲 🥗 🍠 🧄 🧅 🥬 Cozinhando aplicando tranquilamente a receita com os ingredientes steps corretos. As funções prep() e bake() para preparar e aplicar."
+  },
+  {
+    "objectID": "index.html#recipes-preparando-e-aplicando-a-receita-1",
+    "href": "index.html#recipes-preparando-e-aplicando-a-receita-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes: preparando e aplicando a receita \n",
+    "text": "recipes: preparando e aplicando a receita \n\n\nPreparando a receita com prep() e aplicando com bake():\n\n\nlibrary(tidymodels)\nlibrary(modeldata)\nlibrary(DT)  # Pacote para tabelas interativas\n\ntidymodels::tidymodels_prefer()\n\ndados &lt;- rsample::initial_split(ames, prop = 0.7, strata = \"Sale_Price\")\ntreino &lt;- training(dados)\nteste &lt;- testing(dados)\n\nreceita &lt;-\n  recipe(Sale_Price ~ Neighborhood + Gr_Liv_Area + Year_Built + Bldg_Type, data = treino) |&gt;\n  step_log(Gr_Liv_Area, base = 10) |&gt;\n  step_dummy(all_nominal_predictors(),  one_hot = TRUE)\n\ndados_preparado &lt;- prep(receita, training = treino)\nreceita_aplicada &lt;- bake(dados_preparado, new_data = treino)"
+  },
+  {
+    "objectID": "index.html#recipes-preparando-e-aplicando-a-receita-2",
+    "href": "index.html#recipes-preparando-e-aplicando-a-receita-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "recipes: preparando e aplicando a receita \n",
+    "text": "recipes: preparando e aplicando a receita \n\n\n\n\nDados de treino original (treino):\n\n\n\n\n\n\n\nDados Pós-Transformação (receita_aplicada):"
+  },
+  {
+    "objectID": "index.html#parsnip",
+    "href": "index.html#parsnip",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "parsnip \n",
+    "text": "parsnip \n\n\n\n\n\nImagem em aquarela da logo do pacote parsnip.\n\n\n\nCom o pacote parsnip você pode utilizar diversos modelos de aprendizagem de máquina, com uma sintaxe unificada.\nHá diversos pacotes no CRAN que implementam modelos de aprendizagem de máquina, mas cada um com sua sintaxe. O pacote parsnip unifica a sintaxe.\nVocê poderá experimentar diversas implementações de um determinado modelo utilizando a mesma sintaxe com o parsnip."
+  },
+  {
+    "objectID": "index.html#parsnip-1",
+    "href": "index.html#parsnip-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "parsnip \n",
+    "text": "parsnip"
+  },
+  {
+    "objectID": "index.html#parsnip-2",
+    "href": "index.html#parsnip-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "parsnip \n",
+    "text": "parsnip \n\n\nDiversas bibliotecas na linguagem R são preparadas para trabalharem na área de aprendizagem de máquina. Várias dessas bibliotecas vem sendo desenvolvidas há anos. Por exemplo,as bibliotecas glmnet, ranger, kknn, xgboost, keras, rpart, randomForest, entre diversos outros.\n\n\nO número de pacotes abaixo é o mais recente. Obtido automaticamente por webscraping.library(xml2)\nlibrary(httr)\nlibrary(stringr)\nlibrary(\"downlit\")\n\nnumero_pacotes_r &lt;- httr::GET(\n  \"https://cloud.r-project.org/web/packages/index.html\"\n) |&gt;\n  xml2::read_html() |&gt;\n  xml2::xml_find_all(\"//p[1]\") |&gt;\n  xml2::xml_text() |&gt;\n  stringr::str_extract(pattern = \"[0-9]+\")\n\n\n\nAtualmente, a linguagem R possui 22432, em que muitos deles são preparados para para trabalharem em tarefas de aprendizagem de máquina, porém, cada com sua sintaxe específica. Muitos implementam o mesmo modelo, uns com algumas variações, porém, o uso é totalmente diferente, nomes de parâmetros distintos, saídas distintas, etc."
+  },
+  {
+    "objectID": "index.html#parsnip-3",
+    "href": "index.html#parsnip-3",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "parsnip \n",
+    "text": "parsnip \n\n\n\n\nUtilizando o pacote randomForest:\n\n\nlibrary(randomForest)\n\n# Modelo básico\nmodelo &lt;- randomForest(\n  Species ~ .,\n  data = iris,\n  ntree = 500,\n  mtry = 2,\n  importance = TRUE\n)\n\n\nUtilizando o pacote ranger:\n\n\nlibrary(ranger)\n\nmodelo &lt;- ranger(\n  Species ~ .,\n  data = iris,\n  num.trees = 500,\n  mtry = 2,\n  importance = \"impurity\"\n)"
+  },
+  {
+    "objectID": "index.html#parsnip-4",
+    "href": "index.html#parsnip-4",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "parsnip \n",
+    "text": "parsnip \n\n\nUtilizando o pacote ranger em um problema de classificação:\n\n\n\n\n# Definir o modelo com parsnip\nmodelo_parsnip &lt;-\n  rand_forest(\n    trees = 500,       # Equivalente a num.trees\n    mtry = 2           # Mesmo valor que no ranger\n  ) |&gt;\n  set_engine(\"ranger\", importance = \"impurity\") |&gt;\n  set_mode(\"classification\") |&gt;\n  fit(Species ~ ., data = iris)\n\n\n\n\n❤️ Imagem em aquarela de um cientista de dados apaixonado pelas coisas certas."
+  },
+  {
+    "objectID": "index.html#parsnip-5",
+    "href": "index.html#parsnip-5",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "parsnip \n",
+    "text": "parsnip \n\n\nUtilizando o pacote randomForest em um problema de regressão:\n\n\n\n\n# Definir o modelo com parsnip\nmodelo_parsnip &lt;-\n  rand_forest(\n    trees = 500,       # Equivalente a num.trees\n    mtry = 2           # Mesmo valor que no ranger\n  ) |&gt;\n  set_engine(\"randomForest\", importance = \"impurity\") |&gt;\n  set_mode(\"regression\") |&gt;\n  fit(Species ~ ., data = iris)\n\n\n\n\n❤️ Imagem em aquarela de um cientista de dados apaixonado pelas coisas certas."
+  },
+  {
+    "objectID": "index.html#workflows",
+    "href": "index.html#workflows",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "workflows \n",
+    "text": "workflows \n\n\nO pacote workflows é um dos principais pacotes do framework tidymodels.\nSeu papel fundamental é gerenciar e combinar o pré-processamento de dados (definido com recipes) com a especificação do modelo (definida com parsnip)."
+  },
+  {
+    "objectID": "index.html#tune",
+    "href": "index.html#tune",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "tune \n",
+    "text": "tune \n\n\n\n\n\nImagem em aquarela da logo do pacote tune.\n\n\n\nMuitos algoritmos de Machine Learning possuem hiperparâmetros.\nEstes não são aprendidos diretamente dos dados durante o treinamento.\n\nExemplos: número de vizinhos em KNN, profundidade de uma árvore de decisão, número de arvores em um random forest, taxa de aprendizado em redes neurais, penalidade em regularização como em modelos LASSO, Ridge ou Elastic Net.\nA escolha dos hiperparâmetros pode impactar significativamente a performance do modelo.\n\nObjetivo: Encontrar a combinação de hiperparâmetros que resulta no melhor desempenho preditivo em dados não vistos dado uma métrica de desenpenho, por exemplo, Erro Quadrático Médio (EQM) ou Acurácia."
+  },
+  {
+    "objectID": "index.html#tune-por-que-otimizar-hiperparâmetros",
+    "href": "index.html#tune-por-que-otimizar-hiperparâmetros",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🎛 tune: por que otimizar hiperparâmetros? \n",
+    "text": "🎛 tune: por que otimizar hiperparâmetros? \n\n\n\n\n\n\nImagem em aquarela da logo do pacote tune.\n\n\n\n\nHiperparâmetros: são parâmetros do modelo que não são aprendidos diretamente dos dados.\n\nImpacto no desempenho: a escolha dos hiperparâmetros pode ter um impacto significativo na performance do modelo.\n\nBusca pelo melhor: “tunar” significa buscar encontrar a combinação de hiperparâmetros que resulta no melhor desempenho do modelo em dados não vistos, com base em uma métrica escolhida."
+  },
+  {
+    "objectID": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso",
+    "href": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🎛 tune: tunando o hiperparâmetro do modelo lasso \n",
+    "text": "🎛 tune: tunando o hiperparâmetro do modelo lasso \n\n\n\n\nO lasso foi desenvolvido pelo Robert Tibshirani, em um artigo publicado no artigo Regression Shrinkage and Selection via the Lasso."
+  },
+  {
+    "objectID": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-1",
+    "href": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🎛 tune: tunando o hiperparâmetro do modelo lasso \n",
+    "text": "🎛 tune: tunando o hiperparâmetro do modelo lasso \n\n\nO lasso é um modelo de regressão linear múltipla usual, porém, usa-se a penalização L_1 = \\sum_{i = 1}^d|\\beta_i|. No lasso, buscamos:\n\\widehat{\\beta}_{L_1,\\lambda} = \\argmin_{\\beta_0 \\in \\mathbb{R}, \\beta \\in \\mathbb{R}^d}\\sum_{k = 1}^n\\overbrace{\\left(y_k - \\beta_0 - \\sum_{i = 1}^d \\beta_i x_{x,i}\\right)^2}^{n \\times EQM} + \\overbrace{\\lambda \\,\\,\\underbrace{\\sum_{j = 1}^d|\\beta_j|}_{\\text{Penalização}}}^{\\text{A magnitude do coeficiente importa!}}, em que \\lambda é um tuning parameter 🎛. Perceba que quando \\lambda = 0, caímos no caso do modelo de regressão por mínimos quadrados sem penalização. Já, quando \\lambda \\rightarrow \\infty, temos um modelo em que todas as variáveis são removidas, uma vez que a primeira parte do modelo torna-se insignificante."
+  },
+  {
+    "objectID": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-2",
+    "href": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🎛 tune: tunando o hiperparâmetro do modelo lasso \n",
+    "text": "🎛 tune: tunando o hiperparâmetro do modelo lasso \n\n\nQuando \\lambda é grande, temos que\n\\sum_{k = 1}^n \\left(y_k - \\beta_0 - \\sum_{j = 1}^d \\beta_j x_{k,j}\\right)^2 + \\lambda \\sum_{j = 1}^d |\\beta_j| \\approx \\lambda \\sum_{j = 1}^d |\\beta_j|, e portanto, \\widehat{\\beta}_1 = 0, \\cdots, \\widehat{\\beta}_d = 0.\n\nA escolha de \\lambda, em geral, é feita utilizado algum método de validação/validação cruzada. 🔍"
+  },
+  {
+    "objectID": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-3",
+    "href": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-3",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🎛 tune: tunando o hiperparâmetro do modelo lasso \n",
+    "text": "🎛 tune: tunando o hiperparâmetro do modelo lasso \n\nExemplo: Considere uma base de dados simulada, com n = 500 observações, de tal forma que\nY = 3X_{1} - 2X_2 + X_3 - 3X_4 + X_5 + \\sum_{i = 6}^{20}0X_i + \\varepsilon, em que \\varepsilon \\sim \\text{Normal}(0, 0.5^2) e X_i \\sim \\text{Normal}(0, 1), independentes, com i = 1, \\cdots, 20. Desejamos ajustar quatro modelos de regressão. Para o caso do Estimador de Mínimos Quadrados - EMQ e do modelo Ridge, que não tem seleção automática de variáveis, usaremos todas as variáveis. Desejamos avaliar o risco estimado de cada uma das regressões."
+  },
+  {
+    "objectID": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-4",
+    "href": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-4",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🎛 tune: tunando o hiperparâmetro do modelo lasso \n",
+    "text": "🎛 tune: tunando o hiperparâmetro do modelo lasso \n\n\n\n\n\nImagem em aquarela que faz alusão à geração de dados sintéticos.\n\n\n\nlibrary(tibble)\n\ngerar_dados &lt;- function(n = 500, semente = 123) {\n  set.seed(semente)\n\n  # Gerar matriz X (500 x 20) com variáveis normais independentes\n  x &lt;- matrix(rnorm(n * 20, mean = 0, sd = 1), nrow = n, ncol = 20)\n  colnames(X) &lt;- paste0(\"x\", 1:20)\n\n  # Coeficientes verdadeiros (beta)\n  beta &lt;- c(3, -2, 1, -3, 1, rep(0, 15))  # X6 a X20 têm efeito zero\n\n  # Gerar erro aleatório (epsilon)\n  epsilon &lt;- rnorm(n, mean = 0, sd = 0.5)\n\n  # Calcular Y conforme o modelo\n  y &lt;- as.vector(x %*% beta + epsilon)\n  dados &lt;- tibble(y = y, as_tibble(x))\n\n  return(dados)\n}\n\n# Exemplo de uso:\ndados &lt;- gerar_dados(n = 500)\nhead(dados)  # Y agora é a primeira coluna!"
+  },
+  {
+    "objectID": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-5",
+    "href": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-5",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🎛 tune: tunando o hiperparâmetro do modelo lasso \n",
+    "text": "🎛 tune: tunando o hiperparâmetro do modelo lasso"
+  },
+  {
+    "objectID": "index.html#tidymodels-2",
+    "href": "index.html#tidymodels-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "💻 Tidymodels",
+    "text": "💻 Tidymodels\n\n\nO workflow (pipeline) do treinamento de um modelo usando o framework tidymodels. Todos os pacotes (rsample, recipes, parsnip, tune, dails, yardstick) são gerenciados pelo pacote tidymodels. Cada um desses pacotes fornece um conjunto de funções úteis em tarefas específicas no workflow de machine learning."
+  },
+  {
+    "objectID": "index.html#tidymodels-3",
+    "href": "index.html#tidymodels-3",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "💻 Tidymodels",
+    "text": "💻 Tidymodels\n\n\nPerceba o papel da biblioteca workflows de R. Basicamente gostaríamos de ter uma automação da faze do tratamento das features realizada com o recipes com a modelagem."
+  },
+  {
+    "objectID": "index.html#o-jogo-inteiro",
+    "href": "index.html#o-jogo-inteiro",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🕹️ O jogo inteiro",
+    "text": "🕹️ O jogo inteiro"
+  },
+  {
+    "objectID": "index.html#o-jogo-inteiro-1",
+    "href": "index.html#o-jogo-inteiro-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🕹️ O jogo inteiro",
+    "text": "🕹️ O jogo inteiro"
+  },
+  {
+    "objectID": "index.html#o-jogo-inteiro-2",
+    "href": "index.html#o-jogo-inteiro-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🕹️ O jogo inteiro",
+    "text": "🕹️ O jogo inteiro"
+  },
+  {
+    "objectID": "index.html#o-jogo-inteiro-3",
+    "href": "index.html#o-jogo-inteiro-3",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🕹️ O jogo inteiro",
+    "text": "🕹️ O jogo inteiro"
+  },
+  {
+    "objectID": "index.html#o-jogo-inteiro-4",
+    "href": "index.html#o-jogo-inteiro-4",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🕹️ O jogo inteiro",
+    "text": "🕹️ O jogo inteiro"
+  },
+  {
+    "objectID": "index.html#balanço-viés-e-variância",
+    "href": "index.html#balanço-viés-e-variância",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "⚖️ Balanço viés e variância",
+    "text": "⚖️ Balanço viés e variância\n\nA ideia de precisão e exatidão estão ligadas ao viés e variância do modelo g, em que precisão está ligado a ideia de variância pequena e exatidão está ligada a ideia de baixo viés. A ideia é termos um estimador próximo o que ilustra o item d. Muitas vezes temos um estimador nas situações b e c. O ideal é o balanço de viés e variância, que seria o estimador ilustrado pelo item d."
+  },
+  {
+    "objectID": "index.html#balanço-viés-e-variância-1",
+    "href": "index.html#balanço-viés-e-variância-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "⚖️ Balanço viés e variância",
+    "text": "⚖️ Balanço viés e variância\n\nUm grande apelo para o uso do risco quadrático, i.e., risco que utiliza a função de perda L_2 é sua interpretabilidade. Temos que o risco quadrático R(g) condicional a um novo {\\bf x} poderá ser decomposto por:\n\\mathbb{E}\\left[(Y - \\widehat{g}({\\bf X}))^2| {\\bf X} = {\\bf x}\\right] = \\underbrace{\\mathbb{V}[Y | {\\bf X = x}]}_{\\mathrm{i - Variância\\,\\, intrínseca}} + \\overbrace{(r({\\bf x}) - \\mathbb{E}[\\widehat{g}({\\bf x})])^2}^{\\mathrm{ii - Viés\\, ao\\, quadrado\\, do\\, modelo}} + \\underbrace{\\mathbb{V}[\\widehat{g}({\\bf x})]}_{\\mathrm{iii - Variância\\, do\\, modelo}}. \\tag{2} Temos que:\n\ni - É a variância intrínseca da vairável resposta (label), que não depende da função \\widehat{g} escolhida e, assim, não poderá ser reduzida. Na verdade, poderemos reduzir i, se incluirmos mais features (covariáveis/variáveis explicativas) ao nosso modelo;\nii - É o viés ao quadrado do estimador \\widehat{g} (viés ao quadrado do modelo);\niii - É a variância do estimador \\widehat{g}."
+  },
+  {
+    "objectID": "index.html#balanço-viés-e-variância-2",
+    "href": "index.html#balanço-viés-e-variância-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "⚖️ Balanço viés e variância",
+    "text": "⚖️ Balanço viés e variância\n\nAssim, lembre-se que uma escolha adequada de \\widehat{g} nos garante que conseguiremos reduzir o risco preditivo R(g), pois a escolha apropriada implica em escolhermos um estimador de \\widehat{g} com balanço entre víes e variância.\n\nModelos com muitos parâmetros possuem viés relativamente baixo, porém, tendem a ter variância muito alta, em geral, uma vez que precisamos estimar muitos parâmetros. Já modelos com poucos parâmetros, normalmente tendem a ter variância baixa, acompanhados normalmente de um alto viés.\n\nGeralmente, modelos com muitos parâmetros nos levam a termos overffiting (super-ajuste), o que não é bom pois são acompanhados de alta variância. Já modelos muito simplistas nos conduzem à um ajuste muito ruim (underffiting ou sub-ajuste). Entendeu!?"
+  },
+  {
+    "objectID": "index.html#balanço-viés-e-variância-3",
+    "href": "index.html#balanço-viés-e-variância-3",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "⚖️ Balanço viés e variância",
+    "text": "⚖️ Balanço viés e variância\n\n\nEstude o códigolibrary(ggplot2)\nlibrary(tibble)\nlibrary(ggplot2)\nlibrary(patchwork)\n\n# Função de regressão verdadeira. Na prática é desconhecida.\nregressao_verdadeira &lt;- function(x)\n  45 * tanh(x/1.9 - 7) + 57\n\nobservacoes_regressao_real &lt;- function(n, desvio_padrao = 0.2) {\n  # Permitindo que o mesmo x possa ter dois pontos de y, como ocorre na\n  # pratica\n  seq_x &lt;- sample(seq(0, 17.5, length.out = n), size = n, replace = TRUE)\n\n  step &lt;- function(x)\n    regressao_verdadeira(x) + rnorm(n = 1L, mean = 0, sd = desvio_padrao)\n\n  tibble::tibble(y = purrr::map_vec(.x = seq_x, .f = step), x = seq_x)\n}\n\n# Usaremos uma regressão polinomial para tentar ajustar à regressão -------\nregressao_polinomial &lt;- function(n = 30L, desvio_padrao = 4, grau = 1L) {\n\n  dados &lt;- observacoes_regressao_real(n = n, desvio_padrao = desvio_padrao)\n\n  iteracoes &lt;- function(tibble_data, grau) {\n      x &lt;- tibble_data$x\n      iteracoes &lt;- lapply(X = 2L:grau, FUN = function(i) x^i)\n\n      result &lt;- cbind(tibble_data, do.call(cbind, iteracoes))\n      colnames(result)[(ncol(tibble_data) + 1):ncol(result)] &lt;- paste0(\"x\", 2L:grau)\n\n      as_tibble(result)\n  }\n\n  if(grau &gt;= 2L)\n    dados &lt;- iteracoes(dados, grau = grau)\n\n  ajuste &lt;- lm(formula = y ~ ., data = dados)\n  dados$y_chapeu &lt;- predict(ajuste, new.data = dados)\n\n  dados |&gt;\n    dplyr::relocate(y_chapeu, .before = x)\n}\n\nplotando &lt;- function(dados){\n  dados |&gt;\n    ggplot(aes(x = x, y = y_chapeu)) +\n    geom_point()\n}\n\nmc_ajustes &lt;- function(mc = 100L, n = 50L, desvio_padrao = 5, grau = 1L){\n\n  p &lt;-\n    ggplot(data = NULL) +\n      coord_cartesian(xlim = c(0, 17.5), ylim = c(0, 110)) +\n      ylab(\"Valores estimados\")\n\n  df &lt;- NULL\n  for(i in 1L:mc){\n    df &lt;- regressao_polinomial(n = n, desvio_padrao = desvio_padrao, grau = grau)\n    p &lt;- p + geom_line(data = df, aes(x = x, y = y_chapeu))\n  }\n  p +\n    stat_function(fun = regressao_verdadeira, col = \"red\", size= 1.4) +\n    labs(\n      title = \"Regressão Polinomial\",\n      subtitle = paste(\"Grau: \", grau)\n    ) +\n    theme(\n      plot.title = element_text(face = \"bold\"),\n      axis.title = element_text(face = \"bold\")\n    )\n}\n\n# Fixando uma semente\nset.seed(0)\n\np1 &lt;- mc_ajustes(grau = 1, n = 100, desvio_padrao = 10)\np2 &lt;- mc_ajustes(grau = 7, n = 100, desvio_padrao = 10)\np3 &lt;- mc_ajustes(grau = 70, n = 100, desvio_padrao = 10)\np4 &lt;- mc_ajustes(grau = 200, n = 100, desvio_padrao = 10)\n\np &lt;- ((p1 | p2) / (p3 | p4)) + plot_annotation(tag_levels = \"A\")\n\nggsave(p, file = \"imgs/vies_variancia.png\", device = \"png\", width = 40, height = 30, units = \"cm\")"
+  },
+  {
+    "objectID": "index.html#balanço-viés-e-variância-4",
+    "href": "index.html#balanço-viés-e-variância-4",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "⚖️ Balanço viés e variância",
+    "text": "⚖️ Balanço viés e variância\n\nExperimente de forma interativa altera a complefixade do modelo.\n\n \n\nPara ampliar a aplicação, clique aqui."
+  },
+  {
+    "objectID": "index.html#tuning-parameters",
+    "href": "index.html#tuning-parameters",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🎛 Tuning Parameters",
+    "text": "🎛 Tuning Parameters\n\nNo exemplo anterior, note que os parâmetros dos modelos são os coeficientes \\beta’s que indexam a regressão polinomial. Porém, perceba que á um parâmetro de sintonização (tuning parameter) que é o valor de p, isto é, qual o grau do polinômio que iremos utilizar.\n\nNormalmente a escolha é feita realizando um grid search por meio de um cross-validation.\n\nNo exemplo anterior, fizemos uma simulação e observamos que ao considerar graus nem muito grandes nem muito pequenos, aparentemente teremos escolhas razoáveis."
+  },
+  {
+    "objectID": "index.html#tuning-parameters-1",
+    "href": "index.html#tuning-parameters-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🎛 Tuning Parameters",
+    "text": "🎛 Tuning Parameters\n\nExemplo: Consedere os dados de expectativa de vida versus PIB per Capita, disponíveis aqui. Selecione o melhor estimador g da classe \\mathbb{G}, em que\n\\mathbb{G} = \\left\\{g(x)\\,\\,:\\,\\, \\beta_0 + \\sum_{i = 1}^p \\beta_i x^i\\,\\, \\text{para } p \\in \\{1, 2, \\cdots,11\\} \\right\\}. Note que selecionar o melhor polinômio é uma busca em p. Devemos utilizar o erro quadrático médio - EQM sob o conjunto de validação, uma vez que sabemos que apenas em um conjunto de validação ou em novas observações o estimador do risco pelo EQM é consistente, pela Lei dos Grandes Números.\n\nVamos utilizar a biblioteca rsample para a tarefa de validação cruzada. Leia a documentação da biblioteca, em especial, a da função vfold_cv, responsável por construir a validação cruzada. Na verdade ela faz a divisão da base de dados em v splits de tamanho aproximadamente iguais. Por padrão, v = 10. Esse é o procedimento de k-fold cross-validation que apresentamos aqui, em que v = k."
+  },
+  {
+    "objectID": "index.html#tuning-parameters-2",
+    "href": "index.html#tuning-parameters-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🎛 Tuning Parameters",
+    "text": "🎛 Tuning Parameters\n\nAlgumas observações gerais a respetio da biblioteca rsample, que são úteis para resolver esse problema:\n\n\nPara realizar uma primeira divisão do conjunto de dados (data splitting/hold-out), utiliza-se a função initial_split;\nPara acessar o conjunto de treinamento dos dados, usamos a função training;\nPara acessar o conjunto de teste, usamos a função testing;\nPara constuir todas as divisões da validação cruzada, entre treinamento e validação, no conjunto de treinamento inicial, usamos a função vfold_cv já mencionada;\nPara acessar o conjunto de treinamento de um split da validação cruzada, usamos a função analysis;\nPara acessar o conjunto de validação, utilizamos a função assessment."
+  },
+  {
+    "objectID": "index.html#tuning-parameters-3",
+    "href": "index.html#tuning-parameters-3",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🎛 Tuning Parameters",
+    "text": "🎛 Tuning Parameters\n\n Note que realizar uma validação cruzada é importante para podemos selecionar o melhor polinômio, i.e., o melhor valor de p. Caso venhamos negligenciar esse aspecto da análise, iremos cair na falácia de acreditarmos que quanto maior o grau do polinômio, maior será o poder preditivo do modelo. Isso não é verdade e você deverá selecionar o melhor modelo dentro de um esquema de validação cruzada.\n\nNo mundo de aprendizagem de máquina, muitos chamam o processo de encontrar o melhor hiperparâmetro de “tunagem”. Em vários modelos, podemos ter mais de um."
+  },
+  {
+    "objectID": "index.html#tuning-parameters-4",
+    "href": "index.html#tuning-parameters-4",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🎛 Tuning Parameters",
+    "text": "🎛 Tuning Parameters\n\nAs Figuras abaixo, mostram a avaliação dos polinômios da classe \\mathbb{G}, usando o risco estimado \\widehat{R}(g) pelo erro quadrático médio - EQM. Porém, a Figura A aprenseta a avaliação dos modelos, usando simplesmente o conjunto de treinamento e a Figura B aprensenta a avaliação do grau do polinômio considerando uma validação cruzada dentro do conjunto de treinamento.\n\n\nA mensagem equivocada passada pela Figura A é que supostamente aumentar a complexidade do modelo seria uma uma boa alternativa e nos conduziríamos à bons modelos preditivos. Mas sempre se lembre do equilíbrio que temos que ter entre viés e variância. A Figura B mostra que um polinômio com grau próximo à p = 8 é a melhor alternativa."
+  },
+  {
+    "objectID": "index.html#tuning-parameters-5",
+    "href": "index.html#tuning-parameters-5",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🎛 Tuning Parameters",
+    "text": "🎛 Tuning Parameters\n\nObserve o dashboard interativo! Sabemos que para que tenhamos uma boa estimativa do risco preditivo, devemos utilizar novas observações. No dashboard, é possível observar que a forma errada (usando o conjunto de treinamento para avaliar o risco), sugere que sempre será bom adicionar mais parâmetros ao modelo, levando a overfitting. Perceba que usando a forma correta (usando validação cruzada), o EQM (risco estimado) sugere que não podemos aumentar muito a quantidade de parâmetros."
+  },
+  {
+    "objectID": "index.html#tuning-parameters-6",
+    "href": "index.html#tuning-parameters-6",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🎛 Tuning Parameters",
+    "text": "🎛 Tuning Parameters\n\nAbaixo você poderá acessar o código que soluciona o problema. O parâmetro errado = FALSE da função validação no código que segue, conduz a solução correta (usando a validação cruzada), que sempre você deverá considerar na prática.\n\n\nEstude o código da solução de exemplolibrary(rsample)\nlibrary(yardstick)\nlibrary(tibble)\nlibrary(purrr)\nlibrary(ggplot2)\nlibrary(patchwork)\n\n# Lendo dados\nurl &lt;- \"https://github.com/prdm0/dados/raw/main/dados_expectativa_renda.RData\"\narquivo_temp &lt;- tempfile()\ndownload.file(url = url, destfile = arquivo_temp)\nload(arquivo_temp)\n\ndados &lt;-\n  dados_expectativa_renda |&gt;\n  dplyr::select(-CountryName) |&gt;\n  dplyr::rename(y = LifeExpectancy, x = GDPercapita)\n\niteracoes &lt;- function(tibble_data, grau) {\n  x &lt;- tibble_data$x\n  iteracoes &lt;- lapply(X = 2L:grau, FUN = function(i) x^i)\n\n  result &lt;- cbind(tibble_data, do.call(cbind, iteracoes))\n  colnames(result)[(ncol(tibble_data) + 1):ncol(result)] &lt;- paste0(\"x\", 2L:grau)\n\n  as_tibble(result)\n}\n\nregressao_polinomial &lt;- function(dados, grau = 1L) {\n  if(grau &gt;= 2L)\n    dados &lt;- iteracoes(dados, grau = grau)\n\n  lm(formula = y ~ ., data = dados)\n}\n\n# Divisão dos dados\ndivisao_inicial &lt;- rsample::initial_split(dados)\ntreinamento &lt;- rsample::training(divisao_inicial)\nteste &lt;- rsample::testing(divisao_inicial) # Teste final\n\n# v-folds cross-validation\nvalidacao &lt;- function(dados, grau = 1L, errado = FALSE, ...){\n\n  # Todas as divisões da validacao cruzada\n  cv &lt;- rsample::vfold_cv(dados, ...)\n\n  hiper &lt;- function(i){\n    treino &lt;- rsample::analysis(cv$splits[[i]]) # Treinamento\n    validacao &lt;- rsample::assessment(cv$splits[[i]]) # Validacação\n    ajuste &lt;- regressao_polinomial(dados = treino, grau = grau)\n\n    if(errado){\n      df_treino &lt;- iteracoes(treino, grau = grau)\n      df_treino &lt;- df_treino |&gt; dplyr::mutate(y_chapeu = predict(ajuste, newdata = df_treino))\n      yardstick::rmse(data = df_treino, truth = y, estimate = y_chapeu)$.estimate\n    } else {\n      df_validacao &lt;- iteracoes(validacao, grau = grau)\n      df_validacao &lt;- df_validacao |&gt; dplyr::mutate(y_chapeu = predict(ajuste, newdata = df_validacao))\n      yardstick::rmse(data = df_validacao, truth = y, estimate = y_chapeu)$.estimate\n    }\n  }\n  purrr::map_dbl(.x = seq_along(cv$splits), .f = hiper) |&gt;\n    mean()\n}\n\nplot_avaliacao &lt;- function(dados, errado = FALSE){\n  # Testando iterativamente, vários valores de p:\n  p &lt;- seq(1L:11L)\n  risco &lt;- purrr::map_dbl(.x = p, .f = \\(p) validacao(dados = dados, grau = p, errado = errado))\n  df_risco &lt;- tibble::tibble(p = p, risco = risco)\n\n  # Plotando\n  df_risco |&gt;\n    ggplot(aes(x = p, y = risco, color = risco)) +\n    geom_point(size = 5) +\n    scale_x_continuous(breaks = p) +\n    scale_y_continuous(breaks = p) +\n    labs(\n      title = \"Valiando o risco estimado para diversos graus do polinômio\",\n      subtitle = \"EQM no conjunto de validação\"\n    ) +\n    theme(\n      plot.title = element_text(size = 18, face = \"bold\"),\n      plot.subtitle = element_text(size = 16),\n      axis.text = element_text(size = 10),\n      axis.title = element_text(size = 14, face = \"bold\")\n    )\n}\n\n# Avaliacão errada versus correta\nset.seed(0)\ngrafico &lt;-\n  plot_avaliacao(dados, errado = TRUE) +\n  plot_avaliacao(dados, errado = FALSE) +\n  plot_annotation(tag_levels = c(\"A\", \"B\"))\n\nggsave(grafico, file = \"imgs/avaliacao_risco.png\", device = \"png\", width = 50, height = 20, units = \"cm\", limitsize = F)\n\nplot_bar &lt;- function(grau){\n  ruim &lt;- validacao(dados, errado = TRUE, grau = grau)\n  bom &lt;- validacao(dados, errado = FALSE, grau = grau)\n  df &lt;- tibble::tibble(x = c(\"Errado\", \"Certo\"), y = c(log(ruim), log(bom)))\n\n  df |&gt;\n    ggplot(aes(x = x, y = y)) +\n    geom_bar(stat = \"identity\") +\n    geom_text(aes(label = y), vjust = 0)\n}"
+  },
+  {
+    "objectID": "index.html#exercícios",
+    "href": "index.html#exercícios",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "📚 Exercícios",
+    "text": "📚 Exercícios\n\nExercício: Explique resumidamente o que é aprendizagem supervisionada e não-supervisionada. Cite um problema de aprendizagem supervisionada e um outro de aprendizagem não-supervisionada.\n\nExercício: Considere o conjunto de dados de Expectativa de vida versus PIB per Capita, disponível aqui. Considere a função g, da seguinte forma:\ng(x) = \\beta_0 + \\sum_{i = 1}^p \\beta_i x^i, com p \\in \\{1, 2, ..., 50\\}. Utilizando o erro quadrático médio observado, sem fazer nenhuma estratégia de divisão dos dados, implemente um código em R para checar qual o melhor modelo.\n\nExercício: Explique qual o motivo que faz com que o Erro Quadrático Médio - EQM para avaliar o desempenho de um modelo é ruim quando não adotamos nenhuma estratégia de divisão do conjunto de dados em treinamento e teste."
+  },
+  {
+    "objectID": "index.html#exercícios-1",
+    "href": "index.html#exercícios-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "📚 Exercícios",
+    "text": "📚 Exercícios\n\nExercício: Com suas palavras, explique o dilema de balanço entre víes e variância.\n\nExercício: Refaça o exercício do polinômio, utilizando a estratégia de data splitting, em que divide-se o conjunto de dados em treinamento e teste. Utilize o conjunto de teste para calcular a estimativa do risco, usando o EQM.\n\nExercício: Ainda considerando o exercício do polinômio, implemente uma estratégia de leave-one-out cross-validation e selecione o melhor modelo minimizando a função de risco.\n\nExercício: Por fim, considerando o exercício do polinômio, rafaça-o utilizando um procedimento de k-fold cross-validation. Considere k = 5. Dica: considere utiliza a biblioteca rsample."
+  },
+  {
+    "objectID": "index.html#melhor-subconjunto-de-covariáveis",
+    "href": "index.html#melhor-subconjunto-de-covariáveis",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Melhor subconjunto de covariáveis",
+    "text": "Melhor subconjunto de covariáveis\n\nO estimador de mínimos quadrados - EMQ, na presença de muitas features (covariáveis), i.e., quando temos d grande, possui um baixo poder preditivo devido a possibilidade de overfitting (super-ajuste). Isso, porquê haverá muitos parâmetros a serem estimados, e portanto, a função de regressão estimada \\widehat{r}({\\bf x}) terá baixo poder preditivo.\n\nIsso se deve ao fato do balanço de viés e variância. Havendo muitos parâmetros, como já tinhamos visto, a variância do modelo poderá ser muito alta.\n\nPortanto, deveremos buscar meios de encontrar o melhor (ao menos um bom) conjunto de covariáveis. Queremos diminuir a variância do Estimador de Mínimos Quadrados!"
+  },
+  {
+    "objectID": "index.html#melhor-subconjunto-de-covariáveis-1",
+    "href": "index.html#melhor-subconjunto-de-covariáveis-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Melhor subconjunto de covariáveis",
+    "text": "Melhor subconjunto de covariáveis\n\nA ideia para resolver esse problema é retirar algumas covariáveis do modelo de regressão, com o objetivo de diminuir a variância de \\widehat{g}.\n\nVocê poderá entender que estamos em busca de um estimador \\widehat{g} de g um pouco mais viesado. Trata-se de uma troca em que desejamos reduzir substancialmente a variabilidade do estimador do modelo em troca de um pouco mais de viés."
+  },
+  {
+    "objectID": "index.html#melhor-subconjunto-de-covariáveis-2",
+    "href": "index.html#melhor-subconjunto-de-covariáveis-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Melhor subconjunto de covariáveis",
+    "text": "Melhor subconjunto de covariáveis\n\nMatematicamente, uma maneira de fazer isso, é buscar a estimativa para\n\\widehat{\\beta}_{L_0} = \\argmin_{\\beta_0 \\in \\mathbb{R}, \\beta \\in \\mathbb{R}^d}\\sum_{k = 1}^n\\overbrace{\\left(y_k - \\beta_0 - \\sum_{i = 1}^d \\beta_i x_{k,i}\\right)^2}^{n \\times EQM} + \\lambda \\,\\,\\underbrace{\\sum_{i = 1}^d \\mathbb{I}(\\beta_i \\neq 0)}_{\\text{Penalização}}. \\tag{3}\nNote que a penalização \\sum_{i = 1}^d \\mathbb{I}(\\beta_i \\neq 0) nos conduz na direção de modelos com poucas covariáveis, quando \\lambda é um valor alto. Em particualr, quando \\lambda \\to \\infty, forçamos a retirada de todas as covariáveis \\beta_i’s, i.e., a solução para o problema seria \\widehat{\\beta}_{L_0} \\equiv (\\overline{y}, {\\bf 0}). Note que não há penalização para o intercepto \\beta_0.\n No outro extremo, para \\lambda = 0, temos o estimador de mínimos quadrados, em que nenhuma penalização será considerada.\nNão há uma forma fácil de minimizar \\widehat{\\beta}_{L_0}. 🤯"
+  },
+  {
+    "objectID": "index.html#melhor-subconjunto-de-covariáveis-3",
+    "href": "index.html#melhor-subconjunto-de-covariáveis-3",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Melhor subconjunto de covariáveis",
+    "text": "Melhor subconjunto de covariáveis\n\nPoderíamos, ingenuamente, pensar em ajustar todas as combinações possíveis de parâmetros e utilizar algum critério, por exemplo, o EQM em novas observações para escolher o melhor modelo entre todas as combinações possíveis. Isto é, escolher o melhor modelo entre todas as 2^d combinações possíveis de modelos em \\mathbb{G}.\n\nSe \\widehat{\\lambda} = \\frac{2}{n}\\widehat{\\sigma}^2, estimar \\widehat{\\beta}_{L_0} equivale uma busca entre 2^d modelos da classe \\mathbb{G}:\n\n\\begin{align*}\n\\mathbb{G} = \\{\n&g({\\bf x}) = \\widehat{\\beta}_0, \\\\\n&g({\\bf x}) = \\widehat{\\beta}_0 + \\widehat{\\beta}_1x_1,\\\\\n&g({\\bf x}) = \\widehat{\\beta}_0 + \\widehat{\\beta}_2x_2,\\\\\n&\\cdots\\\\\n&g({\\bf x}) = \\widehat{\\beta}_0 + \\widehat{\\beta}_dx_d,\\\\\n&g({\\bf x}) = \\widehat{\\beta}_0 + \\widehat{\\beta}_1x_1 + \\widehat{\\beta}_2x_2,\\\\\n&g({\\bf x}) = \\widehat{\\beta}_0 + \\widehat{\\beta}_1x_1 + \\widehat{\\beta}_3x_3,\\\\\n&\\cdots\\\\\n&g({\\bf x}) = \\widehat{\\beta}_0 + \\widehat{\\beta}_1x_1 + \\widehat{\\beta}_dx_d,\\\\\n&g({\\bf x}) = \\widehat{\\beta}_0 + \\widehat{\\beta}_1x_1 + \\widehat{\\beta}_2x_2 + \\widehat{\\beta}_3x_3,\\\\\n&g({\\bf x}) = \\widehat{\\beta}_0 + \\widehat{\\beta}_1x_1 + \\widehat{\\beta}_2x_2 + \\widehat{\\beta}_dx_d,\\\\\n&\\cdots\\\\\n&g({\\bf x}) = \\widehat{\\beta}_0 + \\widehat{\\beta}_1x_1 + \\widehat{\\beta}_2x_2 + \\widehat{\\beta}_3x_3 + \\cdots + &\\widehat{\\beta}_dx_d\n\\}.\n\\end{align*}"
+  },
+  {
+    "objectID": "index.html#melhor-subconjunto-de-covariáveis-4",
+    "href": "index.html#melhor-subconjunto-de-covariáveis-4",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Melhor subconjunto de covariáveis",
+    "text": "Melhor subconjunto de covariáveis\n\nUtilizar \\lambda = \\frac{2}{n}\\widehat{\\sigma}^2 é o mesmo que utilizar o critério AIC para determinar o melhor modelo, em que dado\n\\widehat{R}(g) = \\frac{1}{m}\\sum_{k = 1}^m \\underbrace{(\\widetilde{Y}_k - g({\\bf \\widetilde{X}}_k))^2}_{W_k}, em que (\\widetilde{{\\bf X}}_1, \\widetilde{Y}_1), \\cdots, (\\widetilde{{\\bf X}}_m, \\widetilde{Y}_m), representa o conjunto de teste, i.e., calculado com base em m observações em um conjundo de dados não utilizados para treinar o modelo, independentemente da estratégia de divisão utilizada, em que\n\\widehat{\\sigma}^2 = \\frac{1}{m}\\sum_{k = 1}^m (W_k - \\overline{W})^2, com \\overline{W} = \\frac{1}{m}\\sum_{k=1}^m W_k."
+  },
+  {
+    "objectID": "index.html#melhor-subconjunto-de-covariáveis-5",
+    "href": "index.html#melhor-subconjunto-de-covariáveis-5",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Melhor subconjunto de covariáveis",
+    "text": "Melhor subconjunto de covariáveis\n\nTemos que \\widehat{R}(g), calculado em novas observações (observações não utilizadas no treinamento), pode se valer do Teorema Central do Limite, uma vez que \\widehat{R}(g) é calculado em uma sequência de variáveis aleatórias i.i.d.’s. Então:\n\\widehat{R}(g) \\sim \\text{Normal}\\left(R(g), \\frac{1}{m}\\mathbb{V}[W_1]\\right).\nPortanto, um intervalo aleatório de aproximadamente 95\\% de confiança para o erro preditivo R(g) poderá ser calculado como:\n\\widehat{R}(g) \\pm 1,645 \\sqrt{\\frac{1}{m}\\widehat{\\sigma}^2}.\nO cálculo de um intervalo de confiança poderá ser útil para entendermos como está variando o risco preditivo do nosso modelo. Gostamos de ter modelos com intervalo de amplitude pequena. O intervalo poderá ser utilizado para fornecer insight de como escolher a divisão de treinamento e teste. Por exemplo, pode-se escolher o menor valor de m de modo que a amplitude seja a menor possível. 💭💡"
+  },
+  {
+    "objectID": "index.html#melhor-subconjunto-de-covariáveis-6",
+    "href": "index.html#melhor-subconjunto-de-covariáveis-6",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Melhor subconjunto de covariáveis",
+    "text": "Melhor subconjunto de covariáveis\n\nPor que essa seria uma escolha ingênua? Pense na situação em que temos d = 30, i.e., trinta covariáveis. Teríamos portanto 2^{30} modelos para ajustar, ou seja, um bilhão e setenta e três milhões, setecentos e quarenta e um mil, oitocentos e vinte e quatro modelos para ajustar. É um a quantidade absurda de modelos para serem estimados!\n\nSe d = 100, teríamos que estimar uma quantidade de modelos que a quantidade estimada de estrelas no universo. A depender do número de covariáveis, esqueça a ideia de estimar 2^d modelos! Não permita se frustrar facilmente. 😏"
+  },
+  {
+    "objectID": "index.html#regressão-stepwise",
+    "href": "index.html#regressão-stepwise",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Regressão Stepwise\n",
+    "text": "Regressão Stepwise\n\n Devido a impossibilidade de experimentar uma grande quantidade de modelos (2^d), existe uma série de algoritmos (heurísticas), que visam reduzir a quantidade de modelos avaliados. Um dos mais conhecidos é o forward stepwise. Trata-se de um algoritmo sequencial, que em cada passo, apenas uma variável é adicionada:\n\n1 - Para j = 1, \\cdots, d, ajuste a regressão de Y na j-ésima variável X_j. Seja \\widehat{R}(g_j) o risco estimado desta função. Então,\n\\widehat{j} = \\argmin_j \\widehat{R}(g_j)\\,\\,\\,\\,\\,\\, \\text{e}\\,\\,\\,\\,\\,\\, S = \\{\\widehat{j}\\}. 2 - Para cada j \\in S^c, ajuste a regressão Y = \\beta_jX_j + \\sum_{s \\in S}\\beta_sX_S, em que \\widehat{R}(g_j) é o risco estimado desta função. Defina\n\\widehat{j} = \\argmin_{j \\in S^c} \\widehat{R}(g_j)\\,\\,\\,\\,\\,\\, \\text{e atualize}\\,\\,\\,\\,\\,\\, S \\leftarrow \\{S \\cup \\widehat{j}\\}.\n3 - Repita os passos anteriores até que todas as variáveis estejam em S ou até quando não seja mais possível ajustar o modelo de regressão.\n4 - Selecione o modelo com menor risco estimado."
+  },
+  {
+    "objectID": "index.html#regressão-stepwise-1",
+    "href": "index.html#regressão-stepwise-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Regressão Stepwise\n",
+    "text": "Regressão Stepwise\n\n\nUtilizar o algoritmo de seleção de variáveis foward stepwise, ao invés de buscarmos o melhor ajuste entre 2^d possíveis modelos, que muitas vezes é impossível, precisaremos investigar apenas 1 + d(d + 1)/2 modelos. Reduzimos a complexidade da seleção que antes era um problema exponencial. Melhor, não?!"
+  },
+  {
+    "objectID": "index.html#penalização",
+    "href": "index.html#penalização",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Penalização",
+    "text": "Penalização\n\nQuando temos modelos que envolve d parâmetros e que temos controle sobre eles (conhecemos muito bem cada um deles), acrescentar algum tipo de penalização à função objetivo poderá ser útil. A penalização é uma medida de complexidade, em que é útil para equilibrar o modelo, de modo a tentar buscar um equilibrio entre viés e variância, discutidos anteriormente. Assim, sob novas observações, desejamos estimar o risco R(g), por\n\nR(g) \\approx EQM(g) + \\mathcal{P}(g).\n\nDesejamos minimiar R(g), mas não a custa de muitos parâmetros, pois assim teríamos overfitting. Portanto, para muitos parâmetros temos que ter EQM baixo, porém, \\mathcal{P}(g) deve ser alto. Já em modelos viesados, quando temos poucos parâmetros, o EQM normalmente é alto, mas a complexidade \\mathcal{P}(g) deve ser baixo, pois temos um modelo mais simplista."
+  },
+  {
+    "objectID": "index.html#aic-e-bic",
+    "href": "index.html#aic-e-bic",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "AIC e BIC",
+    "text": "AIC e BIC\n\nExistem diversas penalizações, em que o AIC (Akaike Information Criterion) e BIC (Bayesian Information Criterion) são as mais conhecidas. Com base nesses critérios, temos que\n\n\n\n\n\nAIC: EQM + \\frac{2}{n\\,d\\, \\widehat{\\sigma}^2}.\n\n\nBIC: EQM + \\frac{\\log(n)}{n\\, d\\, \\widehat{\\sigma}^2}.\n\n\n\n\\widehat{\\sigma}^2 = \\frac{1}{m}\\sum_{k = 1}^m (W_k - \\overline{W})^2.\n\n\nAqui, d é a quantidade de parâmetros no modelo e \\widehat{\\sigma}^2 é uma estimativa da variância do erro, que para um conjunto de teste suficientemente grande, poderá ser considerado o estimador de \\widehat{\\sigma}^2 conforme descrito anteriormente. Segundo James, Gareth, et al. An introduction to statistical learning. Ed. 2, p. 233, assume-se o modelo com todos os preditores para o cálculo de \\widehat{\\sigma}^2."
+  },
+  {
+    "objectID": "index.html#lasso",
+    "href": "index.html#lasso",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Lasso",
+    "text": "Lasso\n\n\n\nO lasso foi desenvolvido pelo Robert Tibshirani, em um artigo publicado no artigo Regression Shrinkage and Selection via the Lasso."
+  },
+  {
+    "objectID": "index.html#lasso-1",
+    "href": "index.html#lasso-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Lasso",
+    "text": "Lasso\n\nO lasso tem como objetivo encontrar um estimador de uma regressão linear que possui risco menor que o de mínimos quadrados, possuindo duas grandes vantagens, em relação ao stepwise:\n\n\nSua solução é mais rápida, ainda que stepwise seja consideravalmente mais rápido do que avaliar 2^d modelos;\nO lasso é capaz de selecionar automaticamente as variáveis mais relevantes para o modelo, reduzindo a dimensionalidade dos dados.\n\n\nA segunda vantagem ocorre, uma vez que ele realiza uma penalização que leva à estimativas de alguns coeficientes \\beta_i igual a zero, eliminando as variáveis menos importantes. Normalmente o vetor \\beta é esparso!"
+  },
+  {
+    "objectID": "index.html#lasso-2",
+    "href": "index.html#lasso-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Lasso",
+    "text": "Lasso\n\nNo lasso, ao invés de reduzir a variância do estimador de mínimos quadrados usando a complexidade (L_0 = \\sum_{i = 1}^d\\mathbb{I}(\\beta_i) \\neq 0) em Equação 3, usa-se a penalização L_1 = \\sum_{i = 1}^d|\\beta_i|. No lasso, buscamos:\n\\widehat{\\beta}_{L_1,\\lambda} = \\argmin_{\\beta_0 \\in \\mathbb{R}, \\beta \\in \\mathbb{R}^d}\\sum_{k = 1}^n\\overbrace{\\left(y_k - \\beta_0 - \\sum_{i = 1}^d \\beta_i x_{x,i}\\right)^2}^{n \\times EQM} + \\overbrace{\\lambda \\,\\,\\underbrace{\\sum_{j = 1}^d|\\beta_j|}_{\\text{Penalização}}}^{\\text{A magnitude do coeficiente importa!}}, em que \\lambda é um tuning parameter 🎛. Perceba que quando \\lambda = 0, caímos no caso do modelo de regressão por mínimos quadrados sem penalização. Já, quando \\lambda \\rightarrow \\infty, temos um modelo em que todas as variáveis são removidas, uma vez que a primeira parte do modelo torna-se insignificante."
+  },
+  {
+    "objectID": "index.html#lasso-3",
+    "href": "index.html#lasso-3",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Lasso",
+    "text": "Lasso\n\nQuando \\lambda é grande, temos que\n\\sum_{k = 1}^n \\left(y_k - \\beta_0 - \\sum_{j = 1}^d \\beta_j x_{k,j}\\right)^2 + \\lambda \\sum_{j = 1}^d |\\beta_j| \\approx \\lambda \\sum_{j = 1}^d |\\beta_j|, e portanto, \\widehat{\\beta}_1 = 0, \\cdots, \\widehat{\\beta}_d = 0.\n\nA escolha de \\lambda, em geral, é feita utilizado algum método de validação cruzada. 🔍"
+  },
+  {
+    "objectID": "index.html#lasso-4",
+    "href": "index.html#lasso-4",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Lasso",
+    "text": "Lasso\n\nO lasso é extremamente rápido, e nos últimos anos, diversos algoritmos foram construídos para fazer essa taréfa de forma eficiente. O LARS foi um dos primeiros algoritmos desenvolvidos em 2010. Para detalhes, ler Friedman, J. H. (2001). Greedy function approximation: a gradient boosting machine. Annals of statistics, 1189–1232.\n\nNo R, a regressão lasso poderá ser feita usando a biblioteca glmnet, assim:\n\n\nlibrary(glmnet)\najuste &lt;- cv.glmnet(x, y, alpha = 1)"
+  },
+  {
+    "objectID": "index.html#ridge",
+    "href": "index.html#ridge",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Ridge",
+    "text": "Ridge\n\nUma alternativa que surgiu antes do lasso é a regressão ridge. Ela foi proposta no artigo Hoerl, A. E. & Kennard, R. W. (1970). Ridge regression: Biased estimation for nonorthogonal problems. Technometrics, 12(1), 55–67. Aqui, utiliza-se como medida de complexidade a norma L_2, em que, o estimador é dado por:\n\\widehat{\\beta}_{L_2,\\lambda} = \\argmin_{\\beta_0 \\in \\mathbb{R}, \\beta \\in \\mathbb{R}^d}\\sum_{k = 1}^n\\overbrace{\\left(y_k - \\beta_0 - \\sum_{i = 1}^d \\beta_i x_{x,i}\\right)^2}^{n \\times EQM} + \\lambda \\,\\,\\underbrace{\\sum_{j = 1}^d\\beta_j^2}_{\\text{Penalização}}. Diferentemente do lasso, a regressão ridge possui solução analítica, dada por:\n\\widehat{\\beta}_{L_2,\\lambda} = ({\\bf X}^{T}{\\bf X} + \\lambda\\mathbb{\\bf I}_0)^{-1}{\\bf X}^{T}Y, em que \\mathbb{\\bf I}_0 é a matriz identidade (d + 1) \\times (d + 1) com \\mathbb{\\bf I}_0(1,1) = 0."
+  },
+  {
+    "objectID": "index.html#ridge-1",
+    "href": "index.html#ridge-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Ridge",
+    "text": "Ridge\n\nA regressão ridge poderá ter uma variância menor que a regressão lasso, porém seu viés poderá ser maior. Outra característica da regressão ridge é que ela possue uma única solução, enquanto a regressão lasso poderá ter multiplas soluções. Os autores também demonstram que a regressão ridge lida melhor com multicolinearidade.\n\nNo R, também poderemos utilizar a biblioteca glmnet:\n\n\nlibrary(glmnet)\najuste &lt;- cv.glmnet(x, y, alpha = 0)"
+  },
+  {
+    "objectID": "index.html#elastic-net",
+    "href": "index.html#elastic-net",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Elastic Net",
+    "text": "Elastic Net\n\nNa documentação da função glmnet, note que a função realiza o lasso mais o ridge, i.e.,\n\n(1 - \\alpha)/2 ||\\beta_j||^2_2 + \\alpha||\\beta_j||_2.\n\nNote que para \\alpha = 1, temos uma regressão do tipo lasso, já para \\alpha = 0 recaímos para uma penalização do tipo ridge. Para \\alpha diferente de zero e um, temos uma elastic net, ok?!"
+  },
+  {
+    "objectID": "index.html#elastic-net-1",
+    "href": "index.html#elastic-net-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Elastic Net",
+    "text": "Elastic Net\n\nNesse tipo de modelo de regressão, combina-se as penalizações da regressão ridge com a utilizada na regressão lasso, herdando os benefícios do uso de cada um dos métodos isoladamente, melhorando a estabilidade das estimativas do lasso, em situações de multicolinearidade entre as variáveis e também permitindo a seleção automática de variáveis.\n(1-\\alpha)\\widehat{\\beta}_{L_2,\\lambda} + \\alpha\\widehat{\\beta}_{L_1,\\lambda}, em que 0 \\leq \\alpha \\leq1. Em R, basta especificar para a função glmnet um valor de \\alpha diferente de 0 e 1. Esse valor normalmente é escolhido por um procedimento de validação cruzada."
+  },
+  {
+    "objectID": "index.html#exemplo-emq-ridge-lasso-e-elastic-net",
+    "href": "index.html#exemplo-emq-ridge-lasso-e-elastic-net",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Exemplo: EMQ, Ridge, Lasso e Elastic Net",
+    "text": "Exemplo: EMQ, Ridge, Lasso e Elastic Net\n\nExemplo: Considere uma base de dados simulada, com n = 500 observações, de tal forma que\nY = 3X_{1} - 2X_2 + X_3 -3X_4 + X_5 + \\sum_{i = 6}^{20}0X_i + \\varepsilon, em que \\varepsilon \\sim \\text{Normal}(0, 0.5^2) e X_i \\sim \\text{Normal}(0, 1), independentes, com i = 1, \\cdots, 20. Desejamos ajustar quatro modelos de regressão. Para o caso do Estimador de Mínimos Quadrados - EMQ e do modelo Ridge, que não tem seleção automática de variáveis, usaremos todas as variáveis. Desejamos avaliar o risco estimado de cada uma das regressões."
+  },
+  {
+    "objectID": "index.html#exemplo-emq-ridge-lasso-e-elastic-net-1",
+    "href": "index.html#exemplo-emq-ridge-lasso-e-elastic-net-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Exemplo: EMQ, Ridge, Lasso e Elastic Net",
+    "text": "Exemplo: EMQ, Ridge, Lasso e Elastic Net\n\n\nSolução utilizando o tidymodelslibrary(tidymodels)\nlibrary(tibble)\nlibrary(purrr)\nlibrary(ggplot2)\nlibrary(patchwork)\n\n# Removendo possíveis conflitos de pacotes --------------------------------\ntidymodels::tidymodels_prefer()\n\n# Função para gerar os dados ----------------------------------------------\ngerando_dados &lt;- function(n = 300L){\n  regressao &lt;- function(i){\n    x &lt;- rnorm(n = 5L)\n    y &lt;- 3*x[1L] - 2*x[2L] + x[3L] - 3*x[4L] + x[5L] + rnorm(1L, 0, 0.5)\n    tibble(\n      y = y,\n      x1 = x[1L],\n      x2 = x[2L],\n      x3 = x[3L],\n      x4 = x[4L],\n      x5 = x[5L]\n    )\n  }\n  dados &lt;- purrr::map(.x = 1L:n, .f = regressao) |&gt;\n    purrr::list_rbind()\n\n  parte_esparsa &lt;- matrix(0, n, 15)\n\n  dados &lt;- cbind(dados, parte_esparsa)\n  colnames(dados) &lt;- c(\"y\", paste0(\"x\", 2L:ncol(dados)))\n  as_tibble(dados)\n}\n\ndados &lt;- gerando_dados(n = 500)\n\n# Divisão inicial da base -------------------------------------------------\nhod_out &lt;- initial_split(dados, prop = 0.7)\ntreinamento &lt;- training(hod_out)\nteste &lt;- testing(hod_out)\n\n# Setando o modelo (set engine) -------------------------------------------\nmodelo_eqm &lt;-\n  linear_reg(penalty = 0, mixture = 0) |&gt;\n  set_mode(\"regression\") |&gt;\n  set_engine(\"glmnet\")\n\nmodelo_ridge &lt;-\n  linear_reg(penalty = tune::tune(), mixture = 0) |&gt;\n  set_mode(\"regression\") |&gt;\n  set_engine(\"glmnet\")\n\nmodelo_lasso &lt;-\n  parsnip::linear_reg(penalty = tune::tune(), mixture = 1) |&gt;\n  set_mode(\"regression\") |&gt;\n  parsnip::set_engine(\"glmnet\")\n\nmodelo_elastic &lt;-\n  parsnip::linear_reg(penalty = tune::tune(), mixture = tune::tune()) |&gt;\n  set_mode(\"regression\") |&gt;\n  parsnip::set_engine(\"glmnet\")\n\n# Criando workflows -------------------------------------------------------\nall_wf &lt;-\n  workflow_set(\n    preproc = list(y ~ . ),\n    models = list(eqm = modelo_eqm, ridge = modelo_ridge, lasso = modelo_lasso, elastic = modelo_elastic),\n    cross = TRUE\n  )\n\n# Validação cruzada -------------------------------------------------------\nset.seed(0)\ncv &lt;- rsample::vfold_cv(treinamento, v = 5L)\n\n# Setando a métrica -------------------------------------------------------\nmetrica &lt;- yardstick::metric_set(rmse)\n\n# Tunagem dos hiperparâmetros ---------------------------------------------\n# A semente (seed = 0) faz com que dentro da validação cruzada para cada modelo\n# a semente seja sempre a mesma.\ntunagem &lt;-\n  all_wf |&gt;\n  workflow_map(\n    seed = 0,\n    verbose = TRUE,\n    resamples = cv,\n    grid = 50,\n    metrics = metrica\n  )\n\n# Rank dos melhores modelos -----------------------------------------------\nmodelos_rank &lt;- tunagem |&gt; rank_results()\n\nmelhor_eqm &lt;-\n  tunagem |&gt;\n  extract_workflow_set_result(\"formula_eqm\") |&gt;\n  select_best(\"rmse\")\n\nmelhor_ridge &lt;-\n  tunagem |&gt;\n  extract_workflow_set_result(\"formula_ridge\") |&gt;\n  select_best(\"rmse\")\n\nmelhor_lasso &lt;-\n  tunagem |&gt;\n  extract_workflow_set_result(\"formula_lasso\") |&gt;\n  select_best(\"rmse\")\n\nmelhor_elastic &lt;-\n  tunagem |&gt;\n  extract_workflow_set_result(\"formula_elastic\") |&gt;\n  select_best(\"rmse\")\n\nfinalizando_eqm &lt;-\n  tunagem |&gt;\n  extract_workflow(\"formula_eqm\") |&gt;\n  finalize_workflow(melhor_eqm) |&gt;\n  last_fit(split = hod_out)\n\nfinalizando_ridge &lt;-\n  tunagem |&gt;\n  extract_workflow(\"formula_ridge\") |&gt;\n  finalize_workflow(melhor_ridge) |&gt;\n  last_fit(split = hod_out)\n\nfinalizando_lasso &lt;-\n  tunagem |&gt;\n  extract_workflow(\"formula_lasso\") |&gt;\n  finalize_workflow(melhor_lasso) |&gt;\n  last_fit(split = hod_out)\n\nfinalizando_elastic &lt;-\n  tunagem |&gt;\n  extract_workflow(\"formula_elastic\") |&gt;\n  finalize_workflow(melhor_elastic) |&gt;\n  last_fit(split = hod_out)\n\n# Visualizando as métricas\nfinalizando_eqm |&gt; collect_metrics()\nfinalizando_ridge |&gt; collect_metrics()\nfinalizando_lasso |&gt; collect_metrics()\nfinalizando_elastic |&gt; collect_metrics()\n\n# Visualizando predições:\nfinalizando_eqm |&gt; collect_predictions()\nfinalizando_ridge |&gt; collect_predictions()\nfinalizando_lasso |&gt; collect_predictions()\nfinalizando_elastic |&gt; collect_predictions()"
+  },
+  {
+    "objectID": "index.html#exercícios-2",
+    "href": "index.html#exercícios-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "📚 Exercícios",
+    "text": "📚 Exercícios\nExercício: Utilizando os dados de vinho vermelho🍷, disponíveis aqui, faça uma pequena análise exploratória dos dados. No link do Kaggle você consegue uma explicação sobre o que significa cada uma das variáveis."
+  },
+  {
+    "objectID": "index.html#exercícios-3",
+    "href": "index.html#exercícios-3",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "📚 Exercícios",
+    "text": "📚 Exercícios\n\nExercício: Utilizando os dados de vinho vermelho🍷, disponíveis aqui, obtenha o melhor modelo de regressão linear para modelar a qualidade do vinho, considerando:\n\n\n\ng_1 - Método dos mínimos quadrados;\n\ng_2 - Regressão ridge;\n\ng_3 - Regressao lasso;\n\ng_4 - Elastic Net.\n\n\nVocê deverá selecionar o melhor modelo de cada uma das classes de modelos de regressão e construir uma tabela com o risco estimado \\widehat{R}(g_i),\\,\\, i = 1, \\cdots, 4, em que aqui, g_i representa o modelo geral não estimado. Ao fim, construa quatro gráficos mostrando o ajuste de cada um dos modelos.\n\nExercício: Se você utilizou o tidymodels para resolver o exercício anterior, rafaça usando a biblioteca glmnet. Caso contrário, resolva-o utilizando o tidymodels."
+  },
+  {
+    "objectID": "index.html#exercícios-4",
+    "href": "index.html#exercícios-4",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "📚 Exercícios",
+    "text": "📚 Exercícios\n\nExercício: Considere agora o conjunto de dados de despesas médicas, disponível aqui. Refaça o mesmo exercício dos dados de vinho vermelho, em que aqui, o objetivo é prever a variável charges. Perceba que algumas variáveis são qualitativas, e portanto, você deverá transformá-las em dummy. Indique os melhores cenários dos quatro modelos e informe qual modelo você utilizaria. Explique! Dica: usando a função step_dummy() da biblioteca recipes, você poderá facilmente transformar variáveis qualitativas em numéricas."
+  },
+  {
+    "objectID": "index.html#workflows-1",
+    "href": "index.html#workflows-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "workflows \n",
+    "text": "workflows \n\n\nVocê cria um objeto da classe workflow usando a função workflow() do pacote worflows e adiciona a especificação do modelo e a receita a ele. Um exemplo simples:\n\n\n\n\n\n🎉 workflows = receita + modelo.\n\n\n\nlibrary(tidymodels) # Carrega o meta-pacote\n\n# 1. Definir a Especificação do Modelo (pacote parsnip)\n#    Ex: Regressão Linear\nespecificacao_modelo &lt;- linear_reg() |&gt;\n  set_engine(\"lm\") |&gt;\n  set_mode(\"regression\")\n\n# 2. Definir a Receita de Pré-processamento (pacote recipes)\n#    Ex: Normalizar preditores numéricos e criar dummies\ndados_exemplo &lt;- tibble(\n  x = 1:10,\n  y = x * 2 + rnorm(10),\n  cat = factor(rep(letters[1:2], 5))\n)\n\nreceita_exemplo &lt;- recipe(y ~ x + cat, data = dados_exemplo) |&gt;\n  step_normalize(x) |&gt;\n  step_dummy(cat)\n\n# 3. Combinar usando workflow()\nmeu_workflow &lt;- workflow() |&gt;\n  add_recipe(receita_exemplo) |&gt; # Adiciona a receita\n  add_model(especificacao_modelo) # Adiciona o modelo\n\nmeu_workflow # Visão geral do workflow"
+  },
+  {
+    "objectID": "index.html#workflows-2",
+    "href": "index.html#workflows-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "workflows \n",
+    "text": "workflows \n\n\n\n\n\nO pacote workflows age como um “maestro” e conecta o pré-processamento (recipes) com o modelo parsnip.\n\n\n\nO pacote workflows conecta o pré-processamento (faze realizada com o pacote recipes) com o modelo (definido com o pacote parsnip).\n\nUso geral:\n\nwf &lt;- workflows::workflow() |&gt;\n  workflows::add_recipe(receita) |&gt;\n  workflows::add_model(modelo)\n\nou\n\nwf &lt;-\nworkflows::workflow(\n  receita,\n  modelo\n)"
+  },
+  {
+    "objectID": "index.html#workflows-3",
+    "href": "index.html#workflows-3",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "workflows \n",
+    "text": "workflows \n\n\n\n\nUm fluxo de trabalho ruim, em que o modelo não se comunica com o pré-processamento. 😢"
+  },
+  {
+    "objectID": "index.html#interações-entre-variáveis",
+    "href": "index.html#interações-entre-variáveis",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Interações Entre Variáveis: : \n",
+    "text": "Interações Entre Variáveis: : \n\n\nAs fórmulas do R permitem especificar termos de interação diretamente. Para isso você deve usar o step_interact() e o operador :. Por exemplo, para prever mpg usando wt, hp e a interação entre wt e hp (wt * hp), você pode fazer o seguinte:\n# Prever 'mpg' usando 'wt', 'hp' e a interação entre 'wt' e 'hp'\nreceita &lt;- recipe(\n  mpg ~ wt + hp + qsec,\n  data = mtcars_tbl\n) |&gt;\n  step_interact(\n    ~ wt : hp\n  )\n📌 Use : com cautela e geralmente certifique-se de que os efeitos principais também estão no modelo."
+  },
+  {
+    "objectID": "index.html#interações-entre-variáveis-utilizando-o-operador",
+    "href": "index.html#interações-entre-variáveis-utilizando-o-operador",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Interações entre variáveis: utilizando o operador “:” \n",
+    "text": "Interações entre variáveis: utilizando o operador “:” \n\n\nAs fórmulas do R permitem especificar termos de interação diretamente. Para isso você deve usar o step_interact() e o operador “:”. Por exemplo, para prever mpg usando wt, hp e a interação entre wt e hp (wt * hp), você pode fazer o seguinte:\n\n\n# Prever 'mpg' usando 'wt', 'hp' e a interação entre 'wt' e 'hp'\nreceita &lt;- recipe(\n  mpg ~ wt + hp + qsec,\n  data = mtcars_tbl\n) |&gt;\n  step_interact(\n    ~ wt : hp\n  )\n\n\n📌 Utilize o operador “:” com cautela. Certifique-se de que os efeitos principais também estão no modelo."
+  },
+  {
+    "objectID": "index.html#workflows-4",
+    "href": "index.html#workflows-4",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "workflows \n",
+    "text": "workflows \n\n\n\n\nUm fluxo de trabalho bom, em que o modelo se comunica com o pré-processamento. 😊"
+  },
+  {
+    "objectID": "index.html#o-fluxo-típico-de-modelagem",
+    "href": "index.html#o-fluxo-típico-de-modelagem",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "O Fluxo Típico de Modelagem",
+    "text": "O Fluxo Típico de Modelagem\nUm fluxo de trabalho comum em modelagem preditiva envolve várias etapas:\n\nSeparação dos dados (Treino/Teste) e Reamostragem (rsample) [6-11].\nPré-processamento e Feature Engineering (recipes) [6-8, 10, 12-18].\nEspecificação do Modelo (parsnip) [6, 7, 19-21].\nCombinar Pré-processamento e Modelo.\nTuning de hiperparâmetros (tune) [3, 7, 17, 19, 21-28].\nAvaliação de Desempenho (yardstick) [3, 6, 7, 21, 29].\nAjuste final e Predição (last_fit) [19, 30-32]."
+  },
+  {
+    "objectID": "index.html#introduzindo-o-pacote-workflows",
+    "href": "index.html#introduzindo-o-pacote-workflows",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Introduzindo o Pacote workflows\n",
+    "text": "Introduzindo o Pacote workflows\n\n\nO pacote workflows é um dos pacotes principais do tidymodels(https://www.tidymodels.org/).\nSeu papel fundamental é gerenciar e combinar o pré-processamento de dados (definido com recipes(https://recipes.tidymodels.org/)) com a especificação do modelo (definida com parsnip(https://parsnip.tidymodels.org/))."
+  },
+  {
+    "objectID": "index.html#workflow-o-varal-da-modelagem",
+    "href": "index.html#workflow-o-varal-da-modelagem",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Workflow: O “Varal” da Modelagem",
+    "text": "Workflow: O “Varal” da Modelagem\n\nPense em um objeto workflow como um “varal” [10, 21] ou um “container” [18].\nÉ um objeto único [18, 21, 22] onde você “pendura” a receita (recipes) e a especificação do modelo (parsnip) [10, 21].\nEste objeto encapsula o processo completo de “preparar os dados e depois aplicar o modelo” [23].\n\n\nVantagem Chave: Organização [23]. Centraliza a lógica, evitando gerenciar receita e modelo separadamente em cada etapa do fluxo."
+  },
+  {
+    "objectID": "index.html#fluxo-de-trabalho-em-machine-learning",
+    "href": "index.html#fluxo-de-trabalho-em-machine-learning",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Fluxo de Trabalho em Machine Learning",
+    "text": "Fluxo de Trabalho em Machine Learning\nUm processo típico envolve várias etapas:\n\n\nSeparação dos dados (Treino/Teste) e Reamostragem (pacote rsample) [2, 4, 7-9].\n\nPré-processamento e Engenharia de Features (pacote recipes) [2, 4, 7, 9-15].\n\nEspecificação do Modelo (pacote parsnip) [2, 4, 7, 9-11].\n\nCombinação de Pré-processamento e Modelo.\n\nTuning de Hiperparâmetros (pacote tune) [2, 9, 11, 16-19].\n\nAvaliação de Desempenho (pacote yardstick) [6, 9, 19].\n\nAjuste Final e Predição (last_fit) [2, 20]."
+  },
+  {
+    "objectID": "index.html#workflows-o-varal-da-modelagem",
+    "href": "index.html#workflows-o-varal-da-modelagem",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "workflows: o “varal” 🧦 da modelagem \n",
+    "text": "workflows: o “varal” 🧦 da modelagem \n\n\n\n\nPense em um objeto da classe workflow como um “varal” ou um “container”.\nÉ um objeto único onde você “pendura” a receita (construída com o pacote recipe) e a especificação do modelo (especificado com o pacote parsnip).\nEste objeto encapsula o processo completo de preparar os dados e depois aplicar o modelo.\n\nVantagem Chave: Organização. Centraliza a lógica, evitando gerenciar receita e modelo separadamente em cada etapa do fluxo.\n\n\n\n🧦👕👖👚 Pense no papel do pacote workflows como um “varal” em que penduramos receita e modelo."
+  },
+  {
+    "objectID": "index.html#workflows-5",
+    "href": "index.html#workflows-5",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "workflows \n",
+    "text": "workflows \n\nEm resumo,\n\nparnip + recipes + workflows:\n\n\n# Definindo uma receita e a fórmula\nreceita &lt;- recipe(\n  Species ~ .,\n  data = iris\n) |&gt;\n  step_log(all_numeric_predictors()) |&gt;\n  step_dummy(all_nominal_predictors(), one_hot = TRUE)\n\n# Definindo o modelo\nmodelo &lt;- rand_forest(\n  trees = 500,\n  mtry = 2\n) |&gt;\n  set_engine(\"ranger\", importance = \"impurity\") |&gt;\n  set_mode(\"classification\")\n\n# receita + modelo = workflow\nwf &lt;- workflows::workflow() |&gt;\n  workflows::add_recipe(receita) |&gt;\n  workflows::add_model(modelo)"
+  },
+  {
+    "objectID": "index.html#workflows-6",
+    "href": "index.html#workflows-6",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "workflows \n",
+    "text": "workflows"
+  },
+  {
+    "objectID": "index.html#workflows-criando-múltiplos-fluxos",
+    "href": "index.html#workflows-criando-múltiplos-fluxos",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "workflows: criando múltiplos fluxos \n",
+    "text": "workflows: criando múltiplos fluxos \n\nQuando precisamos comparar diferentes combinações de receitas de pré-processamento e especificações de modelos, a abordagem recomendada é utilizar workflow_set(). Adiante, discutiremos detalhadamente essa função e seu complemento workflow_map(), especialmente útil para processos de tuning de hiperparâmetros.\n\n📌 Atenção: As funções workflow_set() e workflow_map() fazem parte do pacote workflowsets que complementa o pacote workflows.\n\n\n\n\n\n# É algo assim parecido com:\nreceita_1 &lt;- recipes(\n    y ~ .,\n    data = treino\n  ) |&gt;\n  step_*()\n  step_*()\n\nreceita_2 &lt;- recipes(\n    y ~ .,\n    data = treino\n  ) |&gt;\n  step_*()\n  step_*()\n\nmodelo_1 &lt;- rand_forest() |&gt;\n  set_engine(\"ranger\") |&gt;\n  set_mode(\"regression\")\n\nmodelo_2 &lt;- rand_forest() |&gt;\n  set_engine(\"rpart\") |&gt;\n  set_mode(\"regression\")\n\nwf_set &lt;- workflow_set(\n  # Passando os modelos\n  # (modelo_1, modelo_2)\n  # Passando as receitas\n  # (receita_1, receita_2)\n)\n\n# Tunando os hiperparâmetros\nworkflow_map(wf_set)"
+  },
+  {
+    "objectID": "index.html#tune-o-problema-dos-hiperparâmetros",
+    "href": "index.html#tune-o-problema-dos-hiperparâmetros",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🎛 tune: o problema dos hiperparâmetros \n",
+    "text": "🎛 tune: o problema dos hiperparâmetros \n\n\n\nModelos de Machine Learning (ML) frequentemente possuem hiperparâmetros.\nHiperparâmetros são valores de configuração que não são aprendidos a partir dos dados durante o treino do modelo. Eles precisam ser definidos antes do processo de ajuste.\n\nExemplos: penalidade (penalty) e mistura (mixture) em modelos lineares regularizados (como no pacote glmnet), número de árvores (trees), mtry ou min_n no pacote randomForest/ranger, profundidade de árvores de decisão (tree_depth), grau de liberdade (deg_free) em splines.\nA escolha dos valores para esses hiperparâmetros afeta diretamente o desempenho e a generalização do modelo.\nComo encontrar a melhor combinação de hiperparâmetros para o seu problema e dados específicos? Isso é o que chamamos de tunagem ou tuning."
+  },
+  {
+    "objectID": "index.html#tune-preparando-o-terreno-para-a-tunagem",
+    "href": "index.html#tune-preparando-o-terreno-para-a-tunagem",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🎛 tune: preparando o terreno para a tunagem \n",
+    "text": "🎛 tune: preparando o terreno para a tunagem \n\nO processo geralmente envolve:\n\n\nMarcar parâmetros tunáveis:\n\nDentro da especificação do modelo (parsnip) ou de um step de receita (recipe), use a função tune() para indicar quais parâmetros devem ser tunados.\nExemplo: linear_reg() |&gt; set_engine(\"glmnet\") |&gt; set_args(penalty = tune(), mixture = tune()). Todas estas funções são do pacote parsnip.\n\n\n\nDefinir a estratégia de reamostragem:\n\nÉ essencial usar reamostragem (como cross-validation) para obter uma avaliação robusta do desempenho de cada combinação de hiperparâmetros e evitar overfitting nos dados de treino.\nO pacote rsample fornece funções para isso, sendo vfold_cv() para k-fold cross-validation a mais comum.\n\n\n\nCriar o workflow:\n\nCombine sua receita (se houver) e a especificação do modelo em um objeto workflow(). Este workflow conterá as indicações dos parâmetros a serem tunados."
+  },
+  {
+    "objectID": "index.html#tune-tunando-parâmetros-da-receita",
+    "href": "index.html#tune-tunando-parâmetros-da-receita",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🎛 tune: tunando parâmetros da receita \n",
+    "text": "🎛 tune: tunando parâmetros da receita \n\n\n\n\nA tunagem não se limita aos hiperparâmetros do modelo!\nParâmetros em etapas de pré-processamento também podem precisar de otimização.\nAssim como nos modelos, marque os parâmetros desejados com tune() dentro da função do step.\nExemplo: step_pca(all_predictors(), num_comp = tune()) ou step_spline(longitude, latitude, deg_free = tune()).\nAo incluir uma receita com parâmetros tune() em um workflow(), o processo de tunagem com tune_grid() avaliará simultaneamente as combinações de hiperparâmetros do modelo e da receita.\n\n\n\n\n\nHummmm, então quer dizer que posso tunar parâmetros dos steps step_*() de uma receita?"
+  },
+  {
+    "objectID": "index.html#tune-estude-a-documentação-do-pacote-tune",
+    "href": "index.html#tune-estude-a-documentação-do-pacote-tune",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🎛 tune: estude a documentação do pacote tune \n",
+    "text": "🎛 tune: estude a documentação do pacote tune"
+  }
+]
