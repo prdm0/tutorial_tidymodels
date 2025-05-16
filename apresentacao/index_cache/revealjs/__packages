@@ -25,3 +25,11 @@ kknn
 xml2
 httr
 stringr
+DT
+downlit
+tidyverse
+readr
+forcats
+lubridate
+future
+iml

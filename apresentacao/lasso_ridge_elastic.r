@@ -4,7 +4,7 @@ library(purrr)
 library(ggplot2)
 library(patchwork)
 library(future)
-library(probably)
+library(iml)
 
 rm(list = ls())
 
@@ -15,32 +15,29 @@ tidymodels::tidymodels_prefer()
 future::plan(future::multisession)
 
 # Função para gerar os dados ----------------------------------------------
-gerando_dados <- function(n = 300L) {
-  regressao <- function(i) {
-    x <- rnorm(n = 5L)
-    y <- 3 * x[1L] - 2 * x[2L] + x[3L] - 3 * x[4L] + x[5L] + rnorm(1L, 0, 0.5)
-    tibble(
-      y = y,
-      x1 = x[1L],
-      x2 = x[2L],
-      x3 = x[3L],
-      x4 = x[4L],
-      x5 = x[5L]
-    )
-  }
-  dados <- purrr::map(.x = 1L:n, .f = regressao) |>
-    purrr::list_rbind()
+gerar_dados <- function(n = 500, semente = 123) {
+  set.seed(semente)
 
-  parte_esparsa <- matrix(0, n, 15)
+  # Gerar matriz X (500 x 20) com variáveis normais independentes
+  x <- matrix(rnorm(n * 20, mean = 0, sd = 1), nrow = n, ncol = 20)
+  colnames(x) <- paste0("x", 1:20)
 
-  dados <- cbind(dados, parte_esparsa)
-  colnames(dados) <- c("y", paste0("x", 2L:ncol(dados)))
-  as_tibble(dados)
+  # Coeficientes verdadeiros (beta)
+  beta <- c(3, -2, 1, -3, 1, rep(0, 15)) # X6 a X20 têm efeito zero
+
+  # Gerar erro aleatório (epsilon)
+  epsilon <- rnorm(n, mean = 0, sd = 0.5)
+
+  # Calcular Y conforme o modelo
+  y <- as.vector(x %*% beta + epsilon)
+  dados <- tibble(y = y, as_tibble(x))
+
+  return(dados)
 }
 
 # Fixando a semente para reprodutibilidade -----------------------------
 set.seed(123)
-dados <- gerando_dados(n = 500L)
+dados <- gerar_dados(n = 1500L)
 
 # Divisão inicial da base -------------------------------------------------
 dados_hold_out <- initial_split(dados, prop = 0.7, strata = y)
@@ -106,7 +103,7 @@ tunagem <-
 
 # Rank dos melhores modelos -----------------------------------------------
 modelos_rank <- tunagem |>
-  rank_results()
+  workflowsets::rank_results()
 
 # Visualizando os resultados na tunagem -------------------------------
 # utilizando a EQM. Não é a avaliação final
@@ -159,13 +156,14 @@ print(risco_preditivo)
 
 # Modelo final -------------------------------------------------------------
 modelo_final <-
-  melhores_workflows$elastic |>
+  melhores_workflows$lasso |>
   fit(data = treino)
 
 previsoes <- augment(modelo_final, new_data = teste)
 
 # Visualizando as previsões ---------------------------------------------------
-previsoes |>
+p1 <-
+  previsoes |>
   ggplot(aes(x = y, y = .pred)) +
   geom_point() +
   geom_smooth(formula = y ~ x, method = "lm", se = FALSE) +
@@ -183,3 +181,20 @@ var_imp <- modelo_final |>
 ggplot(var_imp, aes(x = Importance, y = reorder(Variable, Importance))) +
   geom_col(fill = "steelblue") +
   labs(title = "Importância das Variáveis", y = "Variável")
+
+# Gráfico PDP + ICE --------------------------------
+# Criar o predictor (objeto que o iml usa para interpretar o modelo)
+# Usando iml --------------------------------------------------------------
+preditor <- iml::Predictor$new(
+  extract_fit_parsnip(modelo_final),
+  data = treino[-1L], # (data frame com convariáveis) removendo a variável resposta
+  y = treino$y
+)
+efeitos <- iml::FeatureEffects$new(preditor, method = "pdp+ice")
+imp <- iml::FeatureImp$new(preditor, loss = "rmse")
+p2 <- efeitos$plot()
+p3 <- imp$plot()
+
+# Plotando os gráficos -----------------------------------------------
+
+(p2 | p3) / p1

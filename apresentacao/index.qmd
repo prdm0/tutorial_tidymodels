@@ -19,7 +19,7 @@ format:
     incremental: false
     code-tools: true
     auto-stretch: true
-    code-link: true
+    code-link: false
     html-math-method: katex
     auto-animate: false
     code-line-numbers: true
@@ -2213,9 +2213,6 @@ O processo geralmente envolve:
 <iframe src="https://tune.tidymodels.org/reference/index.html" width="100%" height="800px" frameborder="0"></iframe>
 :::
 
-
-
-
 ## 🎛 tune: tunando o hiperparâmetro do modelo lasso <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
 
 <br>
@@ -2407,7 +2404,7 @@ ajuste <- cv.glmnet(x, y, alpha = 0)
 
 ![](gifs/teclado-anime.gif){width="21%"}
 
-## Elastic Net
+## Elastic net
 
 <br>
 
@@ -2443,7 +2440,7 @@ em que $0 \leq \alpha \leq1$. Em R, basta especificar para a função
 
 ![](gifs/teclado-anime.gif){width="21%"}
 
-## Exemplo: EMQ, Ridge, Lasso e Elastic Net
+## Exemplo: lm, ridge, lasso e elastic net
 
 <br>
 
@@ -2460,20 +2457,26 @@ avaliar o risco estimado de cada uma das regressões.
 
 ![](gifs/teclado-anime.gif){width="21%"}
 
-## Exemplo: EMQ, Ridge, Lasso e Elastic Net
+## Exemplo: lm, ridge, lasso e elastic net
 
 <br>
 
 ```{r}
-#| code-fold: true
+#| code-fold: false
 #| code-summary: "Solução utilizando o tidymodels"
 #| eval: true
+#| warning: false
+#| message: false
+#| cache: true
+#| class-output: "no-page-break"
+#| code-line-numbers: 1-7|12|14-15|39-40|42-45|48-51|53-61|63-69|71-82|84-85|87-102|114-128|130-144|146-153|155-159|164-167|184-195
 library(tidymodels)
 library(tibble)
 library(purrr)
 library(ggplot2)
 library(patchwork)
 library(future)
+library(iml)
 
 rm(list = ls())
 
@@ -2484,35 +2487,32 @@ tidymodels::tidymodels_prefer()
 future::plan(future::multisession)
 
 # Função para gerar os dados ----------------------------------------------
-gerando_dados <- function(n = 300L) {
-  regressao <- function(i) {
-    x <- rnorm(n = 5L)
-    y <- 3 * x[1L] - 2 * x[2L] + x[3L] - 3 * x[4L] + x[5L] + rnorm(1L, 0, 0.5)
-    tibble(
-      y = y,
-      x1 = x[1L],
-      x2 = x[2L],
-      x3 = x[3L],
-      x4 = x[4L],
-      x5 = x[5L]
-    )
-  }
-  dados <- purrr::map(.x = 1L:n, .f = regressao) |>
-    purrr::list_rbind()
+gerar_dados <- function(n = 500, semente = 123) {
+  set.seed(semente)
 
-  parte_esparsa <- matrix(0, n, 15)
+  # Gerar matriz X (500 x 20) com variáveis normais independentes
+  x <- matrix(rnorm(n * 20, mean = 0, sd = 1), nrow = n, ncol = 20)
+  colnames(x) <- paste0("x", 1:20)
 
-  dados <- cbind(dados, parte_esparsa)
-  colnames(dados) <- c("y", paste0("x", 2L:ncol(dados)))
-  as_tibble(dados)
+  # Coeficientes verdadeiros (beta)
+  beta <- c(3, -2, 1, -3, 1, rep(0, 15)) # X6 a X20 têm efeito zero
+
+  # Gerar erro aleatório (epsilon)
+  epsilon <- rnorm(n, mean = 0, sd = 0.5)
+
+  # Calcular Y conforme o modelo
+  y <- as.vector(x %*% beta + epsilon)
+  dados <- tibble(y = y, as_tibble(x))
+
+  return(dados)
 }
 
 # Fixando a semente para reprodutibilidade -----------------------------
 set.seed(123)
-dados <- gerando_dados(n = 5000L)
+dados <- gerar_dados(n = 1500L)
 
 # Divisão inicial da base -------------------------------------------------
-dados_hold_out <- initial_split(dados, prop = 0.8, strata = y)
+dados_hold_out <- initial_split(dados, prop = 0.7, strata = y)
 treino <- training(dados_hold_out)
 teste <- testing(dados_hold_out)
 
@@ -2575,16 +2575,19 @@ tunagem <-
 
 # Rank dos melhores modelos -----------------------------------------------
 modelos_rank <- tunagem |>
-  rank_results()
+  workflowsets::rank_results()
 
-# Visualizando os resultados na tunagem -------------------------------
+# Visualizando os resultados na tunagem -----------------------------------
 # utilizando a EQM. Não é a avaliação final
 # do modelo.
-autoplot(tunagem, metric = "rmse") +
-  aes(color = wflow_id)
+p1 <- autoplot(tunagem, metric = "rmse") +
+        aes(color = wflow_id)
 
 # Extrair melhores configurações de hiperparâmetros ----------------------
 melhores_configs <- list(
+  lm = tunagem |>
+    extract_workflow_set_result("formula_lm") |>
+    select_best(metric = "rmse"),
   ridge = tunagem |>
     extract_workflow_set_result("formula_ridge") |>
     select_best(metric = "rmse"),
@@ -2598,6 +2601,9 @@ melhores_configs <- list(
 
 # Extraindo os melhores workflows e finalizando os modelos ------------
 melhores_workflows <- list(
+  lm = tunagem |>
+    extract_workflow("formula_lm") |>
+    finalize_workflow(melhores_configs$lm),
   ridge = tunagem |>
     extract_workflow("formula_ridge") |>
     finalize_workflow(melhores_configs$ridge),
@@ -2624,37 +2630,112 @@ risco_preditivo <- tibble::tibble(
   EQM = unlist(resultados_teste)
 )
 
-print(risco_preditivo)
+#  Visualizando o risco preditivo dos modelos avaliados
+# print(risco_preditivo)
 
 # Modelo final -------------------------------------------------------------
 modelo_final <-
-  melhores_workflows$elastic |>
+  melhores_workflows$lasso |>
   fit(data = treino)
 
+# Previsões com o modelo final ---------------------------------------------
 previsoes <- augment(modelo_final, new_data = teste)
 
-# Visualizando as previsões ---------------------------------------------------
-previsoes |>
+# Visualizando as previsões ------------------------------------------------
+p2 <-
+  previsoes |>
   ggplot(aes(x = y, y = .pred)) +
   geom_point() +
   geom_smooth(formula = y ~ x, method = "lm", se = FALSE) +
   labs(
-    title = "Previsões do modelo Elastic Net",
+    title = "Previsões do modelo Lasso",
     x = "y",
-    y = "Valores previstos"
+    y =  expression(hat(y))
   )
 
-# Extrair importância das variáveis para o modelo final
-var_imp <- modelo_final |>
-  extract_fit_parsnip() |>
-  vip::vi()
+# Gráfico PDP + ICE --------------------------------
+# Criar o predictor (objeto que o iml usa para interpretar o modelo)
+# Usando iml --------------------------------------------------------------
+preditor <- iml::Predictor$new(
+  extract_fit_parsnip(modelo_final),
+  data = treino[-1L], # (data frame com convariáveis) removendo a variável resposta
+  y = treino$y
+)
+efeitos <- iml::FeatureEffects$new(preditor, method = "pdp+ice")
+imp <- iml::FeatureImp$new(preditor, loss = "rmse")
+p3 <- efeitos$plot()
+p4 <- imp$plot()
 
-ggplot(var_imp, aes(x = Importance, y = reorder(Variable, Importance))) +
-  geom_col(fill = "steelblue") +
-  labs(title = "Importância das Variáveis", y = "Variável")
+# Plotando os gráficos -----------------------------------------------
+# p5 <- (p2) / (p3 | p1)
 ```
 
-## 💻 Tidymodels
+## Exemplo: lm, ridge, lasso e elastic net
+
+<br>
+
+Partial Dependence Plot - PDP e Individual Conditional Expectation - ICE.
+
+```{r}
+#| eval: true
+#| echo: false
+p3
+```
+
+## Exemplo: lm, ridge, lasso e elastic net
+
+<br>
+
+```{r}
+#| eval: true
+#| echo: false
+
+p1 <- p1 +
+  labs(
+    title = "Desempenho dos modelos na validação cruzada",
+    subtitle = "Lasso, Ridge e Elastic Net",
+    y = "Raíz do Erro Quadrático Médio (RMSE)",
+  ) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+
+p2 <- p2 +
+  labs(
+    title = "Previsões do modelo escolhido - Lasso",
+    subtitle = "Avaliando as previsões do conjunto de teste",
+    x = "y",
+    y =  expression(hat(y))
+  ) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+p1 | p2
+```
+
+## Importância das variáveis <img src="imgs/iml.png" height="120px" style="vertical-align:middle;">
+
+<br>
+
+O gráficos vip, ICE e PDP são gráficos que nos ajudam a entender o modelo
+escolhido. Eles foram produziros utilizando o pacote [**iml**](https://cran.r-project.org/web/packages/iml/index.html). Alguns pacotes que podem ser utilizados para interpretação de modelos são:
+
+<br>
+
+::: columns
+::: {.column width="50%"}
+1. [**iml**](https://cran.r-project.org/web/packages/iml/index.html);
+2. [**DALEX**](https://modeloriented.github.io/DALEX/);
+3. [**flashlight**](https://mayer79.github.io/flashlight/);
+4. [**vip**](https://koalaverse.github.io/vip/);
+5. [**lime**](https://cran.r-project.org/web/packages/lime/index.html).
+:::
+::: {.column width="50%"}
+[![Imagem em aquarela da logo do pacote **iml**.](imgs/aquarela_iml.png){fig-alt="Imagem em aquarela fazendo alusão ao uso do pacote iml." width="40%" height="auto"}](https://cran.r-project.org/web/packages/iml/index.html)
+:::
+:::
+
+## 💻 Visão geral: tidymodels
 
 <br>
 
@@ -2666,7 +2747,7 @@ fornece um conjunto de funções úteis em tarefas específicas no workflow
 de machine learning.](imgs/workflow_tidymodels.png){fig-aling="center"
 width="70%"}
 
-## 💻 Tidymodels
+## 💻 Visão geral: tidymodels
 
 <br>
 
@@ -2730,19 +2811,6 @@ knitr::include_graphics("imgs/whole-game-final-fit.jpg")
 
 knitr::include_graphics("imgs/whole-game-final-performance.jpg")
 ```
-
-## ⚖️ Balanço viés e variância
-
-<br>
-
-A ideia de precisão e exatidão estão ligadas ao viés e variância do
-modelo $g$, em que precisão está ligado a ideia de variância pequena e
-exatidão está ligada a ideia de baixo viés. A ideia é termos um
-estimador próximo o que ilustra o item [d]{.red}. Muitas vezes temos um
-estimador nas situações [b]{.red} e [c]{.red}. O ideal é o balanço de
-viés e variância, que seria o estimador ilustrado pelo item [d]{.red}.
-
-![](imgs/precisao_exatidao.png){fig-align="center" width="55%"}
 
 ## ⚖️ Balanço viés e variância
 
@@ -2907,6 +2975,9 @@ Experimente de forma interativa altera a complefixade do modelo.
 <br>
 
 Para ampliar a aplicação, clique [aqui](https://pedro-rafael.shinyapps.io/shiny_apps/).
+
+## API
+
 
 #  {.title background-image="gifs/aplausos.gif" background-size="100% 100%"}
 
