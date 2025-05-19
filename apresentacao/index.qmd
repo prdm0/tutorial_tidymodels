@@ -1,7 +1,7 @@
 ---
 title: "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina"
 author: "<br><br>Prof. Dr. Pedro Rafael D. Marinho<br>Departamento de Estatística - UFPB<br> Programa de Pós-Graduação em Modelos de Decisão e Saúde - PPGMDS<br>"
-date: '`r Sys.Date()`'
+date: '04/06/2025'
 format:
   revealjs:
     theme: [default, style.scss]
@@ -1502,7 +1502,7 @@ transformação logarítmica.
 ::: columns
 ::: {.column width="50%"}
 
-**Tirar o logaritmo e normalizar (melhor):**
+**Tirar o logaritmo e normalizar (🥳 [melhor]{.underline}):**
 
 ```{r}
 #| eval: false
@@ -1522,9 +1522,7 @@ receita <-
 :::
 ::: {.column width="50%"}
 
-**Normalizar e tomar o logaritmo:**
-
-<br>
+**Normalizar e tomar o logaritmo (😔 [ruim]{.underline}):**
 
 ```{r}
 #| eval: false
@@ -2215,19 +2213,17 @@ O processo geralmente envolve:
 
 ## 🎛 tune: tunando o hiperparâmetro do modelo lasso <img src="imgs/tune.png" height="120px" style="vertical-align:middle;">
 
-<br>
-
 ::: columns
 ::: {.column width="50%"}
 O lasso foi desenvolvido pelo Robert Tibshirani, em um artigo publicado
 no artigo [Regression Shrinkage and Selection via the
 Lasso](https://www.jstor.org/stable/2346178).
 
-![](imgs/lasso.png)
+![](imgs/lasso.png){fig-aling="right" width="45%"}
 :::
 
 ::: {.column width="50%"}
-![](imgs/P55268-Robert-Tibshirani.jpg){width="60%"}
+[![Robert Tibshirani, professor no Departamentos de Estatística e Ciência de Dados Biomédicos da Universidade de Stanford.](imgs/P55268-Robert-Tibshirani.jpg){fig-alt="Robert Tibshirani, professor no Departamentos de Estatística e Ciência de Dados Biomédicos da Universidade de Stanford." width="50%" height="auto"}](https://en.wikipedia.org/wiki/Robert_Tibshirani)
 :::
 :::
 
@@ -2812,172 +2808,117 @@ knitr::include_graphics("imgs/whole-game-final-fit.jpg")
 knitr::include_graphics("imgs/whole-game-final-performance.jpg")
 ```
 
-## ⚖️ Balanço viés e variância
+## 🔌 API - Application Programming Interface
 
 <br>
 
-Um grande apelo para o uso do risco quadrático, i.e., risco que utiliza
-a função de perda $L_2$ é sua interpretabilidade. Temos que o risco
-quadrático $R(g)$ condicional a um novo ${\bf x}$ poderá ser decomposto
-por:
+*   Criamos modelos poderosos em R, muitas vezes usando um framework como o [**tidymodels**](https://www.tidymodels.org/packages/).
+*   O objetivo final é usar esses modelos na "produção", ou seja, aplicá-los em novos dados para fazer previsões ou classificações.
+*   Mas como outros sistemas (escritos em Python, Ruby, Rust, Go, Java, etc.) ou usuários sem conhecimento de R podem usar esses modelos?
 
-$$\mathbb{E}\left[(Y - \widehat{g}({\bf X}))^2| {\bf X} = {\bf x}\right] = \underbrace{\mathbb{V}[Y | {\bf X = x}]}_{\mathrm{i - Variância\,\, intrínseca}} + \overbrace{(r({\bf x}) - \mathbb{E}[\widehat{g}({\bf x})])^2}^{\mathrm{ii - Viés\, ao\, quadrado\, do\, modelo}} + \underbrace{\mathbb{V}[\widehat{g}({\bf x})]}_{\mathrm{iii - Variância\, do\, modelo}}.$$ {#eq-decomposicao-risco-l2}
-**Temos que**:
+::: columns
+::: {.column width="60%"}
+![](gifs/api.gif){width="100%"}
+:::
+::: {.column width="40%"}
+![](gifs/hum_02.gif){width="40%"}
+:::
+:::
 
-<br>
+## 🔌 API - Application Programming Interface
 
-i - É a variância intrínseca da vairável resposta (*label*), que não
-depende da função $\widehat{g}$ escolhida e, assim, não poderá ser
-reduzida. Na verdade, poderemos reduzir $i$, se incluirmos mais
-*features* (covariáveis/variáveis explicativas) ao nosso modelo;
-
-ii - É o viés ao quadrado do estimador $\widehat{g}$ (viés ao quadrado
-do modelo);
-
-iii - É a variância do estimador $\widehat{g}$.
-
-## ⚖️ Balanço viés e variância
+::: columns
+::: {.column width="40%"}
 
 <br>
 
-Assim, lembre-se que uma escolha adequada de $\widehat{g}$ nos garante
-que conseguiremos reduzir o risco preditivo $R(g)$, pois a escolha
-apropriada implica em escolhermos um estimador de $\widehat{g}$ com
-balanço entre víes e variância.
+- Uma **API** - *Application Programming Interface* permite que diferentes sistemas de software interajam entre si.
+
+- Ao ["servir"]{.mark} seu modelo R via uma API, você o torna um **serviço** que outros sistemas podem **chamar** para obter previsões.
+
+- Isso significa que a lógica do modelo (criada no R) pode ser utilizada por aplicações escritas em **qualquer outra linguagem** ou plataforma.
+:::
+::: {.column width="60%"}
+[![O **tidymodels** preparando um ~~modelo~~ café e o robô API servindo o usuário.](imgs/cafe_api.png){fig-alt="O tidymodels preparando um modelo e a API servindo o usuário." width="100%" height="auto"}](https://vetiver.posit.co/)
+:::
+:::
+
+#  {.title background-image="imgs/aquarela_api_fundo.png" background-size="100% 100%"}
+
+
+## 🔌 vetiver: construindo API para modelos R <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
+
+::: columns
+
+::: {.column width="50%"}
+*   Após treinar seu modelo (ex: com [**tidymodels**](https://www.tidymodels.org/packages/)), você obtém um **objeto final** (um `workflow` é ideal, combinando pré-processamento e modelo).
+*   Este objeto pode ser **salvo** (formato `.rds` ou `.rda` - um arquivo serial contendo o workflow da modelagem).
+*   [**vetiver**](https://vetiver.posit.co/) pega este objeto salvo via `pins` e automaticamente cria uma API via [**plumber**](https://www.rplumber.io/) para [**servir previsões**]{.mark}.
+*   Ele funciona com diversos tipos de objetos de modelo R, incluindo os de tidymodels (`parsnip`, `workflows`), `caret`, etc.
+:::
+::: {.column width="50%"}
+[![Imagem em aquarela da logo do pacote **vetiver**.](imgs/aquarela_vetiver.png){fig-alt="Imagem em aquarela fazendo alusão ao uso do pacote vetiver." width="70%" height="auto"}](https://vetiver.tidymodels.org/)
+:::
+:::
+
+#  {.title background-image="imgs/ml_ops_cycle.png" background-size="100% 100%"}
+
+## 🔌 vetiver: construindo API para modelos R <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
 
 <br>
-
-Modelos com muitos parâmetros possuem viés relativamente baixo, porém,
-tendem a ter variância muito alta, em geral, uma vez que precisamos
-estimar muitos parâmetros. Já modelos com poucos parâmetros, normalmente
-tendem a ter variância baixa, acompanhados normalmente de um alto viés.
-
 <br>
 
-Geralmente, modelos com muitos parâmetros nos levam a termos
-[*overffiting*]{.red} (super-ajuste), o que não é bom pois são
-acompanhados de alta variância. Já modelos muito simplistas nos conduzem
-à um ajuste muito ruim ([*underffiting*]{.red} ou sub-ajuste).
-Entendeu!?
 
-![](gifs/mais_ou_menos.gif)
+![](imgs/ml_ops_cycle.svg){width="100%"}
 
-## ⚖️ Balanço viés e variância
-
-<br>
+## 🔌 vetiver: um exemplo de uso <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
 
 ```{r}
-#| code-fold: true
-#| code-summary: "Estude o código"
 #| eval: false
-library(ggplot2)
-library(tibble)
-library(ggplot2)
-library(patchwork)
+#| code-line-numbers: 1-3|4-5|7-8|10-11|13-14,16-17|19-20|22-25|27-33|35-37
+#| class-source: smallcode
+library(vetiver)
+library(pins)
 
-# Função de regressão verdadeira. Na prática é desconhecida.
-regressao_verdadeira <- function(x)
-  45 * tanh(x/1.9 - 7) + 57
+# Dados e modelo bem simples (sem tuning, só para exemplo)
+modelo_lm <- lm(mpg ~ hp + wt, data = mtcars)
 
-observacoes_regressao_real <- function(n, desvio_padrao = 0.2) {
-  # Permitindo que o mesmo x possa ter dois pontos de y, como ocorre na
-  # pratica
-  seq_x <- sample(seq(0, 17.5, length.out = n), size = n, replace = TRUE)
+# Criar um objeto "vetiver" (nome do modelo: "modelo_lm_v1")
+v <- vetiver_model(model = modelo_lm, model_name = "modelo_lm_v1")
 
-  step <- function(x)
-    regressao_verdadeira(x) + rnorm(n = 1L, mean = 0, sd = desvio_padrao)
+# Criar um board local (pasta com nome "modelos")
+board <- board_folder("modelos", versioned = TRUE)
 
-  tibble::tibble(y = purrr::map_vec(.x = seq_x, .f = step), x = seq_x)
-}
+# Pinar o modelo no board
+vetiver_pin_write(board = board, vetiver_model = v)
 
-# Usaremos uma regressão polinomial para tentar ajustar à regressão -------
-regressao_polinomial <- function(n = 30L, desvio_padrao = 4, grau = 1L) {
+# Verificar o que está no board
+pin_list(board) # Deve mostrar "modelo_lm_v1"
 
-  dados <- observacoes_regressao_real(n = n, desvio_padrao = desvio_padrao)
+# Verificando detalhes das versões
+pin_versions(board, "modelo_lm_v1")
 
-  iteracoes <- function(tibble_data, grau) {
-      x <- tibble_data$x
-      iteracoes <- lapply(X = 2L:grau, FUN = function(i) x^i)
+vetiver_pin_read(
+  board,
+  "modelo_lm_v1"
+)
 
-      result <- cbind(tibble_data, do.call(cbind, iteracoes))
-      colnames(result)[(ncol(tibble_data) + 1):ncol(result)] <- paste0("x", 2L:grau)
+# Gerar o arquivo da API
+vetiver_write_plumber(
+  board,
+  "modelo_lm_v1",
+  file = "api_modelo.R",
+  version = NULL # NULL = última versão
+)
 
-      as_tibble(result)
-  }
-
-  if(grau >= 2L)
-    dados <- iteracoes(dados, grau = grau)
-
-  ajuste <- lm(formula = y ~ ., data = dados)
-  dados$y_chapeu <- predict(ajuste, new.data = dados)
-
-  dados |>
-    dplyr::relocate(y_chapeu, .before = x)
-}
-
-plotando <- function(dados){
-  dados |>
-    ggplot(aes(x = x, y = y_chapeu)) +
-    geom_point()
-}
-
-mc_ajustes <- function(mc = 100L, n = 50L, desvio_padrao = 5, grau = 1L){
-
-  p <-
-    ggplot(data = NULL) +
-      coord_cartesian(xlim = c(0, 17.5), ylim = c(0, 110)) +
-      ylab("Valores estimados")
-
-  df <- NULL
-  for(i in 1L:mc){
-    df <- regressao_polinomial(n = n, desvio_padrao = desvio_padrao, grau = grau)
-    p <- p + geom_line(data = df, aes(x = x, y = y_chapeu))
-  }
-  p +
-    stat_function(fun = regressao_verdadeira, col = "red", size= 1.4) +
-    labs(
-      title = "Regressão Polinomial",
-      subtitle = paste("Grau: ", grau)
-    ) +
-    theme(
-      plot.title = element_text(face = "bold"),
-      axis.title = element_text(face = "bold")
-    )
-}
-
-# Fixando uma semente
-set.seed(0)
-
-p1 <- mc_ajustes(grau = 1, n = 100, desvio_padrao = 10)
-p2 <- mc_ajustes(grau = 7, n = 100, desvio_padrao = 10)
-p3 <- mc_ajustes(grau = 70, n = 100, desvio_padrao = 10)
-p4 <- mc_ajustes(grau = 200, n = 100, desvio_padrao = 10)
-
-p <- ((p1 | p2) / (p3 | p4)) + plot_annotation(tag_levels = "A")
-
-ggsave(p, file = "imgs/vies_variancia.png", device = "png", width = 40, height = 30, units = "cm")
-```
-
-![](imgs/vies_variancia.png){fig-align="center" width="60%"}
-
-## ⚖️ Balanço viés e variância
-
-<br>
-
-Experimente de forma interativa altera a complefixade do modelo.
-
-<br>
-
-```{=html}
- <iframe id="example1" src="https://pedro-rafael.shinyapps.io/shiny_apps/" style="border: none; width: 100%; height: 90%" frameborder="0"></iframe>
+# Iniciar a API localmente (rodará na porta 8080)
+pr <- plumber::plumb("api_modelo.R")
+pr$run(port = 8080) # Executando a API na porta 8080
 ```
 
 <br>
 
-Para ampliar a aplicação, clique [aqui](https://pedro-rafael.shinyapps.io/shiny_apps/).
-
-## API
-
+![](imgs/ml_ops_cycle.svg){width="40%"}
 
 #  {.title background-image="gifs/aplausos.gif" background-size="100% 100%"}
 

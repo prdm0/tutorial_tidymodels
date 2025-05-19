@@ -424,7 +424,7 @@
     "href": "index.html#recipes-6",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "recipes ",
-    "text": "recipes \n\n\n\nTirar o logaritmo e normalizar (melhor):\n\nreceita &lt;-\n  recipes::recipe(\n    y ~ .,\n    data = dados_treino\n  ) |&gt;\n  step_log(\n    all_numeric_predictors()\n  ) |&gt;\n  step_normalize(\n    all_numeric_predictors()\n  )\n\n\nNormalizar e tomar o logaritmo:\n\n\nreceita &lt;-\n  recipes::recipe(\n    y ~ .,\n    data = dados_treino\n  ) |&gt;\n  step_normalize(\n    all_numeric_predictors()\n  ) |&gt;\n  step_log(\n    all_numeric_predictors()\n  ) |&gt;\n\n\n\n\n\n\n\n\n📌 y ~ . significa que y é a variável de interesse e todas as outas serão preditoras (features)."
+    "text": "recipes \n\n\n\nTirar o logaritmo e normalizar (🥳 melhor):\n\nreceita &lt;-\n  recipes::recipe(\n    y ~ .,\n    data = dados_treino\n  ) |&gt;\n  step_log(\n    all_numeric_predictors()\n  ) |&gt;\n  step_normalize(\n    all_numeric_predictors()\n  )\n\n\nNormalizar e tomar o logaritmo (😔 ruim):\n\nreceita &lt;-\n  recipes::recipe(\n    y ~ .,\n    data = dados_treino\n  ) |&gt;\n  step_normalize(\n    all_numeric_predictors()\n  ) |&gt;\n  step_log(\n    all_numeric_predictors()\n  ) |&gt;\n\n\n\n\n\n\n\n\n📌 y ~ . significa que y é a variável de interesse e todas as outas serão preditoras (features)."
   },
   {
     "objectID": "index.html#recipes-preparando-e-aplicando-a-receita",
@@ -466,7 +466,7 @@
     "href": "index.html#parsnip-2",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "parsnip ",
-    "text": "parsnip \n\nDiversas bibliotecas na linguagem R são preparadas para trabalharem na área de aprendizagem de máquina. Várias dessas bibliotecas vem sendo desenvolvidas há anos. Por exemplo,as bibliotecas glmnet, ranger, kknn, xgboost, keras, rpart, randomForest, entre diversos outros.\n\n\n\nO número de pacotes abaixo é o mais recente. Obtido automaticamente por webscraping.\nlibrary(xml2)\nlibrary(httr)\nlibrary(stringr)\nlibrary(\"downlit\")\n\nnumero_pacotes_r &lt;- httr::GET(\n  \"https://cloud.r-project.org/web/packages/index.html\"\n) |&gt;\n  xml2::read_html() |&gt;\n  xml2::xml_find_all(\"//p[1]\") |&gt;\n  xml2::xml_text() |&gt;\n  stringr::str_extract(pattern = \"[0-9]+\")\n\n\n\nAtualmente, a linguagem R possui 22414, em que muitos deles são preparados para para trabalharem em tarefas de aprendizagem de máquina, porém, cada com sua sintaxe específica. Muitos implementam o mesmo modelo, uns com algumas variações, porém, o uso é totalmente diferente, nomes de parâmetros distintos, saídas distintas, etc."
+    "text": "parsnip \n\nDiversas bibliotecas na linguagem R são preparadas para trabalharem na área de aprendizagem de máquina. Várias dessas bibliotecas vem sendo desenvolvidas há anos. Por exemplo,as bibliotecas glmnet, ranger, kknn, xgboost, keras, rpart, randomForest, entre diversos outros.\n\n\n\nO número de pacotes abaixo é o mais recente. Obtido automaticamente por webscraping.\nlibrary(xml2)\nlibrary(httr)\nlibrary(stringr)\nlibrary(\"downlit\")\n\nnumero_pacotes_r &lt;- httr::GET(\n  \"https://cloud.r-project.org/web/packages/index.html\"\n) |&gt;\n  xml2::read_html() |&gt;\n  xml2::xml_find_all(\"//p[1]\") |&gt;\n  xml2::xml_text() |&gt;\n  stringr::str_extract(pattern = \"[0-9]+\")\n\n\n\nAtualmente, a linguagem R possui 22418, em que muitos deles são preparados para para trabalharem em tarefas de aprendizagem de máquina, porém, cada com sua sintaxe específica. Muitos implementam o mesmo modelo, uns com algumas variações, porém, o uso é totalmente diferente, nomes de parâmetros distintos, saídas distintas, etc."
   },
   {
     "objectID": "index.html#parsnip-3",
@@ -515,7 +515,7 @@
     "href": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "🎛 tune: tunando o hiperparâmetro do modelo lasso ",
-    "text": "🎛 tune: tunando o hiperparâmetro do modelo lasso \n\n\n\nO lasso foi desenvolvido pelo Robert Tibshirani, em um artigo publicado no artigo Regression Shrinkage and Selection via the Lasso."
+    "text": "🎛 tune: tunando o hiperparâmetro do modelo lasso \n\n\nO lasso foi desenvolvido pelo Robert Tibshirani, em um artigo publicado no artigo Regression Shrinkage and Selection via the Lasso.\n\n\n\n\n\nRobert Tibshirani, professor no Departamentos de Estatística e Ciência de Dados Biomédicos da Universidade de Stanford."
   },
   {
     "objectID": "index.html#tune-tunando-o-hiperparâmetro-do-modelo-lasso-1",
@@ -1069,5 +1069,61 @@
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "API",
     "text": "API"
+  },
+  {
+    "objectID": "index.html#api---applicat",
+    "href": "index.html#api---applicat",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🔌 API - Applicat",
+    "text": "🔌 API - Applicat\n\nO Desafio\n\n\nCriamos modelos poderosos em R, muitas vezes usando um framework como o tidymodels.\nO objetivo final é usar esses modelos na “produção”, ou seja, aplicá-los em novos dados para fazer previsões ou classificações.\nMas como outros sistemas (em Python, SQL, C#, etc.) ou usuários sem conhecimento de R podem usar esses modelos?"
+  },
+  {
+    "objectID": "index.html#api---application-programming-interface",
+    "href": "index.html#api---application-programming-interface",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🔌 API - Application Programming Interface",
+    "text": "🔌 API - Application Programming Interface\n\n\nCriamos modelos poderosos em R, muitas vezes usando um framework como o tidymodels.\nO objetivo final é usar esses modelos na “produção”, ou seja, aplicá-los em novos dados para fazer previsões ou classificações.\nMas como outros sistemas (escritos em Python, Ruby, Rust, Go, Java, etc.) ou usuários sem conhecimento de R podem usar esses modelos?"
+  },
+  {
+    "objectID": "index.html#api---application-programming-interface-1",
+    "href": "index.html#api---application-programming-interface-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🔌 API - Application Programming Interface",
+    "text": "🔌 API - Application Programming Interface\n\n\n\n\nUma API - Application Programming Interface permite que diferentes sistemas de software interajam entre si.\nAo “servir” seu modelo R via uma API, você o torna um serviço que outros sistemas podem chamar para obter previsões.\nIsso significa que a lógica do modelo (criada no R) pode ser utilizada por aplicações escritas em qualquer outra linguagem ou plataforma.\n\n\n\n\n\nO tidymodels preparando um modelo café e o robô API servindo o usuário."
+  },
+  {
+    "objectID": "index.html#vetiver-api-para-modelos-rpython",
+    "href": "index.html#vetiver-api-para-modelos-rpython",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "vetiver: API para modelos R/Python ",
+    "text": "vetiver: API para modelos R/Python \n\n\n\nApós treinar seu modelo (ex: com tidymodels), você obtém um objeto final (um workflow é ideal, combinando pré-processamento e modelo).\nEste objeto pode ser salvo (formato .rds ou .rda - um arquivo serial contendo o workflow da modelagem).\nvetiver pega este objeto salvo via pins e automaticamente cria uma API via plumber para servir previsões.\nEle funciona com diversos tipos de objetos de modelo R, incluindo os de tidymodels (parsnip, workflows), caret, etc.\n\n\n\n\n\nImagem em aquarela da logo do pacote vetiver."
+  },
+  {
+    "objectID": "index.html#vetiver-construindo-api-para-modelos-r",
+    "href": "index.html#vetiver-construindo-api-para-modelos-r",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🔌 vetiver: construindo API para modelos R ",
+    "text": "🔌 vetiver: construindo API para modelos R \n\n\n\nApós treinar seu modelo (ex: com tidymodels), você obtém um objeto final (um workflow é ideal, combinando pré-processamento e modelo).\nEste objeto pode ser salvo (formato .rds ou .rda - um arquivo serial contendo o workflow da modelagem).\nvetiver pega este objeto salvo via pins e automaticamente cria uma API via plumber para servir previsões.\nEle funciona com diversos tipos de objetos de modelo R, incluindo os de tidymodels (parsnip, workflows), caret, etc.\n\n\n\n\n\nImagem em aquarela da logo do pacote vetiver."
+  },
+  {
+    "objectID": "index.html#vetiver-construindo-api-para-modelos-r-1",
+    "href": "index.html#vetiver-construindo-api-para-modelos-r-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🔌 vetiver: construindo API para modelos R ",
+    "text": "🔌 vetiver: construindo API para modelos R"
+  },
+  {
+    "objectID": "index.html#vetiver-construindo-api-para-modelos-r-2",
+    "href": "index.html#vetiver-construindo-api-para-modelos-r-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "vetiver: construindo API para modelos R ",
+    "text": "vetiver: construindo API para modelos R \nUm exemplo de uso do vetiver para construção de uma API:\n\nlibrary(vetiver)\nlibrary(pins)\n\n# Dados e modelo bem simples (sem tuning, só para exemplo)\nmodelo_lm &lt;- lm(mpg ~ hp + wt, data = mtcars)\n\n# Criar um objeto \"vetiver\" (nome do modelo: \"modelo_lm_v1\")\nv &lt;- vetiver_model(model = modelo_lm, model_name = \"modelo_lm_v1\")\n\n# Criar um board local (pasta)\nboard &lt;- board_folder(\"modelos\", versioned = TRUE)\n\n# Pinar o modelo no board\nvetiver_pin_write(board = board, vetiver_model = v)\n\n# Verificar o que está no board\npin_list(board) # Deve mostrar \"modelo_lm_v1\"\n\n# Verificando detalhes das versões\npin_versions(board, \"modelo_lm_v1\")\n\nvetiver_pin_read(\n  board,\n  \"modelo_lm_v1\"\n)\n\n# Gerar o arquivo da API\nvetiver_write_plumber(\n  board,\n  \"modelo_lm_v1\",\n  file = \"api_modelo.R\",\n  version = NULL # NULL = última versão\n)\n\n# Iniciar a API localmente (rodará na porta 8080)\npr &lt;- plumber::plumb(\"api_modelo.R\")\npr$run(port = 8080) # Executando a API na porta 8080"
+  },
+  {
+    "objectID": "index.html#vetiver-um-exemplo-de-uso",
+    "href": "index.html#vetiver-um-exemplo-de-uso",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🔌 vetiver: um exemplo de uso ",
+    "text": "🔌 vetiver: um exemplo de uso \n\nlibrary(vetiver)\nlibrary(pins)\n\n# Dados e modelo bem simples (sem tuning, só para exemplo)\nmodelo_lm &lt;- lm(mpg ~ hp + wt, data = mtcars)\n\n# Criar um objeto \"vetiver\" (nome do modelo: \"modelo_lm_v1\")\nv &lt;- vetiver_model(model = modelo_lm, model_name = \"modelo_lm_v1\")\n\n# Criar um board local (pasta com nome \"modelos\")\nboard &lt;- board_folder(\"modelos\", versioned = TRUE)\n\n# Pinar o modelo no board\nvetiver_pin_write(board = board, vetiver_model = v)\n\n# Verificar o que está no board\npin_list(board) # Deve mostrar \"modelo_lm_v1\"\n\n# Verificando detalhes das versões\npin_versions(board, \"modelo_lm_v1\")\n\nvetiver_pin_read(\n  board,\n  \"modelo_lm_v1\"\n)\n\n# Gerar o arquivo da API\nvetiver_write_plumber(\n  board,\n  \"modelo_lm_v1\",\n  file = \"api_modelo.R\",\n  version = NULL # NULL = última versão\n)\n\n# Iniciar a API localmente (rodará na porta 8080)\npr &lt;- plumber::plumb(\"api_modelo.R\")\npr$run(port = 8080) # Executando a API na porta 8080"
   }
 ]

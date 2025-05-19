@@ -1,0 +1,13 @@
+file: modelo_lm_v1.rds
+file_size: 2603
+pin_hash: f7645ff82343187f
+type: rds
+title: 'modelo_lm_v1: a pinned list'
+description: An OLS linear regression model
+tags: ~
+urls: ~
+created: 20250519T145844Z
+api_version: 1
+user:
+  required_pkgs: ~
+  renv_lock: ~
