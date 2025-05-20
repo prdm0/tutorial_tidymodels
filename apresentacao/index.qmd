@@ -2868,32 +2868,35 @@ knitr::include_graphics("imgs/whole-game-final-performance.jpg")
 <br>
 <br>
 
-
 ![](imgs/ml_ops_cycle.svg){width="100%"}
 
 ## 🔌 vetiver: um exemplo de uso <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
 
 ```{r}
 #| eval: false
-#| code-line-numbers: 1-3|4-5|7-8|10-11|13-14,16-17|19-20|22-25|27-33|35-37
+#| code-line-numbers: 1-3|5-6|8-12|14-15|17-18|20-21|23-24|26-29|31-37|43-48|50-55|58-61|63-64
 #| class-source: smallcode
 library(vetiver)
 library(pins)
+library(callr) # Executar funções em segundo plano
 
 # Dados e modelo bem simples (sem tuning, só para exemplo)
 modelo_lm <- lm(mpg ~ hp + wt, data = mtcars)
 
-# Criar um objeto "vetiver" (nome do modelo: "modelo_lm_v1")
-v <- vetiver_model(model = modelo_lm, model_name = "modelo_lm_v1")
+# Criar um objeto "vetiver" (nome do modelo: "modelo_lm")
+v <- vetiver_model(
+  model = modelo_lm,
+  model_name = "modelo_lm_v1"
+)
 
-# Criar um board local (pasta com nome "modelos")
+# Criar um board local (pasta) com modelos em .rds
 board <- board_folder("modelos", versioned = TRUE)
 
 # Pinar o modelo no board
 vetiver_pin_write(board = board, vetiver_model = v)
 
 # Verificar o que está no board
-pin_list(board) # Deve mostrar "modelo_lm_v1"
+pin_list(board) # Deve mostrar "modelo_lm"
 
 # Verificando detalhes das versões
 pin_versions(board, "modelo_lm_v1")
@@ -2912,13 +2915,180 @@ vetiver_write_plumber(
 )
 
 # Iniciar a API localmente (rodará na porta 8080)
-pr <- plumber::plumb("api_modelo.R")
-pr$run(port = 8080) # Executando a API na porta 8080
+# lsof -i :8080 (verificando se a porta 8080 está livre em Linux e Mac)
+# Matando um processo: kill -9 <PID> (Linux e Mac)
+# A API roda em segundo plano, permitindo que o prompt do R não fique travado
+callr::r_bg(
+  function() {
+    pr <- plumber::plumb("api_modelo.R")
+    pr$run(port = 8080)
+  }
+)
+
+# Espera um tempo até o servidor plumber estar ativo para receber
+# requisições. O tempo pode variar dependendo do computador.
+Sys.sleep(5)
+
+# Criando um endpoint para fazer previsões
+endpoint <- vetiver_endpoint("http://127.0.0.1:8080/predict")
+# Verificando o protótipo do endpoint
+# vetiver_ptype(modelo_lm, TRUE)
+previsao <- predict(
+  endpoint,
+  new_data = data.frame(hp = c(100, 150), wt = c(2.5, 3.0))
+)
+
+# Verificando o resultado
+print(previsao)
 ```
 
 <br>
 
 ![](imgs/ml_ops_cycle.svg){width="40%"}
+
+
+## 🔌 vetiver: criando uma imagem docker da API <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
+
+::: columns
+::: {.column width="50%"}
+[![Imagem em aquarela da logo do docker.](imgs/aquarela_docker.png){fig-alt="Imagem em aquarela da logo do docker." width="60%" height="auto"}](https://cran.r-project.org/web/packages/iml/index.html)
+:::
+::: {.column width="50%"}
+
+<br>
+
++ Se você não tem o docker instalado, faça o download [aqui](https://www.docker.com/products/docker-desktop/).
++ O docker é uma plataforma que permite criar, implantar e executar aplicativos em contêineres.
++ Um contêiner é uma unidade leve e portátil de software que inclui tudo o que um aplicativo precisa para ser executado.
++ O vetiver pode criar uma imagem docker para o seu modelo, facilitando a implantação em qualquer lugar ([suporte nativo ao docker]{.underline .mark}).
+:::
+:::
+
+## 🔌 vetiver: por que dockerizar a API? <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
+
+- Aplicar as vantagens do Docker especificamente ao deploy da API criada com `vetiver`:
+- Garantir que a API rode em um **ambiente consistente e isolado**.
+- Assegurar que as **versões corretas de R e pacotes** (`vetiver`, `plumber`, pacotes do modelo, etc.) estejam presentes.
+- **Evitar problemas de dependência** que poderiam quebrar a API em diferentes servidores.
+- **Simplificar a movimentação** da API entre ambientes (desenvolvimento, teste, produção).
+
+![](imgs/aquarela_docker.png){width="20%"}
+
+
+## 🔌 vetiver: exemplo <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
+
+Para criar uma imagem docker da API do nosso modelo que construímos via o **vetiver**, devemos criar o arquivo `Dockerfile`.
+
+<br>
+
+```{r}
+#| eval: false
+#| class-source: smallcode
+#| code-line-numbers: 1-7|9-13|15-19|21-24|26-31
+library(vetiver)
+library(pins)
+
+rm(list = ls())
+
+# Dados e modelo bem simples (sem tuning, só para exemplo)
+modelo_lm <- lm(mpg ~ hp + wt, data = mtcars)
+
+# Criar um objeto "vetiver" (nome do modelo: "modelo_lm")
+v <- vetiver_model(
+  model = modelo_lm,
+  model_name = "modelo_lm_v1"
+)
+
+# Criar um board local (pasta) com modelos em .rds
+board <- board_folder("modelos", versioned = TRUE)
+
+# Pinar o modelo no board
+vetiver_pin_write(board = board, vetiver_model = v)
+
+vetiver_pin_read(
+  board,
+  "modelo_lm_v1"
+)
+
+# Criando Dockerfile
+vetiver_prepare_docker(
+  board,
+  "modelo_lm_v1",
+  docker_args = list(port = 8080)
+)
+```
+
+## 🔌 vetiver: Dockerfile criado <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
+
+O função `vetiver_prepare_docker()` irá criar o arquivo da receita da imagem docker, o arquivo [Dockerfile](https://docs.docker.com/reference/dockerfile/). Você precisa apenas adicionar a linha `COPY modelos /opt/ml/modelos` que irá copiar o diretório com o quadro dos modelos para a imagem.
+
+<br>
+
+```{r}
+#| eval: false
+#| code-line-numbers: 19|1-21
+# Generated by the vetiver package; edit with care
+FROM rocker/r-ver:4.5.0
+ENV RENV_CONFIG_REPOS_OVERRIDE https://packagemanager.rstudio.com/cran/latest
+
+RUN apt-get update -qq && apt-get install -y --no-install-recommends \
+  libcurl4-openssl-dev \
+  libicu-dev \
+  libsodium-dev \
+  libssl-dev \
+  libx11-dev \
+  make \
+  zlib1g-dev \
+  && apt-get clean
+
+COPY vetiver_renv.lock renv.lock
+RUN Rscript -e "install.packages('renv')"
+RUN Rscript -e "renv::restore()"
+COPY plumber.R /opt/ml/plumber.R
+COPY modelos /opt/ml/modelos # <1>
+EXPOSE 8080
+ENTRYPOINT ["R", "-e", "pr <- plumber::plumb('/opt/ml/plumber.R'); pr$run(host = '0.0.0.0', port = 8080)"]
+```
+1. Linha que deverá ser adicionada para copiar os modelos que são arquivos `.rds` para a imagem docker. As demais linhas são criadas automaticamente pelo comando `vetiver_prepare_docker()`.
+
+## 🔌 vetiver: gerando imagem e executando um conteiner <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
+
+<br>
+
+Com a nossa API, podemos gerar uma imagem docker da API e executar um contêiner a partir da imagem. No diretório o `Dockerfile`, execute o seguinte comando:
+
+<br>
+
+```{bash}
+#| eval: false
+sudo docker build --no-cache -t nome-da-imagem .
+sudo docker run -d -p 8080:8080 nome-da-imagem
+```
+
+<br>
+
+Visualize a API sendo executada pelo conteiner no seu navegador em `http://localhost:8080/__docs__/`. Suas predições devem ser feitas em `http://localhost:8080/predict`.
+
+## 🔌 vetiver: gerando imagem e executando um conteiner <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
+
+<br>
+
+Como visto anteriormente, as previsões são feitas fazendo:
+
+<br>
+
+```{r}
+#| eval: false
+# Criando um endpoint para fazer previsões
+endpoint <- vetiver_endpoint("http://127.0.0.1:8080/predict")
+# Verificando o protótipo do endpoint
+# vetiver_ptype(modelo_lm, TRUE)
+previsao <- predict(
+  endpoint,
+  new_data = data.frame(hp = c(100, 150), wt = c(2.5, 3.0))
+)
+```
+
 
 #  {.title background-image="gifs/aplausos.gif" background-size="100% 100%"}
 

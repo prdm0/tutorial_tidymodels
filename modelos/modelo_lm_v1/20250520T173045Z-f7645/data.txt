@@ -6,7 +6,7 @@ title: 'modelo_lm_v1: a pinned list'
 description: An OLS linear regression model
 tags: ~
 urls: ~
-created: 20250519T145601Z
+created: 20250520T173045Z
 api_version: 1
 user:
   required_pkgs: ~

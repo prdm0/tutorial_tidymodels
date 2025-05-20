@@ -466,7 +466,7 @@
     "href": "index.html#parsnip-2",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "parsnip ",
-    "text": "parsnip \n\nDiversas bibliotecas na linguagem R são preparadas para trabalharem na área de aprendizagem de máquina. Várias dessas bibliotecas vem sendo desenvolvidas há anos. Por exemplo,as bibliotecas glmnet, ranger, kknn, xgboost, keras, rpart, randomForest, entre diversos outros.\n\n\n\nO número de pacotes abaixo é o mais recente. Obtido automaticamente por webscraping.\nlibrary(xml2)\nlibrary(httr)\nlibrary(stringr)\nlibrary(\"downlit\")\n\nnumero_pacotes_r &lt;- httr::GET(\n  \"https://cloud.r-project.org/web/packages/index.html\"\n) |&gt;\n  xml2::read_html() |&gt;\n  xml2::xml_find_all(\"//p[1]\") |&gt;\n  xml2::xml_text() |&gt;\n  stringr::str_extract(pattern = \"[0-9]+\")\n\n\n\nAtualmente, a linguagem R possui 22418, em que muitos deles são preparados para para trabalharem em tarefas de aprendizagem de máquina, porém, cada com sua sintaxe específica. Muitos implementam o mesmo modelo, uns com algumas variações, porém, o uso é totalmente diferente, nomes de parâmetros distintos, saídas distintas, etc."
+    "text": "parsnip \n\nDiversas bibliotecas na linguagem R são preparadas para trabalharem na área de aprendizagem de máquina. Várias dessas bibliotecas vem sendo desenvolvidas há anos. Por exemplo,as bibliotecas glmnet, ranger, kknn, xgboost, keras, rpart, randomForest, entre diversos outros.\n\n\n\nO número de pacotes abaixo é o mais recente. Obtido automaticamente por webscraping.\nlibrary(xml2)\nlibrary(httr)\nlibrary(stringr)\nlibrary(\"downlit\")\n\nnumero_pacotes_r &lt;- httr::GET(\n  \"https://cloud.r-project.org/web/packages/index.html\"\n) |&gt;\n  xml2::read_html() |&gt;\n  xml2::xml_find_all(\"//p[1]\") |&gt;\n  xml2::xml_text() |&gt;\n  stringr::str_extract(pattern = \"[0-9]+\")\n\n\n\nAtualmente, a linguagem R possui 22419, em que muitos deles são preparados para para trabalharem em tarefas de aprendizagem de máquina, porém, cada com sua sintaxe específica. Muitos implementam o mesmo modelo, uns com algumas variações, porém, o uso é totalmente diferente, nomes de parâmetros distintos, saídas distintas, etc."
   },
   {
     "objectID": "index.html#parsnip-3",
@@ -1124,6 +1124,48 @@
     "href": "index.html#vetiver-um-exemplo-de-uso",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "🔌 vetiver: um exemplo de uso ",
-    "text": "🔌 vetiver: um exemplo de uso \n\nlibrary(vetiver)\nlibrary(pins)\n\n# Dados e modelo bem simples (sem tuning, só para exemplo)\nmodelo_lm &lt;- lm(mpg ~ hp + wt, data = mtcars)\n\n# Criar um objeto \"vetiver\" (nome do modelo: \"modelo_lm_v1\")\nv &lt;- vetiver_model(model = modelo_lm, model_name = \"modelo_lm_v1\")\n\n# Criar um board local (pasta com nome \"modelos\")\nboard &lt;- board_folder(\"modelos\", versioned = TRUE)\n\n# Pinar o modelo no board\nvetiver_pin_write(board = board, vetiver_model = v)\n\n# Verificar o que está no board\npin_list(board) # Deve mostrar \"modelo_lm_v1\"\n\n# Verificando detalhes das versões\npin_versions(board, \"modelo_lm_v1\")\n\nvetiver_pin_read(\n  board,\n  \"modelo_lm_v1\"\n)\n\n# Gerar o arquivo da API\nvetiver_write_plumber(\n  board,\n  \"modelo_lm_v1\",\n  file = \"api_modelo.R\",\n  version = NULL # NULL = última versão\n)\n\n# Iniciar a API localmente (rodará na porta 8080)\npr &lt;- plumber::plumb(\"api_modelo.R\")\npr$run(port = 8080) # Executando a API na porta 8080"
+    "text": "🔌 vetiver: um exemplo de uso \n\nlibrary(vetiver)\nlibrary(pins)\nlibrary(callr) # Executar funções em segundo plano\n\n# Dados e modelo bem simples (sem tuning, só para exemplo)\nmodelo_lm &lt;- lm(mpg ~ hp + wt, data = mtcars)\n\n# Criar um objeto \"vetiver\" (nome do modelo: \"modelo_lm\")\nv &lt;- vetiver_model(\n  model = modelo_lm,\n  model_name = \"modelo_lm_v1\"\n)\n\n# Criar um board local (pasta) com modelos em .rds\nboard &lt;- board_folder(\"modelos\", versioned = TRUE)\n\n# Pinar o modelo no board\nvetiver_pin_write(board = board, vetiver_model = v)\n\n# Verificar o que está no board\npin_list(board) # Deve mostrar \"modelo_lm\"\n\n# Verificando detalhes das versões\npin_versions(board, \"modelo_lm_v1\")\n\nvetiver_pin_read(\n  board,\n  \"modelo_lm_v1\"\n)\n\n# Gerar o arquivo da API\nvetiver_write_plumber(\n  board,\n  \"modelo_lm_v1\",\n  file = \"api_modelo.R\",\n  version = NULL # NULL = última versão\n)\n\n# Iniciar a API localmente (rodará na porta 8080)\n# lsof -i :8080 (verificando se a porta 8080 está livre em Linux e Mac)\n# Matando um processo: kill -9 &lt;PID&gt; (Linux e Mac)\n# A API roda em segundo plano, permitindo que o prompt do R não fique travado\ncallr::r_bg(\n  function() {\n    pr &lt;- plumber::plumb(\"api_modelo.R\")\n    pr$run(port = 8080)\n  }\n)\n\n# Espera um tempo até o servidor plumber estar ativo para receber\n# requisições. O tempo pode variar dependendo do computador.\nSys.sleep(5)\n\n# Criando um endpoint para fazer previsões\nendpoint &lt;- vetiver_endpoint(\"http://127.0.0.1:8080/predict\")\n# Verificando o protótipo do endpoint\n# vetiver_ptype(modelo_lm, TRUE)\nprevisao &lt;- predict(\n  endpoint,\n  new_data = data.frame(hp = c(100, 150), wt = c(2.5, 3.0))\n)\n\n# Verificando o resultado\nprint(previsao)"
+  },
+  {
+    "objectID": "index.html#vetiver-criando-uma-imagem-docker-da-api",
+    "href": "index.html#vetiver-criando-uma-imagem-docker-da-api",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🔌 vetiver: criando uma imagem docker da API ",
+    "text": "🔌 vetiver: criando uma imagem docker da API \n\n\n\n\n\nImagem em aquarela da logo do docker.\n\n\n\n\n\nSe você não tem o docker instalado, faça o download aqui.\nO docker é uma plataforma que permite criar, implantar e executar aplicativos em contêineres.\nUm contêiner é uma unidade leve e portátil de software que inclui tudo o que um aplicativo precisa para ser executado.\nO vetiver pode criar uma imagem docker para o seu modelo, facilitando a implantação em qualquer lugar (suporte nativo ao docker)."
+  },
+  {
+    "objectID": "index.html#vetiver-por-que-dockerizar-a-api",
+    "href": "index.html#vetiver-por-que-dockerizar-a-api",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🔌 vetiver: por que dockerizar a API? ",
+    "text": "🔌 vetiver: por que dockerizar a API? \n\nAplicar as vantagens do Docker especificamente ao deploy da API criada com vetiver:\nGarantir que a API rode em um ambiente consistente e isolado.\nAssegurar que as versões corretas de R e pacotes (vetiver, plumber, pacotes do modelo, etc.) estejam presentes.\nEvitar problemas de dependência que poderiam quebrar a API em diferentes servidores.\nSimplificar a movimentação da API entre ambientes (desenvolvimento, teste, produção)."
+  },
+  {
+    "objectID": "index.html#vetiver-exemplo",
+    "href": "index.html#vetiver-exemplo",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🔌 vetiver: exemplo ",
+    "text": "🔌 vetiver: exemplo \nPara criar uma imagem docker da API do nosso modelo que construímos via o vetiver, devemos criar o arquivo Dockerfile.\n\n\nlibrary(vetiver)\nlibrary(pins)\n\nrm(list = ls())\n\n# Dados e modelo bem simples (sem tuning, só para exemplo)\nmodelo_lm &lt;- lm(mpg ~ hp + wt, data = mtcars)\n\n# Criar um objeto \"vetiver\" (nome do modelo: \"modelo_lm\")\nv &lt;- vetiver_model(\n  model = modelo_lm,\n  model_name = \"modelo_lm_v1\"\n)\n\n# Criar um board local (pasta) com modelos em .rds\nboard &lt;- board_folder(\"modelos\", versioned = TRUE)\n\n# Pinar o modelo no board\nvetiver_pin_write(board = board, vetiver_model = v)\n\nvetiver_pin_read(\n  board,\n  \"modelo_lm_v1\"\n)\n\n# Criando Dockerfile\nvetiver_prepare_docker(\n  board,\n  \"modelo_lm_v1\",\n  docker_args = list(port = 8080)\n)"
+  },
+  {
+    "objectID": "index.html#vetiver-dockerfile-criado",
+    "href": "index.html#vetiver-dockerfile-criado",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🔌 vetiver: Dockerfile criado ",
+    "text": "🔌 vetiver: Dockerfile criado \nO função vetiver_prepare_docker() irá criar o arquivo da receita da imagem docker, o arquivo Dockerfile. Você precisa apenas adicionar a linha COPY modelos /opt/ml/modelos que irá copiar o diretório com o quadro dos modelos para a imagem.\n\n\n# Generated by the vetiver package; edit with care\nFROM rocker/r-ver:4.5.0\nENV RENV_CONFIG_REPOS_OVERRIDE https://packagemanager.rstudio.com/cran/latest\n\nRUN apt-get update -qq && apt-get install -y --no-install-recommends \\\n  libcurl4-openssl-dev \\\n  libicu-dev \\\n  libsodium-dev \\\n  libssl-dev \\\n  libx11-dev \\\n  make \\\n  zlib1g-dev \\\n  && apt-get clean\n\nCOPY vetiver_renv.lock renv.lock\nRUN Rscript -e \"install.packages('renv')\"\nRUN Rscript -e \"renv::restore()\"\nCOPY plumber.R /opt/ml/plumber.R\n1COPY modelos /opt/ml/modelos\nEXPOSE 8080\nENTRYPOINT [\"R\", \"-e\", \"pr &lt;- plumber::plumb('/opt/ml/plumber.R'); pr$run(host = '0.0.0.0', port = 8080)\"]\n\n\n1\n\nLinha que deverá ser adicionada para copiar os modelos que são arquivos .rds para a imagem docker. As demais linhas são criadas automaticamente pelo comando vetiver_prepare_docker()."
+  },
+  {
+    "objectID": "index.html#vetiver-gerando-imagem-e-executando-um-conteiner",
+    "href": "index.html#vetiver-gerando-imagem-e-executando-um-conteiner",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🔌 vetiver: gerando imagem e executando um conteiner ",
+    "text": "🔌 vetiver: gerando imagem e executando um conteiner \n\nCom a nossa API, podemos gerar uma imagem docker da API e executar um contêiner a partir da imagem. No diretório o Dockerfile, execute o seguinte comando:\n\n\nsudo docker build --no-cache -t nome-da-imagem .\nsudo docker run -d -p 8080:8080 nome-da-imagem\n\n\nVisualize a API sendo executada pelo conteiner no seu navegador em http://localhost:8080/__docs__/. Suas predições devem ser feitas em http://localhost:8080/predict."
+  },
+  {
+    "objectID": "index.html#vetiver-gerando-imagem-e-executando-um-conteiner-1",
+    "href": "index.html#vetiver-gerando-imagem-e-executando-um-conteiner-1",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🔌 vetiver: gerando imagem e executando um conteiner ",
+    "text": "🔌 vetiver: gerando imagem e executando um conteiner \n\nComo visto anteriormente, as previsões são feitas fazendo:\n\n\n# Criando um endpoint para fazer previsões\nendpoint &lt;- vetiver_endpoint(\"http://127.0.0.1:8080/predict\")\n# Verificando o protótipo do endpoint\n# vetiver_ptype(modelo_lm, TRUE)\nprevisao &lt;- predict(\n  endpoint,\n  new_data = data.frame(hp = c(100, 150), wt = c(2.5, 3.0))\n)"
   }
 ]
