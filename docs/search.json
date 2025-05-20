@@ -1159,7 +1159,7 @@
     "href": "index.html#vetiver-gerando-imagem-e-executando-um-conteiner",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "🔌 vetiver: gerando imagem e executando um conteiner ",
-    "text": "🔌 vetiver: gerando imagem e executando um conteiner \n\nCom a nossa API, podemos gerar uma imagem docker da API e executar um contêiner a partir da imagem. No diretório o Dockerfile, execute o seguinte comando:\n\n\nsudo docker build --no-cache -t nome-da-imagem .\nsudo docker run -d -p 8080:8080 nome-da-imagem\n\n\nVisualize a API sendo executada pelo conteiner no seu navegador em http://localhost:8080/__docs__/. Suas predições devem ser feitas em http://localhost:8080/predict."
+    "text": "🔌 vetiver: gerando imagem e executando um conteiner \n\nCom a nossa API, podemos gerar uma imagem docker da API e executar um contêiner 🚢📦 a partir da imagem. No diretório o Dockerfile 🐳, execute o seguinte comando:\n\n\nsudo docker build --no-cache -t nome-da-imagem .\nsudo docker run -d -p 8080:8080 nome-da-imagem\n\n\nVisualize a API sendo executada pelo conteiner no seu navegador em http://localhost:8080/__docs__/. Suas predições devem ser feitas em http://localhost:8080/predict."
   },
   {
     "objectID": "index.html#vetiver-gerando-imagem-e-executando-um-conteiner-1",

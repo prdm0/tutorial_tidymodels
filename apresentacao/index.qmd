@@ -3055,7 +3055,7 @@ ENTRYPOINT ["R", "-e", "pr <- plumber::plumb('/opt/ml/plumber.R'); pr$run(host =
 
 <br>
 
-Com a nossa API, podemos gerar uma imagem docker da API e executar um contêiner a partir da imagem. No diretório o `Dockerfile`, execute o seguinte comando:
+Com a nossa API, podemos gerar uma imagem docker da API e executar um contêiner 🚢📦 a partir da imagem. No diretório o `Dockerfile` 🐳, execute o seguinte comando:
 
 <br>
 
@@ -3068,6 +3068,10 @@ sudo docker run -d -p 8080:8080 nome-da-imagem
 <br>
 
 Visualize a API sendo executada pelo conteiner no seu navegador em `http://localhost:8080/__docs__/`. Suas predições devem ser feitas em `http://localhost:8080/predict`.
+
+<br>
+
+![](gifs/mr-bean-pivot.gif){width="20%"}
 
 ## 🔌 vetiver: gerando imagem e executando um conteiner <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
 
