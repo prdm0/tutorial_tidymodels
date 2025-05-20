@@ -3073,6 +3073,8 @@ Visualize a API sendo executada pelo conteiner no seu navegador em `http://local
 
 ![](gifs/mr-bean-pivot.gif){width="20%"}
 
+#  {.title background-image="imgs/api_vetiver.png" background-size="100% 100%"}
+
 ## 🔌 vetiver: gerando imagem e executando um conteiner <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
 
 <br>
@@ -3092,7 +3094,6 @@ previsao <- predict(
   new_data = data.frame(hp = c(100, 150), wt = c(2.5, 3.0))
 )
 ```
-
 
 #  {.title background-image="gifs/aplausos.gif" background-size="100% 100%"}
 
