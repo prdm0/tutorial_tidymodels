@@ -17,6 +17,6 @@ COPY vetiver_renv.lock renv.lock
 RUN Rscript -e "install.packages('renv')"
 RUN Rscript -e "renv::restore()"
 COPY plumber.R /opt/ml/plumber.R
-COPY modelos /opt/ml/modelos
+COPY modelos/ /opt/ml/modelos/
 EXPOSE 8080
 ENTRYPOINT ["R", "-e", "pr <- plumber::plumb('/opt/ml/plumber.R'); pr$run(host = '0.0.0.0', port = 8080)"]

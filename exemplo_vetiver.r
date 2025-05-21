@@ -31,38 +31,38 @@ vetiver_pin_read(
 )
 
 # Gerar o arquivo da API
-vetiver_write_plumber(
-  board,
-  "modelo_lm_v1",
-  file = "api_modelo.R",
-  version = NULL # NULL = última versão
-)
+# vetiver_write_plumber(
+#   board,
+#   "modelo_lm_v1",
+#   file = "api_modelo.R",
+#   version = NULL # NULL = última versão
+# )
 
 # Iniciar a API localmente (rodará na porta 8080)
 # lsof -i :8080 (verificando se a porta 8080 está livre em Linux e Mac)
 # Matando um processo: kill -9 <PID> (Linux e Mac)
-callr::r_bg(
-  function() {
-    pr <- plumber::plumb("api_modelo.R")
-    pr$run(port = 8080)
-  }
-)
+# callr::r_bg(
+#   function() {
+#     pr <- plumber::plumb("api_modelo.R")
+#     pr$run(port = 8080)
+#   }
+# )
 
 # Espera um tempo até o servidor plumber estar ativo para receber
 # requisições. O tempo pode variar dependendo do computador.
-Sys.sleep(5)
+# Sys.sleep(5)
 
 # Criando um endpoint para fazer previsões
-endpoint <- vetiver_endpoint("http://127.0.0.1:8080/predict")
+# endpoint <- vetiver_endpoint("http://127.0.0.1:8080/predict")
 # Verificando o protótipo do endpoint
 # vetiver_ptype(modelo_lm, TRUE)
-previsao <- predict(
-  endpoint,
-  new_data = data.frame(hp = c(100, 150), wt = c(2.5, 3.0))
-)
+# previsao <- predict(
+#   endpoint,
+#   new_data = data.frame(hp = c(100, 150), wt = c(2.5, 3.0))
+# )
 
 # Verificando o resultado
-print(previsao)
+# print(previsao)
 
 # Criando Dockerfile
 vetiver_prepare_docker(

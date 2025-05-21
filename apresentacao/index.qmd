@@ -3053,7 +3053,26 @@ ENTRYPOINT ["R", "-e", "pr <- plumber::plumb('/opt/ml/plumber.R'); pr$run(host =
 
 ## 🔌 vetiver: gerando imagem e executando um conteiner <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
 
-<br>
+Você poderá, se quiser, enviar a imagem da API para o [**dockerhub**](https://hub.docker.com/) em que sua API ficará disponível para qualquer um que tenha acesso a internet. Por exemplo, você poderá em uma máquina diferente, mesmo que não tenha o **R** e o **tidymodels** instalados, fazer previsões com o seu modelo. Depois de fazer uma conta no [**dockerhub**](https://hub.docker.com/), você poderá empurrar a imagem para o seu repositório com o seguinte comando:
+
+
+```{bash}
+#| eval: false
+
+# Login no dockerhub
+sudo docker login
+
+# Targetando a imagem para o dockerhub. No meu caso,
+# o meu nome de usuário é prdm0. Troque pelo seu. Em,
+# latest você poderá colocando a versão da imagem,
+# por exemplo, v1.0.0.
+sudo docker tag modelo:latest prdm0/modelo:latest
+
+# Enviando a imagem para o dockerhub
+sudo docker push prdm0/modelo:latest
+```
+
+## 🔌 vetiver: gerando imagem e executando um conteiner <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
 
 Com a nossa API, podemos gerar uma imagem docker da API e executar um contêiner 🚢📦 a partir da imagem. No diretório o `Dockerfile` 🐳, execute o seguinte comando:
 
@@ -3061,25 +3080,21 @@ Com a nossa API, podemos gerar uma imagem docker da API e executar um contêiner
 
 ```{bash}
 #| eval: false
+sudo docker pull prdm0/modelo:latest
 sudo docker build --no-cache -t nome-da-imagem .
 sudo docker run -d -p 8080:8080 nome-da-imagem
 ```
 
-<br>
-
-Visualize a API sendo executada pelo conteiner no seu navegador em `http://localhost:8080/__docs__/`. Suas predições devem ser feitas em `http://localhost:8080/predict`.
-
-<br>
+Visualize a API sendo executada pelo conteiner no seu navegador em `http://localhost:8080/__docs__/`. Suas predições devem ser feitas em `http://localhost:8080/predict`. O comando `sudo docker pull prdm0/modelo:latest` você deve rodar em uma nova máquina com o docker instalado que não tenha a imagem da API do modelo. Se a imagem já estiver na máquina, não é necessário executar o comando `docker pull`.
 
 ![](gifs/mr-bean-pivot.gif){width="20%"}
+
 
 #  {.title background-image="imgs/api_vetiver.png" background-size="100% 100%"}
 
 ## 🔌 vetiver: gerando imagem e executando um conteiner <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
 
-<br>
-
-Como visto anteriormente, as previsões são feitas fazendo:
+Como visto anteriormente, as previsões, por exemplo, em R, são feitas fazendo:
 
 <br>
 
@@ -3087,13 +3102,74 @@ Como visto anteriormente, as previsões são feitas fazendo:
 #| eval: false
 # Criando um endpoint para fazer previsões
 endpoint <- vetiver_endpoint("http://127.0.0.1:8080/predict")
-# Verificando o protótipo do endpoint
-# vetiver_ptype(modelo_lm, TRUE)
 previsao <- predict(
   endpoint,
   new_data = data.frame(hp = c(100, 150), wt = c(2.5, 3.0))
 )
 ```
+
+<br>
+
+Acima é uma forma de usar o R para acessar a API e poder fazer previsões a partir do modelo. Porém, outra pessoa que não programa em **R**, pode fazer previsões com o modelo. Para isso, basta fazer uma requisição HTTP para a API. Para fazer as precisões e consumir os resultados do modelo não é necessário ter o **R** instalado. Você pode fazer isso em qualquer linguagem de programação, como **Python**, **Java**, **Ruby**, etc.
+
+## 🌐 vetiver: exportar a API da sua máquina <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
+
+Outras pessoas podem usar a API do seu modelo e acessar em outra rede ou máquina. Para isso, você pode usar o [**ngrok**](https://ngrok.com/) ou o [**serveo**](https://serveo.net/). O [**ngrok**](https://ngrok.com/) é um serviço que permite expor um servidor local para a internet. No terminal, execute o seguinte comando:
+
+<br>
+
+```{bash}
+#| eval: false
+# Substitua por sua chave de autenticação
+ngrok authtoken SEU_TOKEN_AUTH
+# Uma vez que sua API roda em um conteiner na porta 8080
+ngrok http 8080
+```
+
+<br>
+
+Ao criar uma conta no [**ngrok**](https://ngrok.com/) você poderá ter acesso ao `SEU_TOKEN_AUTH`. Ele devolverá um link em que qualquer pessoa poderá acessar a API do seu modelo. A máquina que irá acessar e consumir os resultados não precisa ter o **R** instalado.
+
+![](imgs/ngrok.svg){width="20f%"}
+
+## 🏠🏢 Previsão imobiliária de imóveis de Teresina usando tidymodels
+
+<br>
+<br>
+
+::: columns
+::: {.column width="50%"}
+[![](imgs/zap_imoveis.png){width="80%" height="auto"}](https://www.zapimoveis.com.br/)
+:::
+::: {.column width="50%"}
+Vamos considerar dados de anúcios imobiliários 🏠🏢 do [**zap imóveis**](https://www.zapimoveis.com.br/) de imóveis (casas 🏠 e apartamentos 🏢) anunciados para a cidade de [Teresina]{.underline}. O objetivo é prever o preço 💰🪙💵 venal (preço de mercado) de venda de um imóvel em função de suas características.
+
+<br>
+
+![](gifs/cassa_propria.gif){width="30%"}
+:::
+:::
+
+## 🏠🏢 Previsão imobiliária de imóveis de Teresina usando tidymodels
+
+<br>
+
+A base de dados dos imóveis anunciados na cidade de Teresina poderá ser baixada 💾 clicando [**aqui**](dados/teresina.csv).
+
+<br>
+
+```{r}
+#| code-fold: true
+library(DT)
+library(readr)
+library(visdat)
+
+# Carregar os dados (ajuste o caminho se necessário)
+dados <- read_csv("dados/teresina.csv")
+dplyr::glimpse(dados)
+visdat::vis_dat(dados)
+```
+
 
 #  {.title background-image="gifs/aplausos.gif" background-size="100% 100%"}
 
