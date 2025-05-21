@@ -86,7 +86,7 @@ UFPB
 
 <br> <br>
 
--   Me chamo [Prof. Dr. Pedro Rafael D.
+-   Chamo-me [Prof. Dr. Pedro Rafael D.
     Marinho](https://prdm.netlify.app/about_pt_br.html){preview-link="true"}.
     Meu currículo Lattes poderá ser acessado clicando
     [aqui](http://lattes.cnpq.br/7185368598935272){preview-link="true"}.
@@ -99,10 +99,10 @@ UFPB
 -   Tenho entusiasmo por programação, ciência de dados e aprendizagem de
     máquina 💻📈.
 
--   `r fontawesome::fa("github", "black")` Me acompanhe no GitHub:
+-   `r fontawesome::fa("github", "black")` Acompanhe-me no GitHub:
     <https://github.com/prdm0>.
 
--   `r fontawesome::fa("linkedin", "black")` Me acompanhe no Linkedin:
+-   `r fontawesome::fa("linkedin", "black")` Acompanhe-me no Linkedin:
     <https://www.linkedin.com/in/prdm0/>.
 :::
 :::
@@ -161,7 +161,7 @@ leaflet() |>
 
 :::: {.columns}
 ::: {.column width = "33%"}
-![Artigo do pacote [**hcci**](https://www.tandfonline.com/doi/full/10.1080/03610926.2025.2486538), publicado em 2025. O artigo divulga estatégias para estimação intervalar em modelos lineares com heteroscedasticidade de forma desconhecida.](imgs/hcci_2.jpg){fig-aling="center" height="700px"}
+![Artigo do pacote [**hcci**](https://www.tandfonline.com/doi/full/10.1080/03610926.2025.2486538), publicado em 2025. O artigo divulga estratégias para estimação intervalar em modelos lineares com heteroscedasticidade de forma desconhecida.](imgs/hcci_2.jpg){fig-aling="center" height="700px"}
 :::
 
 ::: {.column width = "33%"}
@@ -340,7 +340,7 @@ detecção.
 <br>
 
 Nesse tipo de aprendizagem, os algoritmos trabalham sobre dados não
-rotulados, por exemplo, em uma trarefa de agrupamento.
+rotulados, por exemplo, em uma tarefa de agrupamento.
 
 <br>
 
@@ -535,7 +535,7 @@ $$\argmin_g R_{pred}(g) = \argmin_g R_{reg}(g) = r({\bf x}).$$
 
 A definição de risco preditivo $R_{pred}$, que também denotaremos
 simplesmente por $R$, tem um apelo frequentista. Dessa forma, para um
-novo conjunto com $m$ novas observaçõs,
+novo conjunto com $m$ novas observações,
 $({\bf X}_{n+1}, Y_{n+1}), \cdots, ({\bf X}_{n+m}, Y_{n+m})$, temos que
 essa nova amostra é i.i.d. à amostra observada (utilizada no treinamento
 do modelo/na estimação). Então, pela Lei dos Grandes Números, temos que
@@ -626,7 +626,7 @@ Kolmogorov?
 <br>
 
 [Teorema]{.red} (**Lei Forte de Kolmogorov**): Sejam $X_1, \cdots, X_n$
-uma sequência de veriáveis aleatórias - v.a. i.i.d. e integráveis, i.e.,
+uma sequência de variáveis aleatórias - v.a. i.i.d. e integráveis, i.e.,
 com valor esperado limitado, tal que
 $\mathbb{E}(X) = \mu\,\, \forall i$. Então,
 
@@ -908,7 +908,7 @@ usamos no final para avaliar o desempenho do modelo nesse conjunto. Isto
 Perceba que o conjunto de treinamento ([*Not Testing*]{.red}) é
 particionado em treinamento e validação. Poderíamos fazer uma única
 partição, mas o procedimento comumente utilizado é particionar entre
-[*Training*]{.red} e [*Validation*]{.red} uzando algum procedimento de
+[*Training*]{.red} e [*Validation*]{.red} usando algum procedimento de
 validação cruzada.
 :::
 
@@ -973,7 +973,7 @@ teste?**
 
 <br>
 
-Dividimos para obermos um bom estimador do risco utilizando o
+Dividimos para obtermos um bom estimador do risco utilizando o
 [EQM](https://en.wikipedia.org/wiki/Mean_squared_error). 🎁
 
 ## rsample
@@ -1262,7 +1262,7 @@ cruzada:
 2. `loo_cv()`: se desejar realizar um procedimento de *leave-one-out cross-validation*;
 
 2. `vfold_cv()`: para um procedimento de $k$-*folds cross-validation*. Podemos inclusive
-realizar várias repetições de validação cruzada o que poderá remelhorar ainda mais a seleção
+realizar várias repetições de validação cruzada o que poderá melhorar ainda mais a seleção
 da melhor combinação de hiperparâmetros. O número de repetições de validação cruzada poderá
 ser especificado no argumento `repeats` que por padrão é `1L`;
 
@@ -2380,7 +2380,7 @@ com $\mathbb{\bf I}_0(1,1) = 0$.
 A regressão ridge poderá ter uma variância menor que a regressão lasso,
 porém seu viés poderá ser maior. Outra característica da regressão ridge
 é que ela possue uma única solução, enquanto a regressão lasso poderá
-ter multiplas soluções. Os autores também demonstram que a regressão
+ter múltiplas soluções. Os autores também demonstram que a regressão
 ridge lida melhor com multicolinearidade.
 
 <br>
@@ -2654,7 +2654,7 @@ p2 <-
 # Usando iml --------------------------------------------------------------
 preditor <- iml::Predictor$new(
   extract_fit_parsnip(modelo_final),
-  data = treino[-1L], # (data frame com convariáveis) removendo a variável resposta
+  data = treino[-1L], # (data frame com covariáveis) removendo a variável resposta
   y = treino$y
 )
 efeitos <- iml::FeatureEffects$new(preditor, method = "pdp+ice")
@@ -2947,7 +2947,7 @@ print(previsao)
 ![](imgs/ml_ops_cycle.svg){width="40%"}
 
 
-## 🔌 vetiver: criando uma imagem docker da API <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
+## 📦 vetiver: criando uma imagem docker da API <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
 
 ::: columns
 ::: {.column width="50%"}
@@ -2964,7 +2964,7 @@ print(previsao)
 :::
 :::
 
-## 🔌 vetiver: por que dockerizar a API? <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
+## 📦 vetiver: por que dockerizar a API? <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
 
 - Aplicar as vantagens do Docker especificamente ao deploy da API criada com `vetiver`:
 - Garantir que a API rode em um **ambiente consistente e isolado**.
@@ -2975,7 +2975,7 @@ print(previsao)
 ![](imgs/aquarela_docker.png){width="20%"}
 
 
-## 🔌 vetiver: exemplo <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
+## 📦 vetiver: exemplo <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
 
 Para criar uma imagem docker da API do nosso modelo que construímos via o **vetiver**, devemos criar o arquivo `Dockerfile`.
 
@@ -3018,7 +3018,7 @@ vetiver_prepare_docker(
 )
 ```
 
-## 🔌 vetiver: Dockerfile criado <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
+## 📦 vetiver: `Dockerfile` criado <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
 
 O função `vetiver_prepare_docker()` irá criar o arquivo da receita da imagem docker, o arquivo [Dockerfile](https://docs.docker.com/reference/dockerfile/). Você precisa apenas adicionar a linha `COPY modelos /opt/ml/modelos` que irá copiar o diretório com o quadro dos modelos para a imagem.
 
@@ -3051,7 +3051,7 @@ ENTRYPOINT ["R", "-e", "pr <- plumber::plumb('/opt/ml/plumber.R'); pr$run(host =
 ```
 1. Linha que deverá ser adicionada para copiar os modelos que são arquivos `.rds` para a imagem docker. As demais linhas são criadas automaticamente pelo comando `vetiver_prepare_docker()`.
 
-## 🔌 vetiver: gerando imagem e executando um conteiner <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
+## 📦 vetiver: gerando imagem e executando um conteiner <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
 
 Você poderá, se quiser, enviar a imagem da API para o [**dockerhub**](https://hub.docker.com/) em que sua API ficará disponível para qualquer um que tenha acesso a internet. Por exemplo, você poderá em uma máquina diferente, mesmo que não tenha o **R** e o **tidymodels** instalados, fazer previsões com o seu modelo. Depois de fazer uma conta no [**dockerhub**](https://hub.docker.com/), você poderá empurrar a imagem para o seu repositório com o seguinte comando:
 
@@ -3072,7 +3072,7 @@ sudo docker tag modelo:latest prdm0/modelo:latest
 sudo docker push prdm0/modelo:latest
 ```
 
-## 🔌 vetiver: gerando imagem e executando um conteiner <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
+## 📦 vetiver: gerando imagem e executando um conteiner <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
 
 Com a nossa API, podemos gerar uma imagem docker da API e executar um contêiner 🚢📦 a partir da imagem. No diretório o `Dockerfile` 🐳, execute o seguinte comando:
 
@@ -3085,6 +3085,8 @@ sudo docker build --no-cache -t nome-da-imagem .
 sudo docker run -d -p 8080:8080 nome-da-imagem
 ```
 
+<br>
+
 Visualize a API sendo executada pelo conteiner no seu navegador em `http://localhost:8080/__docs__/`. Suas predições devem ser feitas em `http://localhost:8080/predict`. O comando `sudo docker pull prdm0/modelo:latest` você deve rodar em uma nova máquina com o docker instalado que não tenha a imagem da API do modelo. Se a imagem já estiver na máquina, não é necessário executar o comando `docker pull`.
 
 ![](gifs/mr-bean-pivot.gif){width="20%"}
@@ -3092,7 +3094,7 @@ Visualize a API sendo executada pelo conteiner no seu navegador em `http://local
 
 #  {.title background-image="imgs/api_vetiver.png" background-size="100% 100%"}
 
-## 🔌 vetiver: gerando imagem e executando um conteiner <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
+## 📦 vetiver: gerando imagem e executando um conteiner <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
 
 Como visto anteriormente, as previsões, por exemplo, em R, são feitas fazendo:
 
@@ -3110,11 +3112,11 @@ previsao <- predict(
 
 <br>
 
-Acima é uma forma de usar o R para acessar a API e poder fazer previsões a partir do modelo. Porém, outra pessoa que não programa em **R**, pode fazer previsões com o modelo. Para isso, basta fazer uma requisição HTTP para a API. Para fazer as precisões e consumir os resultados do modelo não é necessário ter o **R** instalado. Você pode fazer isso em qualquer linguagem de programação, como **Python**, **Java**, **Ruby**, etc.
+Acima é uma forma de usar o R para acessar a API e poder fazer previsões a partir do modelo. Porém, outra pessoa que não programa em **R**, pode fazer previsões com o modelo. Para isso, basta fazer uma requisição HTTP para a API. Para fazer as previsões e consumir os resultados do modelo não é necessário ter o **R** instalado. Você pode fazer isso em qualquer linguagem de programação, como **Python**, **Java**, **Ruby**, etc.
 
 ## 🌐 vetiver: exportar a API da sua máquina <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
 
-Outras pessoas podem usar a API do seu modelo e acessar em outra rede ou máquina. Para isso, você pode usar o [**ngrok**](https://ngrok.com/) ou o [**serveo**](https://serveo.net/). O [**ngrok**](https://ngrok.com/) é um serviço que permite expor um servidor local para a internet. No terminal, execute o seguinte comando:
+Outras pessoas podem usar a [API]{.underline} 🎉 do seu modelo e acessar em outra rede 🌐 ou máquina 💻. Para isso, você pode usar o [[**ngrok**](https://ngrok.com/)]{.underline} ou o [**serveo**](https://serveo.net/). O [**ngrok**](https://ngrok.com/) é um serviço que permite expor um servidor local para a internet. No terminal, execute o seguinte comando:
 
 <br>
 
@@ -3128,7 +3130,7 @@ ngrok http 8080
 
 <br>
 
-Ao criar uma conta no [**ngrok**](https://ngrok.com/) você poderá ter acesso ao `SEU_TOKEN_AUTH`. Ele devolverá um link em que qualquer pessoa poderá acessar a API do seu modelo. A máquina que irá acessar e consumir os resultados não precisa ter o **R** instalado.
+Ao criar uma conta no [**ngrok**](https://ngrok.com/) você poderá ter acesso ao `SEU_TOKEN_AUTH`. Ele devolverá um link em que qualquer pessoa 🧙‍♂️ poderá acessar a API do seu modelo. A máquina que irá acessar e consumir os resultados não precisa ter o **R** instalado.
 
 ![](imgs/ngrok.svg){width="20f%"}
 
@@ -3142,7 +3144,7 @@ Ao criar uma conta no [**ngrok**](https://ngrok.com/) você poderá ter acesso a
 [![](imgs/zap_imoveis.png){width="80%" height="auto"}](https://www.zapimoveis.com.br/)
 :::
 ::: {.column width="50%"}
-Vamos considerar dados de anúcios imobiliários 🏠🏢 do [**zap imóveis**](https://www.zapimoveis.com.br/) de imóveis (casas 🏠 e apartamentos 🏢) anunciados para a cidade de [Teresina]{.underline}. O objetivo é prever o preço 💰🪙💵 venal (preço de mercado) de venda de um imóvel em função de suas características.
+Vamos considerar dados de anúncios imobiliários 🏠🏢 do [**zap imóveis**](https://www.zapimoveis.com.br/) de imóveis (casas 🏠 e apartamentos 🏢) anunciados para a cidade de [Teresina]{.underline}. O objetivo é prever o preço 💰🪙💵 venal (preço de mercado) de venda de um imóvel em função de suas características.
 
 <br>
 
