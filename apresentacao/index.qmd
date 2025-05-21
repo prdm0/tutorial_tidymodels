@@ -88,7 +88,7 @@ UFPB
 
 -   Chamo-me [Prof. Dr. Pedro Rafael D.
     Marinho](https://prdm.netlify.app/about_pt_br.html){preview-link="true"}.
-    Meu currículo Lattes poderá ser acessado clicando
+    Meu currículo Lattes pode ser acessado clicando
     [aqui](http://lattes.cnpq.br/7185368598935272){preview-link="true"}.
 
 -   Sou docente do Departamento de Estatística da UFPB. 👨‍🏫
@@ -99,10 +99,10 @@ UFPB
 -   Tenho entusiasmo por programação, ciência de dados e aprendizagem de
     máquina 💻📈.
 
--   `r fontawesome::fa("github", "black")` Acompanhe-me no GitHub:
+-   `r fontawesome::fa("github", "black")` Visite meu GitHub:
     <https://github.com/prdm0>.
 
--   `r fontawesome::fa("linkedin", "black")` Acompanhe-me no Linkedin:
+-   `r fontawesome::fa("linkedin", "black")` Conecte-se comigo no LinkedIn:
     <https://www.linkedin.com/in/prdm0/>.
 :::
 :::
@@ -2661,16 +2661,13 @@ efeitos <- iml::FeatureEffects$new(preditor, method = "pdp+ice")
 imp <- iml::FeatureImp$new(preditor, loss = "rmse")
 p3 <- efeitos$plot()
 p4 <- imp$plot()
-
-# Plotando os gráficos -----------------------------------------------
-# p5 <- (p2) / (p3 | p1)
 ```
 
 ## Exemplo: lm, ridge, lasso e elastic net
 
 <br>
 
-Partial Dependence Plot - PDP e Individual Conditional Expectation - ICE.
+*Partial Dependence Plot* - PDP e *Individual Conditional Expectation* - ICE:
 
 ```{r}
 #| eval: true
@@ -2709,11 +2706,23 @@ p2 <- p2 +
 p1 | p2
 ```
 
+## Exemplo: lm, ridge, lasso e elastic net
+
+<br>
+
+*Variable Importante Plot* - VIP:
+
+```{r}
+#| eval: true
+#| echo: false
+p4
+```
+
 ## Importância das variáveis <img src="imgs/iml.png" height="120px" style="vertical-align:middle;">
 
 <br>
 
-O gráficos vip, ICE e PDP são gráficos que nos ajudam a entender o modelo
+O gráficos VIP, ICE e PDP são gráficos que nos ajudam a entender o modelo
 escolhido. Eles foram produziros utilizando o pacote [**iml**](https://cran.r-project.org/web/packages/iml/index.html). Alguns pacotes que podem ser utilizados para interpretação de modelos são:
 
 <br>
@@ -3156,7 +3165,7 @@ Vamos considerar dados de anúncios imobiliários 🏠🏢 do [**zap imóveis**]
 
 <br>
 
-A base de dados dos imóveis anunciados na cidade de Teresina poderá ser baixada 💾 clicando [**aqui**](dados/teresina.csv).
+A base de dados dos imóveis anunciados na cidade de Teresina poderá ser baixada 💾 clicando [**AQUI**](dados/teresina.csv).
 
 <br>
 
