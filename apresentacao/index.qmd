@@ -1922,6 +1922,11 @@ modelo_parsnip <-
 *   O pacote [**`workflows`**](https://workflows.tidymodels.org/index.html) é um dos principais pacotes do *framework* [[**tidymodels**]{.red}](https://www.tidymodels.org/).
 *   Seu papel fundamental é **gerenciar e combinar** o **pré-processamento de dados** (definido com [[**recipes**]{.red}](https://recipes.tidymodels.org/)) com a **especificação do modelo** (definida com [[**parsnip**]{.red}](https://parsnip.tidymodels.org/)).
 
+<br>
+
+![](imgs/tidymodels_07.png){fig-aling="right" width="100%"}
+
+
 ## workflows: o "varal" 🧦 da modelagem <img src="imgs/workflows_lib.png" height="120px" style="vertical-align:middle;">
 
 ::: columns
@@ -3100,6 +3105,59 @@ Visualize a API sendo executada pelo conteiner no seu navegador em `http://local
 
 ![](gifs/mr-bean-pivot.gif){width="20%"}
 
+## 🐳📦 Docker: principais comandos <img src="imgs/aquarela_docker.png" height="120px" style="vertical-align:middle;">
+
+<br>
+
+#### 🔍 Informação do Sistema
+| Comando | Descrição |
+|---------|-----------|
+| `docker version` | Exibe versão do Docker 🏷️ |
+| `docker info` | Mostra informações do sistema ℹ️ |
+| `docker stats` | Monitora recursos em tempo real 📊 |
+
+#### 🏗️ Gerenciamento de Imagens
+| Comando | Descrição |
+|---------|-----------|
+| `docker images` | Lista imagens locais 📋 |
+| `docker pull <imagem>` | Baixa imagem do registry ⬇️ |
+| `docker build -t <tag> .` | Constrói imagem do Dockerfile 🛠️ |
+| `docker image prune` | Remove imagens não utilizadas 🗑️ |
+
+#### 🚢 Controle de Containers
+| Comando | Descrição |
+|---------|-----------|
+| `docker run -d -p <porta> <imagem>` | Executa container em background 🏃 |
+| `docker ps` | Lista containers ativos ✅ |
+| `docker ps -a` | Mostra todos containers 📜 |
+| `docker start/stop <container>` | Inicia/para container ⏯️ |
+| `docker exec -it <container> sh` | Acessa terminal do container 💻 |
+| `docker logs <container>` | Exibe logs do container 📝 |
+
+#### 🧹 Limpeza
+| Comando | Descrição |
+|---------|-----------|
+| `docker container prune` | Remove containers parados 🧽 |
+| `docker system prune` | Limpeza geral (containers, redes, cache) ♻️ |
+
+#### 🛠️ Ferramentas Avançadas
+| Comando | Descrição |
+|---------|-----------|
+| `docker-compose up` | Inicia serviços do compose 🚀 |
+| `docker network ls` | Lista redes disponíveis 🌐 |
+| `docker volume ls` | Lista volumes de dados 💾 |
+
+#### ☁️ Docker Hub
+| Comando | Descrição |
+|---------|-----------|
+| `docker login` | Autentica no registry 🔐 |
+| `docker push <user>/<imagem>` | Publica imagem no Hub 📤 |
+| `docker tag imagem:latest usuario/imagem:latest` | Cria nova tag para push no Docker Hub 🏷️|
+
+<br>
+
+📌 **Dica:** Use `--help` após qualquer comando para ver opções detalhadas!
+
 
 #  {.title background-image="imgs/api_vetiver.png" background-size="100% 100%"}
 
@@ -3142,6 +3200,17 @@ ngrok http 8080
 Ao criar uma conta no [**ngrok**](https://ngrok.com/) você poderá ter acesso ao `SEU_TOKEN_AUTH`. Ele devolverá um link em que qualquer pessoa 🧙‍♂️ poderá acessar a API do seu modelo. A máquina que irá acessar e consumir os resultados não precisa ter o **R** instalado.
 
 ![](imgs/ngrok.svg){width="20f%"}
+
+## 🌐 vetiver: serviços nas nuvens ☁️ <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
+
+Se você não tem uma máquina para ser o servidor da API, você poderá fazer o deploy da API docker 📦 em um servidor na nuvem ☁️. Alguns serviços de nuvem que você pode usar para fazer o deploy da sua API são:
+
+1. [**AWS EC2**](https://aws.amazon.com/ec2/): Um serviço de computação em nuvem que fornece capacidade de computação escalável na nuvem. Você pode criar instâncias EC2 para hospedar sua API.
+2. [**DigitalOcean**](https://www.digitalocean.com/): Um provedor de nuvem que oferece serviços de hospedagem e computação em nuvem, permitindo implantar aplicativos e APIs.
+3. [**Heroku**](https://www.heroku.com/): Uma plataforma que permite implantar aplicativos e APIs facilmente.
+4. [**Google Cloud Run**](https://cloud.google.com/run): Um serviço de computação sem servidor que permite executar contêineres em resposta a solicitações HTTP.
+
+![](gifs/nuvem.gif){width="40%"}
 
 ## 🏠🏢 Previsão imobiliária de imóveis de Teresina usando tidymodels
 

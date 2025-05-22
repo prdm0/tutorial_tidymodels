@@ -194,7 +194,3 @@ efeitos <- iml::FeatureEffects$new(preditor, method = "pdp+ice")
 imp <- iml::FeatureImp$new(preditor, loss = "rmse")
 p2 <- efeitos$plot()
 p3 <- imp$plot()
-
-# Plotando os gráficos -----------------------------------------------
-
-(p2 | p3) / p1
