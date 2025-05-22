@@ -800,13 +800,13 @@ future::plan(sequential) # Tornando o código sequencial novamente
 
 `future::plan(multicore)`
 
-[![No sistema operacional Linux. Esse é o Tux, mascote do sistema operacional linux.](imgs/tux_aquarela.png){fig-alt="No sistema operacional Linux. Esse é o Tux, mascote do sistema operacional linux." width="60%" height="auto"}](https://www.tidymodels.org/)
+[![No sistema operacional Linux. Esse é o Tux, mascote do sistema operacional linux.](imgs/tux_aquarela.png){fig-alt="No sistema operacional Linux. Esse é o Tux, mascote do sistema operacional linux." width="60%" height="auto"}](https://pt.wikipedia.org/wiki/Linux)
 :::
 
 ::: {.column width="50%"}
 `future::plan(multisession)`
 
-[![Em todos os sistemas operacionais, incluindo o Windows (Linux, Unix e Windows).](imgs/aquarela_windows.png){fig-alt="Em todos os sistemas operacionais (Linux, Unix e Windows)."  width="60%" height="auto"}](https://www.tidymodels.org/)
+[![Em todos os sistemas operacionais, incluindo o Windows (Linux, Unix e Windows).](imgs/aquarela_windows.png){fig-alt="Em todos os sistemas operacionais (Linux, Unix e Windows)."  width="60%" height="auto"}](https://www.microsoft.com/pt-br/download/windows)
 :::
 :::
 
