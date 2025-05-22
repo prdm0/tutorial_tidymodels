@@ -1,7 +1,6 @@
 ---
 title: "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina"
-author: "<br><br>Prof. Dr. Pedro Rafael D. Marinho<br>Departamento de Estatística - UFPB<br> Programa de Pós-Graduação em Modelos de Decisão e Saúde - PPGMDS<br>"
-date: '04/06/2025'
+author: "<br><br>Prof. Dr. Pedro Rafael D. Marinho<br>Departamento de Estatística - UFPB<br> Programa de Pós-Graduação em Modelos de Decisão e Saúde - PPGMDS<br>04/06/2025"
 format:
   revealjs:
     theme: [default, style.scss]
@@ -44,7 +43,7 @@ execute:
 editor:
   markdown:
     wrap: 72
-lang: pt
+lang: pt-BR
 ---
 
 <!-- ```{r} -->
