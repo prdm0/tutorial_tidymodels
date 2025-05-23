@@ -2,6 +2,8 @@ library(tidymodels)
 library(tibble)
 library(future)
 library(broom)
+library(vetiver)
+library(pins)
 
 # Resolvendo problemas de conflito de pacotes
 tidymodels::tidymodels_prefer()
@@ -103,12 +105,41 @@ modelo_final <- extract_fit_parsnip(ajuste_final)
 tidy(modelo_final) |>
   filter(estimate == 0)
 
-# Salvando o modelo
-# saveRDS(modelo_final, "modelo_lasso.rds")
-
-# Carregando o modelo
-# modelo_lasso <- readRDS("modelo_lasso.rds")
-
 # Realizando predições
-predicoes <- predict(modelo_lasso, new_data = teste) # ou
-augment(modelo_lasso, new_data = teste) # para incluir as predições no dataframe
+predicoes <- predict(modelo_final, new_data = teste) # ou
+augment(modelo_final, new_data = teste) # para incluir as predições no dataframe
+
+# Criando a API
+v <- vetiver::vetiver_model(
+  model = extract_workflow(ajuste_final),
+  model_name = "modelo_lasso_v1",
+  description = "Modelo Lasso para predição de y"
+)
+
+board <- pins::board_folder(
+  path = "modelos",
+  versioned = TRUE
+)
+
+vetiver::vetiver_pin_write(
+  board = board,
+  vetiver_model = v
+)
+
+pins::pin_versions(board, pins::pin_list(board))
+
+# modelo <-
+#   vetiver::vetiver_pin_read(
+#     board,
+#     "modelo_lasso_v1",
+#     version = NULL
+#   )
+# predict(modelo, new_data = teste)
+
+# pins::pin_meta(board, "modelo_lasso_v1")
+
+vetiver::vetiver_prepare_docker(
+  board = board,
+  name = "modelo_lasso_v1",
+  docker_args = list(port = 8080)
+)

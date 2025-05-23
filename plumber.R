@@ -5,7 +5,7 @@ library(plumber)
 library(rapidoc)
 library(vetiver)
 b <- board_folder(path = "modelos")
-v <- vetiver_pin_read(b, "modelo_lm_v1", version = "20250521T114156Z-f7645")
+v <- vetiver_pin_read(b, "modelo_lasso_v1", version = "20250523T151459Z-4b4ae")
 
 #* @plumber
 function(pr) {

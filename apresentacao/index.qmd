@@ -2432,8 +2432,8 @@ de cada um dos métodos isoladamente, melhorando a estabilidade das
 estimativas do lasso, em situações de multicolinearidade entre as
 variáveis e também permitindo a seleção automática de variáveis.
 
-$$(1-\alpha)\widehat{\beta}_{L_2,\lambda} + \alpha\widehat{\beta}_{L_1,\lambda},$$
-em que $0 \leq \alpha \leq1$. Em R, basta especificar para a função
+$$\lambda[(1-\alpha)\widehat{\beta}_{L_2,\lambda} + \alpha\widehat{\beta}_{L_1,\lambda}],$$
+em que $0 \leq \alpha \leq1$ e $\lambda \geq 0$. Em R, basta especificar para a função
 [`glmnet`](https://www.rdocumentation.org/packages/glmnet/versions/4.1-7/topics/glmnet) um valor de $\alpha$ diferente de 0 e 1. Esse valor normalmente é escolhido por um procedimento de validação cruzada.
 
 <br>
@@ -3199,6 +3199,23 @@ ngrok http 8080
 Ao criar uma conta no [**ngrok**](https://ngrok.com/) você poderá ter acesso ao `SEU_TOKEN_AUTH`. Ele devolverá um link em que qualquer pessoa 🧙‍♂️ poderá acessar a API do seu modelo. A máquina que irá acessar e consumir os resultados não precisa ter o **R** instalado.
 
 ![](imgs/ngrok.svg){width="20f%"}
+
+
+## 🌐 vetiver: exportar a API da sua máquina <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
+
+<br>
+
+A aplicação [**shiny**](https://shiny.posit.co/) abaixo [**não está rodando nessa máquina**]{.underline}. Vamos informar, na aplicação, o link da API para o modelo lasso. Ao expor a porta `8080` (`ngrok http 8080`) da API via [**ngrok**](https://ngrok.com/), a aplicação poderá consumir as previsões do modelo lasso.
+
+<br>
+
+📌 **Atenção**: Só irá funcionar se você, em sua máquina, criar uma API do modelo lasso e a exportar via **ngrok** 🧙‍♂️. De preferência, crie uma imagem e rode o conteiner **docker** 🐳📦 da API, como ensinado anteriormente.
+
+<br>
+
+::: {.iframe-container}
+<iframe src="https://pedro-rafael.shinyapps.io/app_api/" width="100%" height="500px" frameborder="4"></iframe>
+:::
 
 ## 🌐 vetiver: serviços nas nuvens ☁️ <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
 
