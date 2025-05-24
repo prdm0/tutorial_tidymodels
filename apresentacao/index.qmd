@@ -2049,7 +2049,7 @@ Em resumo,
 
 <br>
 
-$parnip + recipes + workflows$:
+$parsnip + recipes + workflows$:
 
 <br>
 

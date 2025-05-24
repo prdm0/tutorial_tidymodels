@@ -956,7 +956,7 @@
     "href": "index.html#workflows-5",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "workflows ",
-    "text": "workflows \nEm resumo,\n\nparnip + recipes + workflows:\n\n\n# Definindo uma receita e a fórmula\nreceita &lt;- recipe(\n  Species ~ .,\n  data = iris\n) |&gt;\n  step_log(all_numeric_predictors()) |&gt;\n  step_dummy(all_nominal_predictors(), one_hot = TRUE)\n\n# Definindo o modelo\nmodelo &lt;- rand_forest(\n  trees = 500,\n  mtry = 2\n) |&gt;\n  set_engine(\"ranger\", importance = \"impurity\") |&gt;\n  set_mode(\"classification\")\n\n# receita + modelo = workflow\nwf &lt;- workflows::workflow() |&gt;\n  workflows::add_recipe(receita) |&gt;\n  workflows::add_model(modelo)"
+    "text": "workflows \nEm resumo,\n\nparsnip + recipes + workflows:\n\n\n# Definindo uma receita e a fórmula\nreceita &lt;- recipe(\n  Species ~ .,\n  data = iris\n) |&gt;\n  step_log(all_numeric_predictors()) |&gt;\n  step_dummy(all_nominal_predictors(), one_hot = TRUE)\n\n# Definindo o modelo\nmodelo &lt;- rand_forest(\n  trees = 500,\n  mtry = 2\n) |&gt;\n  set_engine(\"ranger\", importance = \"impurity\") |&gt;\n  set_mode(\"classification\")\n\n# receita + modelo = workflow\nwf &lt;- workflows::workflow() |&gt;\n  workflows::add_recipe(receita) |&gt;\n  workflows::add_model(modelo)"
   },
   {
     "objectID": "index.html#workflows-6",
