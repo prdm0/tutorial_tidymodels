@@ -3064,7 +3064,7 @@ ENTRYPOINT ["R", "-e", "pr <- plumber::plumb('/opt/ml/plumber.R'); pr$run(host =
 ```
 1. Linha que deverá ser adicionada para copiar os modelos que são arquivos `.rds` para a imagem docker. As demais linhas são criadas automaticamente pelo comando `vetiver_prepare_docker()`.
 
-## 📦 vetiver: gerando imagem e executando um conteiner <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
+## 📦 vetiver: gerando imagem e executando um container <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
 
 Você poderá, se quiser, enviar a imagem da API para o [**dockerhub**](https://hub.docker.com/) em que sua API ficará disponível para qualquer um que tenha acesso a internet. Por exemplo, você poderá em uma máquina diferente, mesmo que não tenha o **R** e o **tidymodels** instalados, fazer previsões com o seu modelo. Depois de fazer uma conta no [**dockerhub**](https://hub.docker.com/), você poderá empurrar a imagem para o seu repositório com o seguinte comando:
 
@@ -3075,17 +3075,21 @@ Você poderá, se quiser, enviar a imagem da API para o [**dockerhub**](https://
 # Login no dockerhub
 sudo docker login
 
-# Targetando a imagem para o dockerhub. No meu caso,
-# o meu nome de usuário é prdm0. Troque pelo seu. Em,
-# latest você poderá colocando a versão da imagem,
-# por exemplo, v1.0.0.
+# Construindo a imagem docker
+sudo docker build --no-cache -t nome-da-imagem .
+
+# Ou: na construção da imagem você também poderá adicionar a tag
+sudo docker build --no-cache -t nome-da-imagem:tag .
+
+# Se não colocou a tag na construção (no build) ou precisa
+# enviar para o dockerhub, poderá fazer algo como:
 sudo docker tag modelo:latest prdm0/modelo:latest
 
 # Enviando a imagem para o dockerhub
 sudo docker push prdm0/modelo:latest
 ```
 
-## 📦 vetiver: gerando imagem e executando um conteiner <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
+## 📦 vetiver: gerando imagem e executando um container <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
 
 Com a nossa API, podemos gerar uma imagem docker da API e executar um contêiner 🚢📦 a partir da imagem. No diretório o `Dockerfile` 🐳, execute o seguinte comando:
 
@@ -3093,14 +3097,15 @@ Com a nossa API, podemos gerar uma imagem docker da API e executar um contêiner
 
 ```{bash}
 #| eval: false
+# Se a imagem estiver no dockerhub, você pode fazer o download dela:
 sudo docker pull prdm0/modelo:latest
-sudo docker build --no-cache -t nome-da-imagem .
+# Executando o container
 sudo docker run -d -p 8080:8080 nome-da-imagem
 ```
 
 <br>
 
-Visualize a API sendo executada pelo conteiner no seu navegador em `http://localhost:8080/__docs__/`. Suas predições devem ser feitas em `http://localhost:8080/predict`. O comando `sudo docker pull prdm0/modelo:latest` você deve rodar em uma nova máquina com o docker instalado que não tenha a imagem da API do modelo. Se a imagem já estiver na máquina, não é necessário executar o comando `docker pull`.
+Visualize a API sendo executada pelo container no seu navegador em `http://localhost:8080/__docs__/`. Suas predições devem ser feitas em `http://localhost:8080/predict`. O comando `sudo docker pull prdm0/modelo:latest` você deve rodar em uma nova máquina com o docker instalado que não tenha a imagem da API do modelo. Se a imagem já estiver na máquina, não é necessário executar o comando `docker pull`.
 
 ![](gifs/mr-bean-pivot.gif){width="20%"}
 
@@ -3126,9 +3131,9 @@ Visualize a API sendo executada pelo conteiner no seu navegador em `http://local
 #### 🚢 Controle de Containers
 | Comando | Descrição |
 |---------|-----------|
-| `docker run -d -p <porta> <imagem>` | Executa container em background 🏃 |
+| `docker run -d -p <porta_pc:porta_container> <imagem>` | Executa container em background 🏃 |
 | `docker ps` | Lista containers ativos ✅ |
-| `docker ps -a` | Mostra todos containers 📜 |
+| `docker ps -a` | Mostra todos containers, incluindo os parados 📜 |
 | `docker start/stop <container>` | Inicia/para container ⏯️ |
 | `docker exec -it <container> sh` | Acessa terminal do container 💻 |
 | `docker logs <container>` | Exibe logs do container 📝 |
@@ -3138,6 +3143,7 @@ Visualize a API sendo executada pelo conteiner no seu navegador em `http://local
 |---------|-----------|
 | `docker container prune` | Remove containers parados 🧽 |
 | `docker system prune` | Limpeza geral (containers, redes, cache) ♻️ |
+| `docker system prune -a` | Limpeza agressiva removendo tudo que não está em uso 💥 |
 
 #### 🛠️ Ferramentas Avançadas
 | Comando | Descrição |
@@ -3157,10 +3163,34 @@ Visualize a API sendo executada pelo conteiner no seu navegador em `http://local
 
 📌 **Dica:** Use `--help` após qualquer comando para ver opções detalhadas!
 
+## 📦 vetiver: comandos úteis em sistemas linux/unix <img src="imgs/tux_aquarela.png" height="120px" style="vertical-align:middle;">
+
+<br>
+
+Portas de rede 🌐 são pontos virtuais de comonicação em um computador utilizado para organizar o trágego de rede 🖧 entre diferentes aplicativos. Cada porta é identificada por um número, e cada aplicativo ["escuta"]{.underline} 🎧 em uma porta 🚪📶 específica para receber dados. Os comandos `lsof` e `ss` são úteis:
+
+<br>
+
+```{bash}
+#| eval: false
+
+# Verificando quais portas já estão em uso
+sudo ss -tulpn
+
+# Verificando se a porta 8080 está livre.
+# Se estiver livre, o comando não retorna nada.
+sudo lsof -i :8080
+
+# Matando um processo que está utilizando a porta 8080
+sudo kill -9 <PID>
+```
+
+Para uso geral de desenvolvimento, poderá considerar portas de `8000` a `8999`. Recomenda-se que para *web servers*, em desenvolvimento as portas no intervalo `8080` a `8099`. Mas você poderá usar qualquer porta. As portas livres sem necessidade de ser administrador do sistema estão definidas no intervalo `1024` a `65535`.
+
 
 #  {.title background-image="imgs/api_vetiver.png" background-size="100% 100%"}
 
-## 📦 vetiver: gerando imagem e executando um conteiner <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
+## 📦 vetiver: gerando imagem e executando um container <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
 
 Como visto anteriormente, as previsões, por exemplo, em R, são feitas fazendo:
 
@@ -3190,7 +3220,7 @@ Outras pessoas podem usar a [API]{.underline} 🎉 do seu modelo e acessar em ou
 #| eval: false
 # Substitua por sua chave de autenticação
 ngrok authtoken SEU_TOKEN_AUTH
-# Uma vez que sua API roda em um conteiner na porta 8080
+# Uma vez que sua API roda em um container na porta 8080
 ngrok http 8080
 ```
 
@@ -3209,7 +3239,7 @@ A aplicação [**shiny**](https://shiny.posit.co/) abaixo [**não está rodando 
 
 <br>
 
-📌 **Atenção**: Apenas irá funcionar se você, em sua máquina, criar uma API do modelo lasso e a exportar via **ngrok** 🧙‍♂️. De preferência, crie uma imagem e rode o conteiner **docker** 🐳📦 da API, como ensinado anteriormente.
+📌 **Atenção**: Apenas irá funcionar se você, em sua máquina, criar uma API do modelo lasso e a exportar via **ngrok** 🧙‍♂️. De preferência, crie uma imagem e rode o container **docker** 🐳📦 da API, como ensinado anteriormente.
 
 <br>
 
@@ -3269,6 +3299,20 @@ dados <- read_csv("dados/teresina.csv")
 dplyr::glimpse(dados)
 visdat::vis_dat(dados)
 ```
+
+## 📚 Indicação de leitura
+
+<br>
+
+::: columns
+::: {.column width="50%"}
+
+[![**Kuhn, M., & Johnson, K.** (2023). *Applied machine learning for tabular data*. O'Reilly Media. ISBN: 978-1-492-07924-4.](imgs/capa_livro_tidymodels_01.png){width="50%" height="auto"}](https://www.tidymodels.org/aml4td/)
+:::
+::: {.column width="50%"}
+[![**James, G., Witten, D., Hastie, T., & Tibshirani, R.** (2013). *An introduction to statistical learning*. Springer. ISBN: 978-1-4614-7138-7.](imgs/capa_livro_02.png){width="45%" height="auto"}](https://www.statlearning.com/)
+:::
+:::
 
 ## 📚 Referências
 
