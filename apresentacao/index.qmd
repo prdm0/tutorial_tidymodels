@@ -3209,7 +3209,11 @@ A aplicação [**shiny**](https://shiny.posit.co/) abaixo [**não está rodando 
 
 <br>
 
-📌 **Atenção**: Só irá funcionar se você, em sua máquina, criar uma API do modelo lasso e a exportar via **ngrok** 🧙‍♂️. De preferência, crie uma imagem e rode o conteiner **docker** 🐳📦 da API, como ensinado anteriormente.
+📌 **Atenção**: Apenas irá funcionar se você, em sua máquina, criar uma API do modelo lasso e a exportar via **ngrok** 🧙‍♂️. De preferência, crie uma imagem e rode o conteiner **docker** 🐳📦 da API, como ensinado anteriormente.
+
+<br>
+
+Para visualizar 🔭 melhor a aplicação, clique [**AQUI** 🧑‍💻](https://pedro-rafael.shinyapps.io/app_api/).
 
 <br>
 

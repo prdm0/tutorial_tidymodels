@@ -4,7 +4,7 @@ username: pedro-rafael
 account: pedro-rafael
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
-appId: 14814043
+appId: 14815841
 bundleId:
 url: https://pedro-rafael.shinyapps.io/tutorial_tidymodels/
 version: 1
