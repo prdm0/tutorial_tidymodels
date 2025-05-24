@@ -193,7 +193,7 @@
     "href": "index.html#paralelizando-1",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Paralelizando ",
-    "text": "Paralelizando \n\n\nfuture::plan(multicore)\n\n\n\nNo sistema operacional Linux. Esse é o Tux, mascote do sistema operacional linux.\n\n\n\nfuture::plan(multisession)\n\n\n\nEm todos os sistemas operacionais, incluindo o Windows (Linux, Unix e Windows)."
+    "text": "Paralelizando \n\n\n \n\n\n\nIlustração de um processador multicores com 4 núleos (na cor azul) e 8 threads (na cor vemelho).\n\n\n\nExemplo de paralelismo com o pacote future:\n\nlibrary(future)\nlibrary(tictoc)\n\nfuture::plan(future::multisession)\n\nf &lt;- function(){\n  Sys.sleep(10)\n  runif(1)\n}\n\n# Execução em serial\ntic()\nset.seed(0)\nv &lt;- lapply(\n  X = 1L:10L,\n  FUN = \\(i) f()\n)\nprint(v)\ntoc()\n\n# Execução em paralelo\ntic()\nset.seed(0)\nv &lt;- lapply(\n  X = 1L:10L,\n  FUN = \\(i) future::future(\n    f(),\n    seed = TRUE\n  )\n)\nv &lt;- value(v)\nprint(v)\ntoc()"
   },
   {
     "objectID": "index.html#biblioteca-future",
@@ -830,7 +830,7 @@
     "href": "index.html#elastic-net",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Elastic net",
-    "text": "Elastic net\n\nNa documentação da função glmnet, note que a função realiza o lasso mais o ridge, i.e.,\n\n(1 - \\alpha)/2 ||\\beta_j||^2_2 + \\alpha||\\beta_j||_2.\n\nNote que para \\alpha = 1, temos uma regressão do tipo lasso, já para \\alpha = 0 recaímos para uma penalização do tipo ridge. Para \\alpha diferente de zero e um, temos uma elastic net, ok?!"
+    "text": "Elastic net\n\nNa documentação da função glmnet, note que a função realiza o lasso mais o ridge, i.e.,\n\n\\lambda[(1 - \\alpha)/2 ||\\beta_j||^2_2 + \\alpha||\\beta_j||_1],\n\ncom \\lambda &gt; 0 e \\alpha \\in [0, 1]. Note que para \\alpha = 1, temos uma regressão do tipo lasso, já para \\alpha = 0 recaímos para uma penalização do tipo ridge. Para \\alpha diferente de zero e um, temos uma elastic net, ok?!"
   },
   {
     "objectID": "index.html#elastic-net-1",
@@ -1292,6 +1292,13 @@
     "href": "index.html#indicação-de-leitura",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "📚 Indicação de leitura",
-    "text": "📚 Indicação de leitura\n\n\n\n\n\n\nKuhn, M., & Johnson, K. (2023). Applied machine learning for tabular data. O’Reilly Media. ISBN: 978-1-492-07924-4.\n\n\n\n\n\n\nJames, G., Witten, D., Hastie, T., & Tibshirani, R. (2013). An introduction to statistical learning. Springer. ISBN: 978-1-4614-7138-7."
+    "text": "📚 Indicação de leitura\n\n\n\n\n\n\nKuhn, M., & Silge, J. (2022). Tidy Modeling with R. O’Reilly Media. ISBN: 978-1098121026.\n\n\n\n\n\n\nJames, G., Witten, D., Hastie, T., & Tibshirani, R. (2013). An introduction to statistical learning. Springer. ISBN: 978-1-4614-7138-7."
+  },
+  {
+    "objectID": "index.html#paralelizando-2",
+    "href": "index.html#paralelizando-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "Paralelizando ",
+    "text": "Paralelizando \n\n\nfuture::plan(multicore)\n\n\n\nNo sistema operacional Linux. Esse é o Tux, mascote do sistema operacional linux.\n\n\n\nfuture::plan(multisession)\n\n\n\nEm todos os sistemas operacionais, incluindo o Windows (Linux, Unix e Windows)."
   }
 ]

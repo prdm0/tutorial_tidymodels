@@ -782,13 +782,66 @@ future::plan(sequential) # Tornando o código sequencial novamente
 ::: {.column width="50%"}
 
 ::: {.nonincremental}
-+ O pacote future permite programar tarefas em paralelo de forma simples e intuitiva em R.
++ O pacote [**future**](https://future.futureverse.org/) permite programar tarefas em paralelo de forma simples e intuitiva em R.
 
-+ O objetivo do pacote future é fornecer uma maneira muito simples e uniforme de avaliar expressões R de forma assíncrona.
++ O objetivo do pacote [**future**](https://future.futureverse.org/) é fornecer uma maneira muito simples e uniforme de avaliar expressões R de forma assíncrona.
 
 + Em programação, um future é uma abstração para um valor que pode estar disponível em algum momento no futuro.
 :::
 [![Logo do pacoture **future** que permite paralelismo em R em diferentes sistemas POSIX.](imgs/logo_pacote_future.png){fig-alt="Logo do pacoture **future** que permite paralelismo em R em diferentes sistemas POSIX." width="30%" height="auto"}](https://future.futureverse.org/)
+:::
+:::
+
+## Paralelizando <img src="imgs/logo_pacote_future.png" height="220px" style="vertical-align:middle;">
+
+::: columns
+::: {.column width="50%"}
+<br>
+<br>
+
+[![Ilustração de um processador multicores com **4 núleos** (na cor azul) e **8 threads** (na cor vemelho).](imgs/porcessador_aquarela.png){fig-alt="Ilustração de um processador multicores com 4 núleos (na cor azul) e 8 threads (na cor vemelho)." width="50%" height="auto"}](https://pt.wikipedia.org/wiki/Processador_multin%C3%BAcleo)
+:::
+
+::: {.column width="50%"}
+Exemplo de paralelismo com o pacote [**future**](https://future.futureverse.org/):
+```{r}
+#| eval: false
+#| class-source: smallcode
+#| code-line-numbers: 1-9|11-19|24-33
+library(future)
+library(tictoc)
+
+future::plan(future::multisession)
+
+f <- function(){
+  Sys.sleep(10)
+  runif(1)
+}
+
+# Execução em serial
+tic()
+set.seed(0)
+v <- lapply(
+  X = 1L:10L,
+  FUN = \(i) f()
+)
+print(v)
+toc()
+
+# Execução em paralelo
+tic()
+set.seed(0)
+v <- lapply(
+  X = 1L:10L,
+  FUN = \(i) future::future(
+    f(),
+    seed = TRUE
+  )
+)
+v <- value(v)
+print(v)
+toc()
+```
 :::
 :::
 
@@ -2412,11 +2465,11 @@ Na documentação da função [`glmnet`](https://www.rdocumentation.org/packages
 
 <br>
 
-$$(1 - \alpha)/2 ||\beta_j||^2_2 + \alpha||\beta_j||_2.$$
+$$\lambda[(1 - \alpha)/2 ||\beta_j||^2_2 + \alpha||\beta_j||_1],$$
 
 <br>
 
-Note que para $\alpha = 1$, temos uma regressão do tipo lasso, já para $\alpha = 0$ recaímos para uma penalização do tipo ridge. Para $\alpha$ diferente de zero e um, temos uma *elastic net*, ok?!
+com $\lambda > 0$ e  $\alpha \in [0, 1]$. Note que para $\alpha = 1$, temos uma regressão do tipo lasso, já para $\alpha = 0$ recaímos para uma penalização do tipo ridge. Para $\alpha$ diferente de zero e um, temos uma *elastic net*, ok?!
 
 <br>
 
@@ -3307,7 +3360,7 @@ visdat::vis_dat(dados)
 ::: columns
 ::: {.column width="50%"}
 
-[![**Kuhn, M., & Johnson, K.** (2023). *Applied machine learning for tabular data*. O'Reilly Media. ISBN: 978-1-492-07924-4.](imgs/capa_livro_tidymodels_01.png){width="50%" height="auto"}](https://www.tidymodels.org/aml4td/)
+[![**Kuhn, M., & Silge, J.** (2022). Tidy Modeling with R. O'Reilly Media. ISBN: 978-1098121026.](imgs/capa_livro_tidymodels_01.png){width="50%" height="auto"}](https://www.tmwr.org/)
 :::
 ::: {.column width="50%"}
 [![**James, G., Witten, D., Hastie, T., & Tibshirani, R.** (2013). *An introduction to statistical learning*. Springer. ISBN: 978-1-4614-7138-7.](imgs/capa_livro_02.png){width="45%" height="auto"}](https://www.statlearning.com/)
