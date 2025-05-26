@@ -1,0 +1,151 @@
+---
+title: "Construindo um modelo e API para previsão dos preços de imóveis em Teresina - PI"
+author: "Prof. Dr. Pedro Rafael Diniz Marinho"
+toc: true
+format:
+  html:
+    html-math-method: katex
+    code-tools: true
+    self-contained: true
+execute:
+  warning: false
+---
+
+# Modelagem imobiliária para dados de imóveis em Teresina - PI
+
+![](https://blog.123milhas.com/wp-content/uploads/2022/04/BANNER-TEM-CONHECER-TERESINA-123MILHAS.jpg)
+
+Iremos construir um modelo para previsão de valores 💲de imóveis usando o framework [**tidymodels**](https://www.tidymodels.org/) e disponibilizar uma API para consulta (previsão) dos preços de imóveis em Teresina - PI.
+
+1. Construção do modelo
+2. Criação de uma imagem [Docker](https://www.docker.com/) 🐋
+3. Executar um container 🚢 + 📦 com a API [vetiver](https://vetiver.posit.co/)
+4. Consulta da API 🌐
+
+## Olhando para os dados
+
+São dados reais, obtidos via web scraping do site [**Zap Imóveis**](https://www.zapimoveis.com.br/) 🏡🏢 no ano de 2023 do município de Teresina, Piauí, Brasil.
+
+**Você poderá acessar os dados clicando** [**AQUI**]("../../dados/teresina.csv") 💾.
+
+```{r}
+#| echo: true
+library(vroom) # Leitura dos dados
+library(janitor) # Limpando nomes das colunas
+library(dplyr) # Manipulação de dados
+
+# Base de dados dos imóveis anuanciados em Teresina (2023)
+dados <- vroom::vroom("../../dados/teresina.csv") |>
+  janitor::clean_names() # Organizando os nomes das colunas
+
+# Visualizando os dados com o comando glimpse
+dplyr::glimpse(dados)
+```
+
+Vamos agora visualizar os dados de uma forma que facilite a compreensão.
+
+```{r}
+library(visdat)
+library(dplyr)
+# Visualizando os dados (tipo, estrutura e valores ausentes)
+visdat::vis_dat(dados)
+
+# Selecionando apenas as variáveis numéricas
+dados |>
+  dplyr::select(where(is.numeric)) |>
+  visdat::vis_cor(digits = 2, sort = TRUE)
+```
+
+Vamos observar os tipos de imóveis na variável `tipo` e fazer uma contagem nos tipos disponíveis:
+
+```{r}
+#| code-fold: true
+# Tabela com a quantidade de tipos de imóveis
+library(ggplot2)
+library(dplyr)
+
+# Contagem de tipos de imóveis
+tipos_imoveis <-
+  dados |>
+  dplyr::count(tipo) |>
+  dplyr::arrange(desc(n))
+
+# Verificando os tipos de imóveis
+p1 <-
+  tipos_imoveis[1:4, ] |>
+  dplyr::arrange(desc(n)) |>
+  dplyr::mutate(tipo = forcats::fct_reorder(tipo, n)) |>
+  ggplot(aes(x = tipo, y = n)) +
+  geom_col(aes(fill = n)) +
+  coord_flip() +
+  geom_text(
+    aes(label = n),
+    position = position_stack(vjust = 0.5),
+    color = "white",
+    size = 5
+  ) +
+  labs(
+    title = "Tipos de imóveis em Teresina - PI",
+    x = "Tipo de imóvel",
+    y = "Quantidade"
+  ) +
+  theme_linedraw()
+# Gráfico com os tipos de imóveis
+print(p1)
+# Tabela com os tipos de imóveis
+print(tipos_imoveis)
+```
+
+Observa-se que as informações do `iptu` e `condiminio` são muito incipientes, e talvez, inputar essas informações não seja uma boa ideia, pois pode gerar um viés no modelo. Vamos descartar essas variáveis.
+
+**Lista de veriáveis que serão descartadas:**
+
+1. `endereço`: já há o georeferenciamento dos imóveis
+2. `url`: sem utilidade para a previsão
+3. `bairro`: já há o georeferenciamento dos imóveis
+4. `iptu`: muitas observações faltantes
+5. `condominio`: muitas observações faltantes
+
+📌 **Observações**:
+
+1. será considerada a variável `vaga` e utilizaremos imputação de dados, uma vez que não há muitas observações faltantes. Além disso, focaremos em construir um modelo para previsão de valores de casas 🏡 e apartamentos 🏢.
+
+2. `casa = casas + casas_de_condimonio + casas_de_vila`
+
+3. `apartamento = apartamentos + flat`
+
+```{r}
+# Dados gerais com a remoção das variáveis que não serão utilizadas
+dados <- dados |>
+  dplyr::select(
+    -iptu,
+    -condominio,
+    -endereco,
+    -url,
+    -bairro
+  )
+
+# Agrupando casas = casas + casas_de_condimonio + casas_de_vila e
+# apartamentos = apartamentos + flat
+dados <- dados |>
+  dplyr::mutate(
+    tipo = dplyr::case_when(
+      tipo == "casas" ~ "casa",
+      tipo == "casas_de_condiminio" ~ "casa",
+      tipo == "casas_de_vila" ~ "casa",
+      tipo == "apartamentos" ~ "apartamento",
+      tipo == "flat" ~ "apartamento",
+      TRUE ~ tipo
+    )
+  ) |>
+  dplyr::filter(tipo %in% c("casa", "apartamento"))
+
+# Contagem de tipos de imóveis
+tipos_imoveis <-
+  dados |>
+  dplyr::count(tipo) |>
+  dplyr::arrange(desc(n))
+
+print(tipos_imoveis)
+
+```

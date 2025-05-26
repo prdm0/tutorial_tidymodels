@@ -1,0 +1,13 @@
+file: lm_mtcars_v1.rds
+file_size: 5181
+pin_hash: ae9a5017c45a5edc
+type: rds
+title: 'lm_mtcars_v1: a pinned list'
+description: An OLS linear regression model
+tags: ~
+urls: ~
+created: 20250526T184625Z
+api_version: 1
+user:
+  required_pkgs: ~
+  renv_lock: ~

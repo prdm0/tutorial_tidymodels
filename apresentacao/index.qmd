@@ -3368,6 +3368,17 @@ dplyr::glimpse(dados)
 visdat::vis_dat(dados)
 ```
 
+## 🏠🏢 Previsão imobiliária de imóveis de Teresina usando tidymodels
+
+<br>
+
+Para acessar a análise, clique [AQUI](assets/modelo_teresina.html)
+
+<br>
+
+<iframe src="assets/modelo_teresina.html" width="100%" height="600px" frameborder="0"></iframe>
+
+
 ## 📚 Indicação de leitura
 
 <br>

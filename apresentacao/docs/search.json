@@ -466,7 +466,7 @@
     "href": "index.html#parsnip-2",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "parsnip ",
-    "text": "parsnip \n\nDiversas bibliotecas na linguagem R são preparadas para trabalharem na área de aprendizagem de máquina. Várias dessas bibliotecas vem sendo desenvolvidas há anos. Por exemplo,as bibliotecas glmnet, ranger, kknn, xgboost, keras, rpart, randomForest, entre diversos outros.\n\n\n\nO número de pacotes abaixo é o mais recente. Obtido automaticamente por webscraping.\nlibrary(xml2)\nlibrary(httr)\nlibrary(stringr)\nlibrary(\"downlit\")\n\nnumero_pacotes_r &lt;- httr::GET(\n  \"https://cloud.r-project.org/web/packages/index.html\"\n) |&gt;\n  xml2::read_html() |&gt;\n  xml2::xml_find_all(\"//p[1]\") |&gt;\n  xml2::xml_text() |&gt;\n  stringr::str_extract(pattern = \"[0-9]+\")\n\n\n\nAtualmente, a linguagem R possui 22430, em que muitos deles são preparados para para trabalharem em tarefas de aprendizagem de máquina, porém, cada com sua sintaxe específica. Muitos implementam o mesmo modelo, uns com algumas variações, porém, o uso é totalmente diferente, nomes de parâmetros distintos, saídas distintas, etc."
+    "text": "parsnip \n\nDiversas bibliotecas na linguagem R são preparadas para trabalharem na área de aprendizagem de máquina. Várias dessas bibliotecas vem sendo desenvolvidas há anos. Por exemplo,as bibliotecas glmnet, ranger, kknn, xgboost, keras, rpart, randomForest, entre diversos outros.\n\n\n\nO número de pacotes abaixo é o mais recente. Obtido automaticamente por webscraping.\nlibrary(xml2)\nlibrary(httr)\nlibrary(stringr)\nlibrary(\"downlit\")\n\nnumero_pacotes_r &lt;- httr::GET(\n  \"https://cloud.r-project.org/web/packages/index.html\"\n) |&gt;\n  xml2::read_html() |&gt;\n  xml2::xml_find_all(\"//p[1]\") |&gt;\n  xml2::xml_text() |&gt;\n  stringr::str_extract(pattern = \"[0-9]+\")\n\n\n\nAtualmente, a linguagem R possui 22433, em que muitos deles são preparados para para trabalharem em tarefas de aprendizagem de máquina, porém, cada com sua sintaxe específica. Muitos implementam o mesmo modelo, uns com algumas variações, porém, o uso é totalmente diferente, nomes de parâmetros distintos, saídas distintas, etc."
   },
   {
     "objectID": "index.html#parsnip-3",
@@ -1300,5 +1300,12 @@
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "Paralelizando ",
     "text": "Paralelizando \n\n\nfuture::plan(multicore)\n\n\n\nNo sistema operacional Linux. Esse é o Tux, mascote do sistema operacional linux.\n\n\n\nfuture::plan(multisession)\n\n\n\nEm todos os sistemas operacionais, incluindo o Windows (Linux, Unix e Windows)."
+  },
+  {
+    "objectID": "index.html#previsão-imobiliária-de-imóveis-de-teresina-usando-tidymodels-2",
+    "href": "index.html#previsão-imobiliária-de-imóveis-de-teresina-usando-tidymodels-2",
+    "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
+    "section": "🏠🏢 Previsão imobiliária de imóveis de Teresina usando tidymodels",
+    "text": "🏠🏢 Previsão imobiliária de imóveis de Teresina usando tidymodels\n\nPara acessar a análise, clique AQUI"
   }
 ]
