@@ -1,0 +1,13 @@
+file: lm_mtcars_v1.rds
+file_size: 2235
+pin_hash: 6ea2ff1d643ffcda
+type: rds
+title: 'lm_mtcars_v1.0: a pinned list'
+description: Modelo de regressão linear para prever mpg com wt
+tags: ~
+urls: ~
+created: 20250525T191559Z
+api_version: 1
+user:
+  required_pkgs: ~
+  renv_lock: ~
