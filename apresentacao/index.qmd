@@ -2931,10 +2931,18 @@ knitr::include_graphics("imgs/whole-game-final-performance.jpg")
 
 ## 🔌 vetiver: construindo API para modelos R <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
 
+
 <br>
 <br>
 
-![](imgs/ml_ops_cycle.svg){width="100%"}
+::: {.columns"}
+::: {.column width="50%"}
+[![**Workflow completo** 🌐 do papel do [**vetiver**]{.underline} 🌿 na construção de uma API para o modelo.](imgs/ml_ops_cycle.svg){fig-alt="Workflow completo do papel do vetiver." width="100%" style="margin-top:10px;"}](https://vetiver.posit.co/)
+:::
+::: {.column width="50%"}
+[![**Chrysopogon zizanioides (L.) Roberty** - planta [**vetiver**]{.underline} 🌿, cujo óleo é usado na perfumaria 🧴 para fixação da fragrância.](imgs/aquadrela_planta_vetiver.png){fig-alt="Planta vetiver" width="50%" style="margin-top:10px;"}](https://pt.wikipedia.org/wiki/Vetiver)
+:::
+:::
 
 ## 🔌 vetiver: um exemplo de uso <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
 
@@ -3306,14 +3314,21 @@ Para visualizar 🔭 melhor a aplicação, clique [**AQUI** 🧑‍💻](https:/
 
 ## 🌐 vetiver: serviços nas nuvens ☁️ <img src="imgs/vetiver.png" height="120px" style="vertical-align:middle;">
 
+<br>
+
 Se você não tem uma máquina para ser o servidor da API, você poderá fazer o deploy da API docker 📦 em um servidor na nuvem ☁️. Alguns serviços de nuvem que você pode usar para fazer o deploy da sua API são:
 
-1. [**AWS EC2**](https://aws.amazon.com/ec2/): Um serviço de computação em nuvem que fornece capacidade de computação escalável na nuvem. Você pode criar instâncias EC2 para hospedar sua API.
-2. [**DigitalOcean**](https://www.digitalocean.com/): Um provedor de nuvem que oferece serviços de hospedagem e computação em nuvem, permitindo implantar aplicativos e APIs.
-3. [**Heroku**](https://www.heroku.com/): Uma plataforma que permite implantar aplicativos e APIs facilmente.
-4. [**Google Cloud Run**](https://cloud.google.com/run): Um serviço de computação sem servidor que permite executar contêineres em resposta a solicitações HTTP.
+| Serviço | Descrição |
+|---------|-----------|
+| [**Fly.io**](https://fly.io) | Plataforma global para containers com baixa latência e scaling automático |
+| [**Koyeb**](https://www.koyeb.com) | Serverless para containers com deploy via Git e Docker Hub |
+| [**AWS ECS**](https://aws.amazon.com/ecs) | Orquestração de containers integrada ao ecossistema AWS |
+| [**Cloud Run**](https://cloud.google.com/run) | Serverless para containers com scaling até zero |
+| [**Azure Containers**](https://azure.microsoft.com) | Containers sem gerenciamento de servidores na Microsoft |
+| [**DigitalOcean**](https://www.digitalocean.com) | Plataforma simplificada com deploy contínuo | Custo previsível e UI intuitiva |
 
-![](gifs/nuvem.gif){width="40%"}
+
+![](gifs/nuvem.gif){width="30%"}
 
 ## 🏠🏢 Previsão imobiliária de imóveis de Teresina usando tidymodels
 

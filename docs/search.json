@@ -466,7 +466,7 @@
     "href": "index.html#parsnip-2",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "parsnip ",
-    "text": "parsnip \n\nDiversas bibliotecas na linguagem R são preparadas para trabalharem na área de aprendizagem de máquina. Várias dessas bibliotecas vem sendo desenvolvidas há anos. Por exemplo,as bibliotecas glmnet, ranger, kknn, xgboost, keras, rpart, randomForest, entre diversos outros.\n\n\n\nO número de pacotes abaixo é o mais recente. Obtido automaticamente por webscraping.\nlibrary(xml2)\nlibrary(httr)\nlibrary(stringr)\nlibrary(\"downlit\")\n\nnumero_pacotes_r &lt;- httr::GET(\n  \"https://cloud.r-project.org/web/packages/index.html\"\n) |&gt;\n  xml2::read_html() |&gt;\n  xml2::xml_find_all(\"//p[1]\") |&gt;\n  xml2::xml_text() |&gt;\n  stringr::str_extract(pattern = \"[0-9]+\")\n\n\n\nAtualmente, a linguagem R possui 22428, em que muitos deles são preparados para para trabalharem em tarefas de aprendizagem de máquina, porém, cada com sua sintaxe específica. Muitos implementam o mesmo modelo, uns com algumas variações, porém, o uso é totalmente diferente, nomes de parâmetros distintos, saídas distintas, etc."
+    "text": "parsnip \n\nDiversas bibliotecas na linguagem R são preparadas para trabalharem na área de aprendizagem de máquina. Várias dessas bibliotecas vem sendo desenvolvidas há anos. Por exemplo,as bibliotecas glmnet, ranger, kknn, xgboost, keras, rpart, randomForest, entre diversos outros.\n\n\n\nO número de pacotes abaixo é o mais recente. Obtido automaticamente por webscraping.\nlibrary(xml2)\nlibrary(httr)\nlibrary(stringr)\nlibrary(\"downlit\")\n\nnumero_pacotes_r &lt;- httr::GET(\n  \"https://cloud.r-project.org/web/packages/index.html\"\n) |&gt;\n  xml2::read_html() |&gt;\n  xml2::xml_find_all(\"//p[1]\") |&gt;\n  xml2::xml_text() |&gt;\n  stringr::str_extract(pattern = \"[0-9]+\")\n\n\n\nAtualmente, a linguagem R possui 22430, em que muitos deles são preparados para para trabalharem em tarefas de aprendizagem de máquina, porém, cada com sua sintaxe específica. Muitos implementam o mesmo modelo, uns com algumas variações, porém, o uso é totalmente diferente, nomes de parâmetros distintos, saídas distintas, etc."
   },
   {
     "objectID": "index.html#parsnip-3",
@@ -1110,7 +1110,7 @@
     "href": "index.html#vetiver-construindo-api-para-modelos-r-1",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "🔌 vetiver: construindo API para modelos R ",
-    "text": "🔌 vetiver: construindo API para modelos R"
+    "text": "🔌 vetiver: construindo API para modelos R \n \n\n\n\n\n\nWorkflow completo 🌐 do papel do vetiver 🌿 na construção de uma API para o modelo.\n\n\n\n\n\n\nChrysopogon zizanioides (L.) Roberty - planta vetiver 🌿, cujo óleo é usado na perfumaria 🧴 para fixação da fragrância."
   },
   {
     "objectID": "index.html#vetiver-construindo-api-para-modelos-r-2",
@@ -1229,7 +1229,7 @@
     "href": "index.html#vetiver-serviços-nas-nuvens",
     "title": "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina",
     "section": "🌐 vetiver: serviços nas nuvens ☁️ ",
-    "text": "🌐 vetiver: serviços nas nuvens ☁️ \nSe você não tem uma máquina para ser o servidor da API, você poderá fazer o deploy da API docker 📦 em um servidor na nuvem ☁️. Alguns serviços de nuvem que você pode usar para fazer o deploy da sua API são:\n\nAWS EC2: Um serviço de computação em nuvem que fornece capacidade de computação escalável na nuvem. Você pode criar instâncias EC2 para hospedar sua API.\nDigitalOcean: Um provedor de nuvem que oferece serviços de hospedagem e computação em nuvem, permitindo implantar aplicativos e APIs.\nHeroku: Uma plataforma que permite implantar aplicativos e APIs facilmente.\nGoogle Cloud Run: Um serviço de computação sem servidor que permite executar contêineres em resposta a solicitações HTTP."
+    "text": "🌐 vetiver: serviços nas nuvens ☁️ \n\nSe você não tem uma máquina para ser o servidor da API, você poderá fazer o deploy da API docker 📦 em um servidor na nuvem ☁️. Alguns serviços de nuvem que você pode usar para fazer o deploy da sua API são:\n\n\n\nServiço\nDescrição\n\n\n\n\nFly.io\nPlataforma global para containers com baixa latência e scaling automático\n\n\nKoyeb\nServerless para containers com deploy via Git e Docker Hub\n\n\nAWS ECS\nOrquestração de containers integrada ao ecossistema AWS\n\n\nCloud Run\nServerless para containers com scaling até zero\n\n\nAzure Containers\nContainers sem gerenciamento de servidores na Microsoft\n\n\nDigitalOcean\nPlataforma simplificada com deploy contínuo"
   },
   {
     "objectID": "index.html#comandos-essenciais-do-docker",
