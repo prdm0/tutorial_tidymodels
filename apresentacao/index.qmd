@@ -3378,6 +3378,17 @@ Para acessar a análise, clique [AQUI](assets/modelo_teresina.html)
 
 <iframe src="assets/modelo_teresina.html" width="100%" height="600px" frameborder="0"></iframe>
 
+## 📱 Aplicação web + API 🎈 do modelo <img src="imgs/logo_fly.jpg" height="120px" style="vertical-align:middle;">
+
+<br>
+
+[Aplicação Shiny]{.underline} 📱 para prever o preço de venda de imóveis em Teresina 🏠🏢. A API do mod[elo encontra-se no [**https://fly.io/**](https://fly.io/) 🎈 e a aplicação web feita em shiny está no [**https://www.shinyapps.io/**](https://www.shinyapps.io/). Clique 🖱️[**AQUI**](https://pedro-rafael.shinyapps.io/app_teresina/) para visualizar 🕵️‍♂️👁️ melhor a aplicação.
+
+<br>
+
+<iframe src="https://pedro-rafael.shinyapps.io/app_teresina/" width="100%" height="600px" frameborder="0"></iframe>
+
+
 
 ## 📚 Indicação de leitura
 

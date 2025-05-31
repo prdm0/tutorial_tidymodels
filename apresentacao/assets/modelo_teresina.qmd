@@ -8,7 +8,7 @@ format:
     code-tools: true
     self-contained: true
 execute:
-  warning: false
+  working-dir: ./
 ---
 
 # Modelagem imobiliária para dados de imóveis em Teresina - PI
@@ -26,7 +26,7 @@ Iremos construir um modelo para previsão de valores 💲de imóveis usando o fr
 
 São dados reais, obtidos via web scraping do site [**Zap Imóveis**](https://www.zapimoveis.com.br/) 🏡🏢 no ano de 2023 do município de Teresina, Piauí, Brasil.
 
-**Você poderá acessar os dados clicando** [**AQUI**]("../../dados/teresina.csv") 💾.
+**Você poderá acessar os dados clicando** [**AQUI**](teresina.csv) 💾.
 
 ```{r}
 #| echo: true
@@ -35,7 +35,7 @@ library(janitor) # Limpando nomes das colunas
 library(dplyr) # Manipulação de dados
 
 # Base de dados dos imóveis anuanciados em Teresina (2023)
-dados <- vroom::vroom("../../dados/teresina.csv") |>
+dados <- vroom::vroom("teresina.csv") |>
   janitor::clean_names() # Organizando os nomes das colunas
 
 # Visualizando os dados com o comando glimpse
@@ -96,6 +96,7 @@ print(p1)
 print(tipos_imoveis)
 ```
 
+
 Observa-se que as informações do `iptu` e `condiminio` são muito incipientes, e talvez, inputar essas informações não seja uma boa ideia, pois pode gerar um viés no modelo. Vamos descartar essas variáveis.
 
 **Lista de veriáveis que serão descartadas:**
@@ -135,17 +136,47 @@ dados <- dados |>
       tipo == "casas_de_vila" ~ "casa",
       tipo == "apartamentos" ~ "apartamento",
       tipo == "flat" ~ "apartamento",
-      TRUE ~ tipo
+      TRUE ~ tipo # Se houver outro tipo, manter o mesmo valor
     )
   ) |>
   dplyr::filter(tipo %in% c("casa", "apartamento"))
 
 # Contagem de tipos de imóveis
-tipos_imoveis <-
-  dados |>
+tipos_imoveis <- dados |>
   dplyr::count(tipo) |>
   dplyr::arrange(desc(n))
 
 print(tipos_imoveis)
-
 ```
+
+# Realizando a divisão dos dados holdout
+
+```{r}
+library(tidymodels)
+library(future)
+
+# Resolvendo conflitos de pacotes
+tidymodels::tidymodels_prefer()
+
+# Configurando o plano de execução para paralelização
+# (Unix/Linux e Windows)
+future::plan("multisession")
+
+# Fixando uma semente para garantir a reprodutibilidade
+set.seed(123)
+dados_split <- dados |>
+  rsample::initial_split(prop = 0.8, strata = tipo)
+
+treino <- rsample::training(dados_split)
+teste <- rsample::testing(dados_split)
+
+receita <- treino |>
+  recipes::recipe(valor ~ ., data = treino) |>
+  recipes::step_impute_knn(all_numeric(), neighbors = tune("k")) |>
+  recipes::step_log(all_numeric()) |>
+  recipes::step_zv(all_predictors())
+
+# Criando o conjunto de validação cruzada e estratificando por tipo de imóvel
+cv <- rsample::vfold_cv(treino, v = 5, strata = tipo)
+```
+
