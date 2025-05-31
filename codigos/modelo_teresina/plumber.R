@@ -4,6 +4,7 @@ library(pins)
 library(plumber)
 library(rapidoc)
 library(vetiver)
+
 b <- board_folder(path = "modelo_teresina")
 v <- vetiver_pin_read(b, "modelo_teresina")
 
