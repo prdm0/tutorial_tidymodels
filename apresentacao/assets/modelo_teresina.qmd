@@ -146,7 +146,7 @@ tipos_imoveis <-
 
 # Verificando os tipos de imóveis
 p1 <-
-  tipos_imoveis[1:4, ] |>
+  tipos_imoveis |>
   dplyr::arrange(desc(n)) |>
   dplyr::mutate(tipo = forcats::fct_reorder(tipo, n)) |>
   ggplot(aes(x = tipo, y = n)) +
