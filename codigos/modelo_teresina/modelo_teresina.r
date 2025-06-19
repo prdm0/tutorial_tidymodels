@@ -171,7 +171,7 @@ p2 <- imp$plot()
 
 # p1 / p2
 
-#! Criando uma api vetiver
+# ! Criando uma api vetiver
 modelo_vetiver <-
   vetiver::vetiver_model(
     extract_workflow(wf_final),
@@ -183,7 +183,7 @@ board <- pins::board_folder(
   path = "modelo_teresina"
 )
 
-#! Pinando o modelo
+# ! Pinando o modelo
 vetiver::vetiver_pin_write(
   board = board,
   vetiver_model = modelo_vetiver

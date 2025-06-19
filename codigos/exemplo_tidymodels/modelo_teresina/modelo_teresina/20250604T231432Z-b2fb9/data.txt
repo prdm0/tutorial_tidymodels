@@ -1,0 +1,17 @@
+file: modelo_teresina.rds
+file_size: 19463357
+pin_hash: b2fb92a9cf040747
+type: rds
+title: 'modelo_teresina: a pinned list'
+description: A ranger regression modeling workflow
+tags: ~
+urls: ~
+created: 20250604T231432Z
+api_version: 1
+user:
+  required_pkgs:
+  - parsnip
+  - ranger
+  - recipes
+  - workflows
+  renv_lock: ~
