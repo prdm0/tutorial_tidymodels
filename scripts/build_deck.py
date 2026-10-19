@@ -202,6 +202,19 @@ def verify_receipt(root: Path) -> None:
 
 
 # --------------------------------------------------------------------------
+def _rollback(candidates: list[dict]) -> None:
+    for item in candidates:
+        target = Path(item["target"])
+        backup = Path(item["backup"])
+        if backup.exists():
+            if target.exists():
+                quarantine_dir(target, "rollback")
+            shutil.move(str(backup), str(target))
+        elif not item["original_exists"] and target.exists():
+            quarantine_dir(target, "rollback-novo")
+    PROMOTION.unlink(missing_ok=True)
+
+
 def promote(staging: Path, run_dir: Path, before: dict[Path, dict[str, str]]) -> None:
     candidates: list[dict] = []
     for target in TARGETS:
@@ -232,21 +245,13 @@ def promote(staging: Path, run_dir: Path, before: dict[Path, dict[str, str]]) ->
             log(f"promovido {target}")
     except Exception:
         log("falha na promoção; restaurando estado anterior")
-        for item in candidates:
-            target = Path(item["target"])
-            backup = Path(item["backup"])
-            if backup.exists():
-                if target.exists():
-                    quarantine_dir(target, "rollback")
-                shutil.move(str(backup), str(target))
-            elif not item["original_exists"] and target.exists():
-                quarantine_dir(target, "rollback-novo")
-        PROMOTION.unlink(missing_ok=True)
+        _rollback(candidates)
         raise
     hashes = [tree_hashes(t) for t in TARGETS]
     if hashes[0] != hashes[1]:
-        write_json_durable(PROMOTION, {"state": "prepared", "targets": candidates})
-        raise BuildError("as duas árvores promovidas divergem")
+        log("árvores promovidas divergem; restaurando estado anterior")
+        _rollback(candidates)
+        raise BuildError("as duas árvores promovidas divergem; par anterior restaurado")
     write_json_durable(PROMOTION, {"state": "committed", "targets": candidates})
     log("promoção concluída e verificada (árvores idênticas)")
 

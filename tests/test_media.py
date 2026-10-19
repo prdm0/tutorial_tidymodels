@@ -145,7 +145,7 @@ def make_site(root: Path, *, remote_background=False, remote_data_src=False,
     if video:
         (root / "media" / "videos").mkdir(parents=True, exist_ok=True)
         if HAS_FFMPEG:
-            make_mp4(root / "media" / "videos" / "fixture.mp4")
+            make_mp4(root / "media" / "videos" / "fixture.mp4", seconds=3.0)
     return root
 
 
@@ -402,6 +402,25 @@ class TestBrowserPass(TempCase):
         self.assertEqual(code, 1)
         self.assertIn("fixture.mp4", reasons(data))
 
+    def test_video_with_broken_frames_is_not_approved(self) -> None:
+        make_site(self.site)
+        make_source(self.src, self.site)
+        video = self.site / "media" / "videos" / "fixture.mp4"
+        data = bytearray(video.read_bytes())
+        idx = data.find(b"mdat")
+        self.assertGreater(idx, 0)
+        for i in range(idx + 8, len(data)):
+            data[i] ^= 0xFF
+        video.write_bytes(bytes(data))
+        code, report = run_check(self.site, self.src, self.tmp / "r.json",
+                                 browser=True)
+        self.assertEqual(code, 1)
+        self.assertTrue(
+            any("slide" in e["where"] and "vídeo não reproduziu" in e["reason"]
+                for e in report["errors"]),
+            reasons(report),
+        )
+
 
 class TestManifestRepair(TempCase):
     def setUp(self) -> None:
@@ -464,6 +483,13 @@ class TestManifestRepair(TempCase):
         self.assertEqual(mediamod.cmd_repair(), 1)
 
     def test_intact_assets_are_not_reacquired(self) -> None:
+        calls = self._fake_group()
+        self.assertEqual(mediamod.cmd_prepare(), 0)
+        self.assertEqual(calls["n"], 1)
+        self.assertEqual(mediamod.cmd_prepare(), 0)
+        self.assertEqual(calls["n"], 1, "arquivo íntegro não deve ser readquirido")
+
+    def _fake_group(self) -> dict:
         calls = {"n": 0}
 
         def fake() -> list[mediamod.Acquired]:
@@ -480,11 +506,35 @@ class TestManifestRepair(TempCase):
         saved_checks = mediamod._browser_checks
         mediamod._browser_checks = lambda: None
         self.addCleanup(setattr, mediamod, "_browser_checks", saved_checks)
+        return calls
 
+    def test_prepare_refuses_divergent_locked_asset(self) -> None:
+        calls = self._fake_group()
         self.assertEqual(mediamod.cmd_prepare(), 0)
         self.assertEqual(calls["n"], 1)
+        path = self.pres / "media/images/b.png"
+        locked = mediamod.load_manifest()["media/images/b.png"].sha256
+        changed = png_bytes(color=(1, 2, 3))
+        path.write_bytes(changed)
+
+        self.assertEqual(mediamod.cmd_prepare(), 1)
+        self.assertEqual(calls["n"], 1, "divergência válida não pode readquirir")
+        self.assertEqual(path.read_bytes(), changed)
+        self.assertEqual(mediamod.load_manifest()["media/images/b.png"].sha256,
+                         locked, "lock não pode ser regravado sem --refresh-lock")
+
+        self.assertEqual(mediamod.cmd_prepare(refresh=True), 0)
+        self.assertEqual(calls["n"], 2)
+
+    def test_prepare_reacquires_corrupted_asset(self) -> None:
+        calls = self._fake_group()
         self.assertEqual(mediamod.cmd_prepare(), 0)
-        self.assertEqual(calls["n"], 1, "arquivo íntegro não deve ser readquirido")
+        path = self.pres / "media/images/b.png"
+        path.write_bytes(b"nao e png")
+
+        self.assertEqual(mediamod.cmd_prepare(), 0)
+        self.assertEqual(calls["n"], 2)
+        self.assertEqual(path.read_bytes()[:8], b"\x89PNG\r\n\x1a\n")
 
 
 class TestReceipt(TempCase):
@@ -636,6 +686,33 @@ class TestPromotion(TempCase):
         build_deck.recover_promotion()
         self.assertEqual({t: build_deck.tree_hashes(t) for t in build_deck.TARGETS},
                          before)
+
+    def test_divergent_trees_restore_previous_pair(self) -> None:
+        before = {t: build_deck.tree_hashes(t) for t in build_deck.TARGETS}
+        real_rename = os.rename
+        calls = {"n": 0}
+
+        def divergent(src, dst):
+            calls["n"] += 1
+            result = real_rename(src, dst)
+            if calls["n"] == 4:  # segundo alvo recém-instalado
+                (Path(dst) / "extra.txt").write_text("divergência",
+                                                     encoding="utf-8")
+            return result
+
+        os.rename = divergent
+        try:
+            with self.assertRaises(build_deck.BuildError):
+                build_deck.promote(self.staging, self.run_dir, before)
+        finally:
+            os.rename = real_rename
+        self.assertEqual((self.a / "index.html").read_text(encoding="utf-8"),
+                         "antigo A")
+        self.assertEqual((self.b / "index.html").read_text(encoding="utf-8"),
+                         "antigo A")
+        self.assertEqual({t: build_deck.tree_hashes(t) for t in build_deck.TARGETS},
+                         before)
+        self.assertFalse(build_deck.PROMOTION.exists())
 
 
 class TestStagingRestore(TempCase):

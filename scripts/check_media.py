@@ -677,11 +677,12 @@ async (sel) => {
   const advance = async (from, ms) => {
     const limit = Date.now() + ms;
     while (Date.now() < limit) {
-      if (v.currentTime > from + 0.2) return v.currentTime;
+      if (v.currentTime > from + 1.0) return v.currentTime;
       await new Promise((r) => setTimeout(r, 100));
     }
     return v.currentTime;
   };
+  const hasRVFC = typeof v.requestVideoFrameCallback === 'function';
   try {
     v.muted = true;
     if (v.readyState < 2) {
@@ -698,15 +699,15 @@ async (sel) => {
       const attempt = v.play().catch((e) => {
         if (!String(e).includes('AbortError')) throw e;
       });
-      await Promise.race([
-        attempt,
-        new Promise((res) => setTimeout(res, 30000)),
+      return Promise.race([
+        attempt.then(() => true),
+        new Promise((res) => setTimeout(() => res(false), 30000)),
       ]);
     };
-    await playSafely();
+    const playStarted = await playSafely();
     const t0 = v.currentTime;
     const framed = await nextFrame();
-    const t1 = await advance(t0, 6000);
+    const t1 = await advance(t0, 10000);
     v.pause();
     // Alguns backends (GStreamer/WebKit) não emitem `seeked` de forma
     // confiável: confirma-se a busca pela posição real somada a dados
@@ -718,19 +719,23 @@ async (sel) => {
         if (Math.abs(v.currentTime - t) < 0.5 && v.readyState >= 2) break;
         await new Promise((r) => setTimeout(r, 100));
       }
+      const reached = Math.abs(v.currentTime - t) < 0.5 && v.readyState >= 2;
       await playSafely();
-      await nextFrame();
+      const seekFramed = await nextFrame();
       v.pause();
-      return v.currentTime;
+      return {pos: v.currentTime, reached, framed: seekFramed};
     };
-    const mid = await seekTo(v.duration / 2);
-    const near = await seekTo(Math.max(v.duration * 0.9, v.duration - 1.0));
+    const midSeek = await seekTo(v.duration / 2);
+    const nearSeek = await seekTo(Math.max(v.duration * 0.9, v.duration - 1.0));
     const q = v.getVideoPlaybackQuality ? v.getVideoPlaybackQuality() : null;
     const frames = q ? q.totalVideoFrames : (v.webkitDecodedFrameCount || null);
-    const ok = t1 > t0 + 0.2 && mid > 0 && near > mid
-               && (frames === null || frames > 0);
+    const ok = playStarted && t1 > t0 + 1.0 && midSeek.reached && nearSeek.reached
+               && nearSeek.pos > midSeek.pos && (frames === null || frames > 0)
+               && (!hasRVFC || (framed && midSeek.framed && nearSeek.framed));
     return {ok, duration: v.duration, w: v.videoWidth, h: v.videoHeight,
-            advanced: t1 - t0, mid, near, frames, framed,
+            advanced: t1 - t0, frames, framed, playStarted,
+            mid: midSeek.pos, near: nearSeek.pos,
+            midReached: midSeek.reached, nearReached: nearSeek.reached,
             paused: v.paused, error: ok ? null : 'avanço/decodificação insuficiente'};
   } catch (e) { return {ok: false, error: String(e)}; }
   })();

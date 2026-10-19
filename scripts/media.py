@@ -1014,24 +1014,43 @@ GROUPS: list[tuple[str, tuple[str, ...], Callable[[], list[Acquired]]]] = [
 ]
 
 
-def group_is_locked(entries: dict[str, Entry], rels: Sequence[str]) -> bool:
+def group_state(entries: dict[str, Entry], rels: Sequence[str]) -> str:
+    """Classifica um grupo em "locked", "stale" ou "drift"."""
     if not rels:
-        return False
+        return "stale"
+    state = "locked"
     for rel in rels:
         entry = entries.get(rel)
         if entry is None:
-            return False
+            return "stale"
         path = resolve_in_pres(rel)
-        if not path.exists() or sha256_file(path) != entry.sha256:
-            return False
-    return True
+        if not path.exists():
+            return "stale"
+        if sha256_file(path) == entry.sha256:
+            continue
+        try:
+            validate_by_kind(path, entry.kind)
+        except Exception:
+            return "stale"
+        state = "drift"
+    return state
 
 
 def cmd_prepare(refresh: bool = False) -> int:
     entries = load_manifest()
     MEDIA_DIR.mkdir(parents=True, exist_ok=True)
+    if not refresh:
+        divergent: list[str] = []
+        for _name, rels, _fn in GROUPS:
+            if group_state(entries, rels) == "drift":
+                divergent.extend(rels)
+        if divergent:
+            for rel in divergent:
+                log(f"ERRO: {rel} difere do lock mas ainda decodifica; "
+                    "use 'prepare --refresh-lock' para atualizar deliberadamente")
+            return 1
     for name, rels, fn in GROUPS:
-        if not refresh and group_is_locked(entries, rels):
+        if not refresh and group_state(entries, rels) == "locked":
             log(f"ok (lock íntegro): {name}")
             continue
         log(f"provisionando: {name}")
