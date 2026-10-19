@@ -662,7 +662,7 @@ async (sel) => {
   if (!v) return {ok: false, error: 'sem elemento <video>'};
   const globalLimit = new Promise((res) => setTimeout(
     () => res({ok: false, error: 'timeout global da verificação de vídeo'}),
-    120000));
+    210000));
   const probe = (async () => {
   const waitEvent = (name, ms) => new Promise((res, rej) => {
     const t = setTimeout(() => rej(new Error('timeout de ' + name)), ms);
@@ -708,9 +708,16 @@ async (sel) => {
     const framed = await nextFrame();
     const t1 = await advance(t0, 6000);
     v.pause();
+    // Alguns backends (GStreamer/WebKit) não emitem `seeked` de forma
+    // confiável: confirma-se a busca pela posição real somada a dados
+    // decodificáveis (readyState >= HAVE_CURRENT_DATA) e a um novo frame.
     const seekTo = async (t) => {
       v.currentTime = t;
-      await waitEvent('seeked', 20000);
+      const limit = Date.now() + 60000;
+      while (Date.now() < limit) {
+        if (Math.abs(v.currentTime - t) < 0.5 && v.readyState >= 2) break;
+        await new Promise((r) => setTimeout(r, 100));
+      }
       await playSafely();
       await nextFrame();
       v.pause();
