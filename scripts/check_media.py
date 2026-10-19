@@ -695,9 +695,13 @@ async (sel) => {
     if (!v.videoWidth || !v.videoHeight) return {ok: false, error: 'dimensões nulas'};
     v.currentTime = 0;
     const playSafely = async () => {
-      try { await v.play(); } catch (e) {
+      const attempt = v.play().catch((e) => {
         if (!String(e).includes('AbortError')) throw e;
-      }
+      });
+      await Promise.race([
+        attempt,
+        new Promise((res) => setTimeout(res, 30000)),
+      ]);
     };
     await playSafely();
     const t0 = v.currentTime;
@@ -768,17 +772,19 @@ def _run_browser(browser, name: str, root: Path, index: Path, base_url: str | No
     allowed_prefix = base_url.rsplit(SITE_PREFIX, 1)[0] if base_url else ""
     blocked: list[str] = []
 
-    def route(route_obj, request):
-        url = request.url
-        if url.startswith(("data:", "blob:", "about:", "file://")) or (
+    def is_local(url: str) -> bool:
+        return url.startswith(("data:", "blob:", "about:", "file://")) or bool(
             allowed_prefix and url.startswith(allowed_prefix)
-        ):
-            route_obj.continue_()
-            return
-        blocked.append(url)
+        )
+
+    def block(route_obj, request):
+        blocked.append(request.url)
         route_obj.abort()
 
-    context.route("**/*", route)
+    # Só o tráfego externo passa pelo interceptador: no WebKit, interceptar
+    # mídia local trava o carregamento do vídeo. Qualquer URL fora da origem
+    # local continua sendo abortada e registrada como erro.
+    context.route(lambda url: not is_local(url), block)
     page = context.new_page()
     js_errors: list[str] = []
     page.on("pageerror", lambda e: js_errors.append(str(e)))
