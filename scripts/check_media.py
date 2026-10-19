@@ -20,6 +20,7 @@ import re
 import socketserver
 import sys
 import threading
+import time
 import urllib.parse
 from dataclasses import dataclass, field
 from html.parser import HTMLParser
@@ -34,6 +35,7 @@ SITE_PREFIX = "/tutorial_tidymodels/"
 RECEIPT_NAME = "media-build.json"
 REMOTE_RE = re.compile(r"^(?:https?:)?//", re.I)
 BROWSERS = ("chromium", "webkit")
+PASS_DEADLINE = float(os.environ.get("MEDIA_CHECK_PASS_DEADLINE", "1800"))
 
 MEDIA_ATTRS = {
     "img": ("src", "data-src", "srcset", "data-srcset"),
@@ -593,14 +595,22 @@ async (already) => {
     ? Reveal.getSlideBackground(slide) : null;
   const roots = [slide];
   if (bg) roots.push(bg);
+  const withLimit = (promise, ms, label) => Promise.race([
+    promise,
+    new Promise((res) => setTimeout(
+      () => res({ok: false, error: 'timeout de ' + label}), ms)),
+  ]);
+  const decodeOnce = async (url) => {
+    const img = new Image();
+    img.src = url;
+    await img.decode();
+    return {ok: img.naturalWidth > 0 && img.naturalHeight > 0,
+            w: img.naturalWidth, h: img.naturalHeight, cached: false};
+  };
   const decode = async (url) => {
     if (url.startsWith('data:')) return {ok: true, w: 1, h: 1, cached: false};
     try {
-      const img = new Image();
-      img.src = url;
-      await img.decode();
-      return {ok: img.naturalWidth > 0 && img.naturalHeight > 0,
-              w: img.naturalWidth, h: img.naturalHeight, cached: false};
+      return await withLimit(decodeOnce(url), 20000, 'decode');
     } catch (e) { return {ok: false, error: String(e), cached: false}; }
   };
   const seenHere = new Set();
@@ -650,6 +660,10 @@ VIDEO_JS = r"""
 async (sel) => {
   const v = sel ? document.querySelector(sel) : document.querySelector('video');
   if (!v) return {ok: false, error: 'sem elemento <video>'};
+  const globalLimit = new Promise((res) => setTimeout(
+    () => res({ok: false, error: 'timeout global da verificação de vídeo'}),
+    120000));
+  const probe = (async () => {
   const waitEvent = (name, ms) => new Promise((res, rej) => {
     const t = setTimeout(() => rej(new Error('timeout de ' + name)), ms);
     v.addEventListener(name, () => { clearTimeout(t); res(true); }, {once: true});
@@ -708,6 +722,8 @@ async (sel) => {
             advanced: t1 - t0, mid, near, frames, framed,
             paused: v.paused, error: ok ? null : 'avanço/decodificação insuficiente'};
   } catch (e) { return {ok: false, error: String(e)}; }
+  })();
+  return Promise.race([probe, globalLimit]);
 }
 """
 
@@ -721,7 +737,11 @@ def browser_pass(root: Path, report: Report, base_url: str | None,
     with sync_playwright() as pw:
         for name in BROWSERS:
             btype = getattr(pw, name)
-            browser = btype.launch()
+            # Builds do Chromium sem codecs proprietários não decodificam
+            # H.264; nesses ambientes o canal real (chrome) é obrigatório.
+            channel = os.environ.get("MEDIA_CHECK_CHROMIUM_CHANNEL", "").strip()
+            kwargs = {"channel": channel} if (channel and name == "chromium") else {}
+            browser = btype.launch(**kwargs)
             try:
                 _run_browser(browser, name, root, index, base_url, report,
                              shots_dir, offline=offline, mode=mode)
@@ -799,8 +819,14 @@ def _run_browser(browser, name: str, root: Path, index: Path, base_url: str | No
     video_slides: list[int] = []
     decoded: set[str] = set()
     shot_tag = "file" if offline else "http"
+    deadline = time.monotonic() + PASS_DEADLINE
 
     for idx in range(total):
+        if time.monotonic() > deadline:
+            report.error(label, f"tempo limite da varredura excedido no slide {idx}")
+            break
+        if idx and idx % 20 == 0:
+            log(f"navegador {label}: slide {idx}/{total}")
         page.evaluate(
             "(i) => { const el = Reveal.getSlides()[i];"
             " const ix = Reveal.getIndices(el); Reveal.slide(ix.h, ix.v); }", idx
@@ -925,9 +951,13 @@ def _check_local_frame(page, src: str, report: Report, where: str) -> None:
         info = frame.evaluate(
             r"""async () => {
               const imgs = [];
+              const limit = (p, ms) => Promise.race([
+                p.then(() => true).catch(() => false),
+                new Promise((res) => setTimeout(() => res(false), ms)),
+              ]);
               for (const i of Array.from(document.images)) {
                 let ok = i.naturalWidth > 0 && i.naturalHeight > 0;
-                try { await i.decode(); } catch (e) { ok = false; }
+                ok = ok && await limit(i.decode(), 20000);
                 imgs.push({w: i.naturalWidth, h: i.naturalHeight, ok,
                            src: (i.src || '').slice(0, 48)});
               }

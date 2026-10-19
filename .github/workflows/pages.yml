@@ -35,18 +35,29 @@ jobs:
           sudo apt-get install -y ffmpeg
 
       - name: Instalar navegadores
-        run: python -m playwright install --with-deps chromium webkit
+        run: |
+          python -m playwright install --with-deps chromium webkit
+          python -m playwright install chrome
 
       - name: Testes do pipeline de mídias
+        timeout-minutes: 30
         run: python -m unittest discover -s tests -p 'test_media.py'
 
       - name: Auditar apresentacao/docs
+        timeout-minutes: 45
+        env:
+          MEDIA_CHECK_CHROMIUM_CHANNEL: chrome
+          MEDIA_CHECK_PASS_DEADLINE: '420'
         run: |
           python scripts/check_media.py --root apresentacao/docs \
             --source apresentacao --report reports/check-render.json \
             --require-receipt
 
       - name: Auditar docs
+        timeout-minutes: 45
+        env:
+          MEDIA_CHECK_CHROMIUM_CHANNEL: chrome
+          MEDIA_CHECK_PASS_DEADLINE: '420'
         run: |
           python scripts/check_media.py --root docs \
             --source apresentacao --report reports/check-pages.json \
