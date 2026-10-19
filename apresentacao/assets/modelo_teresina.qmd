@@ -13,7 +13,7 @@ execute:
 
 # Modelagem imobiliária para dados de imóveis em Teresina - PI
 
-![](https://blog.123milhas.com/wp-content/uploads/2022/04/BANNER-TEM-CONHECER-TERESINA-123MILHAS.jpg)
+![](../media/images/teresina-banner.jpg)
 
 Iremos construir um modelo para previsão de valores 💲de imóveis usando o framework [**tidymodels**](https://www.tidymodels.org/) e disponibilizar uma API para consulta (previsão) dos preços de imóveis em Teresina - PI.
 

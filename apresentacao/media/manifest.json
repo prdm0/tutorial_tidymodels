@@ -1,0 +1,1739 @@
+{
+  "version": 1,
+  "assets": [
+    {
+      "path": "assets/modelo_teresina.html",
+      "kind": "html",
+      "sha256": "4115f8382aeb512c255bd022d846696d366afc2b3dc85bbbe659a022b7d2f569",
+      "bytes": 2910525,
+      "origin": "arquivo versionado no repositório (assets/modelo_teresina.html)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "assets/teresina.csv",
+      "kind": "data",
+      "sha256": "1742164b6d07919224419c6be522750c2aa014e0f208143993045087c238d0ab",
+      "bytes": 2367155,
+      "origin": "arquivo versionado no repositório (assets/teresina.csv)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "dados/teresina.csv",
+      "kind": "data",
+      "sha256": "e841280abc3c5f92b04d1045937dcd66f0b2083df8af9ab8508c62ac3c2c4476",
+      "bytes": 2513717,
+      "origin": "arquivo versionado no repositório (dados/teresina.csv)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "gifs/KfoldCV.gif",
+      "kind": "image",
+      "sha256": "871737619341b91d2a7f1082708413ebad1cf0a5d2a8af3b7ada3a9fc94ae96e",
+      "bytes": 144931,
+      "origin": "arquivo versionado no repositório (gifs/KfoldCV.gif)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "gifs/LOOCV.gif",
+      "kind": "image",
+      "sha256": "c018fb5cd33a3037057d7a91f6e0eaf4165d49725d185ab72481941db9c7c62f",
+      "bytes": 126333,
+      "origin": "arquivo versionado no repositório (gifs/LOOCV.gif)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "gifs/am.gif",
+      "kind": "image",
+      "sha256": "537cf53c2d448db6c11b0b3a52414b30111bd2b747e0563ed72b50c4c841e9d3",
+      "bytes": 594977,
+      "origin": "arquivo versionado no repositório (gifs/am.gif)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "gifs/api.gif",
+      "kind": "image",
+      "sha256": "9cdef5d51bd90b9ac3b7fb2734ce3e18bd40bb0b7275dcc453e4604c8c78cda7",
+      "bytes": 319993,
+      "origin": "arquivo versionado no repositório (gifs/api.gif)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "gifs/aplausos.gif",
+      "kind": "image",
+      "sha256": "9f2d9b9897dd0116f0d2d0af9c1f83cf79d5ef08f416c73592a08833845a7764",
+      "bytes": 362103,
+      "origin": "arquivo versionado no repositório (gifs/aplausos.gif)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "gifs/bean_01.gif",
+      "kind": "image",
+      "sha256": "4a313ea07e81fd11424441a790bae596c1f2a108e586a0c6f5d5463686b560b4",
+      "bytes": 657965,
+      "origin": "arquivo versionado no repositório (gifs/bean_01.gif)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "gifs/bom.gif",
+      "kind": "image",
+      "sha256": "450ada4089f893b3f4f3204551395fcdaf3451f742284049f499f590518f8687",
+      "bytes": 1747983,
+      "origin": "arquivo versionado no repositório (gifs/bom.gif)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "gifs/cassa_propria.gif",
+      "kind": "image",
+      "sha256": "5fe99b83dc57ee0725bc1b8faf834885c298974c022f92c810dc889f2ba8ce0f",
+      "bytes": 266096,
+      "origin": "arquivo versionado no repositório (gifs/cassa_propria.gif)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "gifs/chapulin-colorado-no.gif",
+      "kind": "image",
+      "sha256": "29dc2aad053ec20242105e50b4b901a4609d0d78d54c855b7a4807a902dae229",
+      "bytes": 91044,
+      "origin": "arquivo versionado no repositório (gifs/chapulin-colorado-no.gif)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "gifs/chefe_preparando.gif",
+      "kind": "image",
+      "sha256": "fb99618c6d7fd9df7dfec38423da503fadec921801c8c19e9ee448ba5d7f78ea",
+      "bytes": 339924,
+      "origin": "arquivo versionado no repositório (gifs/chefe_preparando.gif)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "gifs/classificacao.webp",
+      "kind": "image",
+      "sha256": "f8b3b3ecc54e251417ea7be14ab154888a02896ac940ae0f2a0f342fb4fb567d",
+      "bytes": 34700,
+      "origin": "arquivo versionado no repositório (gifs/classificacao.webp)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "gifs/cozinheira.gif",
+      "kind": "image",
+      "sha256": "5f4a976ed5804ecd9031249776c180bd1f0b69c8e6038e73f52e930a909600a3",
+      "bytes": 7220579,
+      "origin": "arquivo versionado no repositório (gifs/cozinheira.gif)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "gifs/giphy.gif",
+      "kind": "image",
+      "sha256": "08296885e6607d9eaf4375a479f0225933f920d1f1d54f9417f57df374394420",
+      "bytes": 185638,
+      "origin": "arquivo versionado no repositório (gifs/giphy.gif)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "gifs/hum.gif",
+      "kind": "image",
+      "sha256": "e7c3df0ed2af03d93f3faaeb10b0f7c07ee4ea430298ac223bfae7469eb935ac",
+      "bytes": 70573,
+      "origin": "arquivo versionado no repositório (gifs/hum.gif)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "gifs/hum_02.gif",
+      "kind": "image",
+      "sha256": "63335d3e5faa7146682621ac199de3be3747315ec2a25969860976b83cc225c8",
+      "bytes": 270318,
+      "origin": "arquivo versionado no repositório (gifs/hum_02.gif)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "gifs/kmeans.gif",
+      "kind": "image",
+      "sha256": "ae6f9021e48541117df1320245cad7ae9f54b1f1416df4168f084e43642c6f07",
+      "bytes": 1677394,
+      "origin": "arquivo versionado no repositório (gifs/kmeans.gif)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "gifs/mr-bean-pivot.gif",
+      "kind": "image",
+      "sha256": "e17afe40250da42ad0d0d8761605ad99437e91b6827c8ab50faf887ce2c768cc",
+      "bytes": 1273353,
+      "origin": "arquivo versionado no repositório (gifs/mr-bean-pivot.gif)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "gifs/mr-bean_ok.gif",
+      "kind": "image",
+      "sha256": "369888cbeb8b4a638917ba914a495c42ba06cc21589782fc06e0ac3ef19ada10",
+      "bytes": 400761,
+      "origin": "arquivo versionado no repositório (gifs/mr-bean_ok.gif)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "gifs/nuvem.gif",
+      "kind": "image",
+      "sha256": "ba2e118dc4f809b7527b160452db543bb8e5b8afdce22386a578a97fa4fd5ad1",
+      "bytes": 116046,
+      "origin": "arquivo versionado no repositório (gifs/nuvem.gif)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "gifs/ok-2.gif",
+      "kind": "image",
+      "sha256": "f3fc6038545d754385a00fe806129f08442e2422cc4624b442c607bd6bdb03c0",
+      "bytes": 208378,
+      "origin": "arquivo versionado no repositório (gifs/ok-2.gif)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "gifs/pensativo.gif",
+      "kind": "image",
+      "sha256": "6306b037284a2b206e483b75aeca4d9976b40e9914318899dc7945ff32168bc3",
+      "bytes": 3343306,
+      "origin": "arquivo versionado no repositório (gifs/pensativo.gif)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "gifs/prestando_atencao.gif",
+      "kind": "image",
+      "sha256": "39b505825762aeae791bf147f118f3d866dcd36c366b27ba7949b45abe68901b",
+      "bytes": 201602,
+      "origin": "arquivo versionado no repositório (gifs/prestando_atencao.gif)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "gifs/teclado-anime.gif",
+      "kind": "image",
+      "sha256": "ac2455352cc3cfd86a7b6310f8b4c3c152dc68d5166f8c2fbd628a671d5d03bb",
+      "bytes": 786447,
+      "origin": "arquivo versionado no repositório (gifs/teclado-anime.gif)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "gifs/thumbs-up-nod.gif",
+      "kind": "image",
+      "sha256": "9ae6a7e2979e5758b78e094aa4f23b5d0c4fda107ec3d74cd69d9506cb9fcd45",
+      "bytes": 398895,
+      "origin": "arquivo versionado no repositório (gifs/thumbs-up-nod.gif)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "gifs/tumpero.gif",
+      "kind": "image",
+      "sha256": "583064caf11be49d00a2e9466d32948ae9b7ce61217a27e7cf7f4d73b6e50d94",
+      "bytes": 762234,
+      "origin": "arquivo versionado no repositório (gifs/tumpero.gif)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "gifs/yes.gif",
+      "kind": "image",
+      "sha256": "ce226a66a283938499eca9ca98a2e28adee6f3223638c8acdda21284ef9fc77c",
+      "bytes": 6041662,
+      "origin": "arquivo versionado no repositório (gifs/yes.gif)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/Clouds.jpg",
+      "kind": "image",
+      "sha256": "f17211f3e218e6faeeb82f3c6d9a7fc68c74dd5493a801d2abcb96d8a232e25f",
+      "bytes": 1246091,
+      "origin": "arquivo versionado no repositório (imgs/Clouds.jpg)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/Clouds2.jpg",
+      "kind": "image",
+      "sha256": "6b778892a2afa51d847ca80a1f0835b8bac0918b76d13e73060b3fb5a0b13d39",
+      "bytes": 682339,
+      "origin": "arquivo versionado no repositório (imgs/Clouds2.jpg)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/MachineLearning_tidymodels.png",
+      "kind": "image",
+      "sha256": "2dceaa7948693d332e24d547ee1caf520e13ac563364e5e77eb8f0570be3b0c4",
+      "bytes": 500216,
+      "origin": "arquivo versionado no repositório (imgs/MachineLearning_tidymodels.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/P55268-Robert-Tibshirani.jpg",
+      "kind": "image",
+      "sha256": "c96305540dd4f804b22d8c283c005603348f7015716ead7b37c9bdb03087ef3c",
+      "bytes": 1212284,
+      "origin": "arquivo versionado no repositório (imgs/P55268-Robert-Tibshirani.jpg)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/accept_reject.png",
+      "kind": "image",
+      "sha256": "420493f3700a9d32bac78e57b7d9754d8c1c1698e62623656df46a60171f2318",
+      "bytes": 286235,
+      "origin": "arquivo versionado no repositório (imgs/accept_reject.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/adequacy_model.png",
+      "kind": "image",
+      "sha256": "52ee8f6af0380480db771dfac62d7c492388b776f6adc991b69ebed69b2fd4ec",
+      "bytes": 298173,
+      "origin": "arquivo versionado no repositório (imgs/adequacy_model.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/apaixonado_parsnip_2.png",
+      "kind": "image",
+      "sha256": "3fadfe16ebb82ae74a3c5bd9d77e6beab94fb7aa6b7e09f371d48f5ae75efc00",
+      "bytes": 787077,
+      "origin": "arquivo versionado no repositório (imgs/apaixonado_parsnip_2.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/apaixonado_pasnip.png",
+      "kind": "image",
+      "sha256": "3f55181353b12de50fa35027df8dc25e8b83c1beca77539bd013e824377c3300",
+      "bytes": 711204,
+      "origin": "arquivo versionado no repositório (imgs/apaixonado_pasnip.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/api_vetiver.png",
+      "kind": "image",
+      "sha256": "70ff0301fabdb7d80430185c8e697d18028779b313b255a9fff04f279c5b19df",
+      "bytes": 86959,
+      "origin": "arquivo versionado no repositório (imgs/api_vetiver.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/aquadrela_planta_vetiver.png",
+      "kind": "image",
+      "sha256": "58cc0a48d744b8e6868ac250453a609c1c3cd385f1c18242a7b2e5f27cd8ffb6",
+      "bytes": 294669,
+      "origin": "arquivo versionado no repositório (imgs/aquadrela_planta_vetiver.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/aquarela_api_fundo.png",
+      "kind": "image",
+      "sha256": "ae8c253f04bf62a8ec27ca03bb62d845ad9aac8bcda0a5834974cd986b8266a1",
+      "bytes": 3233828,
+      "origin": "arquivo versionado no repositório (imgs/aquarela_api_fundo.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/aquarela_dados_sinteticos.png",
+      "kind": "image",
+      "sha256": "ae83ef65dcad906184477504fe2b865ef3919ffa8ddff513d5bac57c0181330a",
+      "bytes": 175111,
+      "origin": "arquivo versionado no repositório (imgs/aquarela_dados_sinteticos.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/aquarela_docker.png",
+      "kind": "image",
+      "sha256": "60da100712ff0d960ed0dab1643464ee78411f6501bbbaba3a5adc3bc4347e15",
+      "bytes": 302091,
+      "origin": "arquivo versionado no repositório (imgs/aquarela_docker.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/aquarela_iml.png",
+      "kind": "image",
+      "sha256": "a49925ee7f7bc0a29b828e645447dd373a0024d28ece7e9bc5619e38906887e0",
+      "bytes": 284825,
+      "origin": "arquivo versionado no repositório (imgs/aquarela_iml.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/aquarela_pasnip.png",
+      "kind": "image",
+      "sha256": "14276314af9818bc6f836137c726f0102881cf8227af871144235390a8799001",
+      "bytes": 507893,
+      "origin": "arquivo versionado no repositório (imgs/aquarela_pasnip.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/aquarela_recipes.png",
+      "kind": "image",
+      "sha256": "a149d4cad4162960a9e411147876d9ea0eabf8cc295f9ccb45635ea6daf17e60",
+      "bytes": 502269,
+      "origin": "arquivo versionado no repositório (imgs/aquarela_recipes.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/aquarela_rsample_logo.png",
+      "kind": "image",
+      "sha256": "a55b595e7d2d5ba3eb5d166034333c7206f36d299005f68230c0f1b42540be43",
+      "bytes": 576239,
+      "origin": "arquivo versionado no repositório (imgs/aquarela_rsample_logo.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/aquarela_tune.png",
+      "kind": "image",
+      "sha256": "51069a46bd529228a8f8b69adda52c5d9097bc1b37632664a9d4487482fa072d",
+      "bytes": 430788,
+      "origin": "arquivo versionado no repositório (imgs/aquarela_tune.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/aquarela_vetiver.png",
+      "kind": "image",
+      "sha256": "eea06df6fbcd803349e53a379b38675a70447839f44a9b3e30130abec515f2ca",
+      "bytes": 538472,
+      "origin": "arquivo versionado no repositório (imgs/aquarela_vetiver.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/aquarela_windows.png",
+      "kind": "image",
+      "sha256": "4a3945c86a3ee4e9f578752aae073c60804e698ac5a9fdaddc2f20e6d6329e26",
+      "bytes": 551914,
+      "origin": "arquivo versionado no repositório (imgs/aquarela_windows.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/bad_workflow.png",
+      "kind": "image",
+      "sha256": "35c706e4dfb59f48b7dd78a696d2a63266be21c342aa75fe9d90a6e268bfa40e",
+      "bytes": 214577,
+      "origin": "arquivo versionado no repositório (imgs/bad_workflow.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/book_01.jpg",
+      "kind": "image",
+      "sha256": "c6c950bf6fc8f7562f0af9705e384e9614f29868ee5cd54e5db7e755b1efcbc4",
+      "bytes": 478256,
+      "origin": "arquivo versionado no repositório (imgs/book_01.jpg)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/book_2.png",
+      "kind": "image",
+      "sha256": "ba4fb70307bb61f368d83cd6a87406106cdfd4b30dbf00ba6dfc2018dd81108b",
+      "bytes": 165471,
+      "origin": "arquivo versionado no repositório (imgs/book_2.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/bookdown.jpg",
+      "kind": "image",
+      "sha256": "da6bcf1a1771f6954b9745b74ce1f0077d450184d0cbc4065282237e10773afa",
+      "bytes": 480755,
+      "origin": "arquivo versionado no repositório (imgs/bookdown.jpg)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/cafe_api.png",
+      "kind": "image",
+      "sha256": "a28f992ea42474416f9aebc51605f0fa74ae7fce74a84ac5ce8b589503fdcf29",
+      "bytes": 555589,
+      "origin": "arquivo versionado no repositório (imgs/cafe_api.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/capa_livro_02.png",
+      "kind": "image",
+      "sha256": "b436a17746122967962cb181630a95c01df7b3bb93981e4978775bfb38370eb0",
+      "bytes": 168224,
+      "origin": "arquivo versionado no repositório (imgs/capa_livro_02.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/capa_livro_tidymodels_01.png",
+      "kind": "image",
+      "sha256": "c0e15d1c932918b74225b68e0231ef5b993781cb8987e524f44c0652f9d927ba",
+      "bytes": 2343156,
+      "origin": "arquivo versionado no repositório (imgs/capa_livro_tidymodels_01.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/dirigivel_tidymodels.png",
+      "kind": "image",
+      "sha256": "979bbf302220b5ee6b37c11ec7766b0386738ebb9b501afbdc302a930a3bbc4e",
+      "bytes": 3096699,
+      "origin": "arquivo versionado no repositório (imgs/dirigivel_tidymodels.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/engope.png",
+      "kind": "image",
+      "sha256": "41b57f839efa352928f4d761c6a0d5eb779e9998a1ac6584f6f8d38ba13fbe67",
+      "bytes": 184012,
+      "origin": "arquivo versionado no repositório (imgs/engope.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/eu_2.jpg",
+      "kind": "image",
+      "sha256": "e52d9ab676ae95652ac36b3606e087271c275eeb24bb9123cfc3a46db183ae9e",
+      "bytes": 4773196,
+      "origin": "arquivo versionado no repositório (imgs/eu_2.jpg)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/good_workflow.png",
+      "kind": "image",
+      "sha256": "92bb90e31d4d8e7a04edc59ec6a53bc88a79b5a4193a650c0c9af043cadeb39e",
+      "bytes": 214200,
+      "origin": "arquivo versionado no repositório (imgs/good_workflow.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/grid_search_cross_validation.png",
+      "kind": "image",
+      "sha256": "f57377e201381e1511dfe6222570e7987b122e9985405295c6ffe19f0b7f7f8c",
+      "bytes": 36718,
+      "origin": "arquivo versionado no repositório (imgs/grid_search_cross_validation.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/hcci_2.jpg",
+      "kind": "image",
+      "sha256": "82adcdd836a58198c92aed60869fdf0daac537c6a80d02c346bd7cac17068e26",
+      "bytes": 215974,
+      "origin": "arquivo versionado no repositório (imgs/hcci_2.jpg)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/iml.png",
+      "kind": "image",
+      "sha256": "b2d09089a29598e6be018dc669cbfe31d0ac03a4f9b412dbb41e72ced3973995",
+      "bytes": 20219,
+      "origin": "arquivo versionado no repositório (imgs/iml.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/lasso.png",
+      "kind": "image",
+      "sha256": "c38c61deb6f4355057d56c87209d03e75dbc50f8ff37a3e1e6c201ecc9eed907",
+      "bytes": 313541,
+      "origin": "arquivo versionado no repositório (imgs/lasso.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/logo_fly.jpg",
+      "kind": "image",
+      "sha256": "d96322bcd462d79cd9c18e32076ea116ed530c8e742f0d6abd718ab27f2bbaee",
+      "bytes": 6334,
+      "origin": "arquivo versionado no repositório (imgs/logo_fly.jpg)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/logo_pacote_future.png",
+      "kind": "image",
+      "sha256": "471d2964ab9aa0be4d99790994d2f48a4bfcbb92dd0477f3e88de980726a046c",
+      "bytes": 14244,
+      "origin": "arquivo versionado no repositório (imgs/logo_pacote_future.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/loocn_aic.png",
+      "kind": "image",
+      "sha256": "f3a1daae9b727343ac76acfd393e0f8365581b97dae7868977f354ed526a96fb",
+      "bytes": 258700,
+      "origin": "arquivo versionado no repositório (imgs/loocn_aic.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/max_kuhn.jpeg",
+      "kind": "image",
+      "sha256": "cd0f620d753b470cc748362f3c1a576bd212913f0409dfe5b7267a93ea39d3d4",
+      "bytes": 29527,
+      "origin": "arquivo versionado no repositório (imgs/max_kuhn.jpeg)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/ml_illustration.jpg",
+      "kind": "image",
+      "sha256": "103d9daa3bfd67be66f36867a0521d9669346e6ccfa4b628fe20fef3df4dffcc",
+      "bytes": 181303,
+      "origin": "arquivo versionado no repositório (imgs/ml_illustration.jpg)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/ml_ops_cycle.png",
+      "kind": "image",
+      "sha256": "c0918f63158a5e807513fb82043900ed2bcef0943721e1d73293f9c6fd75518c",
+      "bytes": 225041,
+      "origin": "arquivo versionado no repositório (imgs/ml_ops_cycle.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/ml_ops_cycle.svg",
+      "kind": "image",
+      "sha256": "ab4ad8336fdda6094808231704a39b011f5fb6757b35e26d241f6baa910a5684",
+      "bytes": 1268770,
+      "origin": "arquivo versionado no repositório (imgs/ml_ops_cycle.svg)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/motor_parsnip.png",
+      "kind": "image",
+      "sha256": "046886b4b95100be43f01c5091c15b7e1f7715a539bf175b2b5acff61f2656ce",
+      "bytes": 3001412,
+      "origin": "arquivo versionado no repositório (imgs/motor_parsnip.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/ngrok.svg",
+      "kind": "image",
+      "sha256": "452d5992889924f44d45bc8593e2d29f6177b0c1ed86678d748ac03ac2e98e85",
+      "bytes": 4355,
+      "origin": "arquivo versionado no repositório (imgs/ngrok.svg)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/o_que_esperar.png",
+      "kind": "image",
+      "sha256": "eba3958dbaf5a1774a587aa46cc41facb6e48e5dcd14f287d2557f8b52261c59",
+      "bytes": 3118676,
+      "origin": "arquivo versionado no repositório (imgs/o_que_esperar.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/orquestra.png",
+      "kind": "image",
+      "sha256": "daeb5bf0a84010517d64a2304e060dee0f9060291c0057308c9b1f00594691ed",
+      "bytes": 2749372,
+      "origin": "arquivo versionado no repositório (imgs/orquestra.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/orquestra_workflows.png",
+      "kind": "image",
+      "sha256": "6d22b604a0f71fad7f59ccaeb7d9631412fa7bc0b261deee0822c2669af0f119",
+      "bytes": 262375,
+      "origin": "arquivo versionado no repositório (imgs/orquestra_workflows.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/parsnip.png",
+      "kind": "image",
+      "sha256": "a534e6b57ba64ff8d374ba725daa1e3c891efad8a6f17a0f31e01a2faaf53d13",
+      "bytes": 24572,
+      "origin": "arquivo versionado no repositório (imgs/parsnip.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/porcessador_aquarela.png",
+      "kind": "image",
+      "sha256": "1e85389969e21445601ef77b00d4a3c6a7edafc8ad3b6a88500bb2dcde2e6083",
+      "bytes": 2170346,
+      "origin": "arquivo versionado no repositório (imgs/porcessador_aquarela.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/principais_pacotes_tidymodels.png",
+      "kind": "image",
+      "sha256": "052123125edb82accdaf43b91560d8e7a95abfda30cdef246377f50fc03f9541",
+      "bytes": 119823,
+      "origin": "arquivo versionado no repositório (imgs/principais_pacotes_tidymodels.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/principais_pacotes_tidyverse.png",
+      "kind": "image",
+      "sha256": "ecffa94a2462e447121d6a262bd2fa964951b7d41d7af2d31e84153340a6b129",
+      "bytes": 210820,
+      "origin": "arquivo versionado no repositório (imgs/principais_pacotes_tidyverse.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/rawpixel/freight.jpg",
+      "kind": "image",
+      "sha256": "41e2f1a972dd0db5916d9e58b7bb866798aa37a611054cd500e734765004ea7c",
+      "bytes": 1297644,
+      "origin": "arquivo versionado no repositório (imgs/rawpixel/freight.jpg)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/recipes.png",
+      "kind": "image",
+      "sha256": "4f2a6fc2eded8205f1c2fe2df113a07ae1bfb5c985ece27d0bae0e1c5523a794",
+      "bytes": 28817,
+      "origin": "arquivo versionado no repositório (imgs/recipes.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/ropenblas.png",
+      "kind": "image",
+      "sha256": "781ec66153573753ba5e6ee67e7bfbb19fdc6a6ef301fd763c24415237a69ec1",
+      "bytes": 261432,
+      "origin": "arquivo versionado no repositório (imgs/ropenblas.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/rsample.png",
+      "kind": "image",
+      "sha256": "db2dc8ad3e66b2f92a2e147d996a91e5c1f9a2957fdd923fb2e900130d544b09",
+      "bytes": 29257,
+      "origin": "arquivo versionado no repositório (imgs/rsample.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/rsample_aquarela.png",
+      "kind": "image",
+      "sha256": "3ab1213f04d5ab76fe436d86c18ee1fa72469d57b5b6252546f6a289f98953f1",
+      "bytes": 2382012,
+      "origin": "arquivo versionado no repositório (imgs/rsample_aquarela.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/tidymodels.png",
+      "kind": "image",
+      "sha256": "8f501a93b135caa50c663a0307427c629ad0f3d6bb98a3ad74881b44af3ba03a",
+      "bytes": 235301,
+      "origin": "arquivo versionado no repositório (imgs/tidymodels.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/tidymodels_07.png",
+      "kind": "image",
+      "sha256": "cf85fbb96cf9a3afeeb7366fa6151ae6686b513b6c575d6b8eed67b5f3c356df",
+      "bytes": 88334,
+      "origin": "arquivo versionado no repositório (imgs/tidymodels_07.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/tidymodels_tunagem.png",
+      "kind": "image",
+      "sha256": "4fbe781c0696e0d1462d06bca8edcd8594c30a74aff5bd22a74c24096f2cb2ac",
+      "bytes": 2910609,
+      "origin": "arquivo versionado no repositório (imgs/tidymodels_tunagem.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/tune.png",
+      "kind": "image",
+      "sha256": "1ebebfc7fc34dbf16ada7626121ee5f2813cc0f87cd665710a0ba8788d7aac17",
+      "bytes": 20018,
+      "origin": "arquivo versionado no repositório (imgs/tune.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/tux_aquarela.png",
+      "kind": "image",
+      "sha256": "435e398f95c1ab1b3f3f11cbd3656af3ac0f67d645d68a50f4693117c499484f",
+      "bytes": 217505,
+      "origin": "arquivo versionado no repositório (imgs/tux_aquarela.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/validation-split.svg",
+      "kind": "image",
+      "sha256": "a75d1d6813a0c4e0045b981a7d9eae072820b22cabe9f60f61f0da7f4c0fdad9",
+      "bytes": 6527,
+      "origin": "arquivo versionado no repositório (imgs/validation-split.svg)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/varal_workflows.png",
+      "kind": "image",
+      "sha256": "1bbf657dfe0a2406ec91b7613a0935409a5ac34f89caedf4dfb16adfe99e1d76",
+      "bytes": 540540,
+      "origin": "arquivo versionado no repositório (imgs/varal_workflows.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/vetiver.png",
+      "kind": "image",
+      "sha256": "0c30324bacb234697d7d3bd7e18554464df8c8ed6867b81670afba02aa7be04a",
+      "bytes": 482544,
+      "origin": "arquivo versionado no repositório (imgs/vetiver.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/what_is_ml.png",
+      "kind": "image",
+      "sha256": "f71fdfe427037dc1c43485fbd97d62d4f312d23b7ef4b88c3c9fd01169c43f9b",
+      "bytes": 398820,
+      "origin": "arquivo versionado no repositório (imgs/what_is_ml.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/whole-game-final-fit.jpg",
+      "kind": "image",
+      "sha256": "00e923d5465c4cf805ce473991a65bb84e08e3a4582308092acbea556bbcf814",
+      "bytes": 162637,
+      "origin": "arquivo versionado no repositório (imgs/whole-game-final-fit.jpg)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/whole-game-final-performance.jpg",
+      "kind": "image",
+      "sha256": "d4d61b6315f5c388ffc3b3da42a72515953003ff7f1346e9d537907fe3798e10",
+      "bytes": 187964,
+      "origin": "arquivo versionado no repositório (imgs/whole-game-final-performance.jpg)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/whole-game-model-n.jpg",
+      "kind": "image",
+      "sha256": "697713af2c1022ee20e2f2207a07ba26bd85afdd81cef69b16c478e0f2fb2232",
+      "bytes": 98088,
+      "origin": "arquivo versionado no repositório (imgs/whole-game-model-n.jpg)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/whole-game-resamples.jpg",
+      "kind": "image",
+      "sha256": "a8649a9436fbbdd71cf6d880fd433c1a003095c9cba04020864e9bc681da0afd",
+      "bytes": 119429,
+      "origin": "arquivo versionado no repositório (imgs/whole-game-resamples.jpg)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/whole-game-select.jpg",
+      "kind": "image",
+      "sha256": "a3a07442358df81beaa928136336db035faf5de7dadff7aa5963d65ccbdff234",
+      "bytes": 140136,
+      "origin": "arquivo versionado no repositório (imgs/whole-game-select.jpg)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/workflow_tidymodels.png",
+      "kind": "image",
+      "sha256": "15649d494f485363f91d828565aa2b51040f8a720a01ca5fee4f233b1eb032bb",
+      "bytes": 1502492,
+      "origin": "arquivo versionado no repositório (imgs/workflow_tidymodels.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/workflows_lib.png",
+      "kind": "image",
+      "sha256": "0ab1193e47d315d4d3df7e0282973ca90db1d65f3188a9fce956ad2cc4261037",
+      "bytes": 40387,
+      "origin": "arquivo versionado no repositório (imgs/workflows_lib.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/workflows_montanha_russa.png",
+      "kind": "image",
+      "sha256": "f69bfa5bd9e8518d55becd74b9ce5276b44d041cd5190edd93ab4cb2bc71a90d",
+      "bytes": 3386216,
+      "origin": "arquivo versionado no repositório (imgs/workflows_montanha_russa.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "imgs/zap_imoveis.png",
+      "kind": "image",
+      "sha256": "363d787c019ed3b8711170fad06aca695a8ffb533c1bae3dbea9148ea2125869",
+      "bytes": 33007,
+      "origin": "arquivo versionado no repositório (imgs/zap_imoveis.png)",
+      "license": null,
+      "repair": "git"
+    },
+    {
+      "path": "media/fonts/FiraCode.ttf",
+      "kind": "font",
+      "sha256": "9335b082b3c7850d98a64b584f3417f65355f3471278bb5eeb8c6c0e8657aeeb",
+      "bytes": 260364,
+      "origin": "Google Fonts — ofl/firacode/FiraCode[wght].ttf",
+      "license": "OFL-1.1",
+      "repair": "download",
+      "source_url": "https://raw.githubusercontent.com/google/fonts/main/ofl/firacode/FiraCode%5Bwght%5D.ttf"
+    },
+    {
+      "path": "media/fonts/OFL.txt",
+      "kind": "data",
+      "sha256": "926041dac670e6922505e35ac1661a4e8d20f1ffeabbbcb5edb5544370702369",
+      "bytes": 4391,
+      "origin": "Google Fonts — ofl/firacode/OFL.txt",
+      "license": "OFL-1.1",
+      "repair": "download",
+      "source_url": "https://raw.githubusercontent.com/google/fonts/main/ofl/firacode/OFL.txt"
+    },
+    {
+      "path": "media/images/flow-texture.jpg",
+      "kind": "image",
+      "sha256": "fd4f419b4970538848b3e215ae371c7c444e8f5f2a899c60a31f92537e872cd4",
+      "bytes": 528699,
+      "origin": "Textura usada em .flow, originalmente carregada do Unsplash",
+      "license": "Unsplash License",
+      "repair": "download",
+      "source_url": "https://images.unsplash.com/photo-1532153975070-2e9ab71f1b14?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+    },
+    {
+      "path": "media/images/foto_aerea_ufpb.jpeg",
+      "kind": "image",
+      "sha256": "f5583976d42605051802b43bdc4d38b18e8dc66cfd585915dad289a0843c12b3",
+      "bytes": 328752,
+      "origin": "Foto aérea da UFPB publicada pelo autor em github.com/prdm0/imagens",
+      "license": null,
+      "repair": "download",
+      "source_url": "https://raw.githubusercontent.com/prdm0/imagens/main/foto_aerea_ufpb.jpeg"
+    },
+    {
+      "path": "media/images/teresina-banner.jpg",
+      "kind": "image",
+      "sha256": "99ca81a751c7ca6673cfe7cf4c35782ef6a23622710885af47e00ddae822dc14",
+      "bytes": 477181,
+      "origin": "bytes já embutidos em assets/modelo_teresina.html (relatório do autor)",
+      "license": null,
+      "repair": "manual"
+    },
+    {
+      "path": "media/maps/ufpb.osm.json",
+      "kind": "data",
+      "sha256": "5cd7e7cbd5bbf72d78ab1faf7b6aff89d836c59b1bdacbcaa157733bf387bde2",
+      "bytes": 714429,
+      "origin": "api.openstreetmap.org/api/0.6/map.json bbox=(-34.8502, -7.1434, -34.8422, -7.1374)",
+      "license": "ODbL-1.0",
+      "repair": "download",
+      "source_url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=-34.8502,-7.1434,-34.8422,-7.1374"
+    },
+    {
+      "path": "media/maps/ufpb.svg",
+      "kind": "image",
+      "sha256": "416217d1275e51c7c56c3c56dded767f7f83204259eaa2a7fa437ba95eff5740",
+      "bytes": 46586,
+      "origin": "gerado por scripts/media.py a partir de media/maps/ufpb.osm.json",
+      "license": "ODbL-1.0",
+      "repair": "generate-map"
+    },
+    {
+      "path": "media/previews/app-api.png",
+      "kind": "image",
+      "sha256": "4ecc16ac926f8775eca4bb09f999ed7505f3e4270a85696b84e13e59ff4d7f81",
+      "bytes": 72223,
+      "origin": "captura local de https://pedro-rafael.shinyapps.io/app_api/ (Chromium 1600x500)",
+      "license": null,
+      "repair": "manual",
+      "source_url": "https://pedro-rafael.shinyapps.io/app_api/",
+      "captured_at": "2026-10-19T20:08:00Z"
+    },
+    {
+      "path": "media/previews/app-teresina.png",
+      "kind": "image",
+      "sha256": "a0c8d4423338ac4af554ad42ce7868f7d91cdf4acf89844e173b6cf08d6d7f86",
+      "bytes": 84248,
+      "origin": "captura local de https://pedro-rafael.shinyapps.io/app_teresina/ (Chromium 1600x600)",
+      "license": null,
+      "repair": "manual",
+      "source_url": "https://pedro-rafael.shinyapps.io/app_teresina/",
+      "captured_at": "2026-10-19T20:08:07Z"
+    },
+    {
+      "path": "media/previews/future.png",
+      "kind": "image",
+      "sha256": "64e152eab5177271f0e77a917e8f5c5f1d91f71c048ab292c1e5a31197518a02",
+      "bytes": 168782,
+      "origin": "captura local de https://future.futureverse.org/ (Chromium 1600x700)",
+      "license": null,
+      "repair": "manual",
+      "source_url": "https://future.futureverse.org/",
+      "captured_at": "2026-10-19T20:07:33Z"
+    },
+    {
+      "path": "media/previews/parsnip-find.png",
+      "kind": "image",
+      "sha256": "e4d57ddb5ad5193ef4dfcf9ec18eb4916979d10ed965290d4914cdefd19dc3ef",
+      "bytes": 138180,
+      "origin": "captura local de https://www.tidymodels.org/find/parsnip/ (Chromium 1600x800)",
+      "license": null,
+      "repair": "manual",
+      "source_url": "https://www.tidymodels.org/find/parsnip/",
+      "captured_at": "2026-10-19T20:07:46Z"
+    },
+    {
+      "path": "media/previews/recipes-find.png",
+      "kind": "image",
+      "sha256": "d64dd13adf2322cdcc0d84e9562de66ab9cc48eee89acce8da28600c20d00c32",
+      "bytes": 110650,
+      "origin": "captura local de https://www.tidymodels.org/find/recipes/ (Chromium 1600x700)",
+      "license": null,
+      "repair": "manual",
+      "source_url": "https://www.tidymodels.org/find/recipes/",
+      "captured_at": "2026-10-19T20:07:40Z"
+    },
+    {
+      "path": "media/previews/recipes-reference.png",
+      "kind": "image",
+      "sha256": "faa63d7cd70b0a526dab9e06fa32edeb299806224e742d6096631632ee7c3979",
+      "bytes": 146138,
+      "origin": "captura local de https://recipes.tidymodels.org/reference/index.html (Chromium 1600x700)",
+      "license": null,
+      "repair": "manual",
+      "source_url": "https://recipes.tidymodels.org/reference/index.html",
+      "captured_at": "2026-10-19T20:07:43Z"
+    },
+    {
+      "path": "media/previews/rsample.png",
+      "kind": "image",
+      "sha256": "320407528138bbe3d58c61c4ff1843940fc8ff5a3672cf913755bd7e8da6685b",
+      "bytes": 148664,
+      "origin": "captura local de https://rsample.tidymodels.org/reference/index.html (Chromium 1600x700)",
+      "license": null,
+      "repair": "manual",
+      "source_url": "https://rsample.tidymodels.org/reference/index.html",
+      "captured_at": "2026-10-19T20:07:37Z"
+    },
+    {
+      "path": "media/previews/tune.png",
+      "kind": "image",
+      "sha256": "c9d1909fbf37e90fd65c161926501fc9be23061475e20315b7549bde5c69f650",
+      "bytes": 135725,
+      "origin": "captura local de https://tune.tidymodels.org/reference/index.html (Chromium 1600x800)",
+      "license": null,
+      "repair": "manual",
+      "source_url": "https://tune.tidymodels.org/reference/index.html",
+      "captured_at": "2026-10-19T20:07:52Z"
+    },
+    {
+      "path": "media/previews/workflows.png",
+      "kind": "image",
+      "sha256": "10b4adf79b4f7d8417be37cf47d836522c440bfcf832e48b7bad8c5afc8fe343",
+      "bytes": 132237,
+      "origin": "captura local de https://workflows.tidymodels.org/reference/index.html (Chromium 1600x800)",
+      "license": null,
+      "repair": "manual",
+      "source_url": "https://workflows.tidymodels.org/reference/index.html",
+      "captured_at": "2026-10-19T20:07:49Z"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/LICENSE",
+      "kind": "text",
+      "sha256": "766ccc1f306c885aa45542a9846bbd0a505b27a0374f146778171c2254ce18e3",
+      "bytes": 1107,
+      "origin": "katex@0.19.0",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/LICENSE"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_AMS-Regular.ttf",
+      "kind": "font",
+      "sha256": "68534840bcfdd2bffb6f0e8deb48684dd01e7f04ea2813267577afb906de1d13",
+      "bytes": 63632,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_AMS-Regular.ttf",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_AMS-Regular.ttf"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_AMS-Regular.woff",
+      "kind": "font",
+      "sha256": "30da91e84c893f875e252689faebdc590b2871145e8adc7f9a9d4dbd8ce0b251",
+      "bytes": 33516,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_AMS-Regular.woff",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_AMS-Regular.woff"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_AMS-Regular.woff2",
+      "kind": "font",
+      "sha256": "0cdd387c9590a1a9f9794560022dbb59654a7d86f187aa0c81495ad42d3a7308",
+      "bytes": 28076,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_AMS-Regular.woff2",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_AMS-Regular.woff2"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Caligraphic-Bold.ttf",
+      "kind": "font",
+      "sha256": "07d8e303ce4fc12b4bb54f1004170dd190a1f3db45d400fe68060df3e0897268",
+      "bytes": 12368,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Caligraphic-Bold.ttf",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Caligraphic-Bold.ttf"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Caligraphic-Bold.woff",
+      "kind": "font",
+      "sha256": "1ae6bd7475590e97e7f145a89e09ccde322f7a6bc0b91607b1c8b8ee28290fed",
+      "bytes": 7716,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Caligraphic-Bold.woff",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Caligraphic-Bold.woff"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Caligraphic-Bold.woff2",
+      "kind": "font",
+      "sha256": "de7701e42cf1f4cf0b766c03fb27977207eee2f4fd5d76fa82188406da43ea4c",
+      "bytes": 6912,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Caligraphic-Bold.woff2",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Caligraphic-Bold.woff2"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Caligraphic-Regular.ttf",
+      "kind": "font",
+      "sha256": "ed0b74372feefcbb9c0666b2e210da37b7e49fa7fbbf3eeb11db5f693dacfbb7",
+      "bytes": 12344,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Caligraphic-Regular.ttf",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Caligraphic-Regular.ttf"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Caligraphic-Regular.woff",
+      "kind": "font",
+      "sha256": "3398dd02302557a793f2863f88e02d96ce10df2abffa07c8e9fa90775116e65c",
+      "bytes": 7656,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Caligraphic-Regular.woff",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Caligraphic-Regular.woff"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Caligraphic-Regular.woff2",
+      "kind": "font",
+      "sha256": "5d53e70ad607c2352162dec9e0923fb54ecdafaccbf604cd8dcf7d00facb989b",
+      "bytes": 6908,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Caligraphic-Regular.woff2",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Caligraphic-Regular.woff2"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Fraktur-Bold.ttf",
+      "kind": "font",
+      "sha256": "9163df9c7122432e6495b4229fa9071cf9ae86a758ae5efc4924ec2e1a6dbce1",
+      "bytes": 19584,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Fraktur-Bold.ttf",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Fraktur-Bold.ttf"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Fraktur-Bold.woff",
+      "kind": "font",
+      "sha256": "9be7ceb88004ab8ad124082246fbfcca4091e36385d4ec6ed1df67375dad50fb",
+      "bytes": 13296,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Fraktur-Bold.woff",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Fraktur-Bold.woff"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Fraktur-Bold.woff2",
+      "kind": "font",
+      "sha256": "74444efd593c005e3f4573b44524704c0af0a937fe911cca9e94068d0d140d3f",
+      "bytes": 11348,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Fraktur-Bold.woff2",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Fraktur-Bold.woff2"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Fraktur-Regular.ttf",
+      "kind": "font",
+      "sha256": "1e6f9579e90e2cac37f8f60a597c436e075c114385652b7cbeb0dec0421291b3",
+      "bytes": 19572,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Fraktur-Regular.ttf",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Fraktur-Regular.ttf"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Fraktur-Regular.woff",
+      "kind": "font",
+      "sha256": "5e28753be717dac97f559f49bc10be9cf3c124ddcabda6659d11cb68febc6463",
+      "bytes": 13208,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Fraktur-Regular.woff",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Fraktur-Regular.woff"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Fraktur-Regular.woff2",
+      "kind": "font",
+      "sha256": "51814d270d06ff0255dba0799994fa4d8c84d11f09951d47595f4abb1f3602dc",
+      "bytes": 11316,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Fraktur-Regular.woff2",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Fraktur-Regular.woff2"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Main-Bold.ttf",
+      "kind": "font",
+      "sha256": "138ac28d1663b3037e9c5f52371fa5c63d8324f4a38d22cd573e6ea3a3fd0cf8",
+      "bytes": 51336,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Main-Bold.ttf",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Main-Bold.ttf"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Main-Bold.woff",
+      "kind": "font",
+      "sha256": "c76c5d696297d51b9cb1639c7da4334f0e7dec81b42b11213b5e25ef671bb822",
+      "bytes": 29912,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Main-Bold.woff",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Main-Bold.woff"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Main-Bold.woff2",
+      "kind": "font",
+      "sha256": "0f60d1b897938ec918c8ce073092411baf9438f6739465693ff18b0f9d20b021",
+      "bytes": 25324,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Main-Bold.woff2",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Main-Bold.woff2"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Main-BoldItalic.ttf",
+      "kind": "font",
+      "sha256": "70ee1f64a20f2048c21940ef46d0144fd215baa953ca69afd1e31e98544f708f",
+      "bytes": 32968,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Main-BoldItalic.ttf",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Main-BoldItalic.ttf"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Main-BoldItalic.woff",
+      "kind": "font",
+      "sha256": "a6f7ec0d846ac7ad975adb8959c37ed49b94acbc4ae436db9ce9e20287e4a64c",
+      "bytes": 19412,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Main-BoldItalic.woff",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Main-BoldItalic.woff"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Main-BoldItalic.woff2",
+      "kind": "font",
+      "sha256": "99cd42a3c072d918f2f44984a807cf7aa16e13545fd0875fc07c6c65f99e715b",
+      "bytes": 16780,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Main-BoldItalic.woff2",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Main-BoldItalic.woff2"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Main-Italic.ttf",
+      "kind": "font",
+      "sha256": "0d85ae7cc30f23790a7f1a58c4a112fdca8aae769b6ba11429af1d98b1b6cb3a",
+      "bytes": 33580,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Main-Italic.ttf",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Main-Italic.ttf"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Main-Italic.woff",
+      "kind": "font",
+      "sha256": "f1d6ef86f3b11a528bd5185199bd2443ecb2b0dead96d88674b5a2c12be24bdf",
+      "bytes": 19676,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Main-Italic.woff",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Main-Italic.woff"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Main-Italic.woff2",
+      "kind": "font",
+      "sha256": "97479ca6cce906abc961ecac96faa5f9ca2e61b8e7670d475826bcdee9a7c267",
+      "bytes": 16988,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Main-Italic.woff2",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Main-Italic.woff2"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Main-Regular.ttf",
+      "kind": "font",
+      "sha256": "d0332f52868370fd83ae7fa46470f90c8f2eab2fcf12bc4f88080b340c95a830",
+      "bytes": 53580,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Main-Regular.ttf",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Main-Regular.ttf"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Main-Regular.woff",
+      "kind": "font",
+      "sha256": "c6368d87e8a1a3a5d337623d83d8dc4b868f242a9ad476237d6f8d1e0f168cdc",
+      "bytes": 30772,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Main-Regular.woff",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Main-Regular.woff"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Main-Regular.woff2",
+      "kind": "font",
+      "sha256": "c2342cd8b869e01752a9321dc17213fc40d4d04c79688c1d43f2cf316abd7866",
+      "bytes": 26272,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Main-Regular.woff2",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Main-Regular.woff2"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Math-BoldItalic.ttf",
+      "kind": "font",
+      "sha256": "f9377ab0271cda59af24bcffbd46a4d0c8a3572ffafdbb38de2ad5ea7b0d5ee5",
+      "bytes": 31196,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Math-BoldItalic.ttf",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Math-BoldItalic.ttf"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Math-BoldItalic.woff",
+      "kind": "font",
+      "sha256": "850c0af5c2238497febaf5e461d880bf458c341f42f4f330f1b1ab5698b1998e",
+      "bytes": 18668,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Math-BoldItalic.woff",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Math-BoldItalic.woff"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Math-BoldItalic.woff2",
+      "kind": "font",
+      "sha256": "dc47344dbb6cb5b655c8460d561f4df5f501b90c804ad3c6cec65fe322351ab1",
+      "bytes": 16400,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Math-BoldItalic.woff2",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Math-BoldItalic.woff2"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Math-Italic.ttf",
+      "kind": "font",
+      "sha256": "08ce98e51b04d58945a301e639e02b6998af29fdfd61a7b8afdd07bbfc479d4a",
+      "bytes": 31308,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Math-Italic.ttf",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Math-Italic.ttf"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Math-Italic.woff",
+      "kind": "font",
+      "sha256": "8a8d244581371912b8f3f5a23e2437cb2a59cd9bcaebb0346e722c05737a2571",
+      "bytes": 18748,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Math-Italic.woff",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Math-Italic.woff"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Math-Italic.woff2",
+      "kind": "font",
+      "sha256": "7af58c5ec8f132a2ddde9027c6d7814decce4d3b822a11192a42a20e2e973264",
+      "bytes": 16440,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Math-Italic.woff2",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Math-Italic.woff2"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_SansSerif-Bold.ttf",
+      "kind": "font",
+      "sha256": "1ece03f79f95277d57dc7f6b435a74e1379b0d46104a8530286b60ff49369ea0",
+      "bytes": 24504,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_SansSerif-Bold.ttf",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_SansSerif-Bold.ttf"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_SansSerif-Bold.woff",
+      "kind": "font",
+      "sha256": "ece03cfd83e22c212cdef66feb8442d25a083beb988db3f1883f3f9738d750ba",
+      "bytes": 14408,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_SansSerif-Bold.woff",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_SansSerif-Bold.woff"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_SansSerif-Bold.woff2",
+      "kind": "font",
+      "sha256": "e99ae51144bf1232efcc1bfe5add36262c6866b0faab24fa75740e1b98577a62",
+      "bytes": 12216,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_SansSerif-Bold.woff2",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_SansSerif-Bold.woff2"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_SansSerif-Italic.ttf",
+      "kind": "font",
+      "sha256": "3931dd81faed86ba021bb2bbdc36f5bed9a38d6b4f4077aca59b265aa1b02083",
+      "bytes": 22364,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_SansSerif-Italic.ttf",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_SansSerif-Italic.ttf"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_SansSerif-Italic.woff",
+      "kind": "font",
+      "sha256": "91ee67500cc0129aa0ace3ac5c61ff1692102f0f31d02b69347fba35dcb75bf2",
+      "bytes": 14112,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_SansSerif-Italic.woff",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_SansSerif-Italic.woff"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_SansSerif-Italic.woff2",
+      "kind": "font",
+      "sha256": "00b26ac825e2095056396e0553b8ac26d3f8ad158c3826e28b4c45b385c4714a",
+      "bytes": 12028,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_SansSerif-Italic.woff2",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_SansSerif-Italic.woff2"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_SansSerif-Regular.ttf",
+      "kind": "font",
+      "sha256": "f36ea897e19f4a2e571d1e900e4e3710e438deb05a842486045ba0a3e616a4ad",
+      "bytes": 19436,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_SansSerif-Regular.ttf",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_SansSerif-Regular.ttf"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_SansSerif-Regular.woff",
+      "kind": "font",
+      "sha256": "11e4dc8a6471ff6d6ee561d53d10fde8f7489e798257ff449c5d37c197435605",
+      "bytes": 12316,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_SansSerif-Regular.woff",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_SansSerif-Regular.woff"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_SansSerif-Regular.woff2",
+      "kind": "font",
+      "sha256": "68e8c73ef42afd3ccec58bf0fba302cce448938e7fc020a5e31f8a952eee1342",
+      "bytes": 10344,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_SansSerif-Regular.woff2",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_SansSerif-Regular.woff2"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Script-Regular.ttf",
+      "kind": "font",
+      "sha256": "1c67f068fea8bb09bf099c088b1cf64bd27516a6e07f4684344873564bb66a67",
+      "bytes": 16648,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Script-Regular.ttf",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Script-Regular.ttf"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Script-Regular.woff",
+      "kind": "font",
+      "sha256": "d96cdf2b3bdd4d64a8fd5f74a4c467f123a8a73931cd435889f08ffaf9bf947a",
+      "bytes": 10588,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Script-Regular.woff",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Script-Regular.woff"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Script-Regular.woff2",
+      "kind": "font",
+      "sha256": "036d4e95149b69ff9bcc0cd55771efeb25ffa3947293e69acd78d5ac328c684b",
+      "bytes": 9644,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Script-Regular.woff2",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Script-Regular.woff2"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Size1-Regular.ttf",
+      "kind": "font",
+      "sha256": "95b6d2f1a50173bfedb8c63e1d1c99b10427d0a4df4201cb44513b226951a22b",
+      "bytes": 12228,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Size1-Regular.ttf",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Size1-Regular.ttf"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Size1-Regular.woff",
+      "kind": "font",
+      "sha256": "c943cc986384f59e86bea5fd7dc50a9c4dfe567a7c05eb40d6790720dead97c9",
+      "bytes": 6496,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Size1-Regular.woff",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Size1-Regular.woff"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Size1-Regular.woff2",
+      "kind": "font",
+      "sha256": "6b47c40166b6dbe21a5dfca7718413f2147fd2399be1ba605d8ad39cedf25dfe",
+      "bytes": 5468,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Size1-Regular.woff2",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Size1-Regular.woff2"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Size2-Regular.ttf",
+      "kind": "font",
+      "sha256": "a6b2099fb555c60e3a0db3a08842ebf1d732c6eb4e4bf44913613bed4fc4e39b",
+      "bytes": 11508,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Size2-Regular.ttf",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Size2-Regular.ttf"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Size2-Regular.woff",
+      "kind": "font",
+      "sha256": "2014c523c3210bcc166648c4d4cc57f05b747df07a24277bf71c51e67dc79e3d",
+      "bytes": 6188,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Size2-Regular.woff",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Size2-Regular.woff"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Size2-Regular.woff2",
+      "kind": "font",
+      "sha256": "d04c54219f9eaec6d4d4fd42dfb28785975a4794d6b2fc71e566b9cd6db842dd",
+      "bytes": 5208,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Size2-Regular.woff2",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Size2-Regular.woff2"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Size3-Regular.ttf",
+      "kind": "font",
+      "sha256": "500e04d54f0d51666332c9d2089aa803be22aa878eca539e59fa53c6e522b082",
+      "bytes": 7588,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Size3-Regular.ttf",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Size3-Regular.ttf"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Size3-Regular.woff",
+      "kind": "font",
+      "sha256": "6ab6b62e9b62dae2c00dd90f791bd10950be0ecc3490d7d6045f51c2e8fe0949",
+      "bytes": 4420,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Size3-Regular.woff",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Size3-Regular.woff"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Size3-Regular.woff2",
+      "kind": "font",
+      "sha256": "73d591271b1604960cb10bb90fee021670af7297017e0e98480b332d11f51995",
+      "bytes": 3624,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Size3-Regular.woff2",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Size3-Regular.woff2"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Size4-Regular.ttf",
+      "kind": "font",
+      "sha256": "c647367d1dd4e162468717d020e1fc0f1dc5c26ebfdffbe55261713bf88c5877",
+      "bytes": 10364,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Size4-Regular.ttf",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Size4-Regular.ttf"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Size4-Regular.woff",
+      "kind": "font",
+      "sha256": "99f9c6750b489c9462bf04900bd3f939df9b829339daaaaa99ef5495cdddea58",
+      "bytes": 5980,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Size4-Regular.woff",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Size4-Regular.woff"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Size4-Regular.woff2",
+      "kind": "font",
+      "sha256": "a4af7d414440a1c1790825cfb700cf9cf43b0f2c4b04f0ebc523011ad9853ec0",
+      "bytes": 4928,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Size4-Regular.woff2",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Size4-Regular.woff2"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Typewriter-Regular.ttf",
+      "kind": "font",
+      "sha256": "f01f3e87d9c6a61c0c081ceb577abd864eb00a612f7ac1620dd6915fad2ef5aa",
+      "bytes": 27556,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Typewriter-Regular.ttf",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Typewriter-Regular.ttf"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Typewriter-Regular.woff",
+      "kind": "font",
+      "sha256": "e14fed02b1aba7ce9f5afd5844b5d0321b22351febc720e0de8b8723527609f7",
+      "bytes": 16028,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Typewriter-Regular.woff",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Typewriter-Regular.woff"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/fonts/KaTeX_Typewriter-Regular.woff2",
+      "kind": "font",
+      "sha256": "71d517d67827787cfabdf186914cc3358eda539e37931941f2b2fd4a21f68c0b",
+      "bytes": 13568,
+      "origin": "katex@0.19.0 dist/fonts/KaTeX_Typewriter-Regular.woff2",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/fonts/KaTeX_Typewriter-Regular.woff2"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/katex.min.css",
+      "kind": "style",
+      "sha256": "d4ab5b8ee16989b070cdb0ea24bd6ad48fc8df1b787f280f29d3ae4f959f2c00",
+      "bytes": 24793,
+      "origin": "cdn.jsdelivr.net/npm/katex@0.19.0",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/katex.min.css"
+    },
+    {
+      "path": "media/vendor/katex-0.19.0/katex.min.js",
+      "kind": "script",
+      "sha256": "103a53763cc033bba8d175bf3f0ba597c3505c9b6747dd3f2c7bc2a6bfcc8ae7",
+      "bytes": 272868,
+      "origin": "cdn.jsdelivr.net/npm/katex@0.19.0",
+      "license": "MIT",
+      "repair": "download",
+      "source_url": "https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/katex.min.js"
+    },
+    {
+      "path": "media/videos/cnn-mask.mp4",
+      "kind": "video",
+      "sha256": "22704be6b67b9463bd907b7cca777f02a0dfdfd351ac11adb75beda4cfef5e56",
+      "bytes": 2655081,
+      "origin": "Rede Neural Convolucional: Detectando uso de máscara — canal Prof. Pedro Rafael (https://www.youtube.com/watch?v=Zt_Fr7YbU1c)",
+      "license": null,
+      "repair": "manual",
+      "source_url": "https://www.youtube.com/watch?v=Zt_Fr7YbU1c"
+    }
+  ]
+}
