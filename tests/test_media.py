@@ -16,6 +16,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from xml.etree import ElementTree as ET
 
 SCRIPTS = Path(__file__).resolve().parent.parent / "scripts"
 sys.path.insert(0, str(SCRIPTS))
@@ -223,6 +224,74 @@ class TestImageValidation(TempCase):
         bad.write_bytes(gif_bytes(broken=True))
         with self.assertRaises(Exception):
             mediamod.validate_image(bad)
+
+
+SVG_NS = "{http://www.w3.org/2000/svg}"
+
+
+def wood_fixture(drop_node: int | None = None) -> dict:
+    """Mata fechada que envolve todo o recorte visível do mapa."""
+    west, south, east, north = mediamod.MAP_VIEW_BBOX
+    pad = 0.001
+    corners = [
+        (west - pad, south - pad),
+        (east + pad, south - pad),
+        (east + pad, north + pad),
+        (west - pad, north + pad),
+    ]
+    elements: list[dict] = []
+    for i, (lon, lat) in enumerate(corners, start=1):
+        if drop_node == i:
+            continue
+        elements.append({"type": "node", "id": i, "lon": lon, "lat": lat})
+    elements.append(
+        {
+            "type": "way",
+            "id": 900001,
+            "nodes": [1, 2, 3, 4, 1],
+            "tags": {"natural": "wood"},
+        }
+    )
+    return {
+        "version": "0.6",
+        "bounds": {"minlon": west, "minlat": south, "maxlon": east, "maxlat": north},
+        "elements": elements,
+    }
+
+
+class TestMapRendering(unittest.TestCase):
+    def _clipped(self, osm: dict) -> ET.Element:
+        root = ET.fromstring(mediamod.render_map_svg(osm).decode("utf-8"))
+        group = next(
+            g
+            for g in root.iter(f"{SVG_NS}g")
+            if g.get("clip-path") == "url(#frame)"
+        )
+        return group
+
+    def test_surrounding_woodland_is_rendered(self) -> None:
+        group = self._clipped(wood_fixture())
+        woods = [
+            p for p in group.iter(f"{SVG_NS}polygon") if p.get("class") == "wood"
+        ]
+        self.assertEqual(len(woods), 1, "mata ao redor do recorte não foi desenhada")
+        pts = [
+            tuple(float(v) for v in pair.split(","))
+            for pair in woods[0].get("points", "").split()
+        ]
+        xs = [p[0] for p in pts]
+        ys = [p[1] for p in pts]
+        self.assertLessEqual(min(xs), 24.0)
+        self.assertGreaterEqual(max(xs), 936.0)
+        self.assertLessEqual(min(ys), 24.0)
+        self.assertGreaterEqual(max(ys), 456.0)
+
+    def test_incomplete_landuse_is_not_fabricated(self) -> None:
+        group = self._clipped(wood_fixture(drop_node=3))
+        woods = [
+            p for p in group.iter(f"{SVG_NS}polygon") if p.get("class") == "wood"
+        ]
+        self.assertEqual(woods, [], "área criada a partir de geometria incompleta")
 
 
 class TestStaticGraph(TempCase):

@@ -990,8 +990,8 @@
     {
       "path": "media/maps/ufpb.svg",
       "kind": "image",
-      "sha256": "416217d1275e51c7c56c3c56dded767f7f83204259eaa2a7fa437ba95eff5740",
-      "bytes": 46586,
+      "sha256": "76feb6f778e42bca5e0525b107f0b1af145bc5d0850482cae2128ec18022e286",
+      "bytes": 29061,
       "origin": "gerado por scripts/media.py a partir de media/maps/ufpb.osm.json",
       "license": "ODbL-1.0",
       "repair": "generate-map"

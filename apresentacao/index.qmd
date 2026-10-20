@@ -1,7 +1,7 @@
 ---
 title: "Do Pré-processamento à API: Um Guia Prático do Uso do tidymodels em Aprendizagem de Máquina"
 subtitle: "VII ENGOPE — Encontro Goiano de Probabilidade e Estatística"
-author: "<br><img src='imgs/engope.png' height='150px'><br>Prof. Dr. Pedro Rafael D. Marinho<br>Departamento de Estatística - UFPB<br> Programa de Pós-Graduação em Modelos de Decisão e Saúde - PPGMDS<br>Minicurso realizado em 21/10/2026 e 22/10/2026"
+author: "<br><img src='imgs/engope.png' height='150px'><br>Prof. Dr. Pedro Rafael D. Marinho<br>Departamento de Estatística - UFPB<br>Minicurso realizado em 21/10/2026 e 22/10/2026"
 format:
   revealjs:
     theme: [default, style.scss]
@@ -119,7 +119,7 @@ UFPB
 
 ## Meu segundo lar {.r-fit-text background-color="black" background-image="media/images/foto_aerea_ufpb.jpeg" background-size="1600px" background-repeat="repeat" background-opacity="0.35"}
 
-```{r width = 100, height = 100, echo = FALSE, fig.cap="Departamento de Estatística da UFPB.", out.width="960px", out.height="480px"}
+```{r width = 100, height = 100, echo = FALSE, fig.cap="Departamento de Estatística da UFPB.", out.width="1440px", out.height="720px", fig.alt="Mapa do Campus I da UFPB em João Pessoa. O marcador destaca o Departamento de Estatística no prédio Bolo de Noiva, próximo à Central de Aulas e ao CCEN."}
 knitr::include_graphics("media/maps/ufpb.svg")
 ```
 

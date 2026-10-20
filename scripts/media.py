@@ -32,7 +32,7 @@ import urllib.request
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Callable, Iterable, Sequence
+from typing import Callable, Sequence
 from xml.etree import ElementTree as ET
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -55,6 +55,7 @@ KATEX_BASE = f"https://cdn.jsdelivr.net/npm/katex@{KATEX_VERSION}/dist/"
 KATEX_DIR = f"media/vendor/katex-{KATEX_VERSION}"
 
 OSM_BBOX = (-34.8502, -7.1434, -34.8422, -7.1374)  # west, south, east, north
+MAP_VIEW_BBOX = (-34.8496, -7.1420, -34.8430, -7.1387)  # recorte do SVG, dentro de OSM_BBOX
 OSM_URL = (
     "https://api.openstreetmap.org/api/0.6/map.json?bbox="
     f"{OSM_BBOX[0]},{OSM_BBOX[1]},{OSM_BBOX[2]},{OSM_BBOX[3]}"
@@ -608,7 +609,7 @@ def validate_osm(osm: dict) -> None:
 
 def render_map_svg(osm: dict) -> bytes:
     """Desenha o mapa a partir dos dados OSM locais, de forma determinística."""
-    west, south, east, north = OSM_BBOX
+    west, south, east, north = MAP_VIEW_BBOX
     lat0 = math.radians((south + north) / 2.0)
     kx = math.cos(lat0)
 
@@ -637,48 +638,164 @@ def render_map_svg(osm: dict) -> bytes:
         key=lambda w: w["id"],
     )
 
-    def geom(way: dict) -> list[tuple[float, float]]:
-        pts = [nodes[r] for r in way.get("nodes", []) if r in nodes]
-        return [project(lon, lat) for lon, lat in pts]
+    def refs_of(way: dict) -> list[int]:
+        return list(way.get("nodes") or [])
 
-    def inside(pts: Iterable[tuple[float, float]]) -> bool:
-        return any(
-            margin - 60 <= x <= vb_w - margin + 60 and margin - 60 <= y <= vb_h - margin + 60
-            for x, y in pts
+    def geom(way: dict) -> list[tuple[float, float]]:
+        """Geometria completa; ways com nodes ausentes são descartados."""
+        refs = refs_of(way)
+        if not refs or any(r not in nodes for r in refs):
+            return []
+        return [project(*nodes[r]) for r in refs]
+
+    def is_closed(way: dict) -> bool:
+        refs = refs_of(way)
+        return len(refs) >= 4 and refs[0] == refs[-1]
+
+    def visible(pts: Sequence[tuple[float, float]]) -> bool:
+        """Interseção do bbox projetado com a moldura (polígonos envolventes contam)."""
+        xs = [p[0] for p in pts]
+        ys = [p[1] for p in pts]
+        return (
+            min(xs) <= vb_w - margin
+            and max(xs) >= margin
+            and min(ys) <= vb_h - margin
+            and max(ys) >= margin
         )
 
+    def area_layer(tags: dict) -> str | None:
+        if tags.get("natural") == "wood" or tags.get("landuse") == "forest":
+            return "wood"
+        if tags.get("leisure") in ("park", "garden") or tags.get("landuse") == "grass":
+            return "park"
+        if tags.get("amenity") == "parking":
+            return "parking"
+        return None
+
+    def road_layer(highway: str) -> str:
+        if highway == "cycleway":
+            return "cycleway"
+        if highway in ("footway", "track"):
+            return "path"
+        if highway in ("secondary", "tertiary", "residential"):
+            return "major"
+        return "minor"
+
+    def text_box(
+        x: float, y: float, size: float, text: str, anchor: str, bold: bool = False
+    ) -> tuple[float, float, float, float]:
+        width = (0.62 if bold else 0.55) * size * len(text)
+        if anchor == "middle":
+            x0 = x - width / 2.0
+        elif anchor == "end":
+            x0 = x - width
+        else:
+            x0 = x
+        return (x0, y - size * 0.8, x0 + width, y + size * 0.25)
+
+    def overlaps(box, taken: Sequence[tuple[float, float, float, float]]) -> bool:
+        return any(
+            box[0] < t[2] and t[0] < box[2] and box[1] < t[3] and t[1] < box[3]
+            for t in taken
+        )
+
+    mx, my = project(MARKER_LON, MARKER_LAT)
+    taken: list[tuple[float, float, float, float]] = [
+        text_box(mx, my - 60, 16.0, MAP_LABEL, "middle", bold=True),
+        text_box(mx, my - 42, 12.0, "Prédio “Bolo de Noiva”", "middle"),
+    ]
+
+    # Referências fixas do campus: way, texto, deslocamento, âncora de texto, guia.
+    references = (
+        (194940317, "CCEN", (10.0, -12.0), "start", True),
+        (494426486, "Central de Aulas", (0.0, 22.0), "middle", False),
+        (421702887, "Biblioteca CCEN", (35.0, 30.0), "start", True),
+    )
+    by_id = {w["id"]: w for w in ways}
+    ref_parts: list[str] = []
+    for way_id, text, (ox, oy), anchor, leader in references:
+        way = by_id.get(way_id)
+        if way is None:
+            continue
+        refs = refs_of(way)
+        if any(r not in nodes for r in refs):
+            continue
+        uniq: list[tuple[float, float]] = []
+        seen_refs: set[int] = set()
+        for ref in refs:
+            if ref in seen_refs:
+                continue
+            seen_refs.add(ref)
+            uniq.append(nodes[ref])
+        if not uniq:
+            continue
+        ax, ay = project(
+            sum(p[0] for p in uniq) / len(uniq),
+            sum(p[1] for p in uniq) / len(uniq),
+        )
+        tx, ty = ax + ox, ay + oy
+        if leader:
+            ref_parts.append(
+                f'    <line class="leader" x1="{ax:.2f}" y1="{ay:.2f}" '
+                f'x2="{tx - 3:.2f}" y2="{ty - 4:.2f}"/>'
+            )
+        ref_parts.append(
+            f'    <text class="ref" text-anchor="{anchor}" x="{tx:.2f}" '
+            f'y="{ty:.2f}">{_esc(text)}</text>'
+        )
+        taken.append(text_box(tx, ty, 14.0, text, anchor))
+
+    areas: dict[str, list[str]] = {"wood": [], "park": [], "parking": []}
+    roads: dict[str, list[str]] = {"major": [], "minor": [], "path": [], "cycleway": []}
     buildings: list[str] = []
     highlight: list[str] = []
-    roads: list[str] = []
     labels: list[str] = []
     seen_names: set[str] = set()
 
     for way in ways:
         tags = way.get("tags") or {}
         pts = geom(way)
-        if len(pts) < 2 or not inside(pts):
+        if len(pts) < 2 or not visible(pts):
             continue
         if way["id"] == DEPT_WAY_ID:
             highlight.append(" ".join(fmt(p) for p in pts))
             continue
+        layer = area_layer(tags)
+        if layer and not tags.get("building") and is_closed(way):
+            areas[layer].append(" ".join(fmt(p) for p in pts))
+            continue
         if tags.get("building"):
             buildings.append(" ".join(fmt(p) for p in pts))
         elif tags.get("highway"):
-            roads.append(" ".join(fmt(p) for p in pts))
+            roads[road_layer(tags["highway"])].append(" ".join(fmt(p) for p in pts))
             name = tags.get("name")
             if name and name not in seen_names:
                 length = sum(
                     math.dist(pts[i], pts[i + 1]) for i in range(len(pts) - 1)
                 )
                 if length >= 140:
-                    mid = _point_at(pts, length / 2.0)
-                    seen_names.add(name)
-                    labels.append(
-                        f'  <text class="street" x="{mid[0]:.2f}" y="{mid[1]:.2f}">'
-                        f"{_esc(name)}</text>"
-                    )
+                    for frac in (0.5, 0.35, 0.65, 0.25, 0.75):
+                        mid = _point_at(pts, length * frac)
+                        box = text_box(mid[0], mid[1], 13.0, name, "middle")
+                        if not (
+                            margin <= box[0]
+                            and box[2] <= vb_w - margin
+                            and margin <= box[1]
+                            and box[3] <= vb_h - margin
+                        ):
+                            continue
+                        if overlaps(box, taken):
+                            continue
+                        taken.append(box)
+                        seen_names.add(name)
+                        labels.append(
+                            f'    <text class="street" x="{mid[0]:.2f}" '
+                            f'y="{mid[1]:.2f}">{_esc(name)}</text>'
+                        )
+                        break
 
-    mx, my = project(MARKER_LON, MARKER_LAT)
+    bar = 100.0 * scale / (math.pi * 6378137 / 180.0)
+    bar_x, bar_y = 44.0, 432.0
     parts: list[str] = []
     parts.append(
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {vb_w:.0f} {vb_h:.0f}" '
@@ -694,19 +811,39 @@ def render_map_svg(osm: dict) -> bytes:
         "  <style>\n"
         "    .bg { fill: #f6f5f1; }\n"
         "    .frame { fill: none; stroke: #d7d3cb; stroke-width: 1; }\n"
+        "    .wood { fill: #d5e4c8; stroke: none; }\n"
+        "    .park { fill: #e3edda; stroke: none; }\n"
+        "    .parking { fill: #e6e3dd; stroke: #cbc6bc; stroke-width: 0.8; }\n"
         "    .bld { fill: #dcd9d2; stroke: #bdb9b0; stroke-width: 0.8; }\n"
-        "    .road-case { fill: none; stroke: #c9c5bc; stroke-width: 6; "
+        "    .road-case { fill: none; stroke: #c9c5bc; stroke-width: 10; "
         "stroke-linecap: round; stroke-linejoin: round; }\n"
-        "    .road { fill: none; stroke: #ffffff; stroke-width: 4; "
+        "    .road { fill: none; stroke: #ffffff; stroke-width: 7; "
         "stroke-linecap: round; stroke-linejoin: round; }\n"
+        "    .minor-case { fill: none; stroke: #c9c5bc; stroke-width: 6; "
+        "stroke-linecap: round; stroke-linejoin: round; }\n"
+        "    .minor { fill: none; stroke: #ffffff; stroke-width: 4; "
+        "stroke-linecap: round; stroke-linejoin: round; }\n"
+        "    .path { fill: none; stroke: #b7aa91; stroke-width: 2; "
+        "stroke-dasharray: 6 4; stroke-linecap: round; }\n"
+        "    .cycleway { fill: none; stroke: #6c9b96; stroke-width: 2; "
+        "stroke-dasharray: 8 4; stroke-linecap: round; }\n"
         "    .dept { fill: #AD5769; fill-opacity: 0.85; stroke: #7d3b49; "
         "stroke-width: 1.6; }\n"
-        "    .street { font: 11px sans-serif; fill: #6b7280; text-anchor: middle; "
-        "paint-order: stroke; stroke: #f6f5f1; stroke-width: 3; }\n"
+        "    .street { font: 13px sans-serif; fill: #6b7280; text-anchor: middle; "
+        "paint-order: stroke; stroke: #f6f5f1; stroke-width: 3.5; }\n"
+        "    .ref { font: 14px sans-serif; fill: #44505f; "
+        "paint-order: stroke; stroke: #f6f5f1; stroke-width: 4; }\n"
+        "    .leader { stroke: #8a93a0; stroke-width: 0.9; }\n"
         "    .label { font: 700 16px sans-serif; fill: #1f2937; text-anchor: middle; "
         "paint-order: stroke; stroke: #f6f5f1; stroke-width: 4; }\n"
+        "    .sublabel { font: 12px sans-serif; fill: #3f4854; text-anchor: middle; "
+        "paint-order: stroke; stroke: #f6f5f1; stroke-width: 3.5; }\n"
+        "    .context { font: 14px sans-serif; fill: #515966; }\n"
         "    .attr { font: 11px sans-serif; fill: #6b7280; }\n"
         "    .north { font: 700 12px sans-serif; fill: #515966; text-anchor: middle; }\n"
+        "    .scale-bar { fill: none; stroke: #515966; stroke-width: 2; }\n"
+        "    .scale-text { font: 11px sans-serif; fill: #515966; "
+        "paint-order: stroke; stroke: #f6f5f1; stroke-width: 3; }\n"
         "  </style>"
     )
     parts.append(
@@ -715,35 +852,61 @@ def render_map_svg(osm: dict) -> bytes:
     )
     parts.append(f'  <rect class="bg" x="0" y="0" width="{vb_w:.0f}" height="{vb_h:.0f}"/>')
     parts.append('  <g clip-path="url(#frame)">')
-    for pts in buildings:
-        parts.append(f'    <polygon class="bld" points="{pts}"/>')
-    for pts in roads:
-        parts.append(f'    <polyline class="road-case" points="{pts}"/>')
-    for pts in roads:
-        parts.append(f'    <polyline class="road" points="{pts}"/>')
-    for pts in highlight:
-        parts.append(f'    <polygon class="dept" points="{pts}"/>')
-    parts.extend("  " + lbl for lbl in labels)
+    for layer in ("wood", "park", "parking"):
+        for pts_s in areas[layer]:
+            parts.append(f'    <polygon class="{layer}" points="{pts_s}"/>')
+    for pts_s in buildings:
+        parts.append(f'    <polygon class="bld" points="{pts_s}"/>')
+    for pts_s in roads["minor"]:
+        parts.append(f'    <polyline class="minor-case" points="{pts_s}"/>')
+    for pts_s in roads["major"]:
+        parts.append(f'    <polyline class="road-case" points="{pts_s}"/>')
+    for pts_s in roads["minor"]:
+        parts.append(f'    <polyline class="minor" points="{pts_s}"/>')
+    for pts_s in roads["major"]:
+        parts.append(f'    <polyline class="road" points="{pts_s}"/>')
+    for pts_s in roads["path"]:
+        parts.append(f'    <polyline class="path" points="{pts_s}"/>')
+    for pts_s in roads["cycleway"]:
+        parts.append(f'    <polyline class="cycleway" points="{pts_s}"/>')
+    for pts_s in highlight:
+        parts.append(f'    <polygon class="dept" points="{pts_s}"/>')
+    parts.extend(labels)
+    parts.extend(ref_parts)
     parts.append(
-        f'    <g transform="translate({mx:.2f},{my:.2f})">\n'
+        f'    <g id="department-marker" transform="translate({mx:.2f},{my:.2f})">\n'
         f'      <path d="M 0 0 C -9 -12 -13 -17 -13 -23 a 13 13 0 1 1 26 0 '
         f'c 0 6 -4 11 -13 23 z" fill="#AD5769" stroke="#ffffff" stroke-width="2"/>\n'
         f'      <circle cx="0" cy="-23" r="5" fill="#ffffff"/>\n'
         f"    </g>"
     )
     parts.append(
-        f'    <text class="label" x="{mx:.2f}" y="{my - 36:.2f}">{_esc(MAP_LABEL)}</text>'
+        f'    <text class="label" x="{mx:.2f}" y="{my - 60:.2f}">{_esc(MAP_LABEL)}</text>'
+    )
+    parts.append(
+        f'    <text class="sublabel" x="{mx:.2f}" y="{my - 42:.2f}">'
+        f'{_esc("Prédio “Bolo de Noiva”")}</text>'
     )
     parts.append("  </g>")
     parts.append(
         f'  <rect class="frame" x="{margin:.0f}" y="{margin:.0f}" '
         f'width="{inner_w:.0f}" height="{inner_h:.0f}" rx="6"/>'
     )
+    parts.append(
+        f'  <text class="context" x="{margin:.0f}" y="18">'
+        f'{_esc("UFPB · Campus I · João Pessoa–PB")}</text>'
+    )
     nx, ny = vb_w - margin - 26, margin + 20
     parts.append(
         f'  <g transform="translate({nx:.0f},{ny:.0f})">\n'
         f'    <polygon points="0,-14 6,6 0,1 -6,6" fill="#515966"/>\n'
         f'    <text class="north" x="0" y="20">N</text>\n'
+        f"  </g>"
+    )
+    parts.append(
+        f'  <g transform="translate({bar_x:.0f},{bar_y:.0f})">\n'
+        f'    <path class="scale-bar" d="M 0 -6 L 0 0 L {bar:.2f} 0 L {bar:.2f} -6"/>\n'
+        f'    <text class="scale-text" x="0" y="-10">100 m</text>\n'
         f"  </g>"
     )
     parts.append(
