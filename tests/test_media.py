@@ -16,7 +16,6 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
-from xml.etree import ElementTree as ET
 
 SCRIPTS = Path(__file__).resolve().parent.parent / "scripts"
 sys.path.insert(0, str(SCRIPTS))
@@ -132,7 +131,7 @@ def make_site(root: Path, *, remote_background=False, remote_data_src=False,
 <title>Deck</title><link rel="stylesheet" href="site.css"></head><body>
 <div class="reveal"><div class="slides">
 <section class="slide"><h2>Capa</h2><img src="imgs/capa.png" alt="capa"></section>
-<section class="slide"><h2>Meu segundo lar</h2>
+<section class="slide"><h2>Fundo CSS</h2>
   <div class="slide-background" style="background-image: url('media/images/fundo.png')"></div>
 </section>
 <section class="slide"><h2>Lazy</h2><img data-src="{lazy_src}" alt="tardia"></section>
@@ -226,9 +225,6 @@ class TestImageValidation(TempCase):
             mediamod.validate_image(bad)
 
 
-SVG_NS = "{http://www.w3.org/2000/svg}"
-
-
 def wood_fixture(drop_node: int | None = None) -> dict:
     """Mata fechada que envolve todo o recorte visível do mapa."""
     west, south, east, north = mediamod.MAP_VIEW_BBOX
@@ -260,38 +256,28 @@ def wood_fixture(drop_node: int | None = None) -> dict:
 
 
 class TestMapRendering(unittest.TestCase):
-    def _clipped(self, osm: dict) -> ET.Element:
-        root = ET.fromstring(mediamod.render_map_svg(osm).decode("utf-8"))
-        group = next(
-            g
-            for g in root.iter(f"{SVG_NS}g")
-            if g.get("clip-path") == "url(#frame)"
-        )
-        return group
+    def _features(self, osm: dict) -> list[dict]:
+        data = json.loads(mediamod.render_map_data(osm).decode("utf-8"))
+        return json.loads(data["geojson"])["features"]
 
-    def test_surrounding_woodland_is_rendered(self) -> None:
-        group = self._clipped(wood_fixture())
-        woods = [
-            p for p in group.iter(f"{SVG_NS}polygon") if p.get("class") == "wood"
-        ]
-        self.assertEqual(len(woods), 1, "mata ao redor do recorte não foi desenhada")
-        pts = [
-            tuple(float(v) for v in pair.split(","))
-            for pair in woods[0].get("points", "").split()
-        ]
-        xs = [p[0] for p in pts]
-        ys = [p[1] for p in pts]
-        self.assertLessEqual(min(xs), 24.0)
-        self.assertGreaterEqual(max(xs), 936.0)
-        self.assertLessEqual(min(ys), 24.0)
-        self.assertGreaterEqual(max(ys), 456.0)
+    def test_closed_woodland_is_exported(self) -> None:
+        feats = [f for f in self._features(wood_fixture())
+                 if f["properties"]["layer"] == "wood"]
+        self.assertEqual(len(feats), 1, "mata fechada não foi exportada")
+        ring = feats[0]["geometry"]["coordinates"][0]
+        self.assertEqual(feats[0]["geometry"]["type"], "Polygon")
+        self.assertEqual(ring[0], ring[-1])
+        self.assertEqual(len(ring), 5)
 
     def test_incomplete_landuse_is_not_fabricated(self) -> None:
-        group = self._clipped(wood_fixture(drop_node=3))
-        woods = [
-            p for p in group.iter(f"{SVG_NS}polygon") if p.get("class") == "wood"
-        ]
-        self.assertEqual(woods, [], "área criada a partir de geometria incompleta")
+        feats = [f for f in self._features(wood_fixture(drop_node=3))
+                 if f["properties"]["layer"] == "wood"]
+        self.assertEqual(feats, [], "área criada a partir de geometria incompleta")
+
+    def test_generation_is_deterministic(self) -> None:
+        osm = wood_fixture()
+        self.assertEqual(mediamod.render_map_data(osm),
+                         mediamod.render_map_data(osm))
 
 
 class TestStaticGraph(TempCase):

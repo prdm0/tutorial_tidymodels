@@ -18,7 +18,6 @@ import base64
 import functools
 import hashlib
 import json
-import math
 import os
 import re
 import shutil
@@ -61,11 +60,18 @@ OSM_URL = (
     f"{OSM_BBOX[0]},{OSM_BBOX[1]},{OSM_BBOX[2]},{OSM_BBOX[3]}"
 )
 OSM_JSON_REL = "media/maps/ufpb.osm.json"
-OSM_SVG_REL = "media/maps/ufpb.svg"
+OSM_MAP_REL = "media/maps/ufpb.map.json"
 DEPT_WAY_ID = 194940322
 MARKER_LON = -34.846199
 MARKER_LAT = -7.140400
 MAP_LABEL = "Departamento de Estatística — UFPB"
+MAP_SUBLABEL = "Prédio “Bolo de Noiva”"
+MAP_ZOOM = (16, 19)
+MAP_REFERENCES = (
+    (194940317, "CCEN"),
+    (494426486, "Central de Aulas"),
+    (421702887, "Biblioteca CCEN"),
+)
 
 VIDEO_URL = "https://www.youtube.com/watch?v=Zt_Fr7YbU1c"
 VIDEO_REL = "media/videos/cnn-mask.mp4"
@@ -568,12 +574,12 @@ def acquire_map() -> list[Acquired]:
     validate_osm(osm)
     pretty = json.dumps(osm, ensure_ascii=False, sort_keys=True, indent=1) + "\n"
     data = pretty.encode("utf-8")
-    svg = render_map_svg(json.loads(pretty))
+    mapdata = render_map_data(json.loads(pretty))
     return [
         Acquired(OSM_JSON_REL, data, "data",
                  f"api.openstreetmap.org/api/0.6/map.json bbox={OSM_BBOX}",
                  "ODbL-1.0", "download", OSM_URL),
-        Acquired(OSM_SVG_REL, svg, "image",
+        Acquired(OSM_MAP_REL, mapdata, "data",
                  f"gerado por scripts/media.py a partir de {OSM_JSON_REL}",
                  "ODbL-1.0", "generate-map"),
     ]
@@ -607,28 +613,56 @@ def validate_osm(osm: dict) -> None:
         raise MediaError(f"way {DEPT_WAY_ID} com nome inesperado: {name!r}")
 
 
-def render_map_svg(osm: dict) -> bytes:
-    """Desenha o mapa a partir dos dados OSM locais, de forma determinística."""
-    west, south, east, north = MAP_VIEW_BBOX
-    lat0 = math.radians((south + north) / 2.0)
-    kx = math.cos(lat0)
+MAP_STYLES: dict[str, dict] = {
+    "wood":            {"stroke": False, "fill": True, "fillColor": "#d5e4c8", "fillOpacity": 1, "weight": 0},
+    "park":            {"stroke": False, "fill": True, "fillColor": "#e3edda", "fillOpacity": 1, "weight": 0},
+    "parking":         {"stroke": True, "color": "#cbc6bc", "weight": 0.8, "opacity": 1, "fill": True, "fillColor": "#e6e3dd", "fillOpacity": 1},
+    "building":        {"stroke": True, "color": "#bdb9b0", "weight": 0.8, "opacity": 1, "fill": True, "fillColor": "#dcd9d2", "fillOpacity": 1},
+    "road_major_case": {"stroke": True, "color": "#c9c5bc", "weight": 10, "opacity": 1, "fill": False, "lineCap": "round", "lineJoin": "round"},
+    "road_major":      {"stroke": True, "color": "#ffffff", "weight": 7, "opacity": 1, "fill": False, "lineCap": "round", "lineJoin": "round"},
+    "road_minor_case": {"stroke": True, "color": "#c9c5bc", "weight": 6, "opacity": 1, "fill": False, "lineCap": "round", "lineJoin": "round"},
+    "road_minor":      {"stroke": True, "color": "#ffffff", "weight": 4, "opacity": 1, "fill": False, "lineCap": "round", "lineJoin": "round"},
+    "path":            {"stroke": True, "color": "#b7aa91", "weight": 2, "opacity": 1, "fill": False, "dashArray": "6,4"},
+    "cycleway":        {"stroke": True, "color": "#6c9b96", "weight": 2, "opacity": 1, "fill": False, "dashArray": "8,4"},
+    "dept":            {"stroke": True, "color": "#7d3b49", "weight": 1.6, "opacity": 1, "fill": True, "fillColor": "#AD5769", "fillOpacity": 0.85},
+}
 
-    vb_w, vb_h, margin = 960.0, 480.0, 24.0
-    inner_w, inner_h = vb_w - 2 * margin, vb_h - 2 * margin
-    dx = (east - west) * kx
-    dy = north - south
-    scale = min(inner_w / dx, inner_h / dy)
-    off_x = margin + (inner_w - dx * scale) / 2.0
-    off_y = margin + (inner_h - dy * scale) / 2.0
+# o L.geoJson desenha na ordem das features: esta é a ordem de empilhamento
+MAP_DRAW_ORDER = (
+    "wood", "park", "parking", "building",
+    "road_minor_case", "road_major_case", "road_minor", "road_major",
+    "path", "cycleway", "dept",
+)
+MAP_AREA_LAYERS = frozenset({"dept", "wood", "park", "parking", "building"})
 
-    def project(lon: float, lat: float) -> tuple[float, float]:
-        x = off_x + (lon - west) * kx * scale
-        y = off_y + (north - lat) * scale
-        return x, y
 
-    def fmt(pt: tuple[float, float]) -> str:
-        return f"{pt[0]:.2f},{pt[1]:.2f}"
+def map_layer_of(way: dict) -> str | None:
+    """Camada única do way; None quando a feição não entra no mapa."""
+    if way.get("id") == DEPT_WAY_ID:
+        return "dept"
+    tags = way.get("tags") or {}
+    if tags.get("building"):
+        return "building"
+    if tags.get("natural") == "wood" or tags.get("landuse") == "forest":
+        return "wood"
+    if tags.get("leisure") in ("park", "garden") or tags.get("landuse") == "grass":
+        return "park"
+    if tags.get("amenity") == "parking":
+        return "parking"
+    highway = tags.get("highway")
+    if highway in ("secondary", "tertiary", "residential"):
+        return "road_major"
+    if highway in ("footway", "track"):
+        return "path"
+    if highway == "cycleway":
+        return "cycleway"
+    if highway:
+        return "road_minor"
+    return None
 
+
+def render_map_data(osm: dict) -> bytes:
+    """Dados do mapa Leaflet (GeoJSON + âncoras) a partir do extrato OSM local."""
     nodes: dict[int, tuple[float, float]] = {}
     for el in osm.get("elements", []):
         if el.get("type") == "node":
@@ -638,303 +672,87 @@ def render_map_svg(osm: dict) -> bytes:
         key=lambda w: w["id"],
     )
 
-    def refs_of(way: dict) -> list[int]:
-        return list(way.get("nodes") or [])
-
-    def geom(way: dict) -> list[tuple[float, float]]:
-        """Geometria completa; ways com nodes ausentes são descartados."""
-        refs = refs_of(way)
-        if not refs or any(r not in nodes for r in refs):
-            return []
-        return [project(*nodes[r]) for r in refs]
-
-    def is_closed(way: dict) -> bool:
-        refs = refs_of(way)
-        return len(refs) >= 4 and refs[0] == refs[-1]
-
-    def visible(pts: Sequence[tuple[float, float]]) -> bool:
-        """Interseção do bbox projetado com a moldura (polígonos envolventes contam)."""
-        xs = [p[0] for p in pts]
-        ys = [p[1] for p in pts]
-        return (
-            min(xs) <= vb_w - margin
-            and max(xs) >= margin
-            and min(ys) <= vb_h - margin
-            and max(ys) >= margin
-        )
-
-    def area_layer(tags: dict) -> str | None:
-        if tags.get("natural") == "wood" or tags.get("landuse") == "forest":
-            return "wood"
-        if tags.get("leisure") in ("park", "garden") or tags.get("landuse") == "grass":
-            return "park"
-        if tags.get("amenity") == "parking":
-            return "parking"
-        return None
-
-    def road_layer(highway: str) -> str:
-        if highway == "cycleway":
-            return "cycleway"
-        if highway in ("footway", "track"):
-            return "path"
-        if highway in ("secondary", "tertiary", "residential"):
-            return "major"
-        return "minor"
-
-    def text_box(
-        x: float, y: float, size: float, text: str, anchor: str, bold: bool = False
-    ) -> tuple[float, float, float, float]:
-        width = (0.62 if bold else 0.55) * size * len(text)
-        if anchor == "middle":
-            x0 = x - width / 2.0
-        elif anchor == "end":
-            x0 = x - width
+    buckets: dict[str, list[dict]] = {name: [] for name in MAP_DRAW_ORDER}
+    for way in ways:
+        layer = map_layer_of(way)
+        if layer is None:
+            continue
+        refs = list(way.get("nodes") or [])
+        # geometria incompleta nunca é fabricada: o way inteiro é descartado
+        if len(refs) < 2 or any(ref not in nodes for ref in refs):
+            continue
+        pts = [[round(nodes[ref][0], 6), round(nodes[ref][1], 6)] for ref in refs]
+        closed = len(refs) >= 4 and refs[0] == refs[-1]
+        name = (way.get("tags") or {}).get("name")
+        if layer in MAP_AREA_LAYERS:
+            if not closed:
+                continue
+            geometry = {"type": "Polygon", "coordinates": [pts]}
+            targets = [(layer, f"way/{way['id']}")]
         else:
-            x0 = x
-        return (x0, y - size * 0.8, x0 + width, y + size * 0.25)
+            geometry = {"type": "LineString", "coordinates": pts}
+            targets = [(layer, f"way/{way['id']}")]
+            if layer in ("road_major", "road_minor"):
+                targets.append((f"{layer}_case", f"way/{way['id']}/case"))
+        for lyr, fid in targets:
+            props: dict = {"layer": lyr, "style": MAP_STYLES[lyr]}
+            if not lyr.endswith("_case"):
+                if name:
+                    props["name"] = name
+                if lyr == "dept":
+                    props["popup"] = f"<strong>{MAP_LABEL}</strong><br>{MAP_SUBLABEL}"
+                elif name:
+                    props["popup"] = name
+            buckets[lyr].append({
+                "type": "Feature",
+                "id": fid,
+                "properties": props,
+                "geometry": geometry,
+            })
 
-    def overlaps(box, taken: Sequence[tuple[float, float, float, float]]) -> bool:
-        return any(
-            box[0] < t[2] and t[0] < box[2] and box[1] < t[3] and t[1] < box[3]
-            for t in taken
-        )
+    features = [feat for lyr in MAP_DRAW_ORDER for feat in buckets[lyr]]
 
-    mx, my = project(MARKER_LON, MARKER_LAT)
-    taken: list[tuple[float, float, float, float]] = [
-        text_box(mx, my - 60, 16.0, MAP_LABEL, "middle", bold=True),
-        text_box(mx, my - 42, 12.0, "Prédio “Bolo de Noiva”", "middle"),
-    ]
-
-    # Referências fixas do campus: way, texto, deslocamento, âncora de texto, guia.
-    references = (
-        (194940317, "CCEN", (10.0, -12.0), "start", True),
-        (494426486, "Central de Aulas", (0.0, 22.0), "middle", False),
-        (421702887, "Biblioteca CCEN", (35.0, 30.0), "start", True),
-    )
-    by_id = {w["id"]: w for w in ways}
-    ref_parts: list[str] = []
-    for way_id, text, (ox, oy), anchor, leader in references:
+    by_id = {way["id"]: way for way in ways}
+    labels: list[dict] = []
+    for way_id, text in MAP_REFERENCES:
         way = by_id.get(way_id)
         if way is None:
             continue
-        refs = refs_of(way)
-        if any(r not in nodes for r in refs):
+        refs = list(way.get("nodes") or [])
+        if not refs or any(ref not in nodes for ref in refs):
             continue
-        uniq: list[tuple[float, float]] = []
-        seen_refs: set[int] = set()
-        for ref in refs:
-            if ref in seen_refs:
-                continue
-            seen_refs.add(ref)
-            uniq.append(nodes[ref])
-        if not uniq:
+        uniq = refs[:-1] if len(refs) > 1 and refs[0] == refs[-1] else refs
+        pts_ref = [nodes[ref] for ref in uniq]
+        if not pts_ref:
             continue
-        ax, ay = project(
-            sum(p[0] for p in uniq) / len(uniq),
-            sum(p[1] for p in uniq) / len(uniq),
-        )
-        tx, ty = ax + ox, ay + oy
-        if leader:
-            ref_parts.append(
-                f'    <line class="leader" x1="{ax:.2f}" y1="{ay:.2f}" '
-                f'x2="{tx - 3:.2f}" y2="{ty - 4:.2f}"/>'
-            )
-        ref_parts.append(
-            f'    <text class="ref" text-anchor="{anchor}" x="{tx:.2f}" '
-            f'y="{ty:.2f}">{_esc(text)}</text>'
-        )
-        taken.append(text_box(tx, ty, 14.0, text, anchor))
+        labels.append({
+            "lng": round(sum(p[0] for p in pts_ref) / len(pts_ref), 6),
+            "lat": round(sum(p[1] for p in pts_ref) / len(pts_ref), 6),
+            "text": text,
+        })
 
-    areas: dict[str, list[str]] = {"wood": [], "park": [], "parking": []}
-    roads: dict[str, list[str]] = {"major": [], "minor": [], "path": [], "cycleway": []}
-    buildings: list[str] = []
-    highlight: list[str] = []
-    labels: list[str] = []
-    seen_names: set[str] = set()
-
-    for way in ways:
-        tags = way.get("tags") or {}
-        pts = geom(way)
-        if len(pts) < 2 or not visible(pts):
-            continue
-        if way["id"] == DEPT_WAY_ID:
-            highlight.append(" ".join(fmt(p) for p in pts))
-            continue
-        layer = area_layer(tags)
-        if layer and not tags.get("building") and is_closed(way):
-            areas[layer].append(" ".join(fmt(p) for p in pts))
-            continue
-        if tags.get("building"):
-            buildings.append(" ".join(fmt(p) for p in pts))
-        elif tags.get("highway"):
-            roads[road_layer(tags["highway"])].append(" ".join(fmt(p) for p in pts))
-            name = tags.get("name")
-            if name and name not in seen_names:
-                length = sum(
-                    math.dist(pts[i], pts[i + 1]) for i in range(len(pts) - 1)
-                )
-                if length >= 140:
-                    for frac in (0.5, 0.35, 0.65, 0.25, 0.75):
-                        mid = _point_at(pts, length * frac)
-                        box = text_box(mid[0], mid[1], 13.0, name, "middle")
-                        if not (
-                            margin <= box[0]
-                            and box[2] <= vb_w - margin
-                            and margin <= box[1]
-                            and box[3] <= vb_h - margin
-                        ):
-                            continue
-                        if overlaps(box, taken):
-                            continue
-                        taken.append(box)
-                        seen_names.add(name)
-                        labels.append(
-                            f'    <text class="street" x="{mid[0]:.2f}" '
-                            f'y="{mid[1]:.2f}">{_esc(name)}</text>'
-                        )
-                        break
-
-    bar = 100.0 * scale / (math.pi * 6378137 / 180.0)
-    bar_x, bar_y = 44.0, 432.0
-    parts: list[str] = []
-    parts.append(
-        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {vb_w:.0f} {vb_h:.0f}" '
-        f'width="{vb_w:.0f}" height="{vb_h:.0f}" role="img" '
-        f'aria-label="Mapa do Departamento de Estatística da UFPB, João Pessoa">'
-    )
-    parts.append(
-        f"  <title>{_esc(MAP_LABEL)}</title>"
-        f"\n  <desc>Mapa vetorial gerado a partir de dados OpenStreetMap (ODbL), "
-        f"sem tiles remotos.</desc>"
-    )
-    parts.append(
-        "  <style>\n"
-        "    .bg { fill: #f6f5f1; }\n"
-        "    .frame { fill: none; stroke: #d7d3cb; stroke-width: 1; }\n"
-        "    .wood { fill: #d5e4c8; stroke: none; }\n"
-        "    .park { fill: #e3edda; stroke: none; }\n"
-        "    .parking { fill: #e6e3dd; stroke: #cbc6bc; stroke-width: 0.8; }\n"
-        "    .bld { fill: #dcd9d2; stroke: #bdb9b0; stroke-width: 0.8; }\n"
-        "    .road-case { fill: none; stroke: #c9c5bc; stroke-width: 10; "
-        "stroke-linecap: round; stroke-linejoin: round; }\n"
-        "    .road { fill: none; stroke: #ffffff; stroke-width: 7; "
-        "stroke-linecap: round; stroke-linejoin: round; }\n"
-        "    .minor-case { fill: none; stroke: #c9c5bc; stroke-width: 6; "
-        "stroke-linecap: round; stroke-linejoin: round; }\n"
-        "    .minor { fill: none; stroke: #ffffff; stroke-width: 4; "
-        "stroke-linecap: round; stroke-linejoin: round; }\n"
-        "    .path { fill: none; stroke: #b7aa91; stroke-width: 2; "
-        "stroke-dasharray: 6 4; stroke-linecap: round; }\n"
-        "    .cycleway { fill: none; stroke: #6c9b96; stroke-width: 2; "
-        "stroke-dasharray: 8 4; stroke-linecap: round; }\n"
-        "    .dept { fill: #AD5769; fill-opacity: 0.85; stroke: #7d3b49; "
-        "stroke-width: 1.6; }\n"
-        "    .street { font: 13px sans-serif; fill: #6b7280; text-anchor: middle; "
-        "paint-order: stroke; stroke: #f6f5f1; stroke-width: 3.5; }\n"
-        "    .ref { font: 14px sans-serif; fill: #44505f; "
-        "paint-order: stroke; stroke: #f6f5f1; stroke-width: 4; }\n"
-        "    .leader { stroke: #8a93a0; stroke-width: 0.9; }\n"
-        "    .label { font: 700 16px sans-serif; fill: #1f2937; text-anchor: middle; "
-        "paint-order: stroke; stroke: #f6f5f1; stroke-width: 4; }\n"
-        "    .sublabel { font: 12px sans-serif; fill: #3f4854; text-anchor: middle; "
-        "paint-order: stroke; stroke: #f6f5f1; stroke-width: 3.5; }\n"
-        "    .context { font: 14px sans-serif; fill: #515966; }\n"
-        "    .attr { font: 11px sans-serif; fill: #6b7280; }\n"
-        "    .north { font: 700 12px sans-serif; fill: #515966; text-anchor: middle; }\n"
-        "    .scale-bar { fill: none; stroke: #515966; stroke-width: 2; }\n"
-        "    .scale-text { font: 11px sans-serif; fill: #515966; "
-        "paint-order: stroke; stroke: #f6f5f1; stroke-width: 3; }\n"
-        "  </style>"
-    )
-    parts.append(
-        f'  <clipPath id="frame"><rect x="{margin:.0f}" y="{margin:.0f}" '
-        f'width="{inner_w:.0f}" height="{inner_h:.0f}" rx="6"/></clipPath>'
-    )
-    parts.append(f'  <rect class="bg" x="0" y="0" width="{vb_w:.0f}" height="{vb_h:.0f}"/>')
-    parts.append('  <g clip-path="url(#frame)">')
-    for layer in ("wood", "park", "parking"):
-        for pts_s in areas[layer]:
-            parts.append(f'    <polygon class="{layer}" points="{pts_s}"/>')
-    for pts_s in buildings:
-        parts.append(f'    <polygon class="bld" points="{pts_s}"/>')
-    for pts_s in roads["minor"]:
-        parts.append(f'    <polyline class="minor-case" points="{pts_s}"/>')
-    for pts_s in roads["major"]:
-        parts.append(f'    <polyline class="road-case" points="{pts_s}"/>')
-    for pts_s in roads["minor"]:
-        parts.append(f'    <polyline class="minor" points="{pts_s}"/>')
-    for pts_s in roads["major"]:
-        parts.append(f'    <polyline class="road" points="{pts_s}"/>')
-    for pts_s in roads["path"]:
-        parts.append(f'    <polyline class="path" points="{pts_s}"/>')
-    for pts_s in roads["cycleway"]:
-        parts.append(f'    <polyline class="cycleway" points="{pts_s}"/>')
-    for pts_s in highlight:
-        parts.append(f'    <polygon class="dept" points="{pts_s}"/>')
-    parts.extend(labels)
-    parts.extend(ref_parts)
-    parts.append(
-        f'    <g id="department-marker" transform="translate({mx:.2f},{my:.2f})">\n'
-        f'      <path d="M 0 0 C -9 -12 -13 -17 -13 -23 a 13 13 0 1 1 26 0 '
-        f'c 0 6 -4 11 -13 23 z" fill="#AD5769" stroke="#ffffff" stroke-width="2"/>\n'
-        f'      <circle cx="0" cy="-23" r="5" fill="#ffffff"/>\n'
-        f"    </g>"
-    )
-    parts.append(
-        f'    <text class="label" x="{mx:.2f}" y="{my - 60:.2f}">{_esc(MAP_LABEL)}</text>'
-    )
-    parts.append(
-        f'    <text class="sublabel" x="{mx:.2f}" y="{my - 42:.2f}">'
-        f'{_esc("Prédio “Bolo de Noiva”")}</text>'
-    )
-    parts.append("  </g>")
-    parts.append(
-        f'  <rect class="frame" x="{margin:.0f}" y="{margin:.0f}" '
-        f'width="{inner_w:.0f}" height="{inner_h:.0f}" rx="6"/>'
-    )
-    parts.append(
-        f'  <text class="context" x="{margin:.0f}" y="18">'
-        f'{_esc("UFPB · Campus I · João Pessoa–PB")}</text>'
-    )
-    nx, ny = vb_w - margin - 26, margin + 20
-    parts.append(
-        f'  <g transform="translate({nx:.0f},{ny:.0f})">\n'
-        f'    <polygon points="0,-14 6,6 0,1 -6,6" fill="#515966"/>\n'
-        f'    <text class="north" x="0" y="20">N</text>\n'
-        f"  </g>"
-    )
-    parts.append(
-        f'  <g transform="translate({bar_x:.0f},{bar_y:.0f})">\n'
-        f'    <path class="scale-bar" d="M 0 -6 L 0 0 L {bar:.2f} 0 L {bar:.2f} -6"/>\n'
-        f'    <text class="scale-text" x="0" y="-10">100 m</text>\n'
-        f"  </g>"
-    )
-    parts.append(
-        f'  <text class="attr" x="{margin + 4:.0f}" y="{vb_h - 8:.0f}">'
-        f"© OpenStreetMap contributors · ODbL</text>"
-    )
-    parts.append("</svg>")
-    return ("\n".join(parts) + "\n").encode("utf-8")
-
-
-def _point_at(pts: Sequence[tuple[float, float]], target: float) -> tuple[float, float]:
-    acc = 0.0
-    for i in range(len(pts) - 1):
-        seg = math.dist(pts[i], pts[i + 1])
-        if acc + seg >= target and seg > 0:
-            t = (target - acc) / seg
-            return (
-                pts[i][0] + (pts[i + 1][0] - pts[i][0]) * t,
-                pts[i][1] + (pts[i + 1][1] - pts[i][1]) * t,
-            )
-        acc += seg
-    return pts[len(pts) // 2]
-
-
-def _esc(text: str) -> str:
+    west, south, east, north = MAP_VIEW_BBOX
+    bwest, bsouth, beast, bnorth = OSM_BBOX
+    payload = {
+        "version": 1,
+        "view": {"west": west, "south": south, "east": east, "north": north},
+        "bounds": {
+            "west": bwest, "south": bsouth, "east": beast, "north": bnorth,
+        },
+        "zoom": {"min": MAP_ZOOM[0], "max": MAP_ZOOM[1]},
+        "marker": {
+            "lng": MARKER_LON, "lat": MARKER_LAT,
+            "title": MAP_LABEL, "subtitle": MAP_SUBLABEL,
+        },
+        "labels": labels,
+        "geojson": json.dumps(
+            {"type": "FeatureCollection", "features": features},
+            ensure_ascii=False, separators=(",", ":"),
+        ),
+    }
     return (
-        text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-    )
+        json.dumps(payload, ensure_ascii=False, indent=1) + "\n"
+    ).encode("utf-8")
 
 
 # ------------------------------- vídeo ------------------------------------
@@ -1168,7 +986,7 @@ GROUPS: list[tuple[str, tuple[str, ...], Callable[[], list[Acquired]]]] = [
                f"{KATEX_DIR}/LICENSE"), acquire_katex),
     ("banner de Teresina", ("media/images/teresina-banner.jpg",),
      acquire_teresina_banner),
-    ("mapa OSM", (OSM_JSON_REL, OSM_SVG_REL), acquire_map),
+    ("mapa OSM", (OSM_JSON_REL, OSM_MAP_REL), acquire_map),
     ("vídeo", (VIDEO_REL,), acquire_video),
 ] + [
     (f"captura {spec.title}", (spec.rel,),
@@ -1267,17 +1085,16 @@ def cmd_prepare(refresh: bool = False) -> int:
 
 
 def _browser_checks() -> None:
-    """Confirma no navegador a fonte local e o SVG do mapa."""
+    """Confirma no navegador que a fonte local carrega."""
     from playwright.sync_api import sync_playwright
 
     font = resolve_in_pres("media/fonts/FiraCode.ttf")
-    svg = resolve_in_pres(OSM_SVG_REL)
-    if not font.exists() or not svg.exists():
+    if not font.exists():
         return
     html = f"""<!doctype html><meta charset="utf-8">
 <style>@font-face {{ font-family: "Fira Code"; src: url("{font.as_uri()}") format("truetype"); }}
 span {{ font-family: "Fira Code", monospace; }}</style>
-<span id="s">tidymodels</span><img id="m" src="{svg.as_uri()}">"""
+<span id="s">tidymodels</span>"""
     with tempfile.NamedTemporaryFile("w", suffix=".html", delete=False, encoding="utf-8") as fh:
         fh.write(html)
         tmp = Path(fh.name)
@@ -1289,16 +1106,10 @@ span {{ font-family: "Fira Code", monospace; }}</style>
             page.evaluate("document.fonts.load('16px \"Fira Code\"')")
             page.wait_for_function("document.fonts.status === 'loaded'", timeout=30_000)
             loaded = page.evaluate("document.fonts.check('16px \"Fira Code\"')")
-            dims = page.evaluate(
-                "() => { const m = document.getElementById('m');"
-                " return {w: m.naturalWidth, h: m.naturalHeight}; }"
-            )
             browser.close()
         if not loaded:
             raise MediaError("Fira Code não carregou no navegador")
-        if not dims["w"] or not dims["h"]:
-            raise MediaError("SVG do mapa não renderizou no navegador")
-        log(f"navegador: Fira Code ok; mapa {dims['w']}x{dims['h']}")
+        log("navegador: Fira Code ok")
     finally:
         tmp.unlink(missing_ok=True)
 
@@ -1381,11 +1192,11 @@ def cmd_repair() -> int:
             if not osm_path.exists():
                 problems.append(f"{rel}: JSON do mapa ausente; não é possível regenerar")
                 continue
-            svg = render_map_svg(json.loads(osm_path.read_text(encoding="utf-8")))
-            if sha256_bytes(svg) != entry.sha256:
+            data = render_map_data(json.loads(osm_path.read_text(encoding="utf-8")))
+            if sha256_bytes(data) != entry.sha256:
                 problems.append(f"{rel}: regeneração não reproduziu o hash travado")
                 continue
-            _install_bytes(rel, svg, entry.kind)
+            _install_bytes(rel, data, entry.kind)
             log(f"{rel}: regenerado a partir do JSON local")
             repaired += 1
             continue

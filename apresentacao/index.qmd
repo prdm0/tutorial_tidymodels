@@ -117,11 +117,100 @@ UFPB
 
 # O Departamento {.title}
 
-## Meu segundo lar {.r-fit-text background-color="black" background-image="media/images/foto_aerea_ufpb.jpeg" background-size="1600px" background-repeat="repeat" background-opacity="0.35"}
+## Meu segundo lar {background-color="black" background-image="media/images/foto_aerea_ufpb.jpeg" background-size="1600px" background-repeat="repeat" background-opacity="0.35"}
 
-```{r width = 100, height = 100, echo = FALSE, fig.cap="Departamento de Estatística da UFPB.", out.width="1440px", out.height="720px", fig.alt="Mapa do Campus I da UFPB em João Pessoa. O marcador destaca o Departamento de Estatística no prédio Bolo de Noiva, próximo à Central de Aulas e ao CCEN."}
-knitr::include_graphics("media/maps/ufpb.svg")
+::: {.mapa-canto}
+
+```{r mapa-departamento, echo=FALSE, message=FALSE, warning=FALSE}
+library(leaflet)
+
+mapa <- jsonlite::fromJSON("media/maps/ufpb.map.json", simplifyVector = TRUE)
+
+m <- leaflet(
+  width = 720, height = 360, elementId = "mapa-departamento",
+  options = leafletOptions(
+    minZoom = mapa$zoom$min, maxZoom = mapa$zoom$max,
+    zoomControl = TRUE, attributionControl = FALSE
+  )
+)
+m <- addGeoJSON(m, mapa$geojson, group = "base")
+
+# marcador local: o ícone padrão do leaflet aponta para unpkg.com (rede)
+pino <- paste0(
+  '<svg xmlns="http://www.w3.org/2000/svg" width="26" height="36" ',
+  'viewBox="-13 -36 26 36">',
+  '<path d="M 0 0 C -9 -12 -13 -17 -13 -23 a 13 13 0 1 1 26 0 ',
+  'c 0 6 -4 11 -13 23 z" fill="#AD5769" stroke="#ffffff" stroke-width="2"/>',
+  '<circle cx="0" cy="-23" r="5" fill="#ffffff"/></svg>'
+)
+icone <- makeIcon(
+  iconUrl = paste0(
+    "data:image/svg+xml;base64,",
+    base64enc::base64encode(charToRaw(pino))
+  ),
+  iconWidth = 26, iconHeight = 36, iconAnchorX = 13, iconAnchorY = 36,
+  popupAnchorX = 0, popupAnchorY = -34
+)
+
+m <- addMarkers(
+  m,
+  lng = mapa$marker$lng, lat = mapa$marker$lat,
+  icon = icone,
+  label = mapa$marker$title,
+  labelOptions = labelOptions(
+    noHide = TRUE, direction = "top", offset = c(0, -12),
+    textOnly = TRUE, className = "rotulo-dept"
+  ),
+  popup = paste0(
+    "<strong>", mapa$marker$title, "</strong><br>", mapa$marker$subtitle
+  )
+)
+for (i in seq_len(nrow(mapa$labels))) {
+  m <- addLabelOnlyMarkers(
+    m,
+    lng = mapa$labels$lng[i], lat = mapa$labels$lat[i],
+    label = mapa$labels$text[i],
+    labelOptions = labelOptions(
+      noHide = TRUE, direction = "center", textOnly = TRUE,
+      className = "rotulo-ref"
+    )
+  )
+}
+m <- addScaleBar(
+  m, position = "bottomleft",
+  options = scaleBarOptions(metric = TRUE, imperial = FALSE, maxWidth = 120)
+)
+m <- addControl(
+  m, htmltools::HTML("© OpenStreetMap contributors · ODbL"),
+  position = "bottomright", className = "map-attr"
+)
+m <- fitBounds(
+  m, mapa$view$west, mapa$view$south, mapa$view$east, mapa$view$north
+)
+m <- setMaxBounds(
+  m, mapa$bounds$west, mapa$bounds$south, mapa$bounds$east, mapa$bounds$north
+)
+htmlwidgets::onRender(m, "
+function(el, x) {
+  var self = this;
+  function ajustar() {
+    if (el.offsetWidth > 0 && el.offsetHeight > 0 && self.resize) {
+      self.resize();
+    }
+  }
+  if (window.Reveal && Reveal.on) {
+    Reveal.on('ready', ajustar);
+    Reveal.on('slidechanged', ajustar);
+    Reveal.on('resize', ajustar);
+  }
+  window.addEventListener('resize', ajustar);
+  setTimeout(ajustar, 0);
+}")
 ```
+
+[Departamento de Estatística da UFPB — mapa interativo (OpenStreetMap, ODbL).]{.mapa-legenda}
+
+:::
 
 # Projetos relacionados à linguagem R
 

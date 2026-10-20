@@ -978,6 +978,15 @@
       "repair": "manual"
     },
     {
+      "path": "media/maps/ufpb.map.json",
+      "kind": "data",
+      "sha256": "6d36911782fe7248704a8ec956af997e4a646fb0cb7a0b85b637a608cad585b1",
+      "bytes": 164736,
+      "origin": "gerado por scripts/media.py a partir de media/maps/ufpb.osm.json",
+      "license": "ODbL-1.0",
+      "repair": "generate-map"
+    },
+    {
       "path": "media/maps/ufpb.osm.json",
       "kind": "data",
       "sha256": "5cd7e7cbd5bbf72d78ab1faf7b6aff89d836c59b1bdacbcaa157733bf387bde2",
@@ -986,15 +995,6 @@
       "license": "ODbL-1.0",
       "repair": "download",
       "source_url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=-34.8502,-7.1434,-34.8422,-7.1374"
-    },
-    {
-      "path": "media/maps/ufpb.svg",
-      "kind": "image",
-      "sha256": "76feb6f778e42bca5e0525b107f0b1af145bc5d0850482cae2128ec18022e286",
-      "bytes": 29061,
-      "origin": "gerado por scripts/media.py a partir de media/maps/ufpb.osm.json",
-      "license": "ODbL-1.0",
-      "repair": "generate-map"
     },
     {
       "path": "media/previews/app-api.png",

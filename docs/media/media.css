@@ -62,3 +62,71 @@
   color: #515966;
   margin-top: 0.4em;
 }
+
+/* Mapa Leaflet do departamento: bloco retangular no alto, à esquerda. */
+.reveal .mapa-canto {
+  width: 720px;
+  margin: 0;
+  text-align: left;
+}
+
+.reveal .mapa-canto .cell,
+.reveal .mapa-canto .cell-output-display,
+.reveal .mapa-canto .html-widget {
+  margin: 0 !important;
+}
+
+.reveal .mapa-canto .leaflet-container {
+  width: 720px !important;
+  height: 360px !important;
+  background: #f6f5f1;
+  border: 1px solid rgba(81, 89, 102, 0.45);
+  border-radius: 6px;
+  font-family: inherit;
+}
+
+.reveal .mapa-canto .mapa-legenda {
+  display: block;
+  margin-top: 0.35em;
+  font-size: 0.42em;
+  line-height: 1.3;
+  color: #f0eeea;
+}
+
+.reveal .leaflet-tooltip.rotulo-ref,
+.reveal .leaflet-tooltip.rotulo-dept {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  white-space: nowrap;
+  text-shadow: 0 0 3px #f6f5f1, 0 0 3px #f6f5f1, 0 0 3px #f6f5f1;
+}
+
+.reveal .leaflet-tooltip.rotulo-ref::before,
+.reveal .leaflet-tooltip.rotulo-dept::before {
+  display: none;
+}
+
+.reveal .leaflet-tooltip.rotulo-ref {
+  font-size: 14px;
+  color: #44505f;
+}
+
+.reveal .leaflet-tooltip.rotulo-dept {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.reveal .leaflet-control.map-attr {
+  font-size: 11px;
+  color: #515966;
+  background: rgba(246, 245, 241, 0.85);
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+.reveal .leaflet-popup-content {
+  font-size: 13px;
+  line-height: 1.3;
+}

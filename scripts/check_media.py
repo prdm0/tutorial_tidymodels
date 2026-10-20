@@ -917,7 +917,8 @@ def _run_browser(browser, name: str, root: Path, index: Path, base_url: str | No
         srcs = " ".join(img.get("src", "") for img in data["images"])
         if idx == 0:
             _shot(page, shots_dir / f"capa-{name}-{shot_tag}.png")
-        if "media/maps/ufpb.svg" in srcs:
+        if "Meu segundo lar" in slide_id:
+            _check_leaflet_map(page, report, where)
             _shot(page, shots_dir / f"mapa-{name}-{shot_tag}.png")
         if not offline and "media/previews/future.png" in srcs:
             _shot(page, shots_dir / f"doc-{name}.png")
@@ -947,6 +948,41 @@ def _run_browser(browser, name: str, root: Path, index: Path, base_url: str | No
         "fonts": fonts,
     }
     context.close()
+
+
+def _check_leaflet_map(page, report: Report, where: str) -> None:
+    """O mapa do departamento precisa existir, ser vetorial e ser local."""
+    info = page.evaluate(
+        "() => { const s = Reveal.getCurrentSlide();"
+        " const el = s ? s.querySelector('.leaflet-container') : null;"
+        " if (!el) return null;"
+        " const r = el.getBoundingClientRect();"
+        " return {w: Math.round(r.width), h: Math.round(r.height),"
+        "  paths: el.querySelectorAll('path').length,"
+        "  markers: el.querySelectorAll('.leaflet-marker-icon').length,"
+        "  tooltips: el.querySelectorAll('.leaflet-tooltip').length,"
+        "  tiles: el.querySelectorAll('.leaflet-tile-pane img').length,"
+        "  scale: !!el.querySelector('.leaflet-control-scale'),"
+        "  zoom: !!el.querySelector('.leaflet-control-zoom')}; }"
+    )
+    if info is None:
+        report.error(where, "mapa Leaflet ausente no slide")
+        return
+    if info["w"] < 400 or info["h"] < 200:
+        report.error(where, f"mapa Leaflet sem área visível ({info['w']}x{info['h']})")
+    if info["paths"] < 50:
+        report.error(where, f"mapa Leaflet com apenas {info['paths']} feições vetoriais")
+    if info["markers"] < 1:
+        report.error(where, "mapa Leaflet sem marcador do departamento")
+    if info["tooltips"] < 4:
+        report.error(where, f"mapa Leaflet com {info['tooltips']} rótulos fixos (esperado ≥ 4)")
+    if info["tiles"]:
+        report.error(where, "mapa Leaflet carregando tiles (deveria ser vetorial local)")
+    if not info["scale"]:
+        report.error(where, "mapa Leaflet sem barra de escala")
+    if not info["zoom"]:
+        report.error(where, "mapa Leaflet sem controle de zoom")
+    report.summary.setdefault("leaflet", {})[where] = info
 
 
 def _check_local_frame(page, src: str, report: Report, where: str) -> None:
